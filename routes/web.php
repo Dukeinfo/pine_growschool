@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Backend\AdminDashboard;
 use App\Http\Livewire\Backend\Menu\ViewMenu;
+use App\Http\Livewire\Backend\Menu\EditMenu;
 use App\Http\Livewire\Backend\SubMenu\ViewSubMenu;
 use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
@@ -67,6 +68,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/dashboard', AdminDashboard::class)->name('admin_dashboard');
 
 Route::get('/view/menu', ViewMenu::class)->name('view_menu');
+Route::get('/edit/menu/{id}', EditMenu::class)->name('edit_menu');
+
 Route::get('/view/submenu', ViewSubMenu::class)->name('view_subnmenu');
 
     Route::get('/view/slider', ViewHomeSlider::class)->name('view_home_slider');

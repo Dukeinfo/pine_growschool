@@ -8,6 +8,6 @@ class ViewSubMenu extends Component
 {
     public function render()
     {
-        return view('livewire.backend.submenu.view-sub-menu');
+        return view('livewire.backend.submenu.view-sub-menu')->layout('layouts.backend');
     }
 }
