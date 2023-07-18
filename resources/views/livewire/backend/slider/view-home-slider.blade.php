@@ -56,15 +56,16 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Slider Image</label>
-                                        <input type="file" class="form-control" id="" wire:model="image" placeholder="">
-                                        <img src="{{asset('admin_assets')}}/images/no-img.jpg" alt="" class="border mt-2" width="100" height="70">
+                                        <input type="file" class="form-control" id="" wire:model="image" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                        
+                                            <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" id="output" class="border mt-2" width="100" height="30%">
                                         @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="text" class="form-control" id="" wire:model="sort" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
+                                        <input type="number" class="form-control" id="" wire:model="sort" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -84,14 +85,15 @@
                                         <label class="form-label">&nbsp;</label><br>
                                         <button type="button" wire:click="addSlider" class="btn btn-primary w-md" >Submit</button>
                                     </div>
-                                     <div wire:loading wire:target="image">
-  <img src="https://paladins-draft.com/img/circle_loading.gif" width="64" height="64" class="m-auto mt-1/4">
- </div>
+                                     <div wire:loading wire:target="addSlider">
+                                        <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
+
+                                     </div>
                                 </div>
 
 
                             </div>
-                        </form>>
+                        </form>
                         </div>
                     </div>
                 </div>

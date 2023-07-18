@@ -6,6 +6,12 @@
 			<li class="menu-title">General</li>
 
 			<li>
+				<a href="{{route('admin_dashboard')}}" class="waves-effect">
+					<i class="bx bx-home-circle"></i>
+					<span>Dashboard</span>
+				</a>
+			</li>
+			<li>
 				<a href="{{route('view_menu')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
 					<span>Menu</span>
@@ -18,12 +24,6 @@
 				</a>
 			</li>
 
-			<li>
-				<a href="{{route('admin_dashboard')}}" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
-					<span>Dashboard</span>
-				</a>
-			</li>
 			<li>
 				<a href="{{route('view_home_slider')}}" class="waves-effect">
 					<i class="bx bx-image"></i>

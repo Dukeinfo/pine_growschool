@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Membership;
 
 use Livewire\Component;
 use App\Models\Memberships;
+use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
@@ -44,12 +45,13 @@ class ViewMembership extends Component
      $fileName = time().'_'.$this->logo->getClientOriginalName();
      $filePath = $this->logo->storeAs('uploads', $fileName, 'public');
     
-      $slider = new Memberships();
-      $slider->name = $this->name;
-      $slider->logo = $fileName;
-      $slider->sort_id =$this->sort;
-      $slider->status = $this->status;
-      $slider->save();
+      $membership = new Memberships();
+      $membership->name = $this->name;
+      $membership->slug =  strtolower(str_replace(' ', '-',$this->name));
+      $membership->logo = $fileName;
+      $membership->sort_id =$this->sort;
+      $membership->status = $this->status;
+      $membership->save();
 
        $this->resetInputFields();
 
@@ -64,15 +66,22 @@ class ViewMembership extends Component
    }
 
     public function delete($id){
-
-       Memberships::destroy($id);
+            $dellogo = Memberships::findOrFail($id);
+            if(isset($dellogo->logo)){
+                $logoimg = Storage::path('public/uploads/'. $dellogo->logo);
+                    if(File::exists($logoimg)){
+                        // dd($logoimg);
+                        unlink($logoimg);
+                    }
+            }
+            Memberships::destroy($id);
 
      }
 
     public function render()
     {
-    	$this->records=Memberships::get();
-    	
+    	$this->records =  Memberships::orderBy('sort_id' ,'asc')->get();
+   
         return view('livewire.backend.membership.view-membership')->layout('layouts.backend');
     }
 }

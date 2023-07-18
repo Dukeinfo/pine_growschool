@@ -4,8 +4,10 @@ namespace App\Http\Livewire\Backend\Slider;
 
 use Livewire\Component;
 use App\Models\Slider;
+use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use SebastianBergmann\Type\NullType;
 
 class ViewHomeSlider extends Component
 {
@@ -44,6 +46,7 @@ class ViewHomeSlider extends Component
     
       $slider = new Slider();
       $slider->name = $this->name;
+      $slider->slug =  strtolower(str_replace(' ', '-',$this->name))?? Null;
       $slider->image = $fileName;
       $slider->sort_id =$this->sort;
       $slider->status = $this->status;
@@ -62,13 +65,20 @@ class ViewHomeSlider extends Component
    }
 
     public function delete($id){
-
+        $slider = Slider::findOrFail($id);
+        if(isset($slider->image)){
+            $imagePath1 = Storage::path('public/uploads/'. $slider->image);
+                 if(File::exists($imagePath1)){
+                    // dd($imagePath);
+                    unlink($imagePath1);
+                }
+            }
        Slider::destroy($id);
 
      }
     public function render()
     {
-       $this->records=Slider::get();
+       $this->records=Slider::orderBy('sort_id' ,'asc')->get();
 
         return view('livewire.backend.slider.view-home-slider')->layout('layouts.backend');
     }

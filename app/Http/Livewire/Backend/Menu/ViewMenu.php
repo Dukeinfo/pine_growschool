@@ -8,7 +8,7 @@ use App\Models\Menu;
 class ViewMenu extends Component
 {
 
-    public $name,$sort,$status;
+    public $name,$sort,$status ,$records;
 
      protected $rules = [
         'name' => 'required', 
@@ -53,7 +53,7 @@ class ViewMenu extends Component
     public function render()
     {
 
-        $this->records=Menu::orderBy('sort_id','asc')->get();	 
+        $this->records = Menu::orderBy('sort_id','asc')->get();	 
         return view('livewire.backend.menu.view-menu')->layout('layouts.backend');
     }
 }

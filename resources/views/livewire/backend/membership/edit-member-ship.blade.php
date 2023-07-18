@@ -56,14 +56,21 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Logo</label>
-                                        <input type="file" class="form-control" id="" wire:model="logo">
+                                        <input type="file" class="form-control" id="" wire:model="editlogo">
+
+                                        @if(isset($editlogo))  
+                                               <img  src="{{$editlogo->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
+                                        @else
+                                    <img src="{{ asset('storage/uploads').'/'.$logo }}" alt="Image"  width="100" height="70"/>
+
+                                   @endif
                                         @error('logo') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="text" class="form-control" id="" wire:model="sort" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
+                                        <input type="number" class="form-control" id="" wire:model="sort" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -78,12 +85,13 @@
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div wire:loading.remove>
-                                    <button type="submit" wire:click="editMembership" class="btn btn-primary w-md">Submit</button>
+                                <div >
+                                    <button type="submit" wire:loading.attr="disabled" wire:click="editMembership" class="btn btn-primary w-md">Submit</button>
                                 </div>
-                                <div wire:loading wire:target="logo">
-  <img src="https://paladins-draft.com/img/circle_loading.gif" width="64" height="64" class="m-auto mt-1/4">
- </div>
+                                <div wire:loading wire:target="editMembership">
+                                    <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
+                                   
+                                </div>
                             </div>
                         </div>
                     </div>
