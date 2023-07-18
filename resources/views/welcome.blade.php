@@ -1,625 +1,132 @@
-@extends('layout.master')
-@section('title', 'Pinegrove School - Subathu')
-@section('desc', 'Pinegrove School - Subathu')
-@section('keywords', 'Pinegrove School - Subathu')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
+        <title>Laravel</title>
 
-<!-- BEGIN: Hero Slider Start -->
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-<section class="heroSection04">
+        <!-- Styles -->
+        <style>
+            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.dark\:text-gray-500{--tw-text-opacity:1;color:#6b7280;color:rgba(107,114,128,var(--tw-text-opacity))}}
+        </style>
 
-    <div class="heroSlider02 owl-carousel">
-        <div class="singleSlide">
-            <img src="{{asset('public/assets')}}/images/slider/slider-1.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="singleSlide">
-            <img src="{{asset('public/assets')}}/images/slider/slider-2.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="singleSlide">
-            <img src="{{asset('public/assets')}}/images/slider/slider-3.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="singleSlide">
-            <img src="{{asset('public/assets')}}/images/slider/slider-4.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="singleSlide">
-            <img src="{{asset('public/assets')}}/images/slider/slider-5.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="singleSlide">
-            <img src="{{asset('public/assets')}}/images/slider/slider-6.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="singleSlide">
-            <img src="{{asset('public/assets')}}/images/slider/slider-7.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="singleSlide">
-            <img src="{{asset('public/assets')}}/images/slider/slider-9.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="singleSlide">
-            <img src="{{asset('public/assets')}}/images/slider/slider-11.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="singleSlide">
-            <img src="{{asset('public/assets')}}/images/slider/slider-14.jpg" class="img-fluid" alt="">
-        </div>
+        <style>
+            body {
+                font-family: 'Nunito', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="antialiased">
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+            @if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-    </div>
-    <!-- Nav Item  -->
-    <a href="javascript:void(0);" class="prevArrow">
-        <svg fill="#CFCFCF" width="38" height="71" viewBox="0 0 38 71" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.931278 35.1077L35.3173 1.35766C36.4783 0.23872 38.2389 1.97211 37.0689 3.14241C37.069 3.14233 3.5918 36 3.5918 36L37.069 68.8577C37.5615 69.3417 37.5688 70.1327 37.0854 70.6258C36.6012 71.1183 35.81 71.1254 35.3173 70.6423L0.931278 36.8923C0.438141 36.4251 0.435478 35.575 0.931278 35.1077Z" />
-        </svg>
-    </a>
-    <a href="javascript:void(0);" class="nextArrow">
-        <svg fill="#CFCFCF" width="38" height="71" viewBox="0 0 38 71" xmlns="http://www.w3.org/2000/svg">
-            <path d="M37.0687 35.1077L2.68274 1.35766C1.52175 0.23872 -0.238938 1.97211 0.9311 3.14241C0.931025 3.14233 34.4082 36 34.4082 36L0.931026 68.8577C0.438476 69.3417 0.431151 70.1327 0.914551 70.6258C1.39884 71.1183 2.18999 71.1254 2.68274 70.6423L37.0687 36.8923C37.5619 36.4251 37.5645 35.575 37.0687 35.1077Z" />
-        </svg>
-    </a>
-    <!-- Nav Item  -->
-</section>
-
-<!-- END: Hero Slider End -->
-<!-- BEGIN: About Section Start -->
-<section class="aboutSection03 position-relative">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <!-- About Thumb -->
-                <div class="abFact">
-                    <img src="{{asset('public/assets')}}/images/about.jpg" alt="Pingrove">
-                    <div class="abContent">
-                        <a href="https://pinegrove.in/assets/img/School.mp4" class="popup_video withText"><i class="fa-sharp fa-solid fa-play"></i>
-                        </a>
-                    </div>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        @endif
+                    @endauth
                 </div>
-                <!-- About Thumb -->
-            </div>
-            <div class="col-lg-6">
-                <!-- About Content -->
-                <div class="aboutContent02">
-                    <h5 class="subTitle">Unlocking Excellence</h5>
-                    <h2 class="secTitle">Embrace Limitless Potential at Our Premier Boarding School</h2>
-                    <p>
-                        Pinegrove School, established in 1991, is a co-educational, purely residential, English medium boarding school affiliated to the Central Board of Secondary Education (CBSE), Delhi, upto Class 12th. Pinegrove is a proud member of the prestigious Indian Public Schools' Conference (IPSC), Global Member of the Round Square, member of the NPSC, NCC, AFS, and is accredited with ISO 9001:2015 (BSI) certification. The school is also a member of the IAYP
-                    </p>
-                    <div class="row">
-                        <div class="col-xl-12 col-sm-6">
-                            <div class="iconBox02">
-                                <h3 class="ibTitle">High standards in value education</h3>
+            @endif
+
+            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
+                    <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
+                        <g clip-path="url(#clip0)" fill="#EF3B2D">
+                            <path d="M248.032 44.676h-16.466v100.23h47.394v-14.748h-30.928V44.676zM337.091 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.431 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162-.001 2.863-.479 5.584-1.432 8.161zM463.954 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.432 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162 0 2.863-.479 5.584-1.432 8.161zM650.772 44.676h-15.606v100.23h15.606V44.676zM365.013 144.906h15.607V93.538h26.776V78.182h-42.383v66.724zM542.133 78.182l-19.616 51.096-19.616-51.096h-15.808l25.617 66.724h19.614l25.617-66.724h-15.808zM591.98 76.466c-19.112 0-34.239 15.706-34.239 35.079 0 21.416 14.641 35.079 36.239 35.079 12.088 0 19.806-4.622 29.234-14.688l-10.544-8.158c-.006.008-7.958 10.449-19.832 10.449-13.802 0-19.612-11.127-19.612-16.884h51.777c2.72-22.043-11.772-40.877-33.023-40.877zm-18.713 29.28c.12-1.284 1.917-16.884 18.589-16.884 16.671 0 18.697 15.598 18.813 16.884h-37.402zM184.068 43.892c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002-35.648-20.524a2.971 2.971 0 00-2.964 0l-35.647 20.522-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v38.979l-29.706 17.103V24.493a3 3 0 00-.103-.776c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002L40.098 1.396a2.971 2.971 0 00-2.964 0L1.487 21.919l-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v122.09c0 1.063.568 2.044 1.489 2.575l71.293 41.045c.156.089.324.143.49.202.078.028.15.074.23.095a2.98 2.98 0 001.524 0c.069-.018.132-.059.2-.083.176-.061.354-.119.519-.214l71.293-41.045a2.971 2.971 0 001.489-2.575v-38.979l34.158-19.666a2.971 2.971 0 001.489-2.575V44.666a3.075 3.075 0 00-.106-.774zM74.255 143.167l-29.648-16.779 31.136-17.926.001-.001 34.164-19.669 29.674 17.084-21.772 12.428-43.555 24.863zm68.329-76.259v33.841l-12.475-7.182-17.231-9.92V49.806l12.475 7.182 17.231 9.92zm2.97-39.335l29.693 17.095-29.693 17.095-29.693-17.095 29.693-17.095zM54.06 114.089l-12.475 7.182V46.733l17.231-9.92 12.475-7.182v74.537l-17.231 9.921zM38.614 7.398l29.693 17.095-29.693 17.095L8.921 24.493 38.614 7.398zM5.938 29.632l12.475 7.182 17.231 9.92v79.676l.001.005-.001.006c0 .114.032.221.045.333.017.146.021.294.059.434l.002.007c.032.117.094.222.14.334.051.124.088.255.156.371a.036.036 0 00.004.009c.061.105.149.191.222.288.081.105.149.22.244.314l.008.01c.084.083.19.142.284.215.106.083.202.178.32.247l.013.005.011.008 34.139 19.321v34.175L5.939 144.867V29.632h-.001zm136.646 115.235l-65.352 37.625V148.31l48.399-27.628 16.953-9.677v33.862zm35.646-61.22l-29.706 17.102V66.908l17.231-9.92 12.475-7.182v33.841z"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="p-6">
+                            <div class="flex items-center">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs" class="underline text-gray-900 dark:text-white">Documentation</a></div>
                             </div>
-                            <div class="iconBox02">
-                                <h3 class="ibTitle">Safety and Discipline</h3>
-                            </div>
-                            <div class="iconBox02">
-                                <h3 class="ibTitle">Highest standards of academic and sporting excellence</h3>
+
+                            <div class="ml-12">
+                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <a class="immiPressBtn" href="javascript:void();"><span>Discover More</span></a>
-                </div>
-                <!-- About Content -->
-            </div>
-        </div>
-    </div>
-    <div class="bg-corner corner-position"></div>
-    <div class="background-text-wrapper">
-        <div class="bg-custom-header-text">
-            Why Us?
-        </div>
-    </div>
-</section>
-<!-- END: About Section End -->
 
-
-
-<!-- BEGIN: Service Section Start -->
-<section class="serviceSection04" style="background-image: url({{asset('public/assets')}}/images/bg/8.jpg);">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h5 class="subTitle">Discover the Perfect Blend</h5>
-                <h2 class="secTitle">Where Knowledge Meets Dashboard</h2>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Service Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="serviceItem02 si04 text-center">
-                    <div class="serviceWrapper">
-                        <div class="serIcon"><i class="flaticon-open-book"></i></div>
-                        <h3><a href="javascript:void()">Academics</a></h3>
-                        <p>Great emphasis is laid on Academics as this is one of the important prerequisites for a successful future for the students.</p>
-                        <a class="immiPressBtn" href="javascript:void()"><span>Read More</span></a>
-                    </div>
-                </div>
-            </div>
-            <!-- Service Item -->
-            <!-- Service Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="serviceItem02 si04 text-center">
-                    <div class="serviceWrapper">
-                        <div class="serIcon"><i class="flaticon-graduating-student"></i></div>
-                        <h3><a href="javascript:void()">Co-curriculars</a></h3>
-                        <p>Combined with Academics and Sports, Co-curricular activities at Pinegrove help in making a well-rounded individual. </p>
-                        <a class="immiPressBtn" href="javascript:void()"><span>Read More</span></a>
-                    </div>
-                </div>
-            </div>
-            <!-- Service Item -->
-            <!-- Service Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="serviceItem02 si04 text-center">
-                    <div class="serviceWrapper">
-                        <div class="serIcon"><i class="flaticon-targeting"></i></div>
-                        <h3><a href="javascript:void()">Games & Sports</a></h3>
-                        <p>Harnessing the Power of Sports: Fostering Leadership, Integrity, Hard Work and Teamwork through Physical Fitness.</p>
-                        <a class="immiPressBtn" href="javascript:void()"><span>Read More</span></a>
-                    </div>
-                </div>
-            </div>
-            <!-- Service Item -->
-            <!-- Service Item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="serviceItem02 si04 text-center">
-                    <div class="serviceWrapper">
-                        <div class="serIcon"><i class="flaticon-online-registration"></i></div>
-                        <h3><a href="javascript:void()">How to Apply</a></h3>
-                        <p>The admission procedure starts with Registration of the child for admission. Registration is normally open throughout the year.</p>
-                        <a class="immiPressBtn" href="javascript:void()"><span>Read More</span></a>
-                    </div>
-                </div>
-            </div>
-            <!-- Service Item -->
-        </div>
-    </div>
-</section>
-<!-- END: Service Section End -->
-
-<section class="aboutSection02 position-relative">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="aboutContent02">
-                    <h5 class="subTitle">Where Excellence Meets Education</h5>
-                    <h2 class="secTitle">A Dashboard Away from Dashboard</h2>
-                    <p>
-                        Pinegrove is very conscious of the quality of its finished product "The Child". The resultant fruit of an all-round nicely developed and well-balanced personality is harvested by the school after long, onerous, time consuming and tedious hours of labour put in by a competent team of trained, zealous and devoted teachers.
-                    </p>
-                    <div class="row">
-                        <div class="col-xl-12 col-sm-6">
-                            <div class="iconBox02">
-                                <h3 class="ibTitle">High standards in value education</h3>
+                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+                            <div class="flex items-center">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laracasts.com" class="underline text-gray-900 dark:text-white">Laracasts</a></div>
                             </div>
-                            <div class="iconBox02">
-                                <h3 class="ibTitle">Safety and Discipline</h3>
+
+                            <div class="ml-12">
+                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
+                                </div>
                             </div>
-                            <div class="iconBox02">
-                                <h3 class="ibTitle">Highest standards of academic and sporting excellence</h3>
+                        </div>
+
+                        <div class="p-6 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel-news.com/" class="underline text-gray-900 dark:text-white">Laravel News</a></div>
+                            </div>
+
+                            <div class="ml-12">
+                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
+                            <div class="flex items-center">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Vibrant Ecosystem</div>
+                            </div>
+
+                            <div class="ml-12">
+                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <a class="immiPressBtn" href="javascript:void();"><span>Discover More</span></a>
                 </div>
-            </div>
-            <div class="col-lg-5 offset-lg-1">
-                <div id="pineCarousel" class="carousel slide" data-bs-ride="true">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#pineCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#pineCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#pineCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{{asset('public/assets')}}/images/f2.jpg" class="d-block w-100 img-thumbnail" alt="">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{asset('public/assets')}}/images/f3.jpg" class="d-block w-100 img-thumbnail" alt="">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{asset('public/assets')}}/images/f1.jpg" class="d-block w-100 img-thumbnail" alt="">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#pineCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#pineCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bg-corner corner-position"></div>
-</section>
 
-<section class="aboutSection02 position-relative">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-5">
-                <div id="pineCarousel1" class="carousel slide" data-bs-ride="true">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#pineCarousel1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#pineCarousel1" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#pineCarousel1" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{{asset('public/assets')}}/images/f2.jpg" class="d-block w-100 img-thumbnail" alt="">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{asset('public/assets')}}/images/f3.jpg" class="d-block w-100 img-thumbnail" alt="">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{asset('public/assets')}}/images/f1.jpg" class="d-block w-100 img-thumbnail" alt="">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#pineCarousel1" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#pineCarousel1" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-            <div class="col-lg-6 offset-lg-1">
-                <div class="aboutContent02">
-                    <h5 class="subTitle">Where Excellence Meets Education</h5>
-                    <h2 class="secTitle">International Outlook</h2>
-                    <p>
-                        To provide our students with a global outlook, we offer annual International Exchange Programs and Projects in various countries including Australia, South Africa, Germany, France, the USA, and the UK. Through these experiences, our students gain valuable international perspectives that broaden their horizons and enhance their educational journey.
-                    </p>
-                    <div class="row">
-                        <div class="col-xl-12 col-sm-6">
-                            <div class="iconBox02">
-                                <h3 class="ibTitle">High standards in value education</h3>
-                            </div>
-                            <div class="iconBox02">
-                                <h3 class="ibTitle">Safety and Discipline</h3>
-                            </div>
-                            <div class="iconBox02">
-                                <h3 class="ibTitle">Highest standards of academic and sporting excellence</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="immiPressBtn" href="javascript:void();"><span>Discover More</span></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bgsketch">
-        <img src="{{asset('public/assets')}}/images/bg-sketch.png" class="" alt="">
-    </div>
-</section>
+                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+                    <div class="text-center text-sm text-gray-500 sm:text-left">
+                        <div class="flex items-center">
+                            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
+                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
 
+                            <a href="https://laravel.bigcartel.com" class="ml-1 underline">
+                                Shop
+                            </a>
 
-<!-- BEGIN: Coaching Section Start -->
-<section class="coachingSction04" style="background-image: url({{asset('public/assets')}}/images/bg/1.jpg);">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h5 class="subTitle">The Best You Deserve</h5>
-                <h2 class="secTitle">Get the Best Education<br> You Deserve</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-sm-6">
-                <!-- Coaching Item -->
-                <div class="coachingItem02 ci04 text-end">
-                    <div class="coachingThumb">
-                        <img src="{{asset('public/assets')}}/images/f1.jpg" alt="Pingrove">
-                    </div>
-                    <div class="coachingContent text-start">
-                        <h3><a href="javascript:void()">Academic Facilities</a></h3>
-                        <p>The classrooms are very modern, large and airy with proper lighting and provide the most conducive atmosphere for learning.</p>
-                    </div>
-                    <a class="immiPressBtn" href="javascript:void()"><span>View Details</span></a>
-                </div>
-                <!-- Coaching Item -->
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <!-- Coaching Item -->
-                <div class="coachingItem02 ci04 text-end">
-                    <div class="coachingThumb">
-                        <img src="{{asset('public/assets')}}/images/f2.jpg" alt="Pingrove">
-                    </div>
-                    <div class="coachingContent text-start">
-                        <h3><a href="javascript:void()">Boarding Life</a></h3>
-                        <p>All requisite infrastructures are available in Pinegrove School, to provide the children with facilities needed for quality education.</p>
-                    </div>
-                    <a class="immiPressBtn" href="javascript:void()"><span>View Details</span></a>
-                </div>
-                <!-- Coaching Item -->
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <!-- Coaching Item -->
-                <div class="coachingItem02 ci04 text-end">
-                    <div class="coachingThumb">
-                        <img src="{{asset('public/assets')}}/images/f3.jpg" alt="Pingrove">
-                    </div>
-                    <div class="coachingContent text-start">
-                        <h3><a href="javascript:void()">Games & Sports</a></h3>
-                        <p>At Pinegrove we offer an environment that gives every child an opportunity to discover his talents and explore them.</p>
-                    </div>
-                    <a class="immiPressBtn" href="javascript:void()"><span>View Details</span></a>
-                </div>
-                <!-- Coaching Item -->
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END: Coaching Section End -->
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
+                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
 
-<section class="blogSction02">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 text-center mx-auto">
-                <h5 class="subTitle">Schol Accreditation</h5>
-                <h2 class="secTitle">Affiliations, Associations & Memberships</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="owl-carousel owl-theme">
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-1.png" class="border" alt=""></a>
+                            <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
+                                Sponsor
+                            </a>
+                        </div>
                     </div>
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-2.png" class="border" alt=""></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-3.png" class="border" alt=""></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-4.png" class="border" alt=""></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-5.png" class="border" alt=""></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-6.png" class="border" alt=""></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-7.png" class="border" alt=""></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-8.png" class="border" alt=""></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-9.gif" class="border" alt=""></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-10.png" class="border" alt=""></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="{{asset('public/assets')}}/images/partners/p-11.png" class="border" alt=""></a>
+
+                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-
-<!-- BEGIN: Call To Action Start -->
-<section class="CTASection02" style="background-image: url({{asset('public/assets')}}/images/bg/bg1.jpg);">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-7 col-sm-7">
-                <h2 class="secTitle">Highest standards of academic and sporting excellence</h2>
-            </div>
-            <div class="col-xl-5 col-sm-5 text-end">
-                <a class="immiPressBtn" href="javascript:void()"><span>Contact Us</span></a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END: Call To Action End -->
-
-<section class="countrySection02">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h5 class="subTitle">Facilities We Provide</h5>
-                <h2 class="secTitle">Preparing Children for a<br>Dynamic Future</span></h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="countrySlider owl-carousel">
-                    <!-- Country Item -->
-                    <div class="countryItem02 text-center">
-                        <div class="countryThumb">
-                            <img src="{{asset('public/assets')}}/images/facilities/fac1.jpg" alt="Pingrove">
-                        </div>
-                        <div class="countryContent">
-                            <h3><a href="javascript:void()">Courses of Study</a></h3>
-                            <p>Courses of study as laid down by the NCERT and the syllabi framed by the Central Board of Secondary Education (CBSE), of the Government of India, Delhi are strictly adhered to and followed.</p>
-                        </div>
-                    </div>
-                    <!-- Country Item -->
-                    <!-- Country Item -->
-                    <div class="countryItem02 text-center">
-                        <div class="countryThumb">
-                            <img src="{{asset('public/assets')}}/images/facilities/fac2.jpg" alt="Pingrove">
-                        </div>
-                        <div class="countryContent">
-                            <h3><a href="javascript:void()">Teacher-Student Ratio</a></h3>
-                            <p>To achieve the highest levels of academic excellence the school maintains a class-section average strength of just 25 pupils in junior classes and 30 pupils in senior classes.</p>
-                        </div>
-                    </div>
-                    <!-- Country Item -->
-                    <!-- Country Item -->
-                    <div class="countryItem02 text-center">
-                        <div class="countryThumb">
-                            <img src="{{asset('public/assets')}}/images/facilities/fac3.jpg" alt="Pingrove">
-                        </div>
-                        <div class="countryContent">
-                            <h3><a href="javascript:void()">Computer Education</a></h3>
-                            <p>The aim of computer education in the school is to get the children acquainted with the latest in computer technology and to assist in removing their introversion of the machines.</p>
-                        </div>
-                    </div>
-                    <!-- Country Item -->
-                    <!-- Country Item -->
-                    <div class="countryItem02 text-center">
-                        <div class="countryThumb">
-                            <img src="{{asset('public/assets')}}/images/facilities/fac4.jpg" alt="Pingrove">
-                        </div>
-                        <div class="countryContent">
-                            <h3><a href="javascript:void()">Library</a></h3>
-                            <p>The library is very effective for broadening the horizons of the children and keeps them entertained, educated and well informed. It helps in Cultivating the Love for Reading.</p>
-                        </div>
-                    </div>
-                    <!-- Country Item -->
-                    <!-- Country Item -->
-                    <div class="countryItem02 text-center">
-                        <div class="countryThumb">
-                            <img src="{{asset('public/assets')}}/images/facilities/fac5.jpg" alt="Pingrove">
-                        </div>
-                        <div class="countryContent">
-                            <h3><a href="javascript:void()">Laboratories</a></h3>
-                            <p>Modern and well-equipped science labs have the requisite essential equipment for conducting practicals for Physics, Chemistry and Biology as per the new curriculam, laid down by the CBSE. </p>
-                        </div>
-                    </div>
-                    <!-- Country Item -->
-                </div>
-            </div>
-        </div>
-        <div class="background-text-wrapper">
-            <div class="bg-custom-header-text">
-                Facilities
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-<!-- BEGIN: Testimonial Section Start -->
-<section class="testimonialSection01" style="background-image: url({{asset('public/assets')}}/images/bg/bg1.jpg);">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="testimonialSlider01 owl-carousel">
-                    <!-- Testimonial Item -->
-                    <div class="testimonilaItem01">
-                        <div class="tsAuthor">
-                            <img src="{{asset('public/assets')}}/images/dashboard1/t1.jpg" alt="Pingrove">
-                            <h5 class="tsNM">Henry Morgan</h5>
-                            <span class="tsDesign">Country Head, Apple</span>
-                        </div>
-                        <div class="qutation">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet iure ad quibusdam. Totam quis maiores alias! Doloremque, ad doloribus at omnis sunt laboriosam eum, sequi ipsam fugit, repellendus cupiditate rem earum corporis nulla atque a. Dolorem quos cumque voluptates cum sit similique mollitia eligendi.
-                        </div>
-                    </div>
-                    <!-- Testimonial Item -->
-                    <!-- Testimonial Item -->
-                    <div class="testimonilaItem01">
-                        <div class="tsAuthor">
-                            <img src="{{asset('public/assets')}}/images/dashboard1/t2.jpg" alt="Pingrove">
-                            <h5 class="tsNM">Smita Patil</h5>
-                            <span class="tsDesign">Actor & Model</span>
-                        </div>
-                        <div class="qutation">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci doloremque exercitationem ratione. Sit quia dicta qui porro in odit quas illo blanditiis facere et, provident eum! Error a at odio est aut voluptas, architecto laboriosam. Corrupti tempore deleniti molestias in, explicabo alias esse dolorum a!
-                        </div>
-                    </div>
-                    <!-- Testimonial Item -->
-                    <!-- Testimonial Item -->
-                    <div class="testimonilaItem01">
-                        <div class="tsAuthor">
-                            <img src="{{asset('public/assets')}}/images/dashboard1/t3.jpg" alt="Pingrove">
-                            <h5 class="tsNM">Cyrus Poonawala</h5>
-                            <span class="tsDesign">Chairman, IIS Pune</span>
-                        </div>
-                        <div class="qutation">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolorum quibusdam illum optio, deleniti totam voluptatem, quasi omnis iste sint est iusto molestiae blanditiis eaque exercitationem accusamus harum, eveniet architecto fugiat repellendus reiciendis sed? Consequatur quis hic deserunt dolorum tenetur pariatur facilis laborum vel nisi!
-                        </div>
-                    </div>
-                    <!-- Testimonial Item -->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END: Testimonial Section End -->
-
-<!-- BEGIN: Blog Section Start -->
-<section class="blogSction02">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h5 class="subTitle">Stay up to Date</h5>
-                <h2 class="secTitle">Pinegrove Blog, News & Events</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-sm-6">
-                <!-- Blog Item -->
-                <div class="blogItem02 text-end">
-                    <div class="blogThumb">
-                        <img src="{{asset('public/assets')}}/images/blog/1.jpg" alt="Pingrove">
-                        <div class="pDate"><span>10</span> June</div>
-                    </div>
-                    <div class="blogContent text-start">
-                        <div class="biMeta"><svg fill="#E94D4E" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3.87501 13.2498C4.58334 12.7082 5.37501 12.2811 6.25001 11.9686C7.12501 11.6561 8.04167 11.4998 9 11.4998C9.95834 11.4998 10.875 11.6561 11.75 11.9686C12.625 12.2811 13.4167 12.7082 14.125 13.2498C14.6111 12.6804 14.9896 12.0346 15.2604 11.3123C15.5313 10.5901 15.6667 9.81928 15.6667 8.99984C15.6667 7.15262 15.0174 5.5797 13.7188 4.28109C12.4201 2.98248 10.8472 2.33317 9 2.33317C7.15278 2.33317 5.57987 2.98248 4.28126 4.28109C2.98264 5.5797 2.33334 7.15262 2.33334 8.99984C2.33334 9.81928 2.46876 10.5901 2.73959 11.3123C3.01042 12.0346 3.38889 12.6804 3.87501 13.2498ZM9 9.83317C8.18056 9.83317 7.48959 9.55192 6.92709 8.98942C6.36459 8.42692 6.08334 7.73595 6.08334 6.9165C6.08334 6.09706 6.36459 5.40609 6.92709 4.84359C7.48959 4.28109 8.18056 3.99984 9 3.99984C9.81945 3.99984 10.5104 4.28109 11.0729 4.84359C11.6354 5.40609 11.9167 6.09706 11.9167 6.9165C11.9167 7.73595 11.6354 8.42692 11.0729 8.98942C10.5104 9.55192 9.81945 9.83317 9 9.83317ZM9 17.3332C7.84723 17.3332 6.76389 17.1144 5.75 16.6769C4.73612 16.2394 3.85417 15.6457 3.10417 14.8957C2.35417 14.1457 1.76042 13.2637 1.32292 12.2498C0.885422 11.2359 0.666672 10.1526 0.666672 8.99984C0.666672 7.84706 0.885422 6.76373 1.32292 5.74984C1.76042 4.73595 2.35417 3.854 3.10417 3.104C3.85417 2.354 4.73612 1.76025 5.75 1.32275C6.76389 0.885254 7.84723 0.666504 9 0.666504C10.1528 0.666504 11.2361 0.885254 12.25 1.32275C13.2639 1.76025 14.1458 2.354 14.8958 3.104C15.6458 3.854 16.2396 4.73595 16.6771 5.74984C17.1146 6.76373 17.3333 7.84706 17.3333 8.99984C17.3333 10.1526 17.1146 11.2359 16.6771 12.2498C16.2396 13.2637 15.6458 14.1457 14.8958 14.8957C14.1458 15.6457 13.2639 16.2394 12.25 16.6769C11.2361 17.1144 10.1528 17.3332 9 17.3332ZM9 15.6665C9.73612 15.6665 10.4306 15.5589 11.0833 15.3436C11.7361 15.1283 12.3333 14.8193 12.875 14.4165C12.3333 14.0137 11.7361 13.7047 11.0833 13.4894C10.4306 13.2741 9.73612 13.1665 9 13.1665C8.26389 13.1665 7.56945 13.2741 6.91667 13.4894C6.26389 13.7047 5.66667 14.0137 5.125 14.4165C5.66667 14.8193 6.26389 15.1283 6.91667 15.3436C7.56945 15.5589 8.26389 15.6665 9 15.6665ZM9 8.1665C9.36112 8.1665 9.65973 8.04845 9.89584 7.81234C10.1319 7.57623 10.25 7.27762 10.25 6.9165C10.25 6.55539 10.1319 6.25678 9.89584 6.02067C9.65973 5.78456 9.36112 5.6665 9 5.6665C8.63889 5.6665 8.34028 5.78456 8.10417 6.02067C7.86806 6.25678 7.75 6.55539 7.75 6.9165C7.75 7.27762 7.86806 7.57623 8.10417 7.81234C8.34028 8.04845 8.63889 8.1665 9 8.1665Z" />
-                            </svg>By<a href="javascript:void()">Admin</a></div>
-                        <h3><a href="javascript:void();">Ananya Kalia to Join National Defence Academy (NDA)</a></h3>
-                        <p>In a rare achievement, Ananya Kalia, who hails from Palampur and was Head Girl of Pinegrove School, Solan has made the school and all girls from HP proud by making it to the merit to join the NDA, as an Air Force cadet.</p>
-                    </div>
-                    <a class="immiPressBtn" href="javascript:void();"><span>Read More<svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z" />
-                            </svg></span></a>
-                </div>
-                <!-- Blog Item -->
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <!-- Blog Item -->
-                <div class="blogItem02 text-end">
-                    <div class="blogThumb">
-                        <img src="{{asset('public/assets')}}/images/blog/2.jpg" alt="Pingrove">
-                        <div class="pDate"><span>17</span> April</div>
-                    </div>
-                    <div class="blogContent text-start">
-                        <div class="biMeta"><svg fill="#E94D4E" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3.87501 13.2498C4.58334 12.7082 5.37501 12.2811 6.25001 11.9686C7.12501 11.6561 8.04167 11.4998 9 11.4998C9.95834 11.4998 10.875 11.6561 11.75 11.9686C12.625 12.2811 13.4167 12.7082 14.125 13.2498C14.6111 12.6804 14.9896 12.0346 15.2604 11.3123C15.5313 10.5901 15.6667 9.81928 15.6667 8.99984C15.6667 7.15262 15.0174 5.5797 13.7188 4.28109C12.4201 2.98248 10.8472 2.33317 9 2.33317C7.15278 2.33317 5.57987 2.98248 4.28126 4.28109C2.98264 5.5797 2.33334 7.15262 2.33334 8.99984C2.33334 9.81928 2.46876 10.5901 2.73959 11.3123C3.01042 12.0346 3.38889 12.6804 3.87501 13.2498ZM9 9.83317C8.18056 9.83317 7.48959 9.55192 6.92709 8.98942C6.36459 8.42692 6.08334 7.73595 6.08334 6.9165C6.08334 6.09706 6.36459 5.40609 6.92709 4.84359C7.48959 4.28109 8.18056 3.99984 9 3.99984C9.81945 3.99984 10.5104 4.28109 11.0729 4.84359C11.6354 5.40609 11.9167 6.09706 11.9167 6.9165C11.9167 7.73595 11.6354 8.42692 11.0729 8.98942C10.5104 9.55192 9.81945 9.83317 9 9.83317ZM9 17.3332C7.84723 17.3332 6.76389 17.1144 5.75 16.6769C4.73612 16.2394 3.85417 15.6457 3.10417 14.8957C2.35417 14.1457 1.76042 13.2637 1.32292 12.2498C0.885422 11.2359 0.666672 10.1526 0.666672 8.99984C0.666672 7.84706 0.885422 6.76373 1.32292 5.74984C1.76042 4.73595 2.35417 3.854 3.10417 3.104C3.85417 2.354 4.73612 1.76025 5.75 1.32275C6.76389 0.885254 7.84723 0.666504 9 0.666504C10.1528 0.666504 11.2361 0.885254 12.25 1.32275C13.2639 1.76025 14.1458 2.354 14.8958 3.104C15.6458 3.854 16.2396 4.73595 16.6771 5.74984C17.1146 6.76373 17.3333 7.84706 17.3333 8.99984C17.3333 10.1526 17.1146 11.2359 16.6771 12.2498C16.2396 13.2637 15.6458 14.1457 14.8958 14.8957C14.1458 15.6457 13.2639 16.2394 12.25 16.6769C11.2361 17.1144 10.1528 17.3332 9 17.3332ZM9 15.6665C9.73612 15.6665 10.4306 15.5589 11.0833 15.3436C11.7361 15.1283 12.3333 14.8193 12.875 14.4165C12.3333 14.0137 11.7361 13.7047 11.0833 13.4894C10.4306 13.2741 9.73612 13.1665 9 13.1665C8.26389 13.1665 7.56945 13.2741 6.91667 13.4894C6.26389 13.7047 5.66667 14.0137 5.125 14.4165C5.66667 14.8193 6.26389 15.1283 6.91667 15.3436C7.56945 15.5589 8.26389 15.6665 9 15.6665ZM9 8.1665C9.36112 8.1665 9.65973 8.04845 9.89584 7.81234C10.1319 7.57623 10.25 7.27762 10.25 6.9165C10.25 6.55539 10.1319 6.25678 9.89584 6.02067C9.65973 5.78456 9.36112 5.6665 9 5.6665C8.63889 5.6665 8.34028 5.78456 8.10417 6.02067C7.86806 6.25678 7.75 6.55539 7.75 6.9165C7.75 7.27762 7.86806 7.57623 8.10417 7.81234C8.34028 8.04845 8.63889 8.1665 9 8.1665Z" />
-                            </svg>By<a href="javascript:void()">Admin</a></div>
-                        <h3><a href="javascript:void();">"My Plastic - My Responsibility" Campaign</a></h3>
-                        <p>The Eco Club at Pinegrove School, Subathu organized an activity under the "MY PLASTIC-MY RESPONSIBILITY" Campaign. All staff members contributed their bit by collecting the single-use plastic and disposing of...</p>
-                    </div>
-                    <a class="immiPressBtn" href="javascript:void();"><span>Read More<svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z" />
-                            </svg></span></a>
-                </div>
-                <!-- Blog Item -->
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <!-- Blog Item -->
-                <div class="blogItem02 text-end">
-                    <div class="blogThumb">
-                        <img src="{{asset('public/assets')}}/images/blog/3.jpg" alt="Pingrove">
-                        <div class="pDate"><span>17</span> April</div>
-                    </div>
-                    <div class="blogContent text-start">
-                        <div class="biMeta"><svg fill="#E94D4E" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3.87501 13.2498C4.58334 12.7082 5.37501 12.2811 6.25001 11.9686C7.12501 11.6561 8.04167 11.4998 9 11.4998C9.95834 11.4998 10.875 11.6561 11.75 11.9686C12.625 12.2811 13.4167 12.7082 14.125 13.2498C14.6111 12.6804 14.9896 12.0346 15.2604 11.3123C15.5313 10.5901 15.6667 9.81928 15.6667 8.99984C15.6667 7.15262 15.0174 5.5797 13.7188 4.28109C12.4201 2.98248 10.8472 2.33317 9 2.33317C7.15278 2.33317 5.57987 2.98248 4.28126 4.28109C2.98264 5.5797 2.33334 7.15262 2.33334 8.99984C2.33334 9.81928 2.46876 10.5901 2.73959 11.3123C3.01042 12.0346 3.38889 12.6804 3.87501 13.2498ZM9 9.83317C8.18056 9.83317 7.48959 9.55192 6.92709 8.98942C6.36459 8.42692 6.08334 7.73595 6.08334 6.9165C6.08334 6.09706 6.36459 5.40609 6.92709 4.84359C7.48959 4.28109 8.18056 3.99984 9 3.99984C9.81945 3.99984 10.5104 4.28109 11.0729 4.84359C11.6354 5.40609 11.9167 6.09706 11.9167 6.9165C11.9167 7.73595 11.6354 8.42692 11.0729 8.98942C10.5104 9.55192 9.81945 9.83317 9 9.83317ZM9 17.3332C7.84723 17.3332 6.76389 17.1144 5.75 16.6769C4.73612 16.2394 3.85417 15.6457 3.10417 14.8957C2.35417 14.1457 1.76042 13.2637 1.32292 12.2498C0.885422 11.2359 0.666672 10.1526 0.666672 8.99984C0.666672 7.84706 0.885422 6.76373 1.32292 5.74984C1.76042 4.73595 2.35417 3.854 3.10417 3.104C3.85417 2.354 4.73612 1.76025 5.75 1.32275C6.76389 0.885254 7.84723 0.666504 9 0.666504C10.1528 0.666504 11.2361 0.885254 12.25 1.32275C13.2639 1.76025 14.1458 2.354 14.8958 3.104C15.6458 3.854 16.2396 4.73595 16.6771 5.74984C17.1146 6.76373 17.3333 7.84706 17.3333 8.99984C17.3333 10.1526 17.1146 11.2359 16.6771 12.2498C16.2396 13.2637 15.6458 14.1457 14.8958 14.8957C14.1458 15.6457 13.2639 16.2394 12.25 16.6769C11.2361 17.1144 10.1528 17.3332 9 17.3332ZM9 15.6665C9.73612 15.6665 10.4306 15.5589 11.0833 15.3436C11.7361 15.1283 12.3333 14.8193 12.875 14.4165C12.3333 14.0137 11.7361 13.7047 11.0833 13.4894C10.4306 13.2741 9.73612 13.1665 9 13.1665C8.26389 13.1665 7.56945 13.2741 6.91667 13.4894C6.26389 13.7047 5.66667 14.0137 5.125 14.4165C5.66667 14.8193 6.26389 15.1283 6.91667 15.3436C7.56945 15.5589 8.26389 15.6665 9 15.6665ZM9 8.1665C9.36112 8.1665 9.65973 8.04845 9.89584 7.81234C10.1319 7.57623 10.25 7.27762 10.25 6.9165C10.25 6.55539 10.1319 6.25678 9.89584 6.02067C9.65973 5.78456 9.36112 5.6665 9 5.6665C8.63889 5.6665 8.34028 5.78456 8.10417 6.02067C7.86806 6.25678 7.75 6.55539 7.75 6.9165C7.75 7.27762 7.86806 7.57623 8.10417 7.81234C8.34028 8.04845 8.63889 8.1665 9 8.1665Z" />
-                            </svg>By<a href="javascript:void()">Admin</a></div>
-                        <h3><a href="javascript:void();">AFS India Regional Meet - North Zone Member Schools</a></h3>
-                        <p>Pinegrove School, Dharampur hosted the AFS Regional Meet from 12-14 May 2023 for North Zone Member Schools and a myriad of esteemed representatives, Directors, Principals, Educators and Students...</p>
-                    </div>
-                    <a class="immiPressBtn" href="javascript:void();"><span>Read More<svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z" />
-                            </svg></span></a>
-                </div>
-                <!-- Blog Item -->
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END: Blog Section End -->
-
-
-
-@stop
+    </body>
+</html>

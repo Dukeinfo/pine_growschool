@@ -1,16 +1,21 @@
 <?php
 
 use App\Http\Livewire\Backend\AdminDashboard;
+use App\Http\Livewire\Backend\Menu\ViewMenu;
+use App\Http\Livewire\Backend\SubMenu\ViewSubMenu;
 use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
 use App\Http\Livewire\Backend\Gallery\ViewGalleryCategory;
 use App\Http\Livewire\Backend\Membership\ViewMembership;
+use App\Http\Livewire\Backend\Membership\EditMembership;
 use App\Http\Livewire\Backend\Seo\FooterSnippets;
 use App\Http\Livewire\Backend\Seo\HeaderSnippets;
 use App\Http\Livewire\Backend\Seo\Metadetails;
 use App\Http\Livewire\Backend\Slider\ViewHomeSlider;
+use App\Http\Livewire\Backend\Slider\EditHomeSlider;
 use App\Http\Livewire\Backend\Testimonials\ViewTestimonials;
 use App\Http\Livewire\Frontend\Home\Homepage;
+use App\Http\Livewire\Backend\Login\AdminLogin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,12 +51,28 @@ Route::middleware([
 
 });
 
+/**********
+Admin Login 
+***********/
+Route::group(['middleware' => ['guest']], function () {
+Route::get('admin/login', AdminLogin::class)->name('admin_login');
+});
+
+/**********
+Auth Routes 
+***********/
 Route::group(['middleware' => 'auth'],function(){
     Route::prefix('admin')->group(function(){
 
-    Route::get('/admin/dashboard', AdminDashboard::class)->name('admin_dashboard');
+    Route::get('/dashboard', AdminDashboard::class)->name('admin_dashboard');
+
+Route::get('/view/menu', ViewMenu::class)->name('view_menu');
+Route::get('/view/submenu', ViewSubMenu::class)->name('view_subnmenu');
+
     Route::get('/view/slider', ViewHomeSlider::class)->name('view_home_slider');
+    Route::get('/edit/slider/{id}', EditHomeSlider::class)->name('edit_home_slider');
     Route::get('/view/membership', ViewMembership::class)->name('view_membership');
+    Route::get('/edit/membership/{id}', EditMembership::class)->name('edit_membership');
     Route::get('/view/testimonials', ViewTestimonials::class)->name('view_testimonials');
     Route::get('/view/Category', ViewGalleryCategory::class)->name('view_category');
     Route::get('/add/blog', AddBlog::class)->name('add_blog');
@@ -59,10 +80,6 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/manage/seo', Metadetails::class)->name('manage_metadata');
     Route::get('/header/snippets', HeaderSnippets::class)->name('manage_snippets');
     Route::get('/footer/snippets', FooterSnippets::class)->name('manage_footer_snippets');
-
-
-       
-    
     
 });
 });
