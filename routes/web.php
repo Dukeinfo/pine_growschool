@@ -4,6 +4,7 @@ use App\Http\Livewire\Backend\AdminDashboard;
 use App\Http\Livewire\Backend\Menu\ViewMenu;
 use App\Http\Livewire\Backend\Menu\EditMenu;
 use App\Http\Livewire\Backend\SubMenu\ViewSubMenu;
+use App\Http\Livewire\Backend\SubMenu\EditSubMenu;
 use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
 use App\Http\Livewire\Backend\Gallery\ViewGalleryCategory;
@@ -71,6 +72,7 @@ Route::get('/view/menu', ViewMenu::class)->name('view_menu');
 Route::get('/edit/menu/{id}', EditMenu::class)->name('edit_menu');
 
 Route::get('/view/submenu', ViewSubMenu::class)->name('view_subnmenu');
+Route::get('/edit/submenu/{id}', EditSubMenu::class)->name('edit_sub_menu');
 
     Route::get('/view/slider', ViewHomeSlider::class)->name('view_home_slider');
     Route::get('/edit/slider/{id}', EditHomeSlider::class)->name('edit_home_slider');

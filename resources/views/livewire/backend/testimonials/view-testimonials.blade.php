@@ -49,39 +49,45 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Name of Student or Alumni</label>
-                                        <input type="text" class="form-control" id="" name="" placeholder="">
+                                        <input type="text" class="form-control" id=""  wire:model="name" placeholder="">
+                                        @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Profile Photo</label>
-                                        <input type="file" name="" id="" class="form-control">
+                                        <input type="file" wire:model="image" id="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sort Order#</label>
-                                        <input type="text" class="form-control" id="" name="">
+                                        <input type="text" class="form-control" id="" wire:model="sort">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
-                                        <select class="form-select">
+                                        <select wire:model="status" class="form-select">
+                                            <option value="">Select</option>
                                             <option>Active</option>
                                             <option>Inactive</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="mb-3">
+                                    <div class="mb-3" >
                                         <label class="form-label">Message</label>
-                                        <textarea class="form-control" name="" id="" cols="" rows="6"></textarea>
+                                        <textarea wire:model="desc" class="form-control" name="" id="" cols="" rows="6"></textarea>
                                     </div>
                                 </div>
-                                <div>
+                                <div wire:loading.remove>
                                     <button type="submit" class="btn btn-primary w-md">Submit</button>
                                 </div>
+                                 <div wire:loading wire:target="addSlider">
+                                        <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
+
+                                 </div>
                             </div>
                         </div>
                     </div>

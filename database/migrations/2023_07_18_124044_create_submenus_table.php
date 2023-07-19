@@ -18,6 +18,8 @@ class CreateSubmenusTable extends Migration
             $table->integer('menu_id');
             $table->string('name');
             $table->bigInteger('sort_id')->nullable(); 
+            $table->string('cms');
+            $table->string('pname');
             $table->string('status')->nullable(); 
             $table->timestamps();
         });
