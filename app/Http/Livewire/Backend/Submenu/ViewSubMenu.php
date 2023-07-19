@@ -65,6 +65,8 @@ class ViewSubMenu extends Component
           ]); 
     } 
 
+    
+
     public function delete($id){
 
        Submenu::destroy($id);
