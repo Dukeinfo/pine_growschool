@@ -22,6 +22,9 @@
 		<!-- DataTables -->
         <link href="{{asset('admin_assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin_assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+        
+        <!-- trix editor -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
         @livewireStyles
 
 
@@ -72,6 +75,9 @@
 
         <!-- App js -->
         <script src="{{asset('admin_assets')}}/js/app.js"></script>
+
+         <!-- Trix editor -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
 
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

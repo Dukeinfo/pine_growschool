@@ -29,7 +29,7 @@
                         </div>
                         <div class="card-body">
                             <!--success or error alert-->
-                            <div class="row">
+                        <!--     <div class="row">
                                 <div class="col-lg-12">
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         <i class="mdi mdi-check-all me-2"></i>
@@ -42,7 +42,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             
                             <!--form starts-->
                             <div class="row g-3">
@@ -57,12 +57,14 @@
                                     <div class="mb-3">
                                         <label for="" class="form-label">Profile Photo</label>
                                         <input type="file" wire:model="image" id="" class="form-control">
+                                        @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sort Order#</label>
-                                        <input type="text" class="form-control" id="" wire:model="sort">
+                                        <input type="number" class="form-control" id="" wire:model="sort_id">
+                                        @error('sort_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -73,18 +75,31 @@
                                             <option>Active</option>
                                             <option>Inactive</option>
                                         </select>
+                                        @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3" >
                                         <label class="form-label">Message</label>
-                                        <textarea wire:model="desc" class="form-control" name="" id="" cols="" rows="6"></textarea>
+                                       <!--  <textarea wire:model="desc" class="form-control" name="" id="" cols="" rows="6"></textarea> -->
+
+                                        <div wire:ignore>
+        <trix-editor
+            class="formatted-content"
+            x-data
+            x-on:trix-change="$dispatch('input', event.target.value)"
+            x-ref="trix"
+            wire:model.defer="desc"
+            wire:key="uniqueKey"
+        ></trix-editor>
+    </div>  
+    @error('desc') <span class="error">{{ $message }}</span> @enderror                                     
                                     </div>
                                 </div>
                                 <div wire:loading.remove>
-                                    <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                    <button type="submit" wire:click="viewTestimonials" class="btn btn-primary w-md">Submit</button>
                                 </div>
-                                 <div wire:loading wire:target="addSlider">
+                                 <div wire:loading wire:target="viewTestimonials">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
 
                                  </div>

@@ -29,7 +29,7 @@ class ViewSubMenu extends Component
      
       ];
       protected $messages = [
-          'menu_id.required' => 'Name Required.',
+          'menu_id.required' => 'Menu Required.',
           'name.required' => 'Name Required.',
           'sort_id.required' => 'Sort Required.',
           'cms.required' => 'CMS Required.',
