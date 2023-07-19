@@ -30,6 +30,8 @@ class ViewMenu extends Component
 
     public function addMenu()
     {
+      $validatedData = $this->validate();
+
       $menu = new Menu();
       $menu->name = $this->name;
       $menu->sort_id =$this->sort;
