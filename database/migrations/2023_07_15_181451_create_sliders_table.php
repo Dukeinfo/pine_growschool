@@ -19,7 +19,11 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('image')->nullable(); 
             $table->bigInteger('sort_id')->nullable(); 
-            $table->string('status')->nullable(); 
+  
+            $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
+            $table->ipAddress('ip_address')->nullable();
+            $table->string('login')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

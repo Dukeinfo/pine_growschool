@@ -20,7 +20,12 @@ return new class extends Migration
             $table->string('title')->nullable(); 
             $table->longText('description')->nullable();
             $table->longText('kewords')->nullable(); 
-            $table->string('status')->nullable();
+
+        
+            $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
+            $table->ipAddress('ip_address')->nullable();
+            $table->string('login')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

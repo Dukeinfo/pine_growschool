@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Membership;
 
 use Livewire\Component;
 use App\Models\Memberships;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,8 @@ class ViewMembership extends Component
 
     public $name, $logo,$sort,$status;
     public $records;
+    public $ipAddress;
+
 
      protected $rules = [
         'name' => 'required', 
@@ -81,7 +84,7 @@ class ViewMembership extends Component
     public function render()
     {
     	$this->records =  Memberships::orderBy('sort_id' ,'asc')->get();
-   
+   dd( $this->ip());
         return view('livewire.backend.membership.view-membership')->layout('layouts.backend');
     }
 }

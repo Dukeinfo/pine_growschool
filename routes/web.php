@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminLogoutController;
 use App\Http\Livewire\Backend\AdminDashboard;
 use App\Http\Livewire\Backend\Menu\ViewMenu;
 use App\Http\Livewire\Backend\Menu\EditMenu;
@@ -18,6 +19,7 @@ use App\Http\Livewire\Backend\Slider\EditHomeSlider;
 use App\Http\Livewire\Backend\Testimonials\ViewTestimonials;
 use App\Http\Livewire\Frontend\Home\Homepage;
 use App\Http\Livewire\Backend\Login\AdminLogin;
+use App\Http\Livewire\Backend\Profile\AdminProfile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +39,8 @@ use Illuminate\Support\Facades\Route;
 // ============================= frontend route start  ======================
 
 Route::get('/', Homepage::class)->name('homepage');
+
+
 // ============================= frontend route end ======================
 // admin routings
 
@@ -67,6 +71,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::prefix('admin')->group(function(){
 
     Route::get('/dashboard', AdminDashboard::class)->name('admin_dashboard');
+    // 
+    Route::post('/admin-logout', [AdminLogoutController::class,'adminlogout'])->name('adminlogout');
 
 Route::get('/view/menu', ViewMenu::class)->name('view_menu');
 Route::get('/edit/menu/{id}', EditMenu::class)->name('edit_menu');
@@ -85,6 +91,8 @@ Route::get('/edit/submenu/{id}', EditSubMenu::class)->name('edit_sub_menu');
     Route::get('/manage/seo', Metadetails::class)->name('manage_metadata');
     Route::get('/header/snippets', HeaderSnippets::class)->name('manage_snippets');
     Route::get('/footer/snippets', FooterSnippets::class)->name('manage_footer_snippets');
+    Route::get('/profile', AdminProfile::class)->name('admin_profile');
+
     
 });
 });

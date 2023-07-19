@@ -41,7 +41,12 @@ class EditSubMenu extends Component
       $submenu->status = $this->status;
       $submenu->save();
 
-      return redirect()->to('/admin/view/submenu'); 
+        $this->dispatchBrowserEvent('swal:modal', [
+          'type' => 'success',  
+          'message' => 'Successfully updated!', 
+      ]); 
+        return redirect()->to('/admin/view/submenu'); 
+
       }
 
       
