@@ -22,6 +22,7 @@ return new class extends Migration
             $table->bigInteger('sort_id')->nullable(); 
 
             $table->string('link')->nullable(); 
+            $table->longText('description')->nullable();
 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();

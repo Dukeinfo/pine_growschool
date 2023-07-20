@@ -13,13 +13,15 @@ class EditHomeSlider extends Component
 
 use WithFileUploads;
 
-    public $sliderId,$name,$sort,$image, $editimage, $status;
+    public $sliderId,$name,$sort,$image,$heading,$subheading,$editimage, $status;
 
      public function mount($id){
         $slider = Slider::findOrFail($id);
         $this->sliderId = $slider->id;
         $this->name = $slider->name;
         $this->image = $slider->image;
+        $this->heading = $slider->heading;
+        $this->subheading = $slider->subheading;
         $this->sort = $slider->sort_id;
     	$this->status = $slider->status;
      }
@@ -32,7 +34,6 @@ use WithFileUploads;
                 $imagePath1 = Storage::path('public/uploads/'. $this->image);
               
                         if(File::exists($imagePath1)){
-                            // dd($imagePath);
                             unlink($imagePath1);
                         }
                 }
@@ -43,6 +44,8 @@ use WithFileUploads;
             $slider->name = $this->name;
             $slider->slug =  strtolower(str_replace(' ', '-',$this->name));
             $slider->image = $fileName;
+            $slider->heading = $this->heading;
+            $slider->subheading = $this->subheading;
             $slider->sort_id =$this->sort;
             $slider->status = $this->status;
             $slider->save();
@@ -55,6 +58,8 @@ use WithFileUploads;
             $slider->slug =  strtolower(str_replace(' ', '-',$this->name));
             $slider->sort_id =$this->sort;
             $slider->status = $this->status;
+            $slider->heading = $this->heading;
+            $slider->subheading = $this->subheading;
             $slider->save();
             return redirect()->route('view_home_slider'); 
         }

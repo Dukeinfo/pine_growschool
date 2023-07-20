@@ -131,36 +131,36 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+      @if(isset($records) && count($records)>0 )                      
+                       @foreach ($records as  $record)                     
+                                
                                         <tr>
-                                            <td>Yuvraj Singh</td>
+                                            <td>{{$record->name ?? '' }}</td>
                                             <td>
-                                                <img src="{{asset('admin_assets')}}/images/no-img.jpg" alt="" class="rounded-circle border" width="60">
+                                                 @if(isset($record->photo))
+                                                    <img src="{{ asset('storage/uploads').'/'.$record->photo }}" alt="Image" width="100" height="70"/>
+                                                    @else
+                                                    <!-- default image -->
+                                                <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" class="border" width="100" height="70">
+                                                @endif
                                             </td>
                                             <td>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum sit nobis iure?
+                                                {!! $record->description  ?? '' !!}
                                             </td>
-                                            <td>1</td>
-                                            <td><span class="badge badge-soft-success">Active</span></td>
+                                            <td>{{$record->sort_id  ?? ''}}</td>
+                                            <td><span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
                                             <td>
-                                                <a href="#" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="#" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg"></i></a>
+                                                <a href="{{url('/admin/edit/testimonials')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Mahendra Dhoni</td>
-                                            <td>
-                                                <img src="{{asset('admin_assets')}}/images/no-img.jpg" alt="" class="rounded-circle border" width="60">
-                                            </td>
-                                            <td>
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut provident excepturi praesentium.
-                                            </td>
-                                            <td>2</td>
-                                            <td><span class="badge badge-soft-danger">Inactive</span></td>
-                                            <td>
-                                                <a href="#" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="#" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg"></i></a>
-                                            </td>
-                                        </tr>
+                                   @endforeach
+                                      @else
+                                 <tr>
+                                 <td colspan="6"> Record Not Found</td>
+                                
+                                 </tr>
+                                 @endif     
                                     </tbody>
                                 </table>
                             </div>

@@ -12,7 +12,7 @@ class EditMemberShip extends Component
 {
     use WithFileUploads;
  
-    public $memberId,$name,$sort, $logo ,$image,$status, $editlogo; 
+    public $memberId,$name,$sort, $logo ,$image,$hlink,$status, $editlogo; 
 
     public function mount($id)
      {
@@ -21,6 +21,7 @@ class EditMemberShip extends Component
         $this->name = $membership->name;
         $this->logo = $membership->logo;
     	$this->sort = $membership->sort_id;
+        $this->hlink = $membership->link;
     	$this->status = $membership->status;
      }
 
@@ -39,6 +40,7 @@ class EditMemberShip extends Component
             $membership->name = $this->name;
             $membership->logo = $fileName;
             $membership->sort_id =$this->sort;
+            $membership->link = $this->hlink;
             $membership->status = $this->status;
             $membership->save();
              
@@ -48,6 +50,7 @@ class EditMemberShip extends Component
             $membership = Memberships::find($this->memberId);
             $membership->name = $this->name;
             $membership->sort_id =$this->sort;
+            $membership->link = $this->hlink;
             $membership->status = $this->status;
             $membership->save();
              

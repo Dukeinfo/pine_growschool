@@ -62,6 +62,7 @@
                                         @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
+
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
@@ -78,6 +79,20 @@
                                             <option value="Inactive">Inactive</option>
                                         </select>
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Heading</label>
+                                        <input type="text" class="form-control" id="" wire:model="heading" placeholder="">
+                                        @error('heading') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Sub Heading</label>
+                                        <input type="text" class="form-control" id="" wire:model="subheading" placeholder="">
+                                        @error('subheading') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2" >
@@ -114,6 +129,8 @@
                                         <tr>
                                             <th>Slider Name</th>
                                             <th>Slider Image</th>
+                                            <th>Heading</th>
+                                            <th>Sub Heading</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -134,6 +151,8 @@
 
                                                 
                                             </td>
+                                            <td>{{$record->heading ?? '' }}</td>
+                                            <td>{{$record->subheading ?? '' }}</td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>
                                             <td>
@@ -145,7 +164,7 @@
                                 @endforeach
                                       @else
                                  <tr>
-                                 <td colspan="5"> Record Not Found</td>
+                                 <td colspan="7"> Record Not Found</td>
                                 
                                  </tr>
                                  @endif        

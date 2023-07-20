@@ -28,21 +28,7 @@
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
-                            {{-- <!--success or error alert-->
-                            <!-- <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-2"></i>
-                                        Aww yeah, you successfully updated the record. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-2"></i>
-                                        Oops! Something went wrong. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                </div>
-                            </div> --> --}}
+                            
                             <form>
                             {{-- <!--form starts--> --}}
                             <div class="row g-3">
@@ -83,6 +69,20 @@
                                             <option value="Inactive">Inactive</option>
                                         </select>
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Heading</label>
+                                        <input type="text" class="form-control" id="" wire:model="heading" placeholder="">
+                                        @error('heading') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Sub Heading</label>
+                                        <input type="text" class="form-control" id="" wire:model="subheading" placeholder="">
+                                        @error('subheading') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2" >

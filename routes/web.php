@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminLogoutController;
 use App\Http\Livewire\Backend\AdminDashboard;
 use App\Http\Livewire\Backend\Menu\ViewMenu;
 use App\Http\Livewire\Backend\Menu\EditMenu;
+use App\Http\Livewire\Backend\Menu\TrashMenu;
 use App\Http\Livewire\Backend\SubMenu\ViewSubMenu;
 use App\Http\Livewire\Backend\SubMenu\EditSubMenu;
 use App\Http\Livewire\Backend\Blog\AddBlog;
@@ -17,10 +18,12 @@ use App\Http\Livewire\Backend\Seo\Metadetails;
 use App\Http\Livewire\Backend\Slider\ViewHomeSlider;
 use App\Http\Livewire\Backend\Slider\EditHomeSlider;
 use App\Http\Livewire\Backend\Testimonials\ViewTestimonials;
+use App\Http\Livewire\Backend\Testimonials\EditTestimonials;
 use App\Http\Livewire\Frontend\Home\Homepage;
 use App\Http\Livewire\Backend\Login\AdminLogin;
 use App\Http\Livewire\Backend\Profile\AdminProfile;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +79,7 @@ Route::group(['middleware' => 'auth'],function(){
 
 Route::get('/view/menu', ViewMenu::class)->name('view_menu');
 Route::get('/edit/menu/{id}', EditMenu::class)->name('edit_menu');
+Route::get('/view/menu/trash', TrashMenu::class)->name('trash_menu');
 
 Route::get('/view/submenu', ViewSubMenu::class)->name('view_subnmenu');
 Route::get('/edit/submenu/{id}', EditSubMenu::class)->name('edit_sub_menu');
@@ -85,6 +89,7 @@ Route::get('/edit/submenu/{id}', EditSubMenu::class)->name('edit_sub_menu');
     Route::get('/view/membership', ViewMembership::class)->name('view_membership');
     Route::get('/edit/membership/{id}', EditMembership::class)->name('edit_membership');
     Route::get('/view/testimonials', ViewTestimonials::class)->name('view_testimonials');
+    Route::get('/edit/testimonials/{id}', EditTestimonials::class)->name('edit_testimonials');
     Route::get('/view/Category', ViewGalleryCategory::class)->name('view_category');
     Route::get('/add/blog', AddBlog::class)->name('add_blog');
     Route::get('/manage/blog', ManageBlog::class)->name('manage_blog');

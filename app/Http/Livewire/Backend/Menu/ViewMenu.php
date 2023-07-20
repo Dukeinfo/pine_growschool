@@ -48,7 +48,10 @@ class ViewMenu extends Component
 
     public function delete($id){
 
-       Menu::destroy($id);
+      $menu = Menu::findOrFail($id);
+      if(!is_null($menu)){
+        $menu->delete();
+      }
 
      }
 
