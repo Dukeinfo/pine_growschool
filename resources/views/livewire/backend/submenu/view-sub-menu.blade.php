@@ -37,7 +37,7 @@
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Select menu</label>
+                                        <label class="form-label">Select menu  <span class="text-danger">*</span></label>
                                         <select class="form-select"   wire:model="menu_id">
                                             <option value=""> Select menu</option>
                                         @if(isset($getMenus))
@@ -54,8 +54,8 @@
 
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label"> Name</label>
-                                        <input type="text" class="form-control"  wire:model="name" placeholder="">
+                                        <label class="form-label">Submenu  Name  <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control"  wire:model="name" placeholder="Submenu  Name">
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>
@@ -63,8 +63,8 @@
                               
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control"   wire:model="sort_id">
+                                        <label class="form-label">Sorting Order#  <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control" placeholder="Number"  wire:model="sort_id">
                                         @error('sort_id') <span class="error">{{ $message }}</span> @enderror
                                     
                                     </div>
@@ -76,7 +76,7 @@
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Create Through CMS</label>
+                                        <label class="form-label">Create Through CMS  <span class="text-danger">*</span></label>
                                         <select wire:model="cms" class="form-select"   >
                                             <option value=""> Select menu</option>
                                                 <option value="Yes"> Yes</option>
@@ -88,25 +88,68 @@
                                     </div>
                                 </div>
 
-
+                           
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label"> Page Name</label>
-                                        <input type="text" class="form-control"  wire:model="pname" placeholder="">
+                                        <input type="text" class="form-control"  wire:model="pname" placeholder="Page Name" {{$cms == "Yes" ? 'disabled' : ''}} >
                                         @error('pname') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>
                                 </div>
-                              
-                                <!-- <div class="col-md-4">
+                          
+                            <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Upload image </label>
-                                        <input type="file" class="form-control"   wire:model="sort_id">
-                                        @error('sort_id') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label">Upload image  <span class="text-danger">*</span></label>
+                                        <input type="file" class="form-control"   wire:model="image">
+                                        @error('image') <span class="error">{{ $message }}</span> @enderror
                                     
                                     </div>
                                 </div>
-                                 -->
+                                
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"> URL Name</label>
+                                        <input type="text" class="form-control" {{$cms == "Yes" ? 'disabled' : ''}}   wire:model="url_link" 
+                                        placeholder="URL Name">
+                                        @error('url_link') <span class="error">{{ $message }}</span> @enderror
+                                   
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Display Name</label>
+                                        <input type="text" class="form-control"  {{$cms == "Yes" ? 'disabled' : ''}}   wire:model="display_name" placeholder="Display Name">
+                                        @error('display_name') <span class="error">{{ $message }}</span> @enderror
+                                   
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Seo Title</label>
+                                        <input type="text" class="form-control"  wire:model="seo_title" placeholder="Seo Title">
+                                        @error('seo_title') <span class="error">{{ $message }}</span> @enderror
+                                   
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Seo Description</label>
+                                       <textarea name="seo_description" id=""  class="form-control"  cols="30" rows="10" wire:model="seo_description" placeholder="Seo Description here..."></textarea>
+                                        @error('seo_description') <span class="error">{{ $message }}</span> @enderror
+                                   
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Seo Keywords</label>
+                                        <input type="text" class="form-control"  wire:model="seo_keywords" placeholder="Seo Keywords">
+                                        @error('seo_keywords') <span class="error">{{ $message }}</span> @enderror
+                                   
+                                    </div>
+                                </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
@@ -145,9 +188,10 @@
                                 <table class="table table-bordered table-striped datatable">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th> Menu</th>
+                                            <th>Image</th>
                                             <th>Sub Menu</th>
-                                            <th>Sorting Order#</th>
                                             <th>CMS</th>
                                             <th>Page Name</th>
                                             <th>Status</th>
@@ -158,11 +202,16 @@
                  @if(isset($records) && count($records)>0 )                      
                @foreach ($records as  $record)
                  
-                                        <tr>
-                                            <td>{{$record->Menu->name ?? '' }}</td>
-                                        
+                                        <tr><td>
+                                            {{$record->sort_id ?? '' }} 
+                                        </td>
+                                            <td> {{$record->Menu->name ?? '' }}</td>
+                                            <td> 
+                                                <img src="{{ asset('storage/uploads').'/'.$record->image }}" alt="Image" width="100" height="70"/>
+                                            
+                                            </td>
                                             <td>{{$record->name ?? '' }}</td>
-                                            <td>{{$record->sort_id ?? '' }}</td>
+                                          
                                             <td>{{$record->cms ?? '' }}</td>
                                             <td>{{$record->pname ?? '' }}</td>
                                             <td><span class="badge badge-soft-success">{{$record->status ?? '' }}<</span></td>

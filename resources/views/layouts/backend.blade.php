@@ -89,6 +89,9 @@
           text: event.detail.text,
           icon: event.detail.type,
         });
+        setTimeout(() => {
+        swal.close();
+    }, 2000);
     });
       
     window.addEventListener('swal:confirm', event => { 

@@ -4,12 +4,11 @@ namespace App\Http\Livewire\Backend\Menu;
 
 use Livewire\Component;
 use App\Models\Menu;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 class EditMenu extends Component
 {
-    public $menuId,$name,$sort,$status;
-
-
+    public $menuId,$name,$sort,$status ,$clientIp;
       public function mount($id)
      {
         $menu = Menu::findOrFail($id);
@@ -25,14 +24,18 @@ class EditMenu extends Component
         $menu->name = $this->name;
         $menu->sort_id =$this->sort;
         $menu->status = $this->status;
+        $menu->login =  Auth::user()->id;
+        $menu->ip_address =  $this->clientIp;
         $menu->save();
 
      
       return redirect()->to('/admin/view/menu');  
     }
 
-    public function render()
+    public function render(Request $request)
     {
+      $this->clientIp = $request->ip();
+
         return view('livewire.backend.menu.edit-menu')->layout('layouts.backend');;
     }
 }

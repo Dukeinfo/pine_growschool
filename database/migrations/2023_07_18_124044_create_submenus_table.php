@@ -18,9 +18,9 @@ class CreateSubmenusTable extends Migration
             $table->integer('menu_id');
             $table->string('name');
             $table->bigInteger('sort_id')->nullable(); 
-            $table->string('cms');
-            $table->string('pname');
-            $table->string('image');
+            $table->string('cms')->nullable(); ;
+            $table->string('pname')->nullable(); ;
+            $table->string('image')->nullable(); ;
 
             $table->string('url_link')->nullable(); 
             $table->string('display_name')->nullable(); 

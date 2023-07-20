@@ -4,12 +4,21 @@ namespace App\Http\Livewire\Backend\Menu;
 
 use Livewire\Component;
 use App\Models\Menu;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ViewMenu extends Component
 {
 
-    public $name,$sort,$status ,$records;
+    public $name,$sort,$status ,$records ,$clientIp;
 
+    public function render(Request $request)
+    {
+      $this->clientIp = $request->ip();
+
+        $this->records = Menu::orderBy('sort_id','asc')->get();	 
+        return view('livewire.backend.menu.view-menu')->layout('layouts.backend');
+    }
      protected $rules = [
         'name' => 'required', 
         'sort' => 'required', 
@@ -36,6 +45,9 @@ class ViewMenu extends Component
       $menu->name = $this->name;
       $menu->sort_id =$this->sort;
       $menu->status = $this->status;
+      $menu->login =  Auth::user()->id;
+
+      $menu->ip_address =  $this->clientIp;
       $menu->save();
 
       $this->resetInputFields(); 
@@ -55,10 +67,5 @@ class ViewMenu extends Component
 
      }
 
-    public function render()
-    {
 
-        $this->records = Menu::orderBy('sort_id','asc')->get();	 
-        return view('livewire.backend.menu.view-menu')->layout('layouts.backend');
-    }
 }
