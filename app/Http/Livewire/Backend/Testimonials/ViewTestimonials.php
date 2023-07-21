@@ -49,7 +49,10 @@ class ViewTestimonials extends Component
 
     public function viewTestimonials(){
 
-    	$validatedData = $this->validate();
+
+      dd($this->desc);
+
+    	/*$validatedData = $this->validate();
 
       if(!is_null($this->image)){
       $fileName = time().'_'.$this->image->getClientOriginalName();
@@ -71,7 +74,7 @@ class ViewTestimonials extends Component
               'message' => 'Successfully save!', 
           ]); 
 
-      }
+      }*/
     }
 
      public function delete($id){

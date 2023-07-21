@@ -45,7 +45,13 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Category Image</label>
-                                        <input type="file" class="form-control" id="" wire:model="image"placeholder="">
+                                        <input type="file" class="form-control" id="" wire:model="editimage"placeholder="">
+                                        @if(isset($editimage))  
+                                         <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
+                                     @else
+                                     <img src="{{ asset('storage/uploads').'/'.$image }}" alt="Image"  width="100" height="70"/>
+
+                                    @endif
                                          @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -68,9 +74,9 @@
                                     </div>
                                 </div>
                                 <div wire:loading.remove>
-                                    <button type="submit" wire:click="addCategory" class="btn btn-primary w-md">Submit</button>
+                                    <button type="submit" wire:click="editCategory" class="btn btn-primary w-md">Submit</button>
                                 </div>
-                                 <div wire:loading wire:target="addCategory">
+                                 <div wire:loading wire:target="editCategory">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
 
                                      </div>
@@ -81,60 +87,7 @@
             </div>
             <!-- end row -->
             
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Manage Categories</h4>
-                            <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped datatable">
-                                    <thead>
-                                        <tr>
-                                            <th>Category Name</th>
-                                            <th>Category Image</th>
-                                            <th>Sorting Order#</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                          @if(isset($records) && count($records)>0 )                      
-                           @foreach ($records as  $record) 
-                                        <tr>
-                                            <td>{{$record->name ?? '' }}</td>
-                                            <td>
-                                               @if(isset($record->image))
-            <img src="{{ asset('storage/uploads').'/'.$record->image }}" alt="Image" width="100" height="70"/>
-            @else
-            <!-- default image -->
-          <img src="{{asset('admin_assets')}}/images/no-img.jpg" alt="" class="border" width="100" height="70">
-           @endif
-                                            </td>
-                                            <td>{{$record->sort_id ?? '' }}</td>
-                                            <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>
-                                            <td>
-                                                <a href="{{url('/admin/edit/category')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
-                                            </td>
-                                        </tr>
-                                  @endforeach
-                                      @else
-                                 <tr>
-                                 <td colspan="5"> Record Not Found</td>
-                                
-                                 </tr>
-                                 @endif      
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end row -->
+ 
 
 
             

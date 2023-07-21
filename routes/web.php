@@ -10,6 +10,8 @@ use App\Http\Livewire\Backend\SubMenu\EditSubMenu;
 use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
 use App\Http\Livewire\Backend\Gallery\ViewGalleryCategory;
+use App\Http\Livewire\Backend\Gallery\EditGalleryCategory;
+use App\Http\Livewire\Backend\Gallery\TrashGalleryCategory;
 use App\Http\Livewire\Backend\Membership\ViewMembership;
 use App\Http\Livewire\Backend\Membership\EditMembership;
 use App\Http\Livewire\Backend\Seo\FooterSnippets;
@@ -86,11 +88,18 @@ Route::get('/edit/submenu/{id}', EditSubMenu::class)->name('edit_sub_menu');
 
     Route::get('/view/slider', ViewHomeSlider::class)->name('view_home_slider');
     Route::get('/edit/slider/{id}', EditHomeSlider::class)->name('edit_home_slider');
+
+
     Route::get('/view/membership', ViewMembership::class)->name('view_membership');
     Route::get('/edit/membership/{id}', EditMembership::class)->name('edit_membership');
     Route::get('/view/testimonials', ViewTestimonials::class)->name('view_testimonials');
     Route::get('/edit/testimonials/{id}', EditTestimonials::class)->name('edit_testimonials');
-    Route::get('/view/Category', ViewGalleryCategory::class)->name('view_category');
+    Route::get('/view/category', ViewGalleryCategory::class)->name('view_category');
+    Route::get('/edit/category/{id}', EditGalleryCategory::class)->name('edit_category');
+    Route::get('/view/category/trash', TrashGalleryCategory::class)->name('trash_category');
+
+
+
     Route::get('/add/blog', AddBlog::class)->name('add_blog');
     Route::get('/manage/blog', ManageBlog::class)->name('manage_blog');
     Route::get('/manage/seo', Metadetails::class)->name('manage_metadata');
