@@ -28,32 +28,33 @@
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
-                            <!--success or error alert-->
-                            <!-- <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-2"></i>
-                                        Aww yeah, you successfully updated the record. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-2"></i>
-                                        Oops! Something went wrong. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                </div>
-                            </div> -->
+
                             <form >
                             <!--form starts-->
-                            <div class="row g-3">
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Slider Name</label>
-                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="">
-                                        @error('name') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Heading</label>
+                                    <input type="text" class="form-control" id="" wire:model="heading" placeholder="Heading">
+                                    @error('heading') <span class="error">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="col-md-3">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Sub Heading</label>
+
+                                    <textarea  class="form-control" id="" wire:model="subheading" placeholder="Sub Heading" name="" id="" cols="10" rows="5"></textarea>
+                                    @error('subheading') <span class="error">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="" wire:model="name"  placeholder="Name">
+                                    @error('name') <span class="error">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Slider Image</label>
                                         <input type="file" class="form-control" id="" wire:model="image" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
@@ -63,14 +64,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control" id="" wire:model="sort" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
+                                        <input type="number" class="form-control" id="" wire:model="sort" placeholder="Number" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
                                         <select wire:model="status" class="form-select">
@@ -81,24 +82,22 @@
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                {{-- <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Heading</label>
-                                        <input type="text" class="form-control" id="" wire:model="heading" placeholder="">
-                                        @error('heading') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label">Slider section </label>
+                                        <select wire:model="name" class="form-select">
+                                            <option value="">Select</option>
+                                            <option value="Top">Top slider</option>
+                                            <option value="Bottom">Bottom slider</option>
+                                        </select>
+                                        @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Sub Heading</label>
-                                        <input type="text" class="form-control" id="" wire:model="subheading" placeholder="">
-                                        @error('subheading') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
+                                </div> --}}
+                            </div>
                                 <div class="col-md-2" >
-                                    <div class="mb-3" wire:loading.remove>
+                                    <div class="mb-3" >
                                         <label class="form-label">&nbsp;</label><br>
-                                        <button type="button" wire:click="addSlider" class="btn btn-primary w-md" >Submit</button>
+                                        <button type="button"wire:loading.attr="disabled" wire:target="addSlider"   wire:click="addSlider" class="btn btn-primary w-md" >Submit</button>
                                     </div>
                                      <div wire:loading wire:target="addSlider">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
@@ -106,7 +105,7 @@
                                      </div>
                                 </div>
 
-
+                           
                             </div>
                         </form>
                         </div>
@@ -142,12 +141,15 @@
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
                                             <td>
-          @if(isset($record->image))
-            <img src="{{ asset('storage/uploads').'/'.$record->image }}" alt="Image" width="100" height="70"/>
-            @else
-            <!-- default image -->
-          <img src="{{asset('admin_assets')}}/images/no-img.jpg" alt="" class="border" width="100" height="70">
-           @endif
+                    @if(isset($record->image))
+                        <img src="{{ asset('storage/uploads').'/'.$record->image }}" alt="Image" width="100" height="70"/>
+                        Thmb=>
+                        <img src="{{ asset('uploads/thumbnail').'/'.$record->thumbnail }}" alt="Image" width="100" height="70"/>
+                       
+                        @else
+                        <!-- default image -->
+                    <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" class="border" width="100" height="70">
+                    @endif
 
                                                 
                                             </td>

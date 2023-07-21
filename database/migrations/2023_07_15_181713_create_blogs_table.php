@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('category')->nullable(); 
             $table->longText('description')->nullable();
             $table->text('image')->nullable();
+            $table->string('thumbnail')->nullable(); 
+
             $table->bigInteger('sort_id')->nullable(); 
 
             $table->string('link')->nullable(); 

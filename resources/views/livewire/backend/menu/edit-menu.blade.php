@@ -62,8 +62,11 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button type="submit" class="btn btn-primary w-md" wire:click="editMenu">Submit</button>
+                                    <button type="submit" class="btn btn-primary w-md" wire:click="editMenu">Update</button>
                                 </div>
+                                <div wire:loading wire:target="editMenu">
+                                    <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
+                                 </div>
                             </div>
                         </div>
                     </div>

@@ -38,7 +38,7 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label"> Name</label>
-                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="">
+                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="Name">
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control" id="" wire:model="sort" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
+                                        <input type="number" class="form-control" id="" wire:model="sort" placeholder="Sorting Order" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -61,10 +61,15 @@
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div>
+                        
 
-                                    <button type="submit" class="btn btn-primary w-md" wire:click="addMenu">Submit</button>
-                                </div>
+                               <div>
+                                <button type="submit" wire:loading.attr="disabled"  class="btn btn-primary w-md" wire:click="addMenu">Submit</button>
+                               
+                            </div>
+                            <div wire:loading wire:target="addMenu">
+                                <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
+                             </div>
                             </div>
                         </div>
                     </div>

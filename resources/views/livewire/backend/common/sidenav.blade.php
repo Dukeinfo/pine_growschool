@@ -12,6 +12,13 @@
 				</a>
 			</li>
 			<li>
+				<a href="{{route('homepage')}}" target="_blank" class="waves-effect">
+		
+					<i class='bx bx-globe'></i>
+					<span>Website</span>
+				</a>
+			</li>
+			<li>
 				<a href="{{route('view_menu')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
 					<span>Menu</span>
