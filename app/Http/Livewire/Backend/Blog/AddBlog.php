@@ -66,6 +66,7 @@ class AddBlog extends Component
 
         // Set the thumbnail property to the thumbnail image name
         // $this->thumbnail = $thumbnailName;
+    }  
 
       $blog = new Blogs();
       $blog->title = $this->title ?? NULL;
@@ -76,15 +77,12 @@ class AddBlog extends Component
       $blog->sort_id =$this->sort ?? NULL;
       $blog->status = $this->status ?? NULL;
       $blog->save();
-
       $this->resetInputFields(); 
-
       $this->dispatchBrowserEvent('swal:modal', [
               'type' => 'success',  
               'message' => 'Successfully save!', 
           ]); 
 
-      }  
 
 
    }

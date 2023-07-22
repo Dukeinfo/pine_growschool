@@ -31,28 +31,26 @@
                         </div>
                         <div class="card-body">
                             <!--success or error alert-->
-                       
-                            
                             <!--form starts-->
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Category Name</label>
-                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="">
+                                        <input type="text" class="form-control"  wire:model="name" placeholder="Add Category">
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Category Image</label>
-                                        <input type="file" class="form-control" id="" wire:model="image"placeholder="">
+                                        <input type="file" class="form-control" wire:model="image">
                                          @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control" id="" wire:model="sort">
+                                        <input type="number" class="form-control"  wire:model="sort" placeholder="Order NUmber">
                                          @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -60,9 +58,9 @@
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
                                         <select class="form-select" wire:model="status">
-                                              <option value="">Select</option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
+                                                <option value="">Select</option>
+                                                <option>Active</option>
+                                                <option>Inactive</option>
                                         </select>
                                          @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>

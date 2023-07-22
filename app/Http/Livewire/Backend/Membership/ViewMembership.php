@@ -24,7 +24,7 @@ class ViewMembership extends Component
         'logo' => 'required', 
         'sort' => 'required', 
         'status' => 'required', 
-        'hlink' => 'required', 
+        // 'hlink' => 'required', 
      
       ];
       protected $messages = [
@@ -73,13 +73,13 @@ class ViewMembership extends Component
    }
 
      public function delete($id){
-            $dellogo = Memberships::findOrFail($id);
-            if(isset($dellogo->logo)){
-                $logoimg = Storage::path('public/uploads/'. $dellogo->logo);
-                    if(File::exists($logoimg)){
-                        unlink($logoimg);
-                    }
-            }
+            // $dellogo = Memberships::findOrFail($id);
+            // if(isset($dellogo->logo)){
+            //     $logoimg = Storage::path('public/uploads/'. $dellogo->logo);
+            //         if(File::exists($logoimg)){
+            //             unlink($logoimg);
+            //         }
+            // }
             Memberships::destroy($id);
 
      }

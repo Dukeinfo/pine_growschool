@@ -1,14 +1,11 @@
 <div>
-    
     <div class="page-content">
         <div class="container-fluid">
-
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0 font-size-18">Category</h4>
-
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
@@ -31,28 +28,26 @@
                         </div>
                         <div class="card-body">
                             <!--success or error alert-->
-                       
-                            
                             <!--form starts-->
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Category Name</label>
-                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="">
+                                        <input type="text" class="form-control"  wire:model="name" placeholder="Category Name">
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Category Image</label>
-                                        <input type="file" class="form-control" id="" wire:model="image"placeholder="">
+                                        <input type="file" class="form-control"  wire:model="image"placeholder="">
                                          @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control" id="" wire:model="sort">
+                                        <input type="number" class="form-control"  wire:model="sort">
                                          @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

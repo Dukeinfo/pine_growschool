@@ -27,12 +27,12 @@ class EditMemberShip extends Component
 
      public function editMembership() {
         if(!is_null($this->editlogo)){
-            if(isset($this->logo)){
-                $imagePath1 = Storage::path('public/uploads/'. $this->logo);
-                        if(File::exists($imagePath1)){
-                            unlink($imagePath1);
-                        }
-                }
+            // if(isset($this->logo)){
+            //     $imagePath1 = Storage::path('public/uploads/'. $this->logo);
+            //             if(File::exists($imagePath1)){
+            //                 unlink($imagePath1);
+            //             }
+            //     }
             $fileName = time().'_'.$this->editlogo->getClientOriginalName();
             $filePath = $this->editlogo->storeAs('uploads', $fileName, 'public');
 
@@ -44,7 +44,7 @@ class EditMemberShip extends Component
             $membership->status = $this->status;
             $membership->save();
              
-            return redirect()->to('/admin/view/membership'); 
+         
  
         }else{
             $membership = Memberships::find($this->memberId);
@@ -54,9 +54,10 @@ class EditMemberShip extends Component
             $membership->status = $this->status;
             $membership->save();
              
-            return redirect()->to('/admin/view/membership'); 
  
         }
+        return redirect()->to('/admin/view/membership'); 
+
      }
 
 

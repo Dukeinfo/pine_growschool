@@ -10,20 +10,17 @@ use Illuminate\Support\Facades\Storage;
 
 class ViewGalleryCategory extends Component
 {
-
     use WithFileUploads;
-
     public $name, $image,$sort,$status;
     public $records;
-
-     protected $rules = [
+    protected $rules = [
         'name' => 'required', 
         'image' => 'required', 
         'sort' => 'required', 
         'status' => 'required', 
      
       ];
-      protected $messages = [
+    protected $messages = [
           'name.required' => 'Name Required.',
           'image.required' => 'Image Required.',
           'sort.required' => 'Sort Required.',
@@ -36,14 +33,11 @@ class ViewGalleryCategory extends Component
         $this->status = '';
     }
 
-     public function addCategory(){
-
-     $validatedData = $this->validate();
-
+    public function addCategory(){
+    $validatedData = $this->validate();
     if(!is_null($this->image)){
-     $fileName = time().'_'.$this->image->getClientOriginalName();
-     $filePath = $this->image->storeAs('uploads', $fileName, 'public');
-    
+      $fileName = time().'_'.$this->image->getClientOriginalName();
+      $filePath = $this->image->storeAs('uploads', $fileName, 'public');
       $categories = new Categories();
       $categories->name = $this->name;
       $categories->slug =  strtolower(str_replace(' ', '-',$this->name))?? Null;
@@ -52,14 +46,13 @@ class ViewGalleryCategory extends Component
       $categories->status = $this->status;
       $categories->save();
 
-      $this->resetInputFields(); 
-
-     $this->dispatchBrowserEvent('swal:modal', [
+        $this->resetInputFields(); 
+        $this->dispatchBrowserEvent('swal:modal', [
               'type' => 'success',  
               'message' => 'Successfully save!', 
           ]); 
 
-      }  
+    }  
 
 
    }

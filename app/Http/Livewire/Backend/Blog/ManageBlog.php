@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 
 class ManageBlog extends Component
 {
+  public $records;
     public function render()
     {
     	$this->records=Blogs::orderBy('sort_id' ,'asc')->get();
@@ -23,9 +24,9 @@ class ManageBlog extends Component
     public function delete($id){
 
       $blog = Blogs::findOrFail($id);
-      if(!is_null($blog)){
-        $blog->delete();
-      }
+        if(!is_null($blog)){
+          $blog->delete();
+        }
 
      }
 }

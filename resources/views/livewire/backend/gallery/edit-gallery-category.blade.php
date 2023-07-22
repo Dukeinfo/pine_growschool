@@ -38,7 +38,7 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Category Name</label>
-                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="">
+                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="Category Name">
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

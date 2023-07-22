@@ -49,7 +49,7 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="">
+                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="Name">
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control" id="" wire:model="sort" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
+                                        <input type="number" class="form-control" id="" wire:model="sort" placeholder="Order Number" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
                                  <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Link</label>
-                                        <input type="text" class="form-control" id="" wire:model="hlink" placeholder="">
+                                        <input type="url" class="form-control" id="" wire:model="hlink" placeholder="http://example.com">
                                         @error('hlink') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

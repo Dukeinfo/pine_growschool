@@ -29,7 +29,7 @@
                         </div>
                         <div class="card-body">
 
-                            <form >
+                            <form>
                             <!--form starts-->
                             <div class="row">
                             <div class="col-md-12">
@@ -58,8 +58,10 @@
                                     <div class="mb-3">
                                         <label class="form-label">Slider Image</label>
                                         <input type="file" class="form-control" id="" wire:model="image" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
-                                        
-                                            <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" id="output" class="border mt-2" width="100" height="30%">
+                                    
+                                        <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt=".." class="border mt-2" width="100" height="30%">
+
+                                   
                                         @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -97,7 +99,7 @@
                                 <div class="col-md-2" >
                                     <div class="mb-3" >
                                         <label class="form-label">&nbsp;</label><br>
-                                        <button type="button"wire:loading.attr="disabled" wire:target="addSlider"   wire:click="addSlider" class="btn btn-primary w-md" >Submit</button>
+                                        <button type="button" wire:loading.attr="disabled" wire:target="addSlider"   wire:click="addSlider" class="btn btn-primary w-md" >Submit</button>
                                     </div>
                                      <div wire:loading wire:target="addSlider">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
@@ -136,20 +138,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-            @if(isset($records) && count($records)>0 )                      
-               @foreach ($records as  $record)
+                                        @if(isset($records) && count($records)>0 )                      
+                                        @foreach ($records as  $record)
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
                                             <td>
-                    @if(isset($record->image))
-                        <img src="{{ asset('storage/uploads').'/'.$record->image }}" alt="Image" width="100" height="70"/>
-                        Thmb=>
-                        <img src="{{ asset('uploads/thumbnail').'/'.$record->thumbnail }}" alt="Image" width="100" height="70"/>
-                       
-                        @else
-                        <!-- default image -->
-                    <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" class="border" width="100" height="70">
-                    @endif
+                                            @if(isset($record->image))
+                                            <img src="{{ asset('storage/uploads').'/'.$record->image }}" alt="Image" width="100" height="70"/>
+                                            Thmb=>
+                                            <img src="{{ asset('uploads/thumbnail').'/'.$record->thumbnail }}" alt="Image" width="100" height="70"/>
+                                        
+                                            @else
+                                            <!-- default image -->
+                                                <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" class="border" width="100" height="70">
+                                            @endif
 
                                                 
                                             </td>
@@ -162,9 +164,8 @@
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
                                             </td>
                                         </tr>
-                                        
-                                @endforeach
-                                      @else
+                                        @endforeach
+                                        @else
                                  <tr>
                                  <td colspan="7"> Record Not Found</td>
                                 

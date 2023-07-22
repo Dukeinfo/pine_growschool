@@ -1,20 +1,18 @@
 <div>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <div class="page-content">
         <div class="container-fluid">
-
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0 font-size-18">Testimonials</h4>
-
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
                                 <li class="breadcrumb-item active">Testimonials</li>
                             </ol>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -45,11 +43,12 @@
                             </div> -->
                             
                             <!--form starts-->
+                            <form wire:submit.prevent="addTestimonials">
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Name of Student or Alumni</label>
-                                        <input type="text" class="form-control" id=""  wire:model="name" placeholder="">
+                                        <input type="text" class="form-control" id=""  wire:model="name" placeholder="Name of Student">
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -63,7 +62,7 @@
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sort Order#</label>
-                                        <input type="number" class="form-control" id="" wire:model="sort_id">
+                                        <input type="number" class="form-control" id="" wire:model="sort_id" placeholder="Order Number">
                                         @error('sort_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -81,29 +80,44 @@
                                 <div class="col-md-12">
                                     <div class="mb-3" >
                                         <label class="form-label">Message</label>
-                                       <!--  <textarea wire:model="desc" class="form-control" name="" id="" cols="" rows="6"></textarea> -->
+                                      {{-- <textarea wire:model="desc" class="form-control" name="" id="" cols="" rows="6"></textarea>  --}}
+                                 <!-- Include CKEditor script from the CDN -->
+                          
+                                 <div wire:ignore>
+                                         <textarea id="editor" wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat"></textarea>
+                                 </div>
+                                 <script>
+                                    document.addEventListener('livewire:load', function () {
+                                        CKEDITOR.replace('editor');
+                                
+                                        CKEDITOR.instances.editor.on('change', function () {
+                                            @this.set('desc', CKEDITOR.instances.editor.getData());
+                                        });
+                                    });
+                                </script>
+                                
 
-                                        <div wire:ignore>
-        <trix-editor
-            class="formatted-content"
-            x-data
-            x-on:trix-change="$dispatch('input', event.target.value)"
-            x-ref="trix"
-            wire:model.defer="desc"
-            wire:key="uniqueKey"
-        ></trix-editor>
-    </div>  
-    @error('desc') <span class="error">{{ $message }}</span> @enderror                                     
+                                                            {{-- <div wire:ignore>
+                                        <trix-editor
+                                            class="formatted-content"
+                                            x-data
+                                            x-on:trix-change="$dispatch('input', event.target.value)"
+                                            x-ref="trix"
+                                            wire:model.defer="desc"
+                                            wire:key="uniqueKey" >
+                                        </trix-editor>
+                                    </div>   --}}
+                                        @error('desc') <span class="error">{{ $message }}</span> @enderror                                     
                                     </div>
                                 </div>
-                                <div wire:loading.remove>
-                                    <button type="submit" wire:click="viewTestimonials" class="btn btn-primary w-md">Submit</button>
+                                <div>
+                                    <button type="submit" wire:loading.attr="disabled" wire:target="addTestimonials"    class="btn btn-primary w-md">Submit</button>
                                 </div>
-                                 <div wire:loading wire:target="viewTestimonials">
+                                 <div wire:loading wire:target="addTestimonials">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
-
                                  </div>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -148,8 +162,13 @@
                                                 {!! $record->description  ?? '' !!}
                                             </td>
                                             <td>{{$record->sort_id  ?? ''}}</td>
-                                            <td><span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
                                             <td>
+                                                @if($record->status  == "Active")
+                                                    <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
+                                                @else
+                                                    <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
+                                                @endif
+                                                <td>
                                                 <a href="{{url('/admin/edit/testimonials')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
                                             </td>

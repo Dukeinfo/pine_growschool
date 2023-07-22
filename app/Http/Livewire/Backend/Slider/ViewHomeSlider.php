@@ -67,6 +67,7 @@ class ViewHomeSlider extends Component
 
         // Set the thumbnail property to the thumbnail image name
         // $this->thumbnail = $thumbnailName;
+    }  
 
       $slider = new Slider();
       $slider->name = $this->name ?? NULL;
@@ -87,7 +88,6 @@ class ViewHomeSlider extends Component
               'message' => 'Successfully save!', 
           ]); 
 
-      }  
 
 
    }

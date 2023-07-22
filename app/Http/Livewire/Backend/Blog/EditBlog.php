@@ -43,15 +43,11 @@ class EditBlog extends Component
         if (!File::exists($directory)) {
             File::makeDirectory($directory, 0755, true, true);
         }
-
         // Save the original image to the specified directory
         $this->editimage->storeAs('uploads', $imageName, 'public');
-
         // Generate a thumbnail and save it to the specified directory
         $thumbnailName = 'thumb_' . $imageName;
         Image::make($this->editimage)->fit(200, 200)->save($directory . '/' . $thumbnailName);
-
-
             $blog = Blogs::find($this->blogId);
             $blog->title = $this->title;
             $blog->description = $this->desc;
@@ -61,7 +57,7 @@ class EditBlog extends Component
             $blog->sort_id =$this->sort;
             $blog->status = $this->status;
             $blog->save();
-            return redirect()->route('manage_blog'); 
+         
  
         }
         else{
@@ -72,8 +68,8 @@ class EditBlog extends Component
             $blog->sort_id =$this->sort;
             $blog->status = $this->status;
             $blog->save();
-            return redirect()->route('manage_blog'); 
         }
+        return redirect()->route('manage_blog'); 
         
 
      }
