@@ -15,7 +15,7 @@ class TrashMenu extends Component
     }
 
     public function restore($id){
-     $menu = Menu::withTrashed()->findOrFail($id);
+      $menu = Menu::withTrashed()->findOrFail($id);
       if(!is_null($menu)){
         $menu->restore();
       }

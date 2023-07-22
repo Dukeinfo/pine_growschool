@@ -18,9 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->string('image')->nullable(); 
-            $table->string('thumbnail')->nullable(); 
-
-            
+            $table->string('thumbnail')->nullable();             
             $table->string('heading')->nullable();
             $table->string('subheading')->nullable();
             $table->bigInteger('sort_id')->nullable(); 

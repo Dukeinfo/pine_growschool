@@ -7,8 +7,10 @@ use App\Http\Livewire\Backend\Menu\EditMenu;
 use App\Http\Livewire\Backend\Menu\TrashMenu;
 use App\Http\Livewire\Backend\SubMenu\ViewSubMenu;
 use App\Http\Livewire\Backend\SubMenu\EditSubMenu;
+use App\Http\Livewire\Backend\SubMenu\TrashSubMenu;
 use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
+use App\Http\Livewire\Backend\Blog\EditBlog;
 use App\Http\Livewire\Backend\Gallery\ViewGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\EditGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\TrashGalleryCategory;
@@ -76,7 +78,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::prefix('admin')->group(function(){
 
     Route::get('/dashboard', AdminDashboard::class)->name('admin_dashboard');
-    // 
+    Route::get('/profile', AdminProfile::class)->name('admin_profile');
     Route::post('/admin-logout', [AdminLogoutController::class,'adminlogout'])->name('adminlogout');
 
 Route::get('/view/menu', ViewMenu::class)->name('view_menu');
@@ -85,27 +87,31 @@ Route::get('/view/menu/trash', TrashMenu::class)->name('trash_menu');
 
 Route::get('/view/submenu', ViewSubMenu::class)->name('view_subnmenu');
 Route::get('/edit/submenu/{id}', EditSubMenu::class)->name('edit_sub_menu');
-
+Route::get('/view/submenu/trash', TrashSubMenu::class)->name('trash_subnmenu');
     Route::get('/view/slider', ViewHomeSlider::class)->name('view_home_slider');
     Route::get('/edit/slider/{id}', EditHomeSlider::class)->name('edit_home_slider');
 
 
     Route::get('/view/membership', ViewMembership::class)->name('view_membership');
     Route::get('/edit/membership/{id}', EditMembership::class)->name('edit_membership');
+
     Route::get('/view/testimonials', ViewTestimonials::class)->name('view_testimonials');
     Route::get('/edit/testimonials/{id}', EditTestimonials::class)->name('edit_testimonials');
+
     Route::get('/view/category', ViewGalleryCategory::class)->name('view_category');
     Route::get('/edit/category/{id}', EditGalleryCategory::class)->name('edit_category');
     Route::get('/view/category/trash', TrashGalleryCategory::class)->name('trash_category');
 
 
-
     Route::get('/add/blog', AddBlog::class)->name('add_blog');
     Route::get('/manage/blog', ManageBlog::class)->name('manage_blog');
+    Route::get('/edit/blog/{id}', EditBlog::class)->name('edit_blog');
+
     Route::get('/manage/seo', Metadetails::class)->name('manage_metadata');
     Route::get('/header/snippets', HeaderSnippets::class)->name('manage_snippets');
     Route::get('/footer/snippets', FooterSnippets::class)->name('manage_footer_snippets');
-    Route::get('/profile', AdminProfile::class)->name('admin_profile');
+
+    
 
     
 });

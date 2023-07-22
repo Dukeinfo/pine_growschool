@@ -40,18 +40,26 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="mb-3" wire:ignore>
+                                    <div class="mb-3">
                                         <label class="form-label">Description</label>
-                                        <textarea class="form-control" wire:model="desc" id="desc" data-note="@this" cols="" rows="6"></textarea>
+                                        <textarea class="form-control" wire:model="desc" id="" cols="" rows="6"></textarea>
                                         @error('desc') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Blog Image</label>
-                                        <input type="file" wire:model="image" id="" class="form-control">
-                                        <img src="{{asset('admin_assets')}}/images/no-img.jpg" alt="" class="img-thumbnail mt-2" width="100" height="70">
-                                        @error('image') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="file" wire:model="editimage" id="" class="form-control">
+
+@if(isset($editimage))  
+ <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
+@else                                        
+@php
+$thumb = !empty($thumbnail) ? asset('uploads/thumbnail/'.basename($thumbnail)) : url('admin_assets/images/no-img.jpg');
+@endphp                                      
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
+@endif
+                                        @error('editimage') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -74,9 +82,9 @@
                                 </div>
                                 
                                 <div>
-                                    <button type="submit" class="btn btn-primary w-md" wire:click="addBlog">Submit</button>
+                                    <button type="submit" class="btn btn-primary w-md" wire:click="editBlog">Submit</button>
                                 </div>
-                                 <div wire:loading wire:target="addBlog">
+                                 <div wire:loading wire:target="editBlog">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
 
                                 </div>

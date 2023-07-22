@@ -98,6 +98,9 @@ class ViewSubMenu extends Component
     } 
 
     public function delete($id){
-        Submenu::destroy($id);
+         $smenu = Submenu::findOrFail($id);
+          if(!is_null($smenu)){
+           $smenu->delete();
+          }
      }
 }

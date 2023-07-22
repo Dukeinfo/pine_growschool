@@ -50,7 +50,7 @@
                                      <img src="{{ asset('storage/uploads').'/'.$image }}" alt="Image"  width="100" height="70"/>
 
                                     @endif
-                                        @error('image') <span class="error">{{ $message }}</span> @enderror
+                                        @error('editimage') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
