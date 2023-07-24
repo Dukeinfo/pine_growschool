@@ -12,6 +12,7 @@ use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
 use App\Http\Livewire\Backend\Blog\EditBlog;
 use App\Http\Livewire\Backend\Blog\TrashBlog;
+use App\Http\Livewire\Backend\Department\ViewDepartment;
 use App\Http\Livewire\Backend\Gallery\ViewGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\EditGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\TrashGalleryCategory;
@@ -27,7 +28,9 @@ use App\Http\Livewire\Backend\Testimonials\ViewTestimonials;
 use App\Http\Livewire\Backend\Testimonials\EditTestimonials;
 use App\Http\Livewire\Frontend\Home\Homepage;
 use App\Http\Livewire\Backend\Login\AdminLogin;
+use App\Http\Livewire\Backend\Pages\CreatePage;
 use App\Http\Livewire\Backend\Profile\AdminProfile;
+use App\Http\Livewire\Backend\Staff\ViewStaff;
 use Illuminate\Support\Facades\Route;
 
 
@@ -114,9 +117,12 @@ Route::get('/view/submenu/trash', TrashSubMenu::class)->name('trash_subnmenu');
     Route::get('/manage/seo', Metadetails::class)->name('manage_metadata');
     Route::get('/header/snippets', HeaderSnippets::class)->name('manage_snippets');
     Route::get('/footer/snippets', FooterSnippets::class)->name('manage_footer_snippets');
+    Route::get('/create/page', CreatePage::class)->name('manage_create_page');
+    Route::get('/view/staff', ViewStaff::class)->name('manage_view_staff');
+    Route::get('/view/department', ViewDepartment::class)->name('manage_view_department');
 
-    
-
+      
+     
     
 });
 });

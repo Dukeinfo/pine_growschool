@@ -50,40 +50,51 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Choose Page</label>
-                                        <select name="" id="" class="form-select">
-                                            <option value="">Home Page</option>
-                                            <option value="">About</option>
-                                            <option value="">Services</option>
-                                            <option value="">Portfolio</option>
-                                            <option value="">Contact</option>
-                                        </select>
+                                        <select class="form-select"   wire:model="menu_id">
+                                            <option value=""> Select menu</option>
+                                             @if(isset($getMenus))
+                                                @foreach($getMenus as $menu)
+                                                    <option value="{{$menu->id}}"> {{$menu->name}}</option>
+                                                @endforeach
+                                             @endif    
+                                            </select>
+                                             @error('menu_id') <span class="error">{{ $message }}</span> @enderror
+
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
-                                        <select class="form-select">
+                                        <select class="form-select" wire:model="status">
+                                            <option value="">Select</option>
                                             <option>Active</option>
                                             <option>Inactive</option>
-                                        </select>
+                                    </select>
+                                     @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="" class="form-label">Title</label>
-                                        <input type="text" class="form-control">
+                                        <label class="form-label"> Seo Title</label>
+                                        <input type="text" class="form-control"  wire:model="seo_title" placeholder="Seo Title">
+                                        @error('seo_title') <span class="error">{{ $message }}</span> @enderror
+                                   
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Description</label>
-                                        <textarea name="" id="" cols="" rows="6" class="form-control"></textarea>
+                                        <textarea name="seo_description" wire:model="seo_description" id="seo_description" cols="" rows="6" class="form-control" placeholder="Description type here..."></textarea>
+                                        @error('seo_description') <span class="error">{{ $message }}</span> @enderror
+                                   
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="" class="form-label">Kewords</label>
-                                        <input type="text" class="form-control">
+                                        <label class="form-label"> Seo Keywords</label>
+                                        <input type="text" class="form-control"  wire:model="seo_keywords" placeholder="Seo Keywords">
+                                        @error('seo_keywords') <span class="error">{{ $message }}</span> @enderror
+                                   
                                     </div>
                                 </div>
                                 <div>

@@ -73,8 +73,8 @@
                                          @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div wire:loading.remove>
-                                    <button type="submit" wire:click="editCategory" class="btn btn-primary w-md">Submit</button>
+                                <div>
+                                    <button wire:loading.attr="disabled" type="submit" wire:click="editCategory" class="btn btn-primary w-md">Submit</button>
                                 </div>
                                  <div wire:loading wire:target="editCategory">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
