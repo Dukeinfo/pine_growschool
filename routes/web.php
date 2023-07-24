@@ -11,6 +11,7 @@ use App\Http\Livewire\Backend\SubMenu\TrashSubMenu;
 use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
 use App\Http\Livewire\Backend\Blog\EditBlog;
+use App\Http\Livewire\Backend\Blog\TrashBlog;
 use App\Http\Livewire\Backend\Gallery\ViewGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\EditGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\TrashGalleryCategory;
@@ -21,6 +22,7 @@ use App\Http\Livewire\Backend\Seo\HeaderSnippets;
 use App\Http\Livewire\Backend\Seo\Metadetails;
 use App\Http\Livewire\Backend\Slider\ViewHomeSlider;
 use App\Http\Livewire\Backend\Slider\EditHomeSlider;
+use App\Http\Livewire\Backend\Slider\TrashHomeSlider;
 use App\Http\Livewire\Backend\Testimonials\ViewTestimonials;
 use App\Http\Livewire\Backend\Testimonials\EditTestimonials;
 use App\Http\Livewire\Frontend\Home\Homepage;
@@ -91,7 +93,7 @@ Route::get('/edit/submenu/{id}', EditSubMenu::class)->name('edit_sub_menu');
 Route::get('/view/submenu/trash', TrashSubMenu::class)->name('trash_subnmenu');
     Route::get('/view/slider', ViewHomeSlider::class)->name('view_home_slider');
     Route::get('/edit/slider/{id}', EditHomeSlider::class)->name('edit_home_slider');
-
+    Route::get('/view/slider/trash', TrashHomeSlider::class)->name('trash_home_slider');
 
     Route::get('/view/membership', ViewMembership::class)->name('view_membership');
     Route::get('/edit/membership/{id}', EditMembership::class)->name('edit_membership');
@@ -107,6 +109,7 @@ Route::get('/view/submenu/trash', TrashSubMenu::class)->name('trash_subnmenu');
     Route::get('/add/blog', AddBlog::class)->name('add_blog');
     Route::get('/manage/blog', ManageBlog::class)->name('manage_blog');
     Route::get('/edit/blog/{id}', EditBlog::class)->name('edit_blog');
+    Route::get('/manage/blog/trash', TrashBlog::class)->name('trash_blog');
 
     Route::get('/manage/seo', Metadetails::class)->name('manage_metadata');
     Route::get('/header/snippets', HeaderSnippets::class)->name('manage_snippets');

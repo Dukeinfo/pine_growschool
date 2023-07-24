@@ -1,6 +1,5 @@
 <div>
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-    <div class="page-content">
+        <div class="page-content">
         <div class="container-fluid">
             <!-- start page title -->
             <div class="row">
@@ -151,12 +150,10 @@
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
                                             <td>
-                                                 @if(isset($record->photo))
-                                                    <img src="{{ asset('storage/uploads').'/'.$record->photo }}" alt="Image" width="100" height="70"/>
-                                                    @else
-                                                    <!-- default image -->
-                                                <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" class="border" width="100" height="70">
-                                                @endif
+@php
+$thumb = !empty($record->photo) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
+@endphp                                      
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
                                             </td>
                                             <td>
                                                 {!! $record->description  ?? '' !!}

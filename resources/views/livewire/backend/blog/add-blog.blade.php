@@ -42,7 +42,18 @@
                                 <div class="col-md-12">
                                     <div class="mb-3" wire:ignore>
                                         <label class="form-label">Description</label>
-                                        <textarea class="form-control" wire:model="desc" id="desc" data-note="@this" cols="" rows="6"></textarea>
+                                      
+                                         <textarea id="editor" wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat"></textarea>
+                                
+                                 <script>
+                                    document.addEventListener('livewire:load', function () {
+                                        CKEDITOR.replace('editor');
+                                
+                                        CKEDITOR.instances.editor.on('change', function () {
+                                            @this.set('desc', CKEDITOR.instances.editor.getData());
+                                        });
+                                    });
+                                </script>
                                         @error('desc') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

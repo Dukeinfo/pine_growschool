@@ -28,22 +28,7 @@
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
-                            <!--success or error alert-->
-                          <!--   <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-2"></i>
-                                        Aww yeah, you successfully updated the record. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-2"></i>
-                                        Oops! Something went wrong. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                </div>
-                            </div> -->
-                            
+                           
                             <!--form starts-->
                             <div class="row g-3">
                                 <div class="col-md-3">

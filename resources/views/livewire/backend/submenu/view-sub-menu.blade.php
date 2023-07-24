@@ -135,9 +135,19 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="mb-3">
+                                    <div class="mb-3" wire:ignore>
                                         <label class="form-label"> Seo Description</label>
-                                       <textarea name="seo_description" id=""  class="form-control"  cols="30" rows="10" wire:model="seo_description" placeholder="Seo Description here..."></textarea>
+  <textarea id="editor" wire:model="seo_description" placeholder="Seo Description here..." class="form-control xtra-cat"    ></textarea>
+<script>
+                                    document.addEventListener('livewire:load', function () {
+                                        CKEDITOR.replace('editor');
+                                
+                                        CKEDITOR.instances.editor.on('change', function () {
+                                            @this.set('seo_description', CKEDITOR.instances.editor.getData());
+                                        });
+                                    });
+                                </script>
+
                                         @error('seo_description') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>

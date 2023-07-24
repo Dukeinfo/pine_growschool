@@ -7,6 +7,7 @@ use App\Models\Testimonials;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class EditTestimonials extends Component
 {
@@ -28,20 +29,28 @@ class EditTestimonials extends Component
 
        public function editTestimonials() {
         if(!is_null($this->editimage)){
-            if(isset($this->image)){
-                $imagePath1 = Storage::path('public/uploads/'. $this->image);
-              
-                        if(File::exists($imagePath1)){
-                            unlink($imagePath1);
-                        }
-                }
-            $fileName = time().'_'.$this->editimage->getClientOriginalName();
-            $filePath = $this->editimage->storeAs('uploads', $fileName, 'public');
 
+        // Generate a unique name for the image
+        $imageName =  uniqid() . '.' . $this->editimage->getClientOriginalExtension();
+
+        // Get the path where you want to save the image and thumbnail
+        $directory = public_path('uploads/thumbnail');
+
+        // Check if the directory exists, if not, create it
+        if (!File::exists($directory)) {
+            File::makeDirectory($directory, 0755, true, true);
+        }
+        // Save the original image to the specified directory
+        $this->editimage->storeAs('uploads', $imageName, 'public');
+        // Generate a thumbnail and save it to the specified directory
+        $thumbnailName = 'thumb_' . $imageName;
+        Image::make($this->editimage)->fit(200, 200)->save($directory . '/' . $thumbnailName);
+            
             $testimonials = Testimonials::find($this->testimoniaId);
             $testimonials->name = $this->name;
             $testimonials->slug =  strtolower(str_replace(' ', '-',$this->name));
-            $testimonials->photo = $fileName;
+            $testimonials->photo = $imageName ?? Null;
+            $testimonials->thumbnail = $thumbnailName ?? Null;
             $testimonials->sort_id =$this->sort_id;
             $testimonials->status = $this->status;
             $testimonials->description = $this->desc;

@@ -42,7 +42,6 @@ class AddBlog extends Component
     }      
 
     public function addBlog(){
-
     $validatedData = $this->validate();
 
     if(!is_null($this->image)){

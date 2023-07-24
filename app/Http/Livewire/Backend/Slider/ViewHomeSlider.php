@@ -89,18 +89,14 @@ class ViewHomeSlider extends Component
           ]); 
 
 
-
    }
 
     public function delete($id){
-        // $slider = Slider::findOrFail($id);
-        // if(isset($slider->image)){
-        //     $imagePath1 = Storage::path('public/uploads/'. $slider->image);
-        //          if(File::exists($imagePath1)){
-        //             unlink($imagePath1);
-        //         }
-        //     }
-       Slider::destroy($id);
+      $slider = Slider::findOrFail($id);
+      if(!is_null($slider)){
+        $slider->delete();
+      }
+      
 
      }
     public function render()

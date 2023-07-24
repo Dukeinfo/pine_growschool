@@ -50,10 +50,9 @@ class ViewTestimonials extends Component
 
 
     public function addTestimonials(){
-      dd($this->desc);
-    // $validatedData = $this->validate();
 
-    
+     $validatedData = $this->validate();
+
      if(!is_null($this->image)){
         // Generate a unique name for the image
         $imageName =  uniqid() . '.' . $this->image->getClientOriginalExtension();
@@ -96,14 +95,10 @@ class ViewTestimonials extends Component
     }
 
      public function delete($id){
-            $delphoto = Testimonials::findOrFail($id);
-            if(isset($delphoto->photo)){
-                $photo = Storage::path('public/uploads/'. $delphoto->photo);
-                    if(File::exists($photo)){
-                        unlink($photo);
-                    }
-            }
-            Testimonials::destroy($id);
+      $testimonial = Testimonials::findOrFail($id);
+      if(!is_null($testimonial)){
+        $testimonial->delete();
+      }
 
      }
 

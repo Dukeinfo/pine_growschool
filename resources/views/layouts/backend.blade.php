@@ -76,8 +76,8 @@
         <!-- App js -->
         <script src="{{asset('admin_assets')}}/js/app.js"></script>
 
-         <!-- Trix editor -->
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
+         <!-- CK editor -->
+        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

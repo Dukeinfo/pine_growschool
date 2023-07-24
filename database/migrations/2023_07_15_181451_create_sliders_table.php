@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('image')->nullable(); 
             $table->string('thumbnail')->nullable();             
             $table->string('heading')->nullable();
-            $table->string('subheading')->nullable();
+            $table->longText('subheading')->nullable();
             $table->bigInteger('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();

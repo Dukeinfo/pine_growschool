@@ -43,6 +43,8 @@
                                 <div class="mb-3">
                                     <label class="form-label">Sub Heading</label>
 
+                                    
+
                                     <textarea  class="form-control" id="" wire:model="subheading" placeholder="Sub Heading" name="" id="" cols="10" rows="5"></textarea>
                                     @error('subheading') <span class="error">{{ $message }}</span> @enderror
                                 </div>
@@ -143,22 +145,22 @@
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
                                             <td>
-                                            @if(isset($record->image))
-                                            <img src="{{ asset('storage/uploads').'/'.$record->image }}" alt="Image" width="100" height="70"/>
-                                            Thmb=>
-                                            <img src="{{ asset('uploads/thumbnail').'/'.$record->thumbnail }}" alt="Image" width="100" height="70"/>
-                                        
-                                            @else
-                                            <!-- default image -->
-                                                <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" class="border" width="100" height="70">
-                                            @endif
+                                            @php
+$thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
+@endphp                                      
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
 
                                                 
                                             </td>
                                             <td>{{$record->heading ?? '' }}</td>
                                             <td>{{$record->subheading ?? '' }}</td>
                                             <td>{{$record->sort_id ?? '' }}</td>
-                                            <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>
+                                            <td>
+@if($record->status  == "Active")
+        <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
+         @else
+       <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
+@endif</td>
                                             <td>
                                                 <a href="{{url('/admin/edit/slider')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>

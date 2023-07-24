@@ -28,22 +28,7 @@
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
-                            <!--success or error alert-->
-                        <!--     <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-2"></i>
-                                        Aww yeah, you successfully updated the record. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-2"></i>
-                                        Oops! Something went wrong. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                </div>
-                            </div> -->
-                            
+                    
                             <!--form starts-->
                             <div class="row g-3">
                                 <div class="col-md-4">
@@ -92,15 +77,17 @@
                                        <!--  <textarea wire:model="desc" class="form-control" name="" id="" cols="" rows="6"></textarea> -->
 
                                         <div wire:ignore>
-        <trix-editor
-            class="formatted-content"
-            x-data
-            x-on:trix-change="$dispatch('input', event.target.value)"
-            x-ref="trix"
-            wire:model.defer="desc"
-            wire:key="uniqueKey"
-        ></trix-editor>
+        <textarea id="editor" wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat"></textarea>
     </div>  
+    <script>
+                                    document.addEventListener('livewire:load', function () {
+                                        CKEDITOR.replace('editor');
+                                
+                                        CKEDITOR.instances.editor.on('change', function () {
+                                            @this.set('desc', CKEDITOR.instances.editor.getData());
+                                        });
+                                    });
+                                </script>
     @error('desc') <span class="error">{{ $message }}</span> @enderror                                     
                                     </div>
                                 </div>

@@ -7,12 +7,13 @@ use App\Models\Categories;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
-
+use SebastianBergmann\Type\NullType;
+use Intervention\Image\Facades\Image;
 class ViewGalleryCategory extends Component
 {
     use WithFileUploads;
     public $name, $image,$sort,$status;
-    public $records;
+    public $records,$thumbnail;
     protected $rules = [
         'name' => 'required', 
         'image' => 'required', 
@@ -35,15 +36,38 @@ class ViewGalleryCategory extends Component
 
     public function addCategory(){
     $validatedData = $this->validate();
+
     if(!is_null($this->image)){
-      $fileName = time().'_'.$this->image->getClientOriginalName();
-      $filePath = $this->image->storeAs('uploads', $fileName, 'public');
+        // Generate a unique name for the image
+        $imageName =  uniqid() . '.' . $this->image->getClientOriginalExtension();
+
+        // Get the path where you want to save the image and thumbnail
+        $directory = public_path('uploads/thumbnail');
+
+        // Check if the directory exists, if not, create it
+        if (!File::exists($directory)) {
+            File::makeDirectory($directory, 0755, true, true);
+        }
+
+        // Save the original image to the specified directory
+        $this->image->storeAs('uploads', $imageName, 'public');
+
+        // Generate a thumbnail and save it to the specified directory
+        $thumbnailName = 'thumb_' . $imageName;
+        Image::make($this->image)->fit(200, 200)->save($directory . '/' . $thumbnailName);
+
+        // Set the thumbnail property to the thumbnail image name
+        // $this->thumbnail = $thumbnailName;
+    }  
+ 
+
       $categories = new Categories();
-      $categories->name = $this->name;
+      $categories->name = $this->name ?? NULL;
       $categories->slug =  strtolower(str_replace(' ', '-',$this->name))?? Null;
-      $categories->image = $fileName;
-      $categories->sort_id =$this->sort;
-      $categories->status = $this->status;
+      $categories->image = $imageName ?? NULL;
+      $categories->thumbnail = $thumbnailName ?? NULL;
+      $categories->sort_id =$this->sort ?? NULL;
+      $categories->status = $this->status ?? NULL;
       $categories->save();
 
         $this->resetInputFields(); 
@@ -52,7 +76,7 @@ class ViewGalleryCategory extends Component
               'message' => 'Successfully save!', 
           ]); 
 
-    }  
+
 
 
    }

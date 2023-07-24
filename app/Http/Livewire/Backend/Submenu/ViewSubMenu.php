@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Submenu;
 
 use App\Models\Menu;
 use App\Models\Submenu;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Http\Request;
@@ -60,16 +61,29 @@ class ViewSubMenu extends Component
     }
     public function addsubMenu()
     {
-      $validatedData = $this->validate();
-      if(!is_null($this->image)){
-        $fileName = time().'_'.$this->image->getClientOriginalName();
-        $filePath = $this->image->storeAs('uploads', $fileName, 'public');
 
-        // Create an instance of Intervention Image
-        // $image = Image::make($this->image);
-    
-        // Resize the image to create the thumbnail
-        // $thumbnailImage = $image->fit(200, 200); // Change the dimensions as per your requirement
+    $validatedData = $this->validate();
+      if(!is_null($this->image)){
+         // Generate a unique name for the image
+        $imageName =  uniqid() . '.' . $this->image->getClientOriginalExtension();
+
+        // Get the path where you want to save the image and thumbnail
+        $directory = public_path('uploads/thumbnail');
+
+        // Check if the directory exists, if not, create it
+        if (!File::exists($directory)) {
+            File::makeDirectory($directory, 0755, true, true);
+        }
+
+        // Save the original image to the specified directory
+        $this->image->storeAs('uploads', $imageName, 'public');
+
+        // Generate a thumbnail and save it to the specified directory
+        $thumbnailName = 'thumb_' . $imageName;
+        Image::make($this->image)->fit(200, 200)->save($directory . '/' . $thumbnailName);
+
+        // Set the thumbnail property to the thumbnail image name
+        // $this->thumbnail = $thumbnailName;
 
 
       }   
@@ -80,7 +94,8 @@ class ViewSubMenu extends Component
       $submenu->cms =$this->cms;
       $submenu->pname =$this->pname;
       $submenu->status = $this->status;
-      $submenu->image =   $fileName ;
+      $submenu->image =   $imageName ?? NULL;
+      $submenu->thumbnail =   $thumbnailName ?? NULL;
       $submenu->url_link =   $this->url_link ;
       $submenu->display_name =   $this->display_name ;
       $submenu->seo_title =   $this->seo_title ;

@@ -20,19 +20,13 @@ class CreateSubmenusTable extends Migration
             $table->bigInteger('sort_id')->nullable(); 
             $table->string('cms')->nullable(); 
             $table->string('pname')->nullable(); 
-            $table->string('thumbnail')->nullable(); 
-
             $table->string('image')->nullable() ;
-
+            $table->string('thumbnail')->nullable(); 
             $table->string('url_link')->nullable(); 
             $table->string('display_name')->nullable(); 
-
-
             $table->longText('seo_title')->nullable(); 
             $table->longText('seo_description')->nullable(); 
             $table->longText('seo_keywords')->nullable(); 
-
-
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();
             $table->string('login')->nullable();
