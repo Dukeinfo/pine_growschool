@@ -137,8 +137,8 @@
                                 <div class="col-md-12">
                                     <div class="mb-3" wire:ignore>
                                         <label class="form-label"> Seo Description</label>
-  <textarea id="editor" wire:model="seo_description" placeholder="Seo Description here..." class="form-control xtra-cat"    ></textarea>
-<script>
+                                    <textarea id="editor" wire:model="seo_description" placeholder="Seo Description here..." class="form-control xtra-cat"    ></textarea>
+                                    <script>
                                     document.addEventListener('livewire:load', function () {
                                         CKEDITOR.replace('editor');
                                 

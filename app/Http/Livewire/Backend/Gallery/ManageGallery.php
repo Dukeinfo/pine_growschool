@@ -14,16 +14,39 @@ class ManageGallery extends Component
 {
 	use WithFileUploads;
 
-    public $category_id,$image,$sort,$status ,$records;
+    public $category_id,$name,$image,$sort,$status ,$records ,$categories ;
+    public $search ,$s_name ,$year ,$title;
+ 
+    protected $queryString = ['search'];
     public function render()
     {
-    	$this->categories = Categories::orderBy('sort_id','asc')->get();
-    	$this->records = Gallery::orderBy('sort_id','asc')->get();
-        return view('livewire.backend.gallery.manage-gallery')->layout('layouts.backend');
+      $years = [];
+      $currentYear = date('Y');
+      $endYear = $currentYear - 20;
+
+      for ($year = $currentYear; $year >= $endYear; $year--) {
+          $years[$year] = $year;
+      }
+
+      if($this->search ){
+        $this->records = Gallery::join('categories', 'galleries.category_id','categories.id')
+        ->select('galleries.*','categories.name')
+        ->Where('title', 'like', '%'.trim($this->search).'%')
+        ->orWhere('s_name', 'like', '%'.trim($this->search).'%')
+        ->orWhere('year', 'like', '%'.trim($this->search).'%')
+        ->orWhere('categories.name', 'like', '%'.trim($this->search).'%')
+        ->get();
+      }else 
+      {
+        $this->categories = Categories::orderBy('sort_id','asc')->get();
+        $this->records = Gallery::orderBy('sort_id','asc')->get();
+      }
+        return view('livewire.backend.gallery.manage-gallery', compact('years','currentYear'))->layout('layouts.backend');
     }
 
         protected $rules = [
         'category_id' => 'required', 
+        'year' => 'required',
         'image' => 'required', 
         'sort' => 'required', 
         'status' => 'required', 
@@ -38,8 +61,11 @@ class ManageGallery extends Component
           
       ];
     private function resetInputFields(){
-        $this->name = '';
+        $this->category_id = '';
         $this->image = '';
+        $this->title = '';
+        $this->year = '';
+        $this->s_name = '';
         $this->sort = '';
         $this->status = '';
     }
@@ -75,6 +101,10 @@ class ManageGallery extends Component
     
       $gallery = new Gallery();
       $gallery->category_id = $this->category_id;
+      $gallery->title = $this->title;
+      $gallery->year = $this->year;
+      $gallery->s_name = $this->s_name;
+
       $gallery->image = $imageName ?? NULL;
       $gallery->thumbnail = $thumbnailName ?? NULL;
       $gallery->sort_id =$this->sort;

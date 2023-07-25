@@ -14,12 +14,16 @@ class EditGallery extends Component
 {
     use WithFileUploads;
 
-    public $galleryId,$category_id, $name, $image,$editimage,$sort,$status;
-
+    public $galleryId,$category_id, $name, $image,$editimage,$sort,$status ,$thumbnail;
+    public  $categories,$title, $year , $s_name;
      public function mount($id){
         $gallery = Gallery::findOrFail($id);
         $this->galleryId = $gallery->id;
         $this->category_id = $gallery->category_id;
+        $this->title = $gallery->title;
+        $this->year = $gallery->year;
+        $this->s_name = $gallery->s_name;
+
         $this->image = $gallery->image;
         $this->thumbnail = $gallery->thumbnail;
         $this->sort = $gallery->sort_id;
@@ -69,7 +73,15 @@ class EditGallery extends Component
         
      }
 
-
+     private function resetInputFields(){
+        $this->category_id = '';
+        $this->image = '';
+        $this->title = '';
+        $this->year = '';
+        $this->s_name = '';
+        $this->sort = '';
+        $this->status = '';
+    }
     public function render()
     {
         $this->categories = Categories::get();

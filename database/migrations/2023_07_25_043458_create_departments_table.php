@@ -18,6 +18,8 @@ class CreateDepartmentsTable extends Migration
             $table->string('name');
             $table->integer('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
+            $table->ipAddress('ip_address')->nullable();
+            $table->string('login')->nullable();
             $table->timestamps();
         });
     }

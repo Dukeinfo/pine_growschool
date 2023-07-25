@@ -49,6 +49,40 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
+                                        <label class="form-label">Title name</label>
+                                        <input type="text" class="form-control"  wire:model="title" placeholder="Image Title">
+                                         @error('title') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                @php
+                                            $years = [];
+                                            $currentYear = date('Y');
+                                            $endYear = $currentYear - 20;
+
+                                        for ($year = $currentYear; $year >= $endYear; $year--) {
+                                            $years[$year] = $year;
+                                                }
+                                @endphp
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Select Year</label>
+                                        <select name="year"  wire:model="year" id="year" class="form-control">
+                                            @foreach ($years as $year)
+                                                <option value="{{ $year }}" >{{ $year }}</option>
+                                            @endforeach
+                                        </select>
+                                         @error('year') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Student name</label>
+                                        <input type="text" class="form-control"  wire:model="s_name" placeholder="Student name">
+                                         @error('s_name') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
                                         <label class="form-label">Gallery Image</label>
                                         <input type="file" class="form-control" wire:model="editimage">
 @if(isset($editimage))  
@@ -62,14 +96,14 @@ $thumb = !empty($thumbnail) ? asset('uploads/thumbnail/'.basename($thumbnail)) :
                                          @error('editimage') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
                                         <input type="number" class="form-control"  wire:model="sort" placeholder="Order NUmber">
                                          @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
                                         <select class="form-select" wire:model="status">

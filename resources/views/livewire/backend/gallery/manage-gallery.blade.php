@@ -49,19 +49,49 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
+                                        <label class="form-label">Title name</label>
+                                        <input type="text" class="form-control"  wire:model="title" placeholder="Image Title">
+                                         @error('title') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Select Year</label>
+                                        <select name="year"  wire:model="year" id="year" class="form-control">
+                                            <option value="">Select Year</option>
+                                          
+                                            @foreach ($years as $year)
+                                                <option value="{{ $year }}" {{$currentYear == $year ? 'selected' : '' }}>{{ $year }}</option>
+                                            @endforeach
+                                        </select>
+                                         @error('year') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                            
+                            
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Student name</label>
+                                        <input type="text" class="form-control"  wire:model="s_name" placeholder="Student name">
+                                         @error('s_name') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
                                         <label class="form-label">Gallery Image</label>
                                         <input type="file" class="form-control" wire:model="image">
                                          @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                
+                                <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
                                         <input type="number" class="form-control"  wire:model="sort" placeholder="Order NUmber">
                                          @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
                                         <select class="form-select" wire:model="status">
@@ -72,7 +102,7 @@
                                          @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div >
+                                <div>
                                     <button wire:loading.attr="disabled" type="submit" wire:click="addGallery" class="btn btn-primary w-md">Submit</button>
                                 </div>
                                  <div wire:loading wire:target="addGallery">
@@ -91,11 +121,21 @@
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
                             <h4 class="card-title">Manage Gallery</h4>
-                            <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
+                           
+                            <div class="col-md-3 float-end">
+                            <div class="form-group">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Search</label>
+                                    <input type="Search" class="form-control"  wire:model="search" placeholder="Search...">
+                                     @error('Search') <span class="error">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped datatable">
+                                <table class="table table-bordered table-striped ">
                                     <thead>
                                         <tr>
                                             <th>Category Name</th>
@@ -106,23 +146,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                          @if(isset($records) && count($records)>0 )                      
-                           @foreach ($records as  $record) 
+                                    @if(isset($records) && count($records)>0 )                      
+                                    @foreach ($records as  $record) 
                                         <tr>
                                             <td>{{$record->Category->name ?? '' }}</td>
                                             <td>
                                                @php
-$thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
-@endphp                                      
-<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
+                                                $thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
+                                                @endphp                                      
+                                                <img src="{{$thumb}}" alt="" class="border" width="100" height="70">
                                             </td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td>
-@if($record->status  == "Active")
-        <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
-         @else
-       <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
-@endif</td>
+                                            @if($record->status  == "Active")
+                                                    <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
+                                                    @else
+                                                <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
+                                            @endif</td>
                                             <td>
                                                 <a href="{{url('/admin/edit/gallery')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
