@@ -1,56 +1,54 @@
 <?php
 
-namespace App\Http\Livewire\Backend\Staff;
+namespace App\Http\Livewire\Backend\Gallery;
 
 use Livewire\Component;
-use App\Models\Department;
-use App\Models\Staff;
+use App\Models\Categories;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
-use SebastianBergmann\Type\NullType;
 use Intervention\Image\Facades\Image;
 
-class ViewStaff extends Component
+class ManageGallery extends Component
 {
+	use WithFileUploads;
 
-    use WithFileUploads;
-    public $department_id,$name, $image,$thumbnail, $sort,$status;
-
-
+    public $category_id,$image,$sort,$status ,$records;
     public function render()
     {
-    	$this->departments = Department::get();
-        $this->records=Staff::orderBy('sort_id' ,'asc')->get();
-        return view('livewire.backend.staff.view-staff')->layout('layouts.backend');
+    	$this->categories = Categories::orderBy('sort_id','asc')->get();
+    	$this->records = Gallery::orderBy('sort_id','asc')->get();
+        return view('livewire.backend.gallery.manage-gallery')->layout('layouts.backend');
     }
-   
-    protected $rules = [
-        'name' => 'required', 
+
+        protected $rules = [
+        'category_id' => 'required', 
         'image' => 'required', 
         'sort' => 'required', 
         'status' => 'required', 
+       
      
       ];
       protected $messages = [
-          'name.required' => 'Name Required.',
-          'image.required' => 'Logo Required.',
+          'category_id.required' => 'Category Required.',
+          'image.required' => 'Image Required.',
           'sort.required' => 'Sort Required.',
           'status.required' => 'Status Required.',
-         
+          
       ];
     private function resetInputFields(){
         $this->name = '';
         $this->image = '';
         $this->sort = '';
         $this->status = '';
-        
     }
 
-    public function addStaff(){
+
+   public function addGallery(){
 
      $validatedData = $this->validate();
-
+ 
      if(!is_null($this->image)){
         // Generate a unique name for the image
         $imageName =  uniqid() . '.' . $this->image->getClientOriginalExtension();
@@ -73,33 +71,34 @@ class ViewStaff extends Component
         // Set the thumbnail property to the thumbnail image name
         // $this->thumbnail = $thumbnailName;
     }  
+ 
     
-      $staff = new Staff();
-      $staff->department_id= $this->department_id ?? NULL;
-      $staff->name = $this->name ?? NULL;
-      $staff->image = $imageName ?? NULL;
-      $staff->thumbnail = $thumbnailName ?? NULL;
-      $staff->sort_id =$this->sort ?? NULL;
-      $staff->status = $this->status ?? NULL;
-      $staff->save();
+      $gallery = new Gallery();
+      $gallery->category_id = $this->category_id;
+      $gallery->image = $imageName ?? NULL;
+      $gallery->thumbnail = $thumbnailName ?? NULL;
+      $gallery->sort_id =$this->sort;
+      $gallery->status = $this->status;
+      $gallery->save();
 
        $this->resetInputFields();
 
-     $this->dispatchBrowserEvent('swal:modal', [
+       $this->dispatchBrowserEvent('swal:modal', [
               'type' => 'success',  
               'message' => 'Successfully save!', 
           ]); 
 
-        
+    
 
 
    }
 
-    public function delete($id){
 
-      $staff = Staff::findOrFail($id);
-      if(!is_null($staff)){
-        $staff->delete();
+     public function delete($id){
+
+      $gallery = Gallery::findOrFail($id);
+      if(!is_null($gallery)){
+        $gallery->delete();
       }
 
      }

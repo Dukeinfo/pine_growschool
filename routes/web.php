@@ -16,8 +16,12 @@ use App\Http\Livewire\Backend\Department\ViewDepartment;
 use App\Http\Livewire\Backend\Gallery\ViewGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\EditGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\TrashGalleryCategory;
+use App\Http\Livewire\Backend\Gallery\ManageGallery;
+use App\Http\Livewire\Backend\Gallery\EditGallery;
+use App\Http\Livewire\Backend\Gallery\TrashGallery;
 use App\Http\Livewire\Backend\Membership\ViewMembership;
 use App\Http\Livewire\Backend\Membership\EditMembership;
+use App\Http\Livewire\Backend\Membership\TrashMembership;
 use App\Http\Livewire\Backend\Seo\FooterSnippets;
 use App\Http\Livewire\Backend\Seo\HeaderSnippets;
 use App\Http\Livewire\Backend\Seo\Metadetails;
@@ -26,6 +30,7 @@ use App\Http\Livewire\Backend\Slider\EditHomeSlider;
 use App\Http\Livewire\Backend\Slider\TrashHomeSlider;
 use App\Http\Livewire\Backend\Testimonials\ViewTestimonials;
 use App\Http\Livewire\Backend\Testimonials\EditTestimonials;
+use App\Http\Livewire\Backend\Testimonials\TrashTestimonials;
 use App\Http\Livewire\Frontend\Home\Homepage;
 use App\Http\Livewire\Backend\Login\AdminLogin;
 use App\Http\Livewire\Backend\Pages\CreatePage;
@@ -100,14 +105,19 @@ Route::get('/view/submenu/trash', TrashSubMenu::class)->name('trash_subnmenu');
 
     Route::get('/view/membership', ViewMembership::class)->name('view_membership');
     Route::get('/edit/membership/{id}', EditMembership::class)->name('edit_membership');
+    Route::get('/view/membership/trash', TrashMembership::class)->name('trash_membership');
 
     Route::get('/view/testimonials', ViewTestimonials::class)->name('view_testimonials');
     Route::get('/edit/testimonials/{id}', EditTestimonials::class)->name('edit_testimonials');
+    Route::get('/view/testimonials/trash', TrashTestimonials::class)->name('trash_testimonials');
 
     Route::get('/view/category', ViewGalleryCategory::class)->name('view_category');
     Route::get('/edit/category/{id}', EditGalleryCategory::class)->name('edit_category');
     Route::get('/view/category/trash', TrashGalleryCategory::class)->name('trash_category');
 
+    Route::get('/manage/gallery', ManageGallery::class)->name('manage_gallery');
+    Route::get('/edit/gallery/{id}', EditGallery::class)->name('edit_gallery');
+    Route::get('/manage/gallery/trash', EditGallery::class)->name('trash_gallery'); 
 
     Route::get('/add/blog', AddBlog::class)->name('add_blog');
     Route::get('/manage/blog', ManageBlog::class)->name('manage_blog');

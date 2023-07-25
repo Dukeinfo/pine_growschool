@@ -41,12 +41,15 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Logo</label>
-                                        <input type="file" class="form-control" id="" wire:model="editlogo">
+                                        <input type="file" class="form-control" id="" wire:model="editimage">
 
-                                        @if(isset($editlogo))  
-                                               <img  src="{{$editlogo->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
+                                        @if(isset($editimage))  
+                                               <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
                                         @else
-                                    <img src="{{ asset('storage/uploads').'/'.$logo }}" alt="Image"  width="100" height="70"/>
+@php                                        
+$thumb = !empty($thumbnail) ? asset('uploads/thumbnail/'.basename($thumbnail)) : url('admin_assets/images/no-img.jpg');
+@endphp                                      
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
 
                                    @endif
                                         @error('logo') <span class="error">{{ $message }}</span> @enderror

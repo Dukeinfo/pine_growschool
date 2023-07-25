@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Staff</h4>
+                        <h4 class="mb-sm-0 font-size-18">Manage Gallery</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
                                 <li class="breadcrumb-item">Portfolio</li>
-                                <li class="breadcrumb-item active">Staff</li>
+                                <li class="breadcrumb-item active">Manage Gallery</li>
                             </ol>
                         </div>
 
@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Add Staff</h4>
+                            <h4 class="card-title">Add Gallery</h4>
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
@@ -35,28 +35,21 @@
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Department</label>
-                                        <select class="form-select" wire:model="department_id">
-                                                <option value="">Select</option>
-                                                @if(isset($departments))
-                                            @foreach($departments as $department)
-                                              <option value="{{$department->id}}"> {{$department->name}}</option>
+                                        <label class="form-label">Category Name</label>
+                                        <select class="form-select"   wire:model="category_id">
+                                            <option value=""> Select menu</option>
+                                        @if(isset($categories))
+                                            @foreach($categories as $category)
+                                              <option value="{{$category->id}}"> {{$category->name}}</option>
                                             @endforeach
-                                        @endif 
-                                        </select>
-                                         @error('department_id') <span class="error">{{ $message }}</span> @enderror
+                                        @endif    
+                                            </select>
+                                        @error('category_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="Name">
-                                        @error('name') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Category Image</label>
+                                        <label class="form-label">Gallery Image</label>
                                         <input type="file" class="form-control" wire:model="image">
                                          @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
@@ -80,9 +73,9 @@
                                     </div>
                                 </div>
                                 <div >
-                                    <button wire:loading.attr="disabled" type="submit" wire:click="addStaff" class="btn btn-primary w-md">Submit</button>
+                                    <button wire:loading.attr="disabled" type="submit" wire:click="addGallery" class="btn btn-primary w-md">Submit</button>
                                 </div>
-                                 <div wire:loading wire:target="addStaff">
+                                 <div wire:loading wire:target="addGallery">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
 
                                      </div>
@@ -97,7 +90,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Manage Categories</h4>
+                            <h4 class="card-title">Manage Gallery</h4>
                             <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
                         </div>
                         <div class="card-body">
@@ -106,7 +99,7 @@
                                     <thead>
                                         <tr>
                                             <th>Category Name</th>
-                                            <th>Category Image</th>
+                                            <th>Gallery Image</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -116,7 +109,7 @@
                           @if(isset($records) && count($records)>0 )                      
                            @foreach ($records as  $record) 
                                         <tr>
-                                            <td>{{$record->name ?? '' }}</td>
+                                            <td>{{$record->Category->name ?? '' }}</td>
                                             <td>
                                                @php
 $thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
@@ -131,7 +124,7 @@ $thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->t
        <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
 @endif</td>
                                             <td>
-                                                <a href="{{url('/admin/edit/category')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a href="{{url('/admin/edit/gallery')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
                                             </td>
                                         </tr>

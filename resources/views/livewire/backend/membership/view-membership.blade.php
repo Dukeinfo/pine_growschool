@@ -29,21 +29,7 @@
                         </div>
                         <div class="card-body">
                             <!--success or error alert-->
-                          <!--   <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-2"></i>
-                                        Aww yeah, you successfully updated the record. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-2"></i>
-                                        Oops! Something went wrong. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                </div>
-                            </div> -->
-                            
+                          
                             <!--form starts-->
                             <div class="row g-3">
                                 <div class="col-md-3">
@@ -56,8 +42,8 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Logo</label>
-                                        <input type="file" class="form-control" id="" wire:model="logo">
-                                        @error('logo') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="file" class="form-control" id="" wire:model="image">
+                                        @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -86,8 +72,6 @@
                                         @error('hlink') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-
-                      
 
                                 <div>
                                     <button type="submit" wire:loading.attr="disabled" wire:click="addMembership" class="btn btn-primary w-md">Submit</button>
@@ -129,12 +113,10 @@
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
                                             <td>
-                                                @if(isset($record->logo))
-                                                    <img src="{{ asset('storage/uploads').'/'.$record->logo }}" alt="Image" width="100" height="70"/>
-                                                    @else
-                                                    <!-- default image -->
-                                                <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" class="border" width="100" height="70">
-                                                @endif
+@php
+$thumb = !empty($record->logo) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
+@endphp                                      
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
                                             </td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td>{{$record->link ?? '' }}</td>

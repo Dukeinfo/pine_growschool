@@ -7,7 +7,7 @@ use App\Models\Menu;
 
 class TrashMenu extends Component
 {
-  public $records;
+    public $records;
     public function render()
     {
     	 $this->records = Menu::onlyTrashed()->orderBy('sort_id','asc')->get();

@@ -43,17 +43,18 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{route('manage_view_staff')}}" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
-					<span>Our Staff</span>
-				</a>
-			</li>
-			<li>
 				<a href="{{route('manage_view_department')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
 					<span>Department</span>
 				</a>
 			</li>
+			<li>
+				<a href="{{route('manage_view_staff')}}" class="waves-effect">
+					<i class="bx bx-home-circle"></i>
+					<span>Our Staff</span>
+				</a>
+			</li>
+			
 			<li>
 				<a href="" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
@@ -94,7 +95,7 @@
 				
 					<ul class="sub-menu" aria-expanded="false">
 						<li><a href="{{route('view_category')}}">Category</a></li>
-						<li><a href="#">Manage Gallery</a></li>
+						<li><a href="{{route('manage_gallery')}}">Manage Gallery</a></li>
 					</ul>
 					{{-- <!-- <li><a href="{{url('admin/portfolio')}}">Portfolio</a></li> --> --}}
 				

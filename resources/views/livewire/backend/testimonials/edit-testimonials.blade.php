@@ -46,7 +46,10 @@
                                      @if(isset($editimage))  
                                          <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
                                      @else
-                                     <img src="{{ asset('storage/uploads').'/'.$image }}" alt="Image"  width="100" height="70"/>
+                                     @php
+$thumb = !empty($thumbnail) ? asset('uploads/thumbnail/'.basename($thumbnail)) : url('admin_assets/images/no-img.jpg');
+@endphp                                      
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
 
                                     @endif
                                         @error('editimage') <span class="error">{{ $message }}</span> @enderror

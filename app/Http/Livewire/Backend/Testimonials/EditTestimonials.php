@@ -21,6 +21,7 @@ class EditTestimonials extends Component
         $testimonials = Testimonials::findOrFail($id);
         $this->testimoniaId = $testimonials->id;
         $this->name = $testimonials->name;
+        $this->thumbnail = $testimonials->thumbnail;
         $this->image = $testimonials->photo;
     	$this->sort_id = $testimonials->sort_id;
     	$this->status = $testimonials->status;
