@@ -62,9 +62,9 @@
 				</a>
 			</li>
 			<li>
-				<a href="" class="waves-effect">
+				<a href="{{route('view_boardmembers')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
-					<span>Board Master</span>
+					<span>Board Memebers</span>
 				</a>
 			</li>
 			<li>

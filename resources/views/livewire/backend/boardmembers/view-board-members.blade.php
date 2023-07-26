@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Create Pages</h4>
+                        <h4 class="mb-sm-0 font-size-18">News/Event Gallery</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
                                 <li class="breadcrumb-item">Portfolio</li>
-                                <li class="breadcrumb-item active">Create Pages</li>
+                                <li class="breadcrumb-item active">News/Event Gallery</li>
                             </ol>
                         </div>
 
@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Add Category</h4>
+                            <h4 class="card-title">Add News Event</h4>
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
@@ -35,18 +35,25 @@
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Menu</label>
-                                        <select class="form-select" wire:model="status">
-                                                <option value="">Select</option>
-                                                <option></option>
-                                              
-                                        </select>
-                                         @error('menu') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label">Dated</label>
+                                        <input type="text" class="form-control" id=""  wire:model="dated" placeholder="Dated">
+                                        @error('dated') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Sub Menu</label>
+                                        <label class="form-label">Select News/Events</label>
+                                        <select class="form-select" wire:model="news_event">
+                                                <option value="">Select</option>
+                                                <option></option>
+                                              
+                                        </select>
+                                         @error('news_event') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Select New/Old</label>
                                         <select class="form-select" wire:model="status">
                                                 <option value="">Select</option>
                                                 <option></option>
@@ -55,20 +62,19 @@
                                          @error('submenu') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
+
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Heading</label>
-                                        <input type="text" class="form-control" id=""  wire:model="name" placeholder="Heading">
+                                        <label class="form-label">Select/Event Heading</label>
+                                        <input type="text" class="form-control" id=""  wire:model="heading" placeholder="Heading">
                                         @error('heading') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="mb-3" >
-                                        <label class="form-label">Description</label>
-                                      {{-- <textarea wire:model="desc" class="form-control" name="" id="" cols="" rows="6"></textarea>  --}}
-                                 <!-- Include CKEditor script from the CDN -->
-                          
+                                        <label class="form-label">Message</label>
+                                    
                                  <div wire:ignore>
                                          <textarea id="editor" wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat"></textarea>
                                  </div>
@@ -81,21 +87,10 @@
                                         });
                                     });
                                 </script>
-                                
-
-                                                            {{-- <div wire:ignore>
-                                        <trix-editor
-                                            class="formatted-content"
-                                            x-data
-                                            x-on:trix-change="$dispatch('input', event.target.value)"
-                                            x-ref="trix"
-                                            wire:model.defer="desc"
-                                            wire:key="uniqueKey" >
-                                        </trix-editor>
-                                    </div>   --}}
-                                        @error('desc') <span class="error">{{ $message }}</span> @enderror                                     
-                                    </div>
+                                                                     
+                                  </div>
                                 </div>
+                                
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
@@ -132,7 +127,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Manage Categories</h4>
+                            <h4 class="card-title">Manage News Event</h4>
                             <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
                         </div>
                         <div class="card-body">
@@ -140,8 +135,9 @@
                                 <table class="table table-bordered table-striped datatable">
                                     <thead>
                                         <tr>
-                                            <th>Menu</th>
-                                            <th>Sub Menu</th>
+                                            <th>Dated</th>
+                                            <th>News Event</th>
+                                            <th>New Old</th>
                                             <th>Heading</th>
                                             <th>Description</th>
                                             <th>Sorting Order#</th>
@@ -154,7 +150,6 @@
                            @foreach ($records as  $record) 
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
-                                             <td>{{$record->name ?? '' }}</td>
                                             <td>
                                                @php
 $thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
@@ -162,6 +157,8 @@ $thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->t
 <img src="{{$thumb}}" alt="" class="border" width="100" height="70">
                                             </td>
                                             <td></td>
+                                            <td>{{$record->sort_id ?? '' }}</td>
+                                            <td>{{$record->sort_id ?? '' }}</td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td>
 @if($record->status  == "Active")

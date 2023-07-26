@@ -31,6 +31,7 @@ use App\Http\Livewire\Backend\Slider\TrashHomeSlider;
 use App\Http\Livewire\Backend\Testimonials\ViewTestimonials;
 use App\Http\Livewire\Backend\Testimonials\EditTestimonials;
 use App\Http\Livewire\Backend\Testimonials\TrashTestimonials;
+use App\Http\Livewire\Backend\Boardmembers\ViewBoardMembers;
 use App\Http\Livewire\Frontend\Home\Homepage;
 use App\Http\Livewire\Backend\Login\AdminLogin;
 use App\Http\Livewire\Backend\Pages\CreatePage;
@@ -130,6 +131,10 @@ Route::get('/view/submenu/trash', TrashSubMenu::class)->name('trash_subnmenu');
     Route::get('/create/page', CreatePage::class)->name('manage_create_page');
     Route::get('/view/staff', ViewStaff::class)->name('manage_view_staff');
     Route::get('/view/department', ViewDepartment::class)->name('manage_view_department');
+
+
+    
+     Route::get('/view/boardmembers', ViewBoardMembers::class)->name('view_boardmembers');
 
       
      
