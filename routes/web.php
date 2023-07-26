@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminLogoutController;
+use App\Http\Controllers\CkImageUploadController;
 use App\Http\Livewire\Backend\AdminDashboard;
 use App\Http\Livewire\Backend\Menu\ViewMenu;
 use App\Http\Livewire\Backend\Menu\EditMenu;
@@ -100,6 +101,13 @@ Route::get('/view/menu/trash', TrashMenu::class)->name('trash_menu');
 Route::get('/view/submenu', ViewSubMenu::class)->name('view_subnmenu');
 Route::get('/edit/submenu/{id}', EditSubMenu::class)->name('edit_sub_menu');
 Route::get('/view/submenu/trash', TrashSubMenu::class)->name('trash_subnmenu');
+
+// Route::post('ckeditor/upload', [CkImageUploadController::class, 'upload'])->name('image.upload');
+// Route::get('/ckeditor-image-upload', function () {
+//     return view('ckeditor_file_upload');
+// })->name('form.upload');
+
+Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])->name('image.upload');
     Route::get('/view/slider', ViewHomeSlider::class)->name('view_home_slider');
     Route::get('/edit/slider/{id}', EditHomeSlider::class)->name('edit_home_slider');
     Route::get('/view/slider/trash', TrashHomeSlider::class)->name('trash_home_slider');
@@ -141,4 +149,3 @@ Route::get('/view/submenu/trash', TrashSubMenu::class)->name('trash_subnmenu');
     
 });
 });
-

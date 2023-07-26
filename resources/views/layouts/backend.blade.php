@@ -3,6 +3,7 @@
 <head>
         
         <meta charset="utf-8" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Dashboard - Pinegrove School</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,9 @@
         <meta content="Pinegrove School, Subathu" name="keywords" />
         <meta content="Pinegrove School, Subathu" name="author" />
         <!-- App favicon -->
+            <!-- CK editor -->
+            {{-- <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script> --}}
+       	<script src="https://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
         <link rel="shortcut icon" href="{{asset('admin_assets/images/faviconn.ico')}}">
 
         <!-- Bootstrap Css -->
@@ -25,6 +29,7 @@
         
         <!-- trix editor -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
+            
         @livewireStyles
 
 
@@ -58,26 +63,25 @@
 
 
         <!-- JAVASCRIPT -->
-        <script src="{{asset('admin_assets')}}/libs/jquery/jquery.min.js"></script>
-        <script src="{{asset('admin_assets')}}/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="{{asset('admin_assets')}}/libs/metismenu/metisMenu.min.js"></script>
-        <script src="{{asset('admin_assets')}}/libs/simplebar/simplebar.min.js"></script>
-        <script src="{{asset('admin_assets')}}/libs/node-waves/waves.min.js"></script>
+        <script src="{{asset('admin_assets/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('admin_assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('admin_assets/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{asset('admin_assets/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{asset('admin_assets/libs/node-waves/waves.min.js')}}"></script>
 
         <!-- Required datatable js -->
-        <script src="{{asset('admin_assets')}}/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="{{asset('admin_assets')}}/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="{{asset('admin_assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('admin_assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 
         <!-- Datatable init js -->
-        <script src="{{asset('admin_assets')}}/js/pages/datatables.init.js"></script>
+        <script src="{{asset('admin_assets/js/pages/datatables.init.js')}}"></script>
 
          @livewireScripts
 
         <!-- App js -->
-        <script src="{{asset('admin_assets')}}/js/app.js"></script>
+        <script src="{{asset('admin_assets/js/app.js')}}"></script>
 
-         <!-- CK editor -->
-        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
 
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

@@ -1,5 +1,6 @@
 <div>
-    
+ <!-- Add this line to include the CSRF token -->
+
     <div class="page-content">
         <div class="container-fluid">
 
@@ -126,6 +127,7 @@
                                    
                                     </div>
                                 </div>
+
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label"> Seo Title</label>
@@ -134,20 +136,63 @@
                                    
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="mb-3" wire:ignore>
-                                        <label class="form-label"> Seo Description</label>
-                                    <textarea id="editor" wire:model="seo_description" placeholder="Seo Description here..." class="form-control xtra-cat"    ></textarea>
-                                    <script>
-                                    document.addEventListener('livewire:load', function () {
-                                        CKEDITOR.replace('editor');
-                                
-                                        CKEDITOR.instances.editor.on('change', function () {
-                                            @this.set('seo_description', CKEDITOR.instances.editor.getData());
-                                        });
-                                    });
-                                </script>
-
+                           
+                             
+                                    <div class="col-md-12">
+                                            <div class="mb-3" wire:ignore>
+                                                <label class="form-label"> Seo Description</label>
+                                                <textarea id="editor" wire:model="seo_description" placeholder="Seo Description here..." class="form-control xtra-cat"></textarea>
+                                                @error('seo_description') <span class="error">{{ $message }}</span> @enderror
+                                            </div>
+                                        
+                                    
+                                        <script>
+                                            document.addEventListener('livewire:load', function () {
+                                                // Get the CSRF token from the meta tag
+                                                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                                    
+                                                CKEDITOR.replace('editor', {
+                                                    // filebrowserUploadUrl: '{{ route("image.upload") }}', // Set the image upload endpoint URL
+                                                    filebrowserUploadUrl: "{{route('image.upload', ['_token' => csrf_token() ])}}",
+                                                    filebrowserUploadMethod: 'form', // Use form-based file upload (default is XMLHttpRequest)
+                                                    filebrowserBrowseUrl: '/ckfinder/ckfinder.html', // Set the CKFinder browse server URL
+                                                    filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images', // Set the CKFinder image browse server URL
+                                                    headers: {
+                                                        'X-CSRF-TOKEN': csrfToken // Pass the CSRF token with the request headers
+                                                    },           toolbar: [
+                    { name: 'document', items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'] },
+                    { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                    { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                    { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                    { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+              
+                    { name: 'colors', items: ['TextColor', 'BGColor'] },
+                    { name: 'align', items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+                    { name: 'links', items: ['Link', 'Unlink'] },
+                    { name: 'insert', items: ['Image', 'Table', 'HorizontalRule'] },
+                    { name: 'tools', items: ['Maximize'] },
+                    { name: 'others', items: ['-'] },
+                    { name: 'about', items: ['About'] }
+                ]
+             
+                
+                                                });
+                                    
+                                                CKEDITOR.instances.editor.on('change', function () {
+                                                    @this.set('seo_description', CKEDITOR.instances.editor.getData());
+                                                });
+                                            });
+                                        </script>
+                                            {{-- <script>
+                                                document.addEventListener('livewire:load', function () {
+                                                    CKEDITOR.replace('editor');
+                                            
+                                                    CKEDITOR.instances.editor.on('change', function () {
+                                                        @this.set('seo_description', CKEDITOR.instances.editor.getData());
+                                                    });
+                                                });
+                                            </script> --}}
                                         @error('seo_description') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>
