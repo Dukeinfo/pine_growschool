@@ -159,24 +159,8 @@
                                                     filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images', // Set the CKFinder image browse server URL
                                                     headers: {
                                                         'X-CSRF-TOKEN': csrfToken // Pass the CSRF token with the request headers
-                                                    },           toolbar: [
-                    { name: 'document', items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'] },
-                    { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-                    { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
-                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-                    { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-                    { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
-              
-                    { name: 'colors', items: ['TextColor', 'BGColor'] },
-                    { name: 'align', items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
-                    { name: 'links', items: ['Link', 'Unlink'] },
-                    { name: 'insert', items: ['Image', 'Table', 'HorizontalRule'] },
-                    { name: 'tools', items: ['Maximize'] },
-                    { name: 'others', items: ['-'] },
-                    { name: 'about', items: ['About'] }
-                ]
-             
-                
+                                                    },
+                                                    
                                                 });
                                     
                                                 CKEDITOR.instances.editor.on('change', function () {
