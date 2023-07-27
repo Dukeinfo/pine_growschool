@@ -82,8 +82,9 @@ class AddBlog extends Component
               'message' => 'Successfully save!', 
           ]); 
 
+          $this->emit('formSubmitted');
 
-
+          $this->image =NULL;
    }
 
 

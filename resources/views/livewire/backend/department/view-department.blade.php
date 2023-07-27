@@ -70,8 +70,14 @@
                                                 CKEDITOR.instances.editor.on('change', function () {
                                                     @this.set('desc', CKEDITOR.instances.editor.getData());
                                                 });
-                                            });
- </script>
+                                                Livewire.on('formSubmitted', function () {
+                                                CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+
+                                                // document.querySelector('[wire:model="image"]').reset();
+
+                                                            });
+                                                    });
+                                            </script>
                                  @error('desc') <span class="error">{{ $message }}</span> @enderror
                                      
                                     </div>

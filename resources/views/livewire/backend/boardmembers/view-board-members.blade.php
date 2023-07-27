@@ -85,6 +85,11 @@
                                         CKEDITOR.instances.editor.on('change', function () {
                                             @this.set('desc', CKEDITOR.instances.editor.getData());
                                         });
+
+                                        Livewire.on('formSubmitted', function () {
+                                         CKEDITOR.instances.editor.setData(''); 
+                                         // Reset CKEditor content
+                                         });
                                     });
                                 </script>
                                                                      

@@ -91,21 +91,19 @@
                                 
                                         CKEDITOR.instances.editor.on('change', function () {
                                             @this.set('desc', CKEDITOR.instances.editor.getData());
+                                    
+                                      
                                         });
+                                         Livewire.on('formSubmitted', function () {
+                                         CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+                                       
+                                                  
+                                          });
                                     });
                                 </script>
                                 
 
-                                                            {{-- <div wire:ignore>
-                                        <trix-editor
-                                            class="formatted-content"
-                                            x-data
-                                            x-on:trix-change="$dispatch('input', event.target.value)"
-                                            x-ref="trix"
-                                            wire:model.defer="desc"
-                                            wire:key="uniqueKey" >
-                                        </trix-editor>
-                                    </div>   --}}
+                                     
                                         @error('desc') <span class="error">{{ $message }}</span> @enderror                                     
                                     </div>
                                 </div>

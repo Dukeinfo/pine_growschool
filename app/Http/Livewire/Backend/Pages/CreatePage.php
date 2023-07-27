@@ -14,7 +14,7 @@ class CreatePage extends Component
    public $menu=NULL;
    public $subMenus;
 
-   public $submenu,$heading,$desc,$sort,$status;
+   public $sort_id ,$getMenus , $records , $submenu,$heading,$desc,$sort,$status;
 
     protected $rules = [ 
         'menu' => 'required', 
@@ -54,7 +54,7 @@ class CreatePage extends Component
     public function updatedMenu($menuId)
     {
         if (!is_null($menuId)) {
-            $this->subMenus = Submenu::where('menu_id', $menuId)->get();
+            $this->subMenus = Submenu::where('menu_id', $menuId)->where('cms','Yes')->get();
         }
     }
 
@@ -77,7 +77,8 @@ class CreatePage extends Component
                 'type' => 'success',  
                 'message' => 'Successfully save!', 
             ]); 
-
+        // Emit the 'formSubmitted' event
+        $this->emit('formSubmitted');
     }
 
 }

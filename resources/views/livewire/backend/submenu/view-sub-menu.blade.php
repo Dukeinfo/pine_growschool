@@ -22,7 +22,8 @@
                 </div>
             </div>
             <!-- end page title -->
-
+            <form wire:submit.prevent="addsubMenu">
+                @csrf
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -35,6 +36,7 @@
                             
                             
                             <!--form starts-->
+                           
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <div class="mb-3">
@@ -73,6 +75,7 @@
                      
                          
                             </div>
+                     
                             {{-- =================== --}}
                             <div class="row g-3">
                                 <div class="col-md-4">
@@ -112,7 +115,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label"> URL Name</label>
-                                        <input type="text" class="form-control" {{$cms == "Yes" ? 'disabled' : ''}}   wire:model="url_link" 
+                                        <input type="text" class="form-control" {{$cms == "No" ? 'disabled' : ''}}   wire:model="url_link" 
                                         placeholder="URL Name">
                                         @error('url_link') <span class="error">{{ $message }}</span> @enderror
                                    
@@ -122,7 +125,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label"> Display Name</label>
-                                        <input type="text" class="form-control"  {{$cms == "Yes" ? 'disabled' : ''}}   wire:model="display_name" placeholder="Display Name">
+                                        <input type="text" class="form-control"  {{$cms == "No" ? 'disabled' : ''}}   wire:model="display_name" placeholder="Display Name">
                                         @error('display_name') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>
@@ -146,38 +149,8 @@
                                             </div>
                                         
                                     
-                                        <script>
-                                            document.addEventListener('livewire:load', function () {
-                                                // Get the CSRF token from the meta tag
-                                                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                                    
-                                                CKEDITOR.replace('editor', {
-                                                    // filebrowserUploadUrl: '{{ route("image.upload") }}', // Set the image upload endpoint URL
-                                                    filebrowserUploadUrl: "{{route('image.upload', ['_token' => csrf_token() ])}}",
-                                                    filebrowserUploadMethod: 'form', // Use form-based file upload (default is XMLHttpRequest)
-                                                    filebrowserBrowseUrl: '/ckfinder/ckfinder.html', // Set the CKFinder browse server URL
-                                                    filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images', // Set the CKFinder image browse server URL
-                                                    headers: {
-                                                        'X-CSRF-TOKEN': csrfToken // Pass the CSRF token with the request headers
-                                                    },
-                                                    
-                                                });
-                                    
-                                                CKEDITOR.instances.editor.on('change', function () {
-                                                    @this.set('seo_description', CKEDITOR.instances.editor.getData());
-                                                });
-                                            });
-                                        </script>
-                                            {{-- <script>
-                                                document.addEventListener('livewire:load', function () {
-                                                    CKEDITOR.replace('editor');
-                                            
-                                                    CKEDITOR.instances.editor.on('change', function () {
-                                                        @this.set('seo_description', CKEDITOR.instances.editor.getData());
-                                                    });
-                                                });
-                                            </script> --}}
-                                       
+                    
+                     
                                    
                                     </div>
                                 </div>
@@ -202,7 +175,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button type="submit" wire:loading.attr="disabled"  class="btn btn-primary w-md" wire:click="addsubMenu">Submit</button>
+                                    <button type="submit" wire:loading.attr="disabled"  class="btn btn-primary w-md" >Submit</button>
                                    
                                 </div>
                                 <div wire:loading wire:target="addsubMenu">
@@ -213,6 +186,7 @@
                     </div>
                 </div>
             </div>
+        </form>
             <!-- end row -->
             
             <div class="row">
@@ -276,7 +250,35 @@
             <!-- end row -->
 
 
-            
+            <script>
+                document.addEventListener('livewire:load', function () {
+                    // Get the CSRF token from the meta tag
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        
+                    CKEDITOR.replace('editor', {
+                        // filebrowserUploadUrl: '{{ route("image.upload") }}', // Set the image upload endpoint URL
+                        filebrowserUploadUrl: "{{route('image.upload', ['_token' => csrf_token() ])}}",
+                        filebrowserUploadMethod: 'form', // Use form-based file upload (default is XMLHttpRequest)
+                        filebrowserBrowseUrl: '/ckfinder/ckfinder.html', // Set the CKFinder browse server URL
+                        filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images', // Set the CKFinder image browse server URL
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken // Pass the CSRF token with the request headers
+                        },
+                        
+                    });
+        
+                    CKEDITOR.instances.editor.on('change', function () {
+                        @this.set('seo_description', CKEDITOR.instances.editor.getData());
+                    });
+                        Livewire.on('formSubmitted', function () {
+                            CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+                            // document.querySelector('[wire:model="image"]').reset();
+           
+                 });
+                    
+                });
+            </script>
+      
         </div>
         <!-- container-fluid -->
     </div>

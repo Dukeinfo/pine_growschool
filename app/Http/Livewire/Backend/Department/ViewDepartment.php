@@ -54,6 +54,7 @@ class ViewDepartment extends Component
               'type' => 'success',  
               'message' => 'Successfully save!', 
           ]); 
+          $this->emit('formSubmitted');
     } 
 
     public function delete($id){

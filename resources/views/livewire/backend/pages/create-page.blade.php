@@ -33,7 +33,7 @@
                             <!--success or error alert-->
                             <!--form starts-->
                             <div class="row g-3">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Menu</label>
                                         <select class="form-select" wire:model="menu">
@@ -48,7 +48,7 @@
                                          @error('menu') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Sub Menu</label>
                                         <select class="form-select" wire:model="submenu">
@@ -63,7 +63,8 @@
                                          @error('submenu') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Heading</label>
                                         <input type="text" class="form-control" id=""  wire:model="heading" placeholder="Heading">
@@ -99,8 +100,13 @@
                                                 CKEDITOR.instances.editor.on('change', function () {
                                                     @this.set('desc', CKEDITOR.instances.editor.getData());
                                                 });
+
+
+                                                Livewire.on('formSubmitted', function () {
+                                                                CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+                                                    });
                                             });
- </script>
+                                        </script>
 
 
                                                                            
@@ -168,14 +174,16 @@
                                             <td>
                                              {{$record->heading ?? '' }}  
                                             </td>
-                                            <td>{!!$record->description ?? '' !!}</td>
+                                            <td>
+                                                {!! Str::limit($record->description, 230) ?? '' !!}
+                                            </td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td>
-@if($record->status  == "Active")
-        <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
-         @else
-       <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
-@endif</td>
+                                                @if($record->status  == "Active")
+                                                        <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
+                                                        @else
+                                                    <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
+                                                @endif</td>
                                             <td>
                                                 <a href="{{url('/admin/edit/page')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
