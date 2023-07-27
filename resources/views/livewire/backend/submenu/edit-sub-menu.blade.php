@@ -144,12 +144,34 @@ $thumb = !empty($thumbnail) ? asset('uploads/thumbnail/'.basename($thumbnail)) :
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="mb-3">
+                                    <div class="mb-3" wire:ignore>
                                         <label class="form-label"> Seo Description</label>
-                                       <textarea name="seo_description" id=""  class="form-control"  cols="30" rows="10" wire:model="seo_description" placeholder="Seo Description here..."></textarea>
-                                        @error('seo_description') <span class="error">{{ $message }}</span> @enderror
+                                       <textarea id="editor" wire:model="seo_description" placeholder="Seo Description here..." class="form-control xtra-cat"></textarea>  @error('seo_description') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>
+                                    <script>
+                                            document.addEventListener('livewire:load', function () {
+                                                // Get the CSRF token from the meta tag
+                                                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                                    
+                                                CKEDITOR.replace('editor', {
+                                                    // filebrowserUploadUrl: '{{ route("image.upload") }}', // Set the image upload endpoint URL
+                                                    filebrowserUploadUrl: "{{route('image.upload', ['_token' => csrf_token() ])}}",
+                                                    filebrowserUploadMethod: 'form', // Use form-based file upload (default is XMLHttpRequest)
+                                                    filebrowserBrowseUrl: '/ckfinder/ckfinder.html', // Set the CKFinder browse server URL
+                                                    filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images', // Set the CKFinder image browse server URL
+                                                    headers: {
+                                                        'X-CSRF-TOKEN': csrfToken // Pass the CSRF token with the request headers
+                                                    },
+                                                    
+                                                });
+                                    
+                                                CKEDITOR.instances.editor.on('change', function () {
+                                                    @this.set('seo_description', CKEDITOR.instances.editor.getData());
+                                                });
+                                            });
+                                        </script>
+                                        
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">

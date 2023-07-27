@@ -24,6 +24,13 @@ class EditSubMenu extends Component
         $this->name = $submenu->name;
         $this->image = $submenu->name;
          $this->thumbnail = $submenu->thumbnail;
+         $this->url_link = $submenu->url_link;
+         $this->display_name = $submenu->display_name;
+         $this->seo_title = $submenu->seo_title;  
+        $this->seo_description = $submenu->seo_description;
+        $this->seo_keywords = $submenu->seo_keywords;   
+
+
         $this->sort_id = $submenu->sort_id;
         $this->cms = $submenu->cms;
     	$this->pname = $submenu->pname;

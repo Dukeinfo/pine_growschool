@@ -16,10 +16,12 @@ class CreateDepartmentsTable extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description');
             $table->integer('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();
             $table->string('login')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

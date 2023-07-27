@@ -56,7 +56,14 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Category Image</label>
+                                        <label class="form-label">Designation</label>
+                                        <input type="text" class="form-control" id="" wire:model="designation" placeholder="Designation">
+                                        @error('designation') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Image</label>
                                         <input type="file" class="form-control" wire:model="image">
                                          @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
@@ -105,8 +112,10 @@
                                 <table class="table table-bordered table-striped datatable">
                                     <thead>
                                         <tr>
-                                            <th>Category Name</th>
-                                            <th>Category Image</th>
+                                            <th>Department</th>
+                                            <th>Name</th>
+                                            <th>Designation</th>
+                                            <th>Image</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -116,7 +125,9 @@
                           @if(isset($records) && count($records)>0 )                      
                            @foreach ($records as  $record) 
                                         <tr>
+                                            <td>{{$record->Department->name ?? '' }}</td>
                                             <td>{{$record->name ?? '' }}</td>
+                                            <td>{{$record->designation ?? '' }}</td>
                                             <td>
                                                @php
 $thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
@@ -131,7 +142,7 @@ $thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->t
        <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
 @endif</td>
                                             <td>
-                                                <a href="{{url('/admin/edit/category')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a href="{{url('/admin/edit/staff')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
                                             </td>
                                         </tr>

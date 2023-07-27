@@ -37,19 +37,19 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{route('manage_create_page')}}" class="waves-effect">
+				<a href="{{route('create_page')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
 					<span>Create Page</span>
 				</a>
 			</li>
 			<li>
-				<a href="{{route('manage_view_department')}}" class="waves-effect">
+				<a href="{{route('view_department')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
 					<span>Department</span>
 				</a>
 			</li>
 			<li>
-				<a href="{{route('manage_view_staff')}}" class="waves-effect">
+				<a href="{{route('view_staff')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
 					<span>Our Staff</span>
 				</a>

@@ -15,7 +15,7 @@ class ViewStaff extends Component
 {
 
     use WithFileUploads;
-    public $department_id,$name, $image,$thumbnail, $sort,$status;
+    public $department_id,$name,$designation, $image,$thumbnail, $sort,$status;
 
 
     public function render()
@@ -26,7 +26,8 @@ class ViewStaff extends Component
     }
    
     protected $rules = [
-        'name' => 'required', 
+        'name' => 'required',
+        'designation' => 'required', 
         'image' => 'required', 
         'sort' => 'required', 
         'status' => 'required', 
@@ -34,13 +35,15 @@ class ViewStaff extends Component
       ];
       protected $messages = [
           'name.required' => 'Name Required.',
-          'image.required' => 'Logo Required.',
+          'designation.required' => 'Designation Required.',
+          'image.required' => 'Image Required.',
           'sort.required' => 'Sort Required.',
           'status.required' => 'Status Required.',
          
       ];
     private function resetInputFields(){
         $this->name = '';
+        $this->designation = '';
         $this->image = '';
         $this->sort = '';
         $this->status = '';
@@ -77,6 +80,7 @@ class ViewStaff extends Component
       $staff = new Staff();
       $staff->department_id= $this->department_id ?? NULL;
       $staff->name = $this->name ?? NULL;
+      $staff->designation = $this->designation ?? NULL;
       $staff->image = $imageName ?? NULL;
       $staff->thumbnail = $thumbnailName ?? NULL;
       $staff->sort_id =$this->sort ?? NULL;

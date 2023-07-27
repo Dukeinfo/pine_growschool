@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ViewDepartment extends Component
 {
 
-    public $name,$sort,$status ,$records;
+    public $name,$desc,$sort,$status ,$records;
 
     public function render()
     {
@@ -19,17 +19,20 @@ class ViewDepartment extends Component
 
     protected $rules = [
         'name' => 'required', 
+        'desc' => 'required', 
         'sort' => 'required', 
         'status' => 'required', 
      
       ];
       protected $messages = [
           'name.required' => 'Name Required.',
+          'desc.required' => 'Description Required.',
           'sort.required' => 'Sort Required.',
           'status.required' => 'Status Required.',
       ];
     private function resetInputFields(){
         $this->name = '';
+        $this->desc = '';
         $this->sort = '';
         $this->status = '';
     }
@@ -40,6 +43,7 @@ class ViewDepartment extends Component
 
       $department = new Department();
       $department->name = $this->name;
+      $department->description = $this->desc;
       $department->sort_id =$this->sort;
       $department->status = $this->status;
       $department->save();

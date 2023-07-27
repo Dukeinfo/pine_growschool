@@ -18,7 +18,8 @@ class CreateCreatePagesTable extends Migration
             $table->integer('menu_id')->nullable();
             $table->integer('submenu_id')->nullable(); 
             $table->string('heading')->nullable();
-             $table->integer('sort_id')->nullable(); 
+            $table->text('dexcription')->nullable();
+            $table->integer('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();
             $table->string('login')->nullable();
