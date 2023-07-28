@@ -118,7 +118,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
     Route::get('/view/slider/trash', TrashHomeSlider::class)->name('trash_home_slider');
 
     Route::get('/view/membership', ViewMembership::class)->name('view_membership');
-    Route::get('/edit/membership/{id}', EditMembership::class)->name('edit_membership');
+    Route::get('/edit/membership/{id}', EditMemberShip::class)->name('edit_membership');
     Route::get('/view/membership/trash', TrashMembership::class)->name('trash_membership');
 
     Route::get('/view/testimonials', ViewTestimonials::class)->name('view_testimonials');
