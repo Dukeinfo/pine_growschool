@@ -12,7 +12,10 @@
 
         <!-- Scripts -->
         {{-- <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) --> --}}
-            <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css" defer />
+            {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css" defer />
+             --}}
+            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 
     </head>
     <body>
