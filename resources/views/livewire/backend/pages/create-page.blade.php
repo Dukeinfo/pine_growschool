@@ -159,7 +159,7 @@
                                             <th>Menu</th>
                                             <th>Sub Menu</th>
                                             <th>Heading</th>
-                                            <th>Description</th>
+                                            {{-- <th>Description</th> --}}
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -174,9 +174,9 @@
                                             <td>
                                              {{$record->heading ?? '' }}  
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 {!! Str::limit($record->description, 230) ?? '' !!}
-                                            </td>
+                                            </td> --}}
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td>
                                                 @if($record->status  == "Active")
