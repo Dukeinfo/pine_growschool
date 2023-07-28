@@ -14,13 +14,19 @@ class CreatePersonalAccessTokensTable extends Migration
     public function up()
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {           
-            $table->morphs('tokenable');
-            $table->string('name' , 191);
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
-            $table->timestamp('expires_at')->nullable();
-            $table->timestamps();
+            $table->bigIncrements('id');
+        $table->string('tokenable_type', 191);
+        $table->unsignedBigInteger('tokenable_id');
+        $table->morphs('tokenable');
+        $table->string('name');
+        $table->string('token', 64)->unique();
+        $table->text('abilities')->nullable();
+        $table->timestamp('last_used_at')->nullable();
+        $table->timestamps();
+
+        // Create separate indexes for tokenable_type and tokenable_id columns
+        $table->index('tokenable_type', 'tokenable_type_index');
+        $table->index('tokenable_id', 'tokenable_id_index');
         });
     }
 
