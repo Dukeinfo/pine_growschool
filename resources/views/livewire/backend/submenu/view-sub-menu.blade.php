@@ -220,7 +220,7 @@
                                         </td>
                                             <td> {{$record->Menu->name ?? '' }}</td>
                                             <td> 
-                                                <img src="{{ asset('storage/uploads').'/'.$record->image }}" alt="Image" width="100" height="70"/>
+                                                <img src="{{ asset('storage/thumbnail').'/'.$record->image }}" alt="Image" width="100" height="70"/>
                                             
                                             </td>
                                             <td>{{$record->name ?? '' }}</td>
