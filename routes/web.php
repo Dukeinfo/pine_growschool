@@ -23,7 +23,7 @@ use App\Http\Livewire\Backend\Gallery\EditGallery;
 use App\Http\Livewire\Backend\Gallery\TrashGallery;
 use App\Http\Livewire\Backend\Membership\ViewMembership;
 use App\Http\Livewire\Backend\Membership\EditMemberShip;
-use App\Http\Livewire\Backend\Membership\TrashMembership;
+use App\Http\Livewire\Backend\Membership\TrashMemberShip;
 use App\Http\Livewire\Backend\Seo\FooterSnippets;
 use App\Http\Livewire\Backend\Seo\HeaderSnippets;
 use App\Http\Livewire\Backend\Seo\Metadetails;
@@ -119,7 +119,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
     Route::get('/view/membership', ViewMembership::class)->name('view_membership');
     Route::get('/edit/membership/{id}', EditMemberShip::class)->name('edit_membership');
-    Route::get('/view/membership/trash', TrashMembership::class)->name('trash_membership');
+    Route::get('/view/membership/trash', TrashMemberShip::class)->name('trash_membership');
 
     Route::get('/view/testimonials', ViewTestimonials::class)->name('view_testimonials');
     Route::get('/edit/testimonials/{id}', EditTestimonials::class)->name('edit_testimonials');
