@@ -19,9 +19,9 @@ class UserSeeder extends Seeder
         // Admin 1
         $admin = new User();
         $admin->name = 'Admin';
-        $admin->email = 'admin@gmail.com';
+        $admin->email = 'pinegrow@yopmail.com';
         $admin->email_verified_at = Carbon::now()->toDateTimeString();
-        $admin->password = Hash::make('12345678');
+        $admin->password = Hash::make('Duke@123###');
         $admin->save();
     }
 }
