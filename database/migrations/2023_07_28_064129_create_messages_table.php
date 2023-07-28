@@ -18,8 +18,7 @@ class CreateMessagesTable extends Migration
             $table->string('name')->nullable();
             $table->string('heading')->nullable();
             $table->string('punch_line')->nullable(); 
-            $table->text('short_message')->nullable(); 
-            $table->text('long_message')->nullable();
+            $table->text('message')->nullable(); 
             $table->integer('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();
