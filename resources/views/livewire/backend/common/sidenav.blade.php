@@ -61,6 +61,14 @@
 					<span>Principal</span>
 				</a>
 			</li>
+
+            <li>
+				<a href="{{route('create_message')}}" class="waves-effect">
+					<i class="bx bx-home-circle"></i>
+					<span>Message</span>
+				</a>
+			</li>
+
 			<li>
 				<a href="{{route('view_boardmembers')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
@@ -68,7 +76,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="" class="waves-effect">
+				<a href="{{route('view_facilities')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
 					<span>Facilities</span>
 				</a>

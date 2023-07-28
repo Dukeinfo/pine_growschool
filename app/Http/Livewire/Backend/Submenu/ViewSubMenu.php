@@ -50,12 +50,6 @@ class ViewSubMenu extends Component
       ];
 
 
-
-
-
-
-
-
     public function addsubMenu(){
     $validatedData = $this->validate();
       if(!is_null($this->image)){
