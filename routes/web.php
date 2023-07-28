@@ -22,7 +22,7 @@ use App\Http\Livewire\Backend\Gallery\ManageGallery;
 use App\Http\Livewire\Backend\Gallery\EditGallery;
 use App\Http\Livewire\Backend\Gallery\TrashGallery;
 use App\Http\Livewire\Backend\Membership\ViewMembership;
-use App\Http\Livewire\Backend\Membership\EditMembership;
+use App\Http\Livewire\Backend\Membership\EditMemberShip;
 use App\Http\Livewire\Backend\Membership\TrashMembership;
 use App\Http\Livewire\Backend\Seo\FooterSnippets;
 use App\Http\Livewire\Backend\Seo\HeaderSnippets;
