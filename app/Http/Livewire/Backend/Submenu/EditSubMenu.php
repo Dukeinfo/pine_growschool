@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Backend\Submenu;
 use Livewire\Component;
 use App\Models\Menu;
 use App\Models\Submenu;
+use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -13,10 +14,11 @@ use Intervention\Image\Facades\Image;
 class EditSubMenu extends Component
 {
   use WithFileUploads;
+  use UploadTrait;
 
   public  $submenuId ,$image, $records, $getMenus,$menu_id ,$name ,$sort_id, $cms , $pname ,$status ;
   public   $url_link,$display_name ,$seo_title ,$clientIp ,$seo_description ,$seo_keywords; 
-  public $editimage;
+  public $editimage, $thumbnail; 
      public function mount($id){
         $submenu = Submenu::findOrFail($id);
         $this->submenuId = $submenu->id;
@@ -29,8 +31,6 @@ class EditSubMenu extends Component
          $this->seo_title = $submenu->seo_title;  
         $this->seo_description = $submenu->seo_description;
         $this->seo_keywords = $submenu->seo_keywords;   
-
-
         $this->sort_id = $submenu->sort_id;
         $this->cms = $submenu->cms;
     	$this->pname = $submenu->pname;
@@ -48,37 +48,19 @@ class EditSubMenu extends Component
       public function editsubMenu()
     {
       if(!is_null($this->editimage)){
-       
-           // Generate a unique name for the image
-        $imageName =  uniqid() . '.' . $this->editimage->getClientOriginalExtension();
-
-        // Get the path where you want to save the image and thumbnail
-        $directory = public_path('uploads/thumbnail');
-
-        // Check if the directory exists, if not, create it
-        if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true, true);
-        }
-        // Save the original image to the specified directory
-        $this->editimage->storeAs('uploads', $imageName, 'public');
-        // Generate a thumbnail and save it to the specified directory
-        $thumbnailName = 'thumb_' . $imageName;
-        Image::make($this->editimage)->fit(200, 200)->save($directory . '/' . $thumbnailName);
-
-        // Set the thumbnail property to the thumbnail image name
-        // $this->thumbnail = $thumbnailName;
-     
-
+        $image =  $this->editimage;
+        // Define folder path
+        $folder = '/uploads/submenu';
+        $uploadedData = $this->uploadOne($image, $folder);
       $submenu = Submenu::find($this->submenuId);
-
       $submenu->menu_id = $this->menu_id;
       $submenu->name = $this->name;
       $submenu->sort_id =$this->sort_id;
       $submenu->cms =$this->cms;
       $submenu->pname =$this->pname;
       $submenu->status = $this->status;
-      $submenu->image =   $imageName ?? NULL;
-      $submenu->thumbnail =   $thumbnailName ?? NULL;
+      $submenu->image =   $uploadedData['file_name'] ?? NULL;
+      $submenu->thumbnail =  $uploadedData['thumbnail_name'] ?? NULL;
       $submenu->url_link =   $this->url_link ;
       $submenu->display_name =   $this->display_name ;
       $submenu->seo_title =   $this->seo_title ;

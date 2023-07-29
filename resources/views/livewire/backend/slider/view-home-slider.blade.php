@@ -59,12 +59,12 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Slider Image</label>
-                                        <input type="file" class="form-control" id="" wire:model="image" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                        <input type="file" class="form-control" id="" wire:model="image" multiple  onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                     
                                         <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt=".." class="border mt-2" width="100" height="30%">
 
                                    
-                                        @error('image') <span class="error">{{ $message }}</span> @enderror
+                                        @error('image.*') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 

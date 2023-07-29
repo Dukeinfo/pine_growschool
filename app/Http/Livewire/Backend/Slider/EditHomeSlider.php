@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Slider;
 
 use Livewire\Component;
 use App\Models\Slider;
+use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -12,8 +13,9 @@ class EditHomeSlider extends Component
 {
 
 use WithFileUploads;
+use UploadTrait;
 
-    public $sliderId,$name,$sort,$image,$heading,$subheading,$editimage, $status;
+    public $sliderId,$name,$sort,$image,$heading,$subheading,$editimage, $status ,$thumbnail; 
 
      public function mount($id){
         $slider = Slider::findOrFail($id);
@@ -31,21 +33,10 @@ use WithFileUploads;
      public function editSlider() {
         if(!is_null($this->editimage)){
 
-           // Generate a unique name for the image
-        $imageName =  uniqid() . '.' . $this->editimage->getClientOriginalExtension();
-
-        // Get the path where you want to save the image and thumbnail
-        $directory = public_path('uploads/thumbnail');
-
-        // Check if the directory exists, if not, create it
-        if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true, true);
-        }
-        // Save the original image to the specified directory
-        $this->editimage->storeAs('uploads', $imageName, 'public');
-        // Generate a thumbnail and save it to the specified directory
-        $thumbnailName = 'thumb_' . $imageName;
-        Image::make($this->editimage)->fit(200, 200)->save($directory . '/' . $thumbnailName);
+            $image =  $this->editimage;
+            // Define folder path
+            $folder = '/uploads/slider';
+            $uploadedData = $this->uploadOne($image, $folder);
 
         // Set the thumbnail property to the thumbnail image name
         // $this->thumbnail = $thumbnailName;
@@ -53,8 +44,8 @@ use WithFileUploads;
             $slider = Slider::find($this->sliderId);
             $slider->name = $this->name ?? NULL;
             $slider->slug =  strtolower(str_replace(' ', '-',$this->name));
-            $slider->image = $imageName ?? NULL;
-            $slider->thumbnail = $thumbnailName ?? NULL;
+            $slider->image = $uploadedData['file_name']?? NULL;
+            $slider->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
             $slider->heading = $this->heading ?? NULL;
             $slider->subheading = $this->subheading ?? NULL;
             $slider->sort_id =$this->sort ?? NULL;

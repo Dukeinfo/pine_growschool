@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Slider;
 
 use Livewire\Component;
 use App\Models\Slider;
+use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -12,13 +13,13 @@ use Intervention\Image\Facades\Image;
 class ViewHomeSlider extends Component
 {
    use WithFileUploads;
-
+   use UploadTrait;
     public $name, $image,$heading,$subheading,$sort,$status;
     public $records ,$thumbnail;
 
      protected $rules = [
         // 'name' => 'required', 
-        'image' => 'required', 
+        'image.*' => 'required', 
         // 'heading' => 'required', 
         // 'subheading' => 'required', 
         'sort' => 'required', 
@@ -43,37 +44,20 @@ class ViewHomeSlider extends Component
     }
 
    public function addSlider(){
-
     $validatedData = $this->validate();
+    if(!is_null($this->image ) && $this->image > 1){
+  
+        $folder = '/uploads/slider';
+      foreach ($this->image as $img) {
+        // Define folder path
+        $uploadedData = $this->uploadOne($img, $folder);
 
-    if(!is_null($this->image)){
-        // Generate a unique name for the image
-        $imageName =  uniqid() . '.' . $this->image->getClientOriginalExtension();
-
-        // Get the path where you want to save the image and thumbnail
-        $directory = public_path('uploads/thumbnail');
-
-        // Check if the directory exists, if not, create it
-        if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true, true);
-        }
-
-        // Save the original image to the specified directory
-        $this->image->storeAs('uploads', $imageName, 'public');
-
-        // Generate a thumbnail and save it to the specified directory
-        $thumbnailName = 'thumb_' . $imageName;
-        Image::make($this->image)->fit(200, 200)->save($directory . '/' . $thumbnailName);
-
-        // Set the thumbnail property to the thumbnail image name
-        // $this->thumbnail = $thumbnailName;
-    }  
-
+ 
       $slider = new Slider();
       $slider->name = $this->name ?? NULL;
       $slider->slug =  strtolower(str_replace(' ', '-',$this->name))?? Null;
-      $slider->image = $imageName ?? NULL;
-      $slider->thumbnail = $thumbnailName ?? NULL;
+      $slider->image = $uploadedData['file_name']?? NULL;
+      $slider->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
 
       $slider->heading = $this->heading ?? NULL;
       $slider->subheading = $this->subheading ?? NULL;
@@ -81,12 +65,16 @@ class ViewHomeSlider extends Component
       $slider->status = $this->status ?? NULL;
       $slider->save();
 
-      $this->resetInputFields(); 
+    }
 
-     $this->dispatchBrowserEvent('swal:modal', [
-              'type' => 'success',  
-              'message' => 'Successfully save!', 
-          ]); 
+        $this->resetInputFields(); 
+        $this->dispatchBrowserEvent('swal:modal', [
+                 'type' => 'success',  
+                 'message' => 'Successfully save!', 
+             ]); 
+  
+    }  
+
 
 
    }

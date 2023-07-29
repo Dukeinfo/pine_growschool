@@ -55,7 +55,7 @@ class ViewSubMenu extends Component
       if(!is_null($this->image)){
         $image =  $this->image;
         // Define folder path
-        $folder = '/uploads';
+        $folder = '/uploads/submenu';
         $uploadedData = $this->uploadOne($image, $folder);
 
       }   
