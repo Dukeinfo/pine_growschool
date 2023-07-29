@@ -28,7 +28,7 @@ class ViewHomeSlider extends Component
       ];
       protected $messages = [
           'name.required' => 'Name Required.',
-          'image.required' => 'Image Required.',
+          'image.required' => 'Images Required.',
           'heading.required' => 'Heading Required.',
           'subheading.required' => 'Sub heading Required.',
           'sort.required' => 'Sort Required.',
@@ -74,8 +74,11 @@ class ViewHomeSlider extends Component
              ]); 
   
     }  
-
-
+        $this->dispatchBrowserEvent('swal:modal', [
+          'type' => 'error',  
+          'message' => ' Error!', 
+      ]); 
+        return redirect()->back();
 
    }
 
