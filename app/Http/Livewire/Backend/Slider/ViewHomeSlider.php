@@ -67,17 +67,14 @@ class ViewHomeSlider extends Component
 
     }
 
-        $this->resetInputFields(); 
-        $this->dispatchBrowserEvent('swal:modal', [
-                 'type' => 'success',  
-                 'message' => 'Successfully save!', 
-             ]); 
+
   
     }  
-        $this->dispatchBrowserEvent('swal:modal', [
-          'type' => 'error',  
-          'message' => ' Error!', 
-      ]); 
+    $this->resetInputFields(); 
+    $this->dispatchBrowserEvent('swal:modal', [
+             'type' => 'success',  
+             'message' => 'Successfully save!', 
+         ]); 
         return redirect()->back();
 
    }
