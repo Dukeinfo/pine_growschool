@@ -102,11 +102,12 @@
                                             <td>{{$record->name ?? '' }}</td>
                                             <td>
                                                @if(isset($record->image))
-            <img src="{{ asset('storage/uploads').'/'.$record->image }}" alt="Image" width="100" height="70"/>
-            @else
-            <!-- default image -->
-          <img src="{{asset('admin_assets')}}/images/no-img.jpg" alt="" class="border" width="100" height="70">
-           @endif
+                                               
+                                                <img src="{{ getThumbnail($record->thumbnail) }}" alt="Image" width="100" height="70"/>
+                                                @else
+                                                <!-- default image -->
+                                            <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" class="border" width="100" height="70">
+                                            @endif
                                             </td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>

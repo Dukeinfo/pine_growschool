@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Blog;
 
 use Livewire\Component;
 use App\Models\Blogs;
+use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,7 @@ class AddBlog extends Component
 {
 
     use WithFileUploads;
-
+    use UploadTrait;
     public $title,$desc, $image,$sort,$status;
     public $records ,$thumbnail;
 
@@ -43,36 +44,20 @@ class AddBlog extends Component
 
     public function addBlog(){
     $validatedData = $this->validate();
-
     if(!is_null($this->image)){
-        // Generate a unique name for the image
-        $imageName =  uniqid() . '.' . $this->image->getClientOriginalExtension();
+        $image =  $this->image;
+        // Define folder path
+        $folder = '/uploads/blogs';
+        $uploadedData = $this->uploadOne($image, $folder);
 
-        // Get the path where you want to save the image and thumbnail
-        $directory = public_path('uploads/thumbnail');
-
-        // Check if the directory exists, if not, create it
-        if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true, true);
-        }
-
-        // Save the original image to the specified directory
-        $this->image->storeAs('uploads', $imageName, 'public');
-
-        // Generate a thumbnail and save it to the specified directory
-        $thumbnailName = 'thumb_' . $imageName;
-        Image::make($this->image)->fit(200, 200)->save($directory . '/' . $thumbnailName);
-
-        // Set the thumbnail property to the thumbnail image name
-        // $this->thumbnail = $thumbnailName;
-    }  
+      }  
 
       $blog = new Blogs();
       $blog->title = $this->title ?? NULL;
       $blog->slug =  $this->createSlug($this->title ?? NULL);
       $blog->description = $this->desc ?? NULL;
-      $blog->image = $imageName ?? NULL;
-      $blog->thumbnail = $thumbnailName ?? NULL;
+      $blog->image =$uploadedData['file_name'] ?? NULL;
+      $blog->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
       $blog->sort_id =$this->sort ?? NULL;
       $blog->status = $this->status ?? NULL;
       $blog->save();

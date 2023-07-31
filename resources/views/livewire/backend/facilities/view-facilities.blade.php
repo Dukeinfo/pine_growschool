@@ -153,10 +153,10 @@
                                       @if(isset($records) && count($records)>0 )                      
                                          @foreach ($records as  $record)	
                                         <tr>
-                                            <td>@php
-$thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
-@endphp                                      
-<img src="{{$thumb}}" alt="" class="border" width="100" height="70"></td>
+                                            <td>@php 
+                                                $thumb = !empty($record->image) ? getThumbnail($record->thumbnail)  : url('admin_assets/images/no-img.jpg');
+                                                @endphp                
+                                            <img src="{{$thumb}}" alt="" class="border" width="100" height="70"></td>
                                             <td>{{$record->title ?? '' }}</td>
                                            <td>{!!$record->description ?? '' !!}</td>
                                         

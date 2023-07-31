@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Membership;
 
 use Livewire\Component;
 use App\Models\Memberships;
+use App\Traits\UploadTrait;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
@@ -14,8 +15,8 @@ class ViewMembership extends Component
 {
 
     use WithFileUploads;
-
-    public $name, $image,$sort,$hlink,$status;
+    use UploadTrait;
+    public $name, $image,$sort, $logo ,$hlink,$status;
     public $records;
    // public $ipAddress;
 
@@ -47,36 +48,20 @@ class ViewMembership extends Component
    public function addMembership(){
 
      $validatedData = $this->validate();
- 
      if(!is_null($this->image)){
-        // Generate a unique name for the image
-        $imageName =  uniqid() . '.' . $this->image->getClientOriginalExtension();
+      $image =  $this->image;
+      // Define folder path
+      $folder = '/uploads/membership';
+      $uploadedData = $this->uploadOne($image, $folder);
 
-        // Get the path where you want to save the image and thumbnail
-        $directory = public_path('uploads/thumbnail');
+    } 
 
-        // Check if the directory exists, if not, create it
-        if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true, true);
-        }
-
-        // Save the original image to the specified directory
-        $this->image->storeAs('uploads', $imageName, 'public');
-
-        // Generate a thumbnail and save it to the specified directory
-        $thumbnailName = 'thumb_' . $imageName;
-        Image::make($this->image)->fit(200, 200)->save($directory . '/' . $thumbnailName);
-
-        // Set the thumbnail property to the thumbnail image name
-        // $this->thumbnail = $thumbnailName;
-    }  
- 
     
       $membership = new Memberships();
       $membership->name = $this->name;
       $membership->slug =  strtolower(str_replace(' ', '-',$this->name));
-      $membership->logo = $imageName ?? NULL;
-      $membership->thumbnail = $thumbnailName ?? NULL;
+      $membership->logo = $uploadedData['file_name'] ?? NULL;
+      $membership->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
       $membership->sort_id =$this->sort;
       $membership->link = $this->hlink;
       $membership->status = $this->status;
