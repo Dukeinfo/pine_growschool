@@ -42,7 +42,9 @@ use App\Http\Livewire\Backend\Profile\AdminProfile;
 use App\Http\Livewire\Backend\Staff\ViewStaff;
 use App\Http\Livewire\Backend\Staff\EditStaff;
 use App\Http\Livewire\Backend\Principal\Message;
+use App\Http\Livewire\Backend\Principal\EditMessage;
 use App\Http\Livewire\Backend\Facilities\ViewFacilities;
+use App\Http\Livewire\Backend\Facilities\EditFacilities;
 use Illuminate\Support\Facades\Route;
 
 
@@ -154,9 +156,12 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
      Route::get('/view/boardmembers', ViewBoardMembers::class)->name('view_boardmembers');
 
-     Route::get('/ceate/message', Message::class)->name('create_message');
+    Route::get('/ceate/message', Message::class)->name('create_message');
+    Route::get('/edit/message/{id}', EditMessage::class)->name('edit_message');
+
 
     Route::get('/view/facilities', ViewFacilities::class)->name('view_facilities');
+     Route::get('/edit/facilities/{id}', EditFacilities::class)->name('edit_facilities');
       
      
     

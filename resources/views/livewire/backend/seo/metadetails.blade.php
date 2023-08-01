@@ -29,22 +29,7 @@
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
-                            <!--success or error alert-->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-2"></i>
-                                        Aww yeah, you successfully updated the record. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-2"></i>
-                                        Oops! Something went wrong. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                </div>
-                            </div>
-                            
+                               
                             <!--form starts-->
                             <div class="row g-3">
                                 <div class="col-md-3">
@@ -82,9 +67,26 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="mb-3">
+                                    <div class="mb-3" wire:ignore>
                                         <label for="" class="form-label">Description</label>
-                                        <textarea name="seo_description" wire:model="seo_description" id="seo_description" cols="" rows="6" class="form-control" placeholder="Description type here..."></textarea>
+                                        <textarea name="seo_description" wire:model="seo_description" id="editor" cols="" rows="6" class="form-control" placeholder="Description type here..."></textarea>
+                                        <script>
+                                    document.addEventListener('livewire:load', function () {
+                                        CKEDITOR.replace('editor');
+                                
+                                        CKEDITOR.instances.editor.on('change', function () {
+                                            @this.set('seo_description', CKEDITOR.instances.editor.getData());
+                                    
+                                      
+                                        });
+                                         Livewire.on('formSubmitted', function () {
+                                         CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+                                       
+                                                  
+                                          });
+                                    });
+                                </script>
+                                
                                         @error('seo_description') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>
@@ -98,7 +100,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                    <button type="submit" class="btn btn-primary w-md" wire:click="addMeta">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -119,31 +121,44 @@
                                 <table class="table table-bordered table-striped datatable">
                                     <thead>
                                         <tr>
-                                            <th>Page</th>
+                                            <th>Page Name</th>
                                             <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Keywords</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+      @if(isset($records) && count($records)>0 )                      
+                       @foreach ($records as  $record)                     
+                                
                                         <tr>
-                                            <td>Home Page</td>
-                                            <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id porro doloremque ex.</td>
-                                            <td><span class="badge badge-soft-success">Active</span></td>
+                                            <td>{{$record->menu_id ?? '' }}</td>
+                                            
                                             <td>
-                                                <a href="" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg"></i></a>
+                                                {{$record->title ?? '' }}
+                                            </td>
+                                            <td>{!!$record->description  ?? ''!!}</td>
+                                             <td>{{$record->keywords  ?? ''}}</td>
+                                            <td>
+                                                @if($record->status  == "Active")
+                                                    <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
+                                                @else
+                                                    <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
+                                                @endif
+                                                <td>
+                                                <a href="{{url('/admin/edit/metadetails')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>About</td>
-                                            <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia, adipisci?</td>
-                                            <td><span class="badge badge-soft-success">Active</span></td>
-                                            <td>
-                                                <a href="" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg"></i></a>
-                                            </td>
-                                        </tr>
+                                   @endforeach
+                                      @else
+                                 <tr>
+                                 <td colspan="6"> Record Not Found</td>
+                                
+                                 </tr>
+                                 @endif     
                                     </tbody>
                                 </table>
                             </div>

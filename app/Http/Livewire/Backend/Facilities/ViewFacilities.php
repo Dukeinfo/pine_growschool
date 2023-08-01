@@ -12,7 +12,7 @@ use App\Traits\UploadTrait;
 class ViewFacilities extends Component
 {
     use UploadTrait;	
-	use WithFileUploads;
+	  use WithFileUploads;
 
     public $image,$title,$desc,$sort,$status;
 

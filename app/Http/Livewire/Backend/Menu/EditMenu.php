@@ -29,7 +29,7 @@ class EditMenu extends Component
         $menu->save();
 
      
-      return redirect()->to('/admin/view/menu');  
+      return redirect()->route('view_menu');  
     }
 
     public function render(Request $request)

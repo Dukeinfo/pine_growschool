@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('metadetails', function (Blueprint $table) {
             $table->id();
+            $table->integer('menu_id')->nullable(); 
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->string('title')->nullable(); 
             $table->longText('description')->nullable();
-            $table->longText('kewords')->nullable(); 
+            $table->longText('keywords')->nullable(); 
 
         
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');

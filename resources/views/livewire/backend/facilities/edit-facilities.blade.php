@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Headmaster Message</h4>
+                        <h4 class="mb-sm-0 font-size-18">Home Page Logo Section</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
                                 <li class="breadcrumb-item">Portfolio</li>
-                                <li class="breadcrumb-item active">Headmaster Message</li>
+                                <li class="breadcrumb-item active">Home Page Logo Section</li>
                             </ol>
                         </div>
 
@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Headmaster Message</h4>
+                            <h4 class="card-title">Home Page Logo Section</h4>
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
@@ -35,33 +35,36 @@
                             
                             <!--form starts-->
                             <div class="row g-3">
-                                <div class="col-md-3">
+
+
+                            	<div class="col-md-e">
                                     <div class="mb-3">
-                                        <label class="form-label">Headmaster Name</label>
-                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="Name">
-                                        @error('name') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label">Logo</label>
+                                        <input type="file" class="form-control" id="" wire:model="editimage">
+ @if(isset($editimage))  
+ <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
+@else                                        
+@php
+$thumb = !empty($thumbnail) ? asset('uploads/thumbnail/'.basename($thumbnail)) : url('admin_assets/images/no-img.jpg');
+@endphp                                      
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
+@endif
+                                        @error('editimage') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Heading</label>
-                                        <input type="text" class="form-control" id="" wire:model="heading" placeholder="Heading">
-                                        @error('heading') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
 
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Punch Line</label>
-                                        <input type="text" class="form-control" id="" wire:model="pline" placeholder="Punch Line">
-                                        @error('plline') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label"> Title</label>
+                                        <input type="text" class="form-control" id="" wire:model="title" placeholder="Title">
+                                        @error('title') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="mb-3" >
-                                        <label class="form-label">Message</label>
+                                        <label class="form-label">Description</label>
                                       
                                  <div wire:ignore>
                                          <textarea id="editor" wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat"></textarea>
@@ -99,9 +102,6 @@
                                     </div>
                                 </div>
 
-
-
-
                               
                                 <div class="col-md-2">
                                     <div class="mb-3">
@@ -124,10 +124,10 @@
                         
 
                                <div>
-                                <button type="submit" wire:loading.attr="disabled"  class="btn btn-primary w-md" wire:click="editMessage">Submit</button>
+                                <button type="submit" wire:loading.attr="disabled"  class="btn btn-primary w-md" wire:click="editFacilities">Submit</button>
                                
                             </div>
-                            <div wire:loading wire:target="editMessage">
+                            <div wire:loading wire:target="editFacilities">
                                 <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
                              </div>
                             </div>
