@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminLogoutController;
 use App\Http\Controllers\CkImageUploadController;
+
 use App\Http\Livewire\Backend\AdminDashboard;
 use App\Http\Livewire\Backend\Menu\ViewMenu;
 use App\Http\Livewire\Backend\Menu\EditMenu;
@@ -70,7 +71,6 @@ use Illuminate\Support\Facades\Route;
 // ============================= frontend route start  ======================
 
 Route::get('/', Homepage::class)->name('homepage');
-
 
 // ============================= frontend route end ======================
 // admin routings

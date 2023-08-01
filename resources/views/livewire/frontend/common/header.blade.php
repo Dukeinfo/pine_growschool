@@ -57,64 +57,18 @@
                             <li class="menu-item-has-children">
                                 <a href="javascript:void(0);">{{$menu->name ?? ''}}</a>
                                 @php
-                                    $getSubmenus = App\Models\Submenu::where('menu_id',$menu->id )->orderBy('sort_id','asc')->where('status','Active')->get();	    
+
+                                  $getpage =   App\Models\CreatePage::where('menu_id',$menu->id )->with(['SubMenu'])->orderBy('sort_id','asc')->where('status','Active')->get()    
                                 @endphp
                                 <ul class="sub-menu">
-                                @foreach($getSubmenus as $submenu)
-                                    <li><a href="javascript:void();">{{$submenu->name}}</a></li>
+                                @foreach($getpage as $page)
+                                    <li><a href="javascript:void();">{{$page->SubMenu->name}}</a></li>
                                 @endforeach
                                 </ul>
                             </li>
                             @endforeach
                             @endif
-                            {{-- <li class="menu-item-has-children">
-                                <a href="javascript:void(0);">Facilities</a>
-                                <ul class="sub-menu">
-                                    <li><a href="javascript:void();">Introduction</a></li>
-                                    <li><a href="javascript:void();">Academic Facilities</a></li>
-                                    <li><a href="javascript:void();">Games & Sports</a></li>
-                                    <li><a href="javascript:void();">Activities</a></li>
-                                    <li><a href="javascript:void();">Boarding</a></li>
-                                    <li><a href="javascript:void();">New Developments</a></li>
-                                </ul>
-                            </li>
 
-                            <li class="menu-item-has-children">
-                                <a href="javascript:void(0);">Admission & Fees</a>
-                                <ul class="sub-menu">
-                                    <li><a href="javascript:void();">Admission Process</a></li>
-                                    <li><a href="javascript:void();">Fees</a></li>
-                                    <li><a href="javascript:void();">Clothing</a></li>
-                                    <li><a href="javascript:void();">Withdrawl</a></li>
-                                    <li><a href="javascript:void();">Contact for Admission</a></li>
-                                    <li><a href="javascript:void();">Transfer Certificate</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="menu-item-has-children">
-                                <a href="javascript:void(0);">Memories</a>
-                                <ul class="sub-menu">
-                                    <li><a href="javascript:void();">Our Founder</a></li>
-                                    <li><a href="javascript:void();">Alumni</a></li>
-                                    <li><a href="javascript:void();">Guest Book</a></li>
-                                    <li><a href="javascript:void();">Grapevine</a></li>
-                                    <li><a href="javascript:void();">Roll of Hounour</a></li>
-                                    <li><a href="javascript:void();">Picture Gallery</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="menu-item-has-children">
-                                <a href="javascript:void(0);">FAQs</a>
-                                <ul class="sub-menu">
-                                    <li><a href="javascript:void();">Introduction</a></li>
-                                    <li><a href="javascript:void();">Admission & Fees</a></li>
-                                    <li><a href="javascript:void();">Academics</a></li>
-                                    <li><a href="javascript:void();">Facilities & Activities</a></li>
-                                    <li><a href="javascript:void();">Boarding</a></li>
-                                    <li><a href="javascript:void();">Descipline</a></li>
-                                    <li><a href="javascript:void();">Others</a></li>
-                                </ul>
-                            </li> --}}
 
                             <li>
                                 <a href="javascript:void(0);">Calendar</a>

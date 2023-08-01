@@ -68,6 +68,7 @@ class CreatePage extends Component
       $createPage->menu_id = $this->menu ?? Null;
       $createPage->submenu_id = $this->submenu ?? Null;
       $createPage->heading = $this->heading ?? Null;
+      $createPage->slug =  strtolower(str_replace(' ', '-',$this->heading))?? Null;
       $createPage->description = $this->desc ?? Null;
       $createPage->sort_id =$this->sort ?? Null;
       $createPage->status = $this->status ?? Null;

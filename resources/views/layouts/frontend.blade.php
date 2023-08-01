@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title')</title>
-    <meta name="description" content="@yield('desc')">
-    <meta name="keywords" content="@yield('keywords')">
-    <meta name="author" content="">
+    {{-- <title>{{ $metaTitle ?: 'Pinegrow school' }}</title> --}}
+    <title>'Pinegrove School' </title>
+    <meta name="author" content="TheCodeholic">
+    <meta name="description" content="">
+
+
 
     <!-- BEGIN: CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
