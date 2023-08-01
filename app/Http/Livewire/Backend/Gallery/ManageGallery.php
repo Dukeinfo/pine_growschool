@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Backend\Gallery;
 use Livewire\Component;
 use App\Models\Categories;
 use App\Models\Gallery;
+use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -13,7 +14,7 @@ use Intervention\Image\Facades\Image;
 class ManageGallery extends Component
 {
 	use WithFileUploads;
-
+  use UploadTrait;
     public $category_id,$name,$image,$sort,$status ,$records ,$categories ;
     public $search ,$s_name ,$year ,$title;
  
@@ -74,39 +75,22 @@ class ManageGallery extends Component
    public function addGallery(){
 
      $validatedData = $this->validate();
- 
      if(!is_null($this->image)){
-        // Generate a unique name for the image
-        $imageName =  uniqid() . '.' . $this->image->getClientOriginalExtension();
+      $image =  $this->image;
+      // Define folder path
+      $folder = '/uploads/gallery';
+      $uploadedData = $this->uploadOne($image, $folder);
 
-        // Get the path where you want to save the image and thumbnail
-        $directory = public_path('uploads/thumbnail');
+    }   
 
-        // Check if the directory exists, if not, create it
-        if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true, true);
-        }
-
-        // Save the original image to the specified directory
-        $this->image->storeAs('uploads', $imageName, 'public');
-
-        // Generate a thumbnail and save it to the specified directory
-        $thumbnailName = 'thumb_' . $imageName;
-        Image::make($this->image)->fit(200, 200)->save($directory . '/' . $thumbnailName);
-
-        // Set the thumbnail property to the thumbnail image name
-        // $this->thumbnail = $thumbnailName;
-    }  
- 
-    
       $gallery = new Gallery();
       $gallery->category_id = $this->category_id;
       $gallery->title = $this->title;
       $gallery->year = $this->year;
       $gallery->s_name = $this->s_name;
 
-      $gallery->image = $imageName ?? NULL;
-      $gallery->thumbnail = $thumbnailName ?? NULL;
+      $gallery->image = $uploadedData['file_name'] ?? NULL;
+      $gallery->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
       $gallery->sort_id =$this->sort;
       $gallery->status = $this->status;
       $gallery->save();

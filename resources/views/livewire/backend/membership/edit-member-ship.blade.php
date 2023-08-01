@@ -46,12 +46,11 @@
                                         @if(isset($editimage))  
                                                <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
                                         @else
-@php                                        
-$thumb = !empty($thumbnail) ? asset('uploads/thumbnail/'.basename($thumbnail)) : url('admin_assets/images/no-img.jpg');
-@endphp                                      
-<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
-
-                                   @endif
+                                         @php                                     
+                                             $thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)    : url('admin_assets/images/no-img.jpg');
+                                        @endphp                                      
+                                            <img src="{{$thumb}}" alt="" class="border" width="100" height="70">
+                                        @endif
                                         @error('logo') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

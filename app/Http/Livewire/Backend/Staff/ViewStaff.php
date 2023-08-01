@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Backend\Staff;
 use Livewire\Component;
 use App\Models\Department;
 use App\Models\Staff;
+use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,11 @@ use Intervention\Image\Facades\Image;
 
 class ViewStaff extends Component
 {
+  use UploadTrait;
 
     use WithFileUploads;
     public $department_id,$name,$designation, $image,$thumbnail, $sort,$status;
-
-
+    public $departments ,$records;
     public function render()
     {
     	$this->departments = Department::get();
@@ -55,34 +56,18 @@ class ViewStaff extends Component
      $validatedData = $this->validate();
 
      if(!is_null($this->image)){
-        // Generate a unique name for the image
-        $imageName =  uniqid() . '.' . $this->image->getClientOriginalExtension();
-
-        // Get the path where you want to save the image and thumbnail
-        $directory = public_path('uploads/thumbnail');
-
-        // Check if the directory exists, if not, create it
-        if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true, true);
-        }
-
-        // Save the original image to the specified directory
-        $this->image->storeAs('uploads', $imageName, 'public');
-
-        // Generate a thumbnail and save it to the specified directory
-        $thumbnailName = 'thumb_' . $imageName;
-        Image::make($this->image)->fit(200, 200)->save($directory . '/' . $thumbnailName);
-
-        // Set the thumbnail property to the thumbnail image name
-        // $this->thumbnail = $thumbnailName;
+      $image =  $this->image;
+      // Define folder path
+      $folder = '/uploads/staff';
+      $uploadedData = $this->uploadOne($image, $folder);
     }  
     
       $staff = new Staff();
       $staff->department_id= $this->department_id ?? NULL;
       $staff->name = $this->name ?? NULL;
       $staff->designation = $this->designation ?? NULL;
-      $staff->image = $imageName ?? NULL;
-      $staff->thumbnail = $thumbnailName ?? NULL;
+      $staff->image =  $uploadedData['file_name']?? NULL;
+      $staff->thumbnail =  $uploadedData['thumbnail_name']?? NULL;
       $staff->sort_id =$this->sort ?? NULL;
       $staff->status = $this->status ?? NULL;
       $staff->save();

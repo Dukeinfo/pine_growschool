@@ -49,23 +49,23 @@
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
                                             <td>
-@php
-$thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
-@endphp                                      
-<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
+                                            @php   
+                                            $thumb = !empty($record->image) ? getThumbnail($record->thumbnail)  : url('admin_assets/images/no-img.jpg');
+                                            @endphp                                      
+                                            <img src="{{$thumb}}" alt="" class="border" width="100" height="70">
 
-                                                
+                                                                                
                                             </td>
                                             <td>{{$record->heading ?? '' }}</td>
                                             <td>{{$record->subheading ?? '' }}</td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td>
-@if($record->status  == "Active")
-        <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
-         @else
-       <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
-@endif
-</td>
+                                            @if($record->status  == "Active")
+                                                    <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
+                                                    @else
+                                                <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
+                                            @endif
+                                            </td>
                                             <td>
                                         
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Restore"><i class="fa fa-times fa-fw fa-lg" wire:click="restore({{ $record->id }})"></i></a>

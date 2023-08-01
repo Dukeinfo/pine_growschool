@@ -39,30 +39,35 @@
                     </div>
                     <!-- Logo -->
                     <!-- Nav Menu -->
+
                     <a href="javascript:void(0)" class="menuBtn"><i class="fa-solid fa-bars"></i></a>
+                   @php
+                 $getmenus = App\Models\Menu::orderBy('sort_id','asc')->where('status','Active')->get();	 
+                 
+
+                   @endphp
                     <nav class="mainMenu">
                         <ul class="sub-menu">
                             <li>
                                 <a href="javascript:void(0);">Home</a>
                             </li>
+                            @if(isset($getmenus) )
+
+                            @foreach($getmenus as $menu)
                             <li class="menu-item-has-children">
-                                <a href="javascript:void(0);">About Us</a>
+                                <a href="javascript:void(0);">{{$menu->name ?? ''}}</a>
+                                @php
+                                    $getSubmenus = App\Models\Submenu::where('menu_id',$menu->id )->orderBy('sort_id','asc')->where('status','Active')->get();	    
+                                @endphp
                                 <ul class="sub-menu">
-                                    <li><a href="javascript:void();">Location</a></li>
-                                    <li><a href="javascript:void();">Director</a></li>
-                                    <li><a href="javascript:void();">Raison D'etre</a></li>
-                                    <li><a href="javascript:void();">Life at Piegrove</a></li>
-                                    <li><a href="javascript:void();">Faculties</a></li>
-                                    <li><a href="javascript:void();">Group Photo</a></li>
-                                    <li><a href="javascript:void();">Scales of Pay</a></li>
-                                    <li><a href="javascript:void();">Enrollment</a></li>
-                                    <li><a href="javascript:void();">The Board</a></li>
-                                    <li><a href="javascript:void();">SMC</a></li>
-                                    <li><a href="javascript:void();">Mandatory Disclosure</a></li>
-                                    <li><a href="javascript:void();">Rules</a></li>
+                                @foreach($getSubmenus as $submenu)
+                                    <li><a href="javascript:void();">{{$submenu->name}}</a></li>
+                                @endforeach
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children">
+                            @endforeach
+                            @endif
+                            {{-- <li class="menu-item-has-children">
                                 <a href="javascript:void(0);">Facilities</a>
                                 <ul class="sub-menu">
                                     <li><a href="javascript:void();">Introduction</a></li>
@@ -73,6 +78,7 @@
                                     <li><a href="javascript:void();">New Developments</a></li>
                                 </ul>
                             </li>
+
                             <li class="menu-item-has-children">
                                 <a href="javascript:void(0);">Admission & Fees</a>
                                 <ul class="sub-menu">
@@ -84,6 +90,7 @@
                                     <li><a href="javascript:void();">Transfer Certificate</a></li>
                                 </ul>
                             </li>
+
                             <li class="menu-item-has-children">
                                 <a href="javascript:void(0);">Memories</a>
                                 <ul class="sub-menu">
@@ -95,6 +102,7 @@
                                     <li><a href="javascript:void();">Picture Gallery</a></li>
                                 </ul>
                             </li>
+
                             <li class="menu-item-has-children">
                                 <a href="javascript:void(0);">FAQs</a>
                                 <ul class="sub-menu">
@@ -106,7 +114,8 @@
                                     <li><a href="javascript:void();">Descipline</a></li>
                                     <li><a href="javascript:void();">Others</a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
+
                             <li>
                                 <a href="javascript:void(0);">Calendar</a>
                             </li>

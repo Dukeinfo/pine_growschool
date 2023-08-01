@@ -66,7 +66,9 @@
                                     <div class="mb-3">
                                         <label for="" class="form-label">Blog Image</label>
                                         <input type="file" wire:model="image" id="" class="form-control">
-                                        <img src="{{asset('admin_assets')}}/images/no-img.jpg" alt="" class="img-thumbnail mt-2" width="100" height="70">
+                                      
+                                        <img src="{{asset('admin_assets/images/no-img.jpg')}}" alt="" class="img-thumbnail mt-2" width="100" height="70">
+                                       
                                         @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

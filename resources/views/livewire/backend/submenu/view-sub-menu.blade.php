@@ -219,8 +219,8 @@
                                             {{$record->sort_id ?? '' }} 
                                         </td>
                                             <td> {{$record->Menu->name ?? '' }}</td>
-                                            <td> 
-                                                <img src="{{ asset('uploads/thumbnail').'/'.$record->thumbnail }}" alt="Image" width="100" height="70"/>
+                                            <td>  
+                                                <img src="{{ getThumbnail($record->thumbnail) }}" alt="Image" width="100" height="70"/>
                                             
                                             </td>
                                             <td>{{$record->name ?? '' }}</td>

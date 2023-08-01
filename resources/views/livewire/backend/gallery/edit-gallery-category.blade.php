@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Add Category</h4>
+                            <h4 class="card-title">edit Category</h4>
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
@@ -48,8 +48,9 @@
                                         <input type="file" class="form-control" id="" wire:model="editimage"placeholder="">
                                         @if(isset($editimage))  
                                          <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
-                                     @else
-                                     <img src="{{ asset('storage/uploads').'/'.$image }}" alt="Image"  width="100" height="70"/>
+                                     @else   
+
+                                     <img src="{{ getThumbnail($thumbnail) }}" alt="Image"  width="100" height="70"/>
 
                                     @endif
                                          @error('image') <span class="error">{{ $message }}</span> @enderror

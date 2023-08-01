@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Testimonials;
 
 use Livewire\Component;
 use App\Models\Testimonials;
+use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -13,8 +14,9 @@ class EditTestimonials extends Component
 {
 
     use WithFileUploads;
+    use UploadTrait;
 
-    public $testimoniaId,$name,$image,$editimage,$sort_id,$status,$desc;
+    public $testimoniaId,$name, $thumbnail,$image,$editimage,$sort_id,$status,$desc;
 
     public function mount($id)
      {
@@ -29,29 +31,19 @@ class EditTestimonials extends Component
      }
 
        public function editTestimonials() {
+
         if(!is_null($this->editimage)){
-
-        // Generate a unique name for the image
-        $imageName =  uniqid() . '.' . $this->editimage->getClientOriginalExtension();
-
-        // Get the path where you want to save the image and thumbnail
-        $directory = public_path('uploads/thumbnail');
-
-        // Check if the directory exists, if not, create it
-        if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true, true);
-        }
-        // Save the original image to the specified directory
-        $this->editimage->storeAs('uploads', $imageName, 'public');
-        // Generate a thumbnail and save it to the specified directory
-        $thumbnailName = 'thumb_' . $imageName;
-        Image::make($this->editimage)->fit(200, 200)->save($directory . '/' . $thumbnailName);
-            
+            $image =  $this->editimage;
+            // Define folder path
+            $folder = '/uploads/testimonia';
+            $uploadedData = $this->uploadOne($image, $folder);
+      
+    
             $testimonials = Testimonials::find($this->testimoniaId);
             $testimonials->name = $this->name;
             $testimonials->slug =  strtolower(str_replace(' ', '-',$this->name));
-            $testimonials->photo = $imageName ?? Null;
-            $testimonials->thumbnail = $thumbnailName ?? Null;
+            $testimonials->photo =   $uploadedData['file_name'] ?? Null;
+            $testimonials->thumbnail =  $uploadedData['thumbnail_name']?? Null;
             $testimonials->sort_id =$this->sort_id;
             $testimonials->status = $this->status;
             $testimonials->description = $this->desc;

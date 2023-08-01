@@ -148,8 +148,8 @@
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
                                             <td>
-@php
-$thumb = !empty($record->photo) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
+@php       
+$thumb = !empty($record->photo) ?  getThumbnail($record->thumbnail) : url('admin_assets/images/no-img.jpg');
 @endphp                                      
 <img src="{{$thumb}}" alt="" class="border" width="100" height="70">
                                             </td>
