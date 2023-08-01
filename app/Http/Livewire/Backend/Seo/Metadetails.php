@@ -43,6 +43,7 @@ class Metadetails extends Component
     }
 
     public function addMeta(){
+	
       $validatedData = $this->validate();
     	
       $metadetails = new appMetadetails();

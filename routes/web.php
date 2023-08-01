@@ -15,6 +15,7 @@ use App\Http\Livewire\Backend\Blog\EditBlog;
 use App\Http\Livewire\Backend\Blog\TrashBlog;
 use App\Http\Livewire\Backend\Department\ViewDepartment;
 use App\Http\Livewire\Backend\Department\EditDepartment;
+use App\Http\Livewire\Backend\Department\TrashDepartment;
 use App\Http\Livewire\Backend\Gallery\ViewGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\EditGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\TrashGalleryCategory;
@@ -27,6 +28,7 @@ use App\Http\Livewire\Backend\Membership\TrashMemberShip;
 use App\Http\Livewire\Backend\Seo\FooterSnippets;
 use App\Http\Livewire\Backend\Seo\HeaderSnippets;
 use App\Http\Livewire\Backend\Seo\Metadetails;
+use App\Http\Livewire\Backend\Seo\EditMetadetails;
 use App\Http\Livewire\Backend\Slider\ViewHomeSlider;
 use App\Http\Livewire\Backend\Slider\EditHomeSlider;
 use App\Http\Livewire\Backend\Slider\TrashHomeSlider;
@@ -41,10 +43,12 @@ use App\Http\Livewire\Backend\Pages\EditPage;
 use App\Http\Livewire\Backend\Profile\AdminProfile;
 use App\Http\Livewire\Backend\Staff\ViewStaff;
 use App\Http\Livewire\Backend\Staff\EditStaff;
+use App\Http\Livewire\Backend\Staff\TrashStaff;
 use App\Http\Livewire\Backend\Principal\Message;
 use App\Http\Livewire\Backend\Principal\EditMessage;
 use App\Http\Livewire\Backend\Facilities\ViewFacilities;
 use App\Http\Livewire\Backend\Facilities\EditFacilities;
+use App\Http\Livewire\Backend\Facilities\TrashFacilities;
 use Illuminate\Support\Facades\Route;
 
 
@@ -141,6 +145,9 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
     Route::get('/manage/blog/trash', TrashBlog::class)->name('trash_blog');
 
     Route::get('/manage/seo', Metadetails::class)->name('manage_metadata');
+    Route::get('/edit/seo/{id}', EditMetadetails::class)->name('edit_metadata');
+
+
     Route::get('/header/snippets', HeaderSnippets::class)->name('manage_snippets');
     Route::get('/footer/snippets', FooterSnippets::class)->name('manage_footer_snippets');
 
@@ -150,9 +157,11 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
     Route::get('/view/department', ViewDepartment::class)->name('view_department');
     Route::get('/edit/department/{id}', EditDepartment::class)->name('edit_department');
+    Route::get('/view/department/trash', TrashDepartment::class)->name('trash_department'); 
 
     Route::get('/view/staff', ViewStaff::class)->name('view_staff');
     Route::get('/edit/staff/{id}', EditStaff::class)->name('edit_staff');
+    Route::get('/view/staff/trash', TrashStaff::class)->name('trash_staff');
 
      Route::get('/view/boardmembers', ViewBoardMembers::class)->name('view_boardmembers');
 
@@ -162,6 +171,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
     Route::get('/view/facilities', ViewFacilities::class)->name('view_facilities');
      Route::get('/edit/facilities/{id}', EditFacilities::class)->name('edit_facilities');
+      Route::get('/view/facilities/trash', TrashFacilities::class)->name('trash_facilities');
       
      
     

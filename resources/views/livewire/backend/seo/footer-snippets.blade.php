@@ -29,32 +29,36 @@
                             <p class="card-title-desc mb-0">Paste your schema code here.</p>
                         </div>
                         <div class="card-body">
-                            <!--success or error alert-->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-2"></i>
-                                        Aww yeah, you successfully updated the record. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-2"></i>
-                                        Oops! Something went wrong. check it out!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!--form starts-->
+                              <!--form starts-->
                             <div class="row g-3">
                                 
                                 <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <textarea name="" id="" cols="" rows="15" class="form-control"></textarea>
+                                    <div class="mb-3" wire:ignore>
+                                        <textarea wire:model="desc"  id="editor" cols="" rows="15" class="form-control"></textarea>
+                                        <script>
+                                    document.addEventListener('livewire:load', function () {
+                                        CKEDITOR.replace('editor');
+                                
+                                        CKEDITOR.instances.editor.on('change', function () {
+                                            @this.set('desc', CKEDITOR.instances.editor.getData());
+                                    
+                                      
+                                        });
+                                         Livewire.on('formSubmitted', function () {
+                                         CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+                                       
+                                                  
+                                          });
+                                    });
+                                </script>
+                                
+                                       
+                                   
                                     </div>
+                                     @error('desc') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
-                                    <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                    <button type="submit" wire:click="addFootersnippets" class="btn btn-primary w-md">Submit</button>
                                 </div>
                             </div>
                         </div>
