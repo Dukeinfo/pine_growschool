@@ -58,7 +58,7 @@
                                 <a href="javascript:void(0);">{{$menu->name ?? ''}}</a>
                                 @php
 
-                                  $getpage =   App\Models\CreatePage::where('menu_id',$menu->id )->with(['SubMenu'])->orderBy('sort_id','asc')->where('status','Active')->get()    
+                                  $getpage =   App\Models\CreatePage::where('menu_id',$menu->id )->with(['SubMenu'])->orderBy('sort_id','asc')->where('status','Active')->where('deleted_at' , Null)->get()    
                                 @endphp
                                 <ul class="sub-menu">
                                 @foreach($getpage as $page)
