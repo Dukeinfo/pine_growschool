@@ -62,7 +62,8 @@
                                 @endphp
                                 <ul class="sub-menu">
                                 @foreach($getpage as $page)
-                                    <li><a href="detail/page">{{$page->SubMenu->name}}</a></li>
+                                @php $encryptedId = encrypt($page->id); @endphp
+                                    <li><a href="{{route('detail_page',['encrypted_id' => $encryptedId, 'slug' => $page->slug])}}">{{$page->SubMenu->name}}</a></li>
                                 @endforeach
                                 </ul>
                             </li>

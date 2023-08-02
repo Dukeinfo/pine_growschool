@@ -75,7 +75,7 @@ use Illuminate\Support\Facades\Route;
 // ============================= frontend route start  ======================
 
 Route::get('/', Homepage::class)->name('homepage');
-Route::get('detail/page', DetailpageView::class)->name('detail_page');
+Route::get('detail/page/{encrypted_id}/{slug}', DetailpageView::class)->name('detail_page');
 
 
 
