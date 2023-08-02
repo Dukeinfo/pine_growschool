@@ -16,7 +16,7 @@ class ViewMenu extends Component
     {
       $this->clientIp = $request->ip();
 
-        $this->records = Menu::orderBy('sort_id','asc')->get();	 
+      $this->records = Menu::orderBy('sort_id','asc')->get();	 
         return view('livewire.backend.menu.view-menu')->layout('layouts.backend');
     }
      protected $rules = [

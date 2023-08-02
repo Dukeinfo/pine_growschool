@@ -15,12 +15,12 @@ class EditHomeSlider extends Component
 use WithFileUploads;
 use UploadTrait;
 
-    public $sliderId,$name,$sort,$image,$heading,$subheading,$editimage, $status ,$thumbnail; 
+    public $sliderId,$alt_tab,$sort,$image,$heading,$subheading,$editimage, $status ,$thumbnail; 
 
      public function mount($id){
         $slider = Slider::findOrFail($id);
         $this->sliderId = $slider->id;
-        $this->name = $slider->name;
+        $this->alt_tab = $slider->alt_tab;
         $this->image = $slider->image;
         $this->thumbnail = $slider->thumbnail;
         $this->heading = $slider->heading;
@@ -42,8 +42,8 @@ use UploadTrait;
         // $this->thumbnail = $thumbnailName;
 
             $slider = Slider::find($this->sliderId);
-            $slider->name = $this->name ?? NULL;
-            $slider->slug =  strtolower(str_replace(' ', '-',$this->name));
+            $slider->alt_tab = $this->alt_tab ?? NULL;
+            $slider->slug =  strtolower(str_replace(' ', '-',$this->heading));
             $slider->image = $uploadedData['file_name']?? NULL;
             $slider->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
             $slider->heading = $this->heading ?? NULL;
@@ -56,8 +56,8 @@ use UploadTrait;
         }
         else{
             $slider = Slider::find($this->sliderId);
-            $slider->name = $this->name;
-            $slider->slug =  strtolower(str_replace(' ', '-',$this->name));
+            $slider->alt_tab = $this->alt_tab;
+            $slider->slug =  strtolower(str_replace(' ', '-',$this->heading));
             $slider->sort_id =$this->sort;
             $slider->status = $this->status;
             $slider->heading = $this->heading;

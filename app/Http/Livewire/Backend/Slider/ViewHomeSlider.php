@@ -14,11 +14,11 @@ class ViewHomeSlider extends Component
 {
    use WithFileUploads;
    use UploadTrait;
-    public $name, $image,$heading,$subheading,$sort,$status;
+    public $alt_tab, $image,$heading,$subheading,$sort,$status;
     public $records ,$thumbnail;
 
      protected $rules = [
-        // 'name' => 'required', 
+        // 'alt_tab' => 'required', 
         'image.*' => 'required', 
         // 'heading' => 'required', 
         // 'subheading' => 'required', 
@@ -27,7 +27,7 @@ class ViewHomeSlider extends Component
      
       ];
       protected $messages = [
-          'name.required' => 'Name Required.',
+          'alt_tab.required' => 'Alt Tab Required.',
           'image.required' => 'Images Required.',
           'heading.required' => 'Heading Required.',
           'subheading.required' => 'Sub heading Required.',
@@ -35,7 +35,7 @@ class ViewHomeSlider extends Component
           'status.required' => 'Status Required.',
       ];
     private function resetInputFields(){
-        $this->name = '';
+        $this->alt_tab = '';
         $this->image = '';
         $this->heading = '';
         $this->subheading = '';
@@ -54,8 +54,8 @@ class ViewHomeSlider extends Component
 
  
       $slider = new Slider();
-      $slider->name = $this->name ?? NULL;
-      $slider->slug =  strtolower(str_replace(' ', '-',$this->name))?? Null;
+      $slider->alt_tab = $this->alt_tab ?? NULL;
+      $slider->slug =  strtolower(str_replace(' ', '-',$this->heading))?? Null;
       $slider->image = $uploadedData['file_name']?? NULL;
       $slider->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
 

@@ -36,36 +36,17 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Dated</label>
-                                        <input type="text" class="form-control" id=""  wire:model="dated" placeholder="Dated">
+                                        <input type="text" class="form-control" id="dated"  wire:model="dated" placeholder="Dated" onchange='Livewire.emit("selectDate", this.value)' autocomplete="off">
+
                                         @error('dated') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Select News/Events</label>
-                                        <select class="form-select" wire:model="news_event">
-                                                <option value="">Select</option>
-                                                <option></option>
-                                              
-                                        </select>
-                                         @error('news_event') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Select New/Old</label>
-                                        <select class="form-select" wire:model="status">
-                                                <option value="">Select</option>
-                                                <option></option>
-                                              
-                                        </select>
-                                         @error('submenu') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
+                               
+                               
 
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Select/Event Heading</label>
+                                        <label class="form-label">Heading</label>
                                         <input type="text" class="form-control" id=""  wire:model="heading" placeholder="Heading">
                                         @error('heading') <span class="error">{{ $message }}</span> @enderror
                                     </div>
@@ -92,15 +73,23 @@
                                          });
                                     });
                                 </script>
-                                                                     
+                                           @error('desc') <span class="error">{{ $message }}</span> @enderror                          
                                   </div>
                                 </div>
-                                
+                                 
+                                 <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Image</label>
+                                        <input type="file" class="form-control" id="" wire:model="image">
+                                        @error('image') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control"  wire:model="sort" placeholder="Order NUmber">
-                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="number" class="form-control"  wire:model="sort_id" placeholder="Order NUmber">
+                                         @error('sort_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -115,9 +104,9 @@
                                     </div>
                                 </div>
                                 <div >
-                                    <button wire:loading.attr="disabled" type="submit" wire:click="addCategory" class="btn btn-primary w-md">Submit</button>
+                                    <button wire:loading.attr="disabled" type="submit" wire:click="addEvent" class="btn btn-primary w-md">Submit</button>
                                 </div>
-                                 <div wire:loading wire:target="addCategory">
+                                 <div wire:loading wire:target="addEvent">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
 
                                      </div>
@@ -141,8 +130,7 @@
                                     <thead>
                                         <tr>
                                             <th>Dated</th>
-                                            <th>News Event</th>
-                                            <th>New Old</th>
+                                            <th>Image</th>
                                             <th>Heading</th>
                                             <th>Description</th>
                                             <th>Sorting Order#</th>
@@ -154,16 +142,14 @@
                           @if(isset($records) && count($records)>0 )                      
                            @foreach ($records as  $record) 
                                         <tr>
-                                            <td>{{$record->name ?? '' }}</td>
-                                            <td>
-                                               @php
-$thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->thumbnail)) : url('admin_assets/images/no-img.jpg');
+                                            <td>{{$record->dated ?? '' }}</td>
+                                            <td>@php      
+$thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_assets/images/no-img.jpg');
 @endphp                                      
-<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
-                                            </td>
-                                            <td></td>
-                                            <td>{{$record->sort_id ?? '' }}</td>
-                                            <td>{{$record->sort_id ?? '' }}</td>
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70"></td>
+                                            
+                                            <td>{{$record->heading ?? '' }}</td>
+                                            <td>{!!$record->description ?? '' !!}</td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td>
 @if($record->status  == "Active")
@@ -172,7 +158,7 @@ $thumb = !empty($record->image) ? asset('uploads/thumbnail/'.basename($record->t
        <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
 @endif</td>
                                             <td>
-                                                <a href="{{url('/admin/edit/category')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a href="{{url('/admin/edit/boardmembers')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
                                             </td>
                                         </tr>

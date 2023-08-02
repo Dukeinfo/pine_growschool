@@ -15,6 +15,16 @@ class CreateBoardMembersTable extends Migration
     {
         Schema::create('board_members', function (Blueprint $table) {
             $table->id();
+            $table->date('dated')->nullable();
+            $table->string('heading')->nullable();
+            $table->text('description')->nullable();  
+            $table->string('image')->nullable();  
+            $table->string('thumbnail')->nullable();  
+            $table->integer('sort_id')->nullable(); 
+            $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
+            $table->ipAddress('ip_address')->nullable();
+            $table->string('login')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

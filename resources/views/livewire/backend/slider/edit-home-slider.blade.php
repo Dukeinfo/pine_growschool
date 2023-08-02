@@ -34,9 +34,9 @@
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Slider Name</label>
-                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="">
-                                        @error('name') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label">Alt Tab</label>
+                                        <input type="text" class="form-control" id="" wire:model="alt_tab" placeholder="Alt Tab">
+                                        @error('alt_tab') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -85,7 +85,7 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Sub Heading</label>
-                                        <input type="text" class="form-control" id="" wire:model="subheading" placeholder="">
+                                       <textarea  class="form-control" id="" wire:model="subheading" placeholder="Sub Heading" name="" id="" cols="10" rows="5"></textarea>
                                         @error('subheading') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

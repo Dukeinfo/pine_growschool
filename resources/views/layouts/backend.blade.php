@@ -29,6 +29,9 @@
         
         <!-- trix editor -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
+
+         <!-- pickday -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css"> 
             
         @livewireStyles
 
@@ -76,6 +79,8 @@
         <!-- Datatable init js -->
         <script src="{{asset('admin_assets/js/pages/datatables.init.js')}}"></script>
 
+
+
          @livewireScripts
 
         <!-- App js -->
@@ -113,6 +118,16 @@
         });
     });
      </script>
+
+
+     <!-- pickday -->
+     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+
+     <script>
+            var picker = new Pikaday({ field: document.getElementById('dated') });
+     </script>
+
+
 
 
       

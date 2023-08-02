@@ -14,3 +14,5 @@ function getThumbnail($value) {
     return asset('uploads/thumbnail/'.$value);
 }
 
+
+

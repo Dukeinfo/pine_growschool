@@ -1,7 +1,11 @@
 <?php
 
+
 use App\Http\Controllers\AdminLogoutController;
 use App\Http\Controllers\CkImageUploadController;
+
+use App\Http\Livewire\Frontend\Home\Homepage;
+use App\Http\Livewire\Frontend\Detail\DetailpageView;
 
 use App\Http\Livewire\Backend\AdminDashboard;
 use App\Http\Livewire\Backend\Menu\ViewMenu;
@@ -37,7 +41,7 @@ use App\Http\Livewire\Backend\Testimonials\ViewTestimonials;
 use App\Http\Livewire\Backend\Testimonials\EditTestimonials;
 use App\Http\Livewire\Backend\Testimonials\TrashTestimonials;
 use App\Http\Livewire\Backend\Boardmembers\ViewBoardMembers;
-use App\Http\Livewire\Frontend\Home\Homepage;
+use App\Http\Livewire\Backend\Boardmembers\EditBoardMembers;
 use App\Http\Livewire\Backend\Login\AdminLogin;
 use App\Http\Livewire\Backend\Pages\CreatePage;
 use App\Http\Livewire\Backend\Pages\EditPage;
@@ -71,6 +75,9 @@ use Illuminate\Support\Facades\Route;
 // ============================= frontend route start  ======================
 
 Route::get('/', Homepage::class)->name('homepage');
+Route::get('detail/page', DetailpageView::class)->name('detail_page');
+
+
 
 // ============================= frontend route end ======================
 // admin routings
@@ -164,6 +171,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
     Route::get('/view/staff/trash', TrashStaff::class)->name('trash_staff');
 
      Route::get('/view/boardmembers', ViewBoardMembers::class)->name('view_boardmembers');
+     Route::get('/edit/boardmembers/{id}', EditBoardMembers::class)->name('edit_boardmembers');
 
     Route::get('/ceate/message', Message::class)->name('create_message');
     Route::get('/edit/message/{id}', EditMessage::class)->name('edit_message');

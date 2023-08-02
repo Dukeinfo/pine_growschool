@@ -51,9 +51,9 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="" wire:model="name"  placeholder="Name">
-                                    @error('name') <span class="error">{{ $message }}</span> @enderror
+                                    <label class="form-label">Alt Tab</label>
+                                    <input type="text" class="form-control" id="" wire:model="alt_tab"  placeholder="Alt Tab">
+                                    @error('alt_tab') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                                 <div class="col-md-4">
@@ -130,7 +130,7 @@
                                 <table class="table table-bordered table-striped datatable">
                                     <thead>
                                         <tr>
-                                            <th>Slider Name</th>
+                                            <th>Alt Tab</th>
                                             <th>Slider Image</th>
                                             <th>Heading</th>
                                             <th>Sub Heading</th>
@@ -143,7 +143,7 @@
                                         @if(isset($records) && count($records)>0 )                      
                                         @foreach ($records as  $record)
                                         <tr>
-                                            <td>{{$record->name ?? '' }}</td>
+                                            <td>{{$record->alt_tab ?? '' }}</td>
                                             <td>
                                             @php
                                            
