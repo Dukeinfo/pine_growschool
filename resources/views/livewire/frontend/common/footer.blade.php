@@ -1,11 +1,19 @@
+
 <footer class="footer_02" style="background-image: url({{asset('assets/images/bg/footer-bg.png')}});">
+
     <div class="container">
         <div class="row">
             <!-- About Widget -->
             <div class="col-lg-3 col-md-5">
                 <aside class="aboutWidget">
                     <a href="{{url('/')}}"><img src="{{asset('assets/images/flogo.png')}}" alt="Pinegrove"></a>
-                    <p>Pinegrove School, established in 1991, is a Co-educational, purely residential, English medium public school affiliated to the Central Board of Secondary Education (CBSE), Delhi, up to 10th and 12th Grades. Pinegrove is a Regional Member of the Round Square, is accredited with ISO 9001:2008 (BSI) and is a member of the prestigious Indian Public Schools` Conference (IPSC).</p>
+                    
+                    <p>Pinegrove School, established in 1991, is a Co-educational, purely residential, English
+                        medium public school affiliated to the Central Board of Secondary Education (CBSE), Delhi,
+                        up to 10th and 12th Grades. Pinegrove is a Regional Member of the Round Square, is
+                        accredited with ISO 9001:2008 (BSI) and is a member of the prestigious Indian Public
+                        Schools` Conference (IPSC).
+                    </p>
                     <div class="abSocial">
                         <a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="javascript:void(0);"><i class="fa-brands fa-twitter"></i></a>
@@ -15,7 +23,7 @@
                 </aside>
             </div>
             <!-- About Widget -->
-            <!-- Service Widget -->
+            <!-- Links Widget -->
             <div class="col-lg-3 col-md-7">
                 <aside class="widget serviceMenu">
                     <h3 class="widgetTitle">Useful Links</h3>
@@ -29,7 +37,7 @@
                     </ul>
                 </aside>
             </div>
-            <!-- Service Widget -->
+            <!-- Links Widget -->
             <!-- Contact Widget -->
             <div class="col-lg-3 col-md-6">
                 <aside class="contactWidget">
@@ -37,12 +45,12 @@
                     <div class="iconBox01">
                         <div class="ibBox"><i class="flaticon-placeholder"></i></div>
                         <h3 class="ibTitle">Address</h3>
-                        <p>Kuthar Road, Subathu 173 206 Distt. Solan HP, India</p>
+                        <p>Kuthar Road, Subathu 173 206<br>Distt. Solan HP, India</p>
                     </div>
                     <div class="iconBox01">
                         <div class="ibBox"><i class="flaticon-phone-call"></i></div>
                         <h3 class="ibTitle">Phone</h3>
-                        <p>+91 980 5004 115</p>
+                        <p>+91 980 5004 116</p>
                     </div>
                     <div class="iconBox01">
                         <div class="ibBox"><i class="flaticon-email-1"></i></div>
@@ -56,7 +64,9 @@
             <div class="col-lg-3 col-md-6">
                 <aside class="mailchimpWidget">
                     <h3 class="widgetTitle">Stay Connected</h3>
-                    <p>Sign up to our newsletter, so you can be the first to find out the latest news and activities about school.</p>
+                    <p>Sign up to our newsletter, so you can be the first to find out the latest news and activities
+                        about school.
+                    </p>
                     <div class="mailForm">
                         <form method="get" action="#">
                             <input type="email" placeholder="Email Address">
@@ -75,7 +85,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container pb-5">
         <div class="row">
             <div class="col-md-6">
                 <p class="copyright">Copyright 2023 by Pinegrove All Right Reserved.</p>

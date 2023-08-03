@@ -6,9 +6,9 @@
                 <div class="col-lg-6">
                     <div class="aboutContent02">
                         <h5 class="subTitle">{!!$heading  ?? "" !!}</h5>
-                  
-                        <p>  {!! $desc ?? ""!!} </p>
-             
+
+                        <p>  {!! $modifiedHtmlContent ?? ""!!} </p>
+
                         <a class="immiPressBtn" href="javascript:void();"><span>Discover More</span></a>
                     </div>
                 </div>
@@ -21,13 +21,13 @@
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="{{asset('assets/images/f2.jpg')}}" class="d-block w-100 img-thumbnail" alt="">
+                                <img src="{{$srcValue ?? ''}}" class="d-block w-100 img-thumbnail" alt="">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{asset('assets/images/f3.jpg')}}" class="d-block w-100 img-thumbnail" alt="">
+                                <img src="{{$srcValue ?? ''}}}" class="d-block w-100 img-thumbnail" alt="">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{asset('assets/images/f1.jpg')}}" class="d-block w-100 img-thumbnail" alt="">
+                                <img src="{{$srcValue ?? ''}}" class="d-block w-100 img-thumbnail" alt="">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#pineCarousel" data-bs-slide="prev">

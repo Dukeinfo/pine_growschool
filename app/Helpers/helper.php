@@ -15,4 +15,6 @@ function getThumbnail($value) {
 }
 
 
-
+function getTopperImages($value) {
+    return asset('storage/uploads/our_topper/'.$value);
+}

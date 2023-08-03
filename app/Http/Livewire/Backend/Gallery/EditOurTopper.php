@@ -43,7 +43,7 @@ class EditOurTopper extends Component
       if(!is_null($this->editimage)){
         $image =  $this->editimage;
         // Define folder path
-        $folder = '/uploads/our-topper';
+        $folder = '/uploads/our_topper';
         $uploadedData = $this->uploadOne($image, $folder);
 
       $ourTopper =OurTopper::find($this->ourtopperId);
@@ -59,7 +59,6 @@ class EditOurTopper extends Component
       $ourTopper->status = $this->status ?? NULL;
       $ourTopper->save();
 
-        return redirect()->route('view_our_topper'); 
       }
 
       else{
@@ -74,8 +73,9 @@ class EditOurTopper extends Component
       $ourTopper->status = $this->status ?? NULL;
       $ourTopper->save();
 
-      return redirect()->route('view_our_topper'); 
       }
+      return redirect()->route('view_our_topper'); 
+
     }   
 
     public function render()

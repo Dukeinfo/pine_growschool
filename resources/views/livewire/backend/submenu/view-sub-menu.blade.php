@@ -144,7 +144,7 @@
                                     <div class="col-md-12">
                                             <div class="mb-3" wire:ignore>
                                                 <label class="form-label"> Seo Description</label>
-                                                <textarea id="editor" wire:model="seo_description" placeholder="Seo Description here..." class="form-control xtra-cat"></textarea>
+                                                <textarea wire:model="seo_description" rows="5" cols="5" placeholder="Seo Description here..." class="form-control xtra-cat"></textarea>
                                                 @error('seo_description') <span class="error">{{ $message }}</span> @enderror
                                             </div>
                                         

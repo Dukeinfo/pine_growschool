@@ -20,14 +20,16 @@ class ViewMenu extends Component
         return view('livewire.backend.menu.view-menu')->layout('layouts.backend');
     }
      protected $rules = [
-        'name' => 'required', 
-        'sort' => 'required', 
+        'name' => 'required | unique:menus,name', 
+        'sort' => 'required | unique:menus,sort_id', 
         'status' => 'required', 
      
       ];
       protected $messages = [
           'name.required' => 'Name Required.',
           'sort.required' => 'Sort Required.',
+          'sort.unique' => 'Sort number already taken.',
+
           'status.required' => 'Status Required.',
       ];
     private function resetInputFields(){

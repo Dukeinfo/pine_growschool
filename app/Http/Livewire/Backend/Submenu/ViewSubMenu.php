@@ -31,8 +31,8 @@ class ViewSubMenu extends Component
 
     protected $rules = [ 
         'menu_id' => 'required', 
-        'name' => 'required', 
-        'sort_id' => 'required | numeric',
+        'name' => 'required | unique:submenus,name', 
+        'sort_id' => 'required | unique:submenus,sort_id',
         'cms' => 'required', 
         // 'pname' => 'required', 
         'status' => 'required', 
@@ -43,6 +43,8 @@ class ViewSubMenu extends Component
           'menu_id.required' => 'Menu Required.',
           'name.required' => 'Name Required.',
           'sort_id.required' => 'Sort Required.',
+          'sort_id.unique' => 'Sort number already taken.',
+
           'cms.required' => 'CMS Required.',
           // 'pname.required' => 'Page name Required.',
           'status.required' => 'Status Required.',

@@ -55,7 +55,7 @@ class ViewOurTopper extends Component
       if(!is_null($this->image)){
         $image =  $this->image;
         // Define folder path
-        $folder = '/uploads/our-topper';
+        $folder = '/uploads/our_topper';
         $uploadedData = $this->uploadOne($image, $folder);
       }
 

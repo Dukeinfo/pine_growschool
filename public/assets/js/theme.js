@@ -102,7 +102,9 @@
         $(".serviceSlider").owlCarousel({
             margin: 24,
             loop: true,
-            nav: true,
+            autoplay: true,
+            smartSpeed: 600,
+            nav: false,
             navText: ['<i class="flaticon-right-arrow-angle"></i>', '<i class="flaticon-right-arrow-angle"></i>'],
             dots: false,
             items: 4,
@@ -115,10 +117,10 @@
                     items: 2
                 },
                 991:{
-                    items: 3
+                    items: 2
                 },
                 1200:{
-                    items: 4
+                    items: 2
                 }
             }
         });

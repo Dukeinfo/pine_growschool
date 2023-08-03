@@ -120,7 +120,7 @@ $thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/ima
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label"> URL Name</label>
-                                        <input type="text" class="form-control" {{$cms == "Yes" ? 'disabled' : ''}}   wire:model="url_link" 
+                                        <input type="text" class="form-control" {{$cms == "No" ? 'disabled' : ''}}   wire:model="url_link" 
                                         placeholder="URL Name">
                                         @error('url_link') <span class="error">{{ $message }}</span> @enderror
                                    
@@ -130,7 +130,7 @@ $thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/ima
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label"> Display Name</label>
-                                        <input type="text" class="form-control"  {{$cms == "Yes" ? 'disabled' : ''}}   wire:model="display_name" placeholder="Display Name">
+                                        <input type="text" class="form-control"  {{$cms == "No" ? 'disabled' : ''}}   wire:model="display_name" placeholder="Display Name">
                                         @error('display_name') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>

@@ -52,10 +52,10 @@ class ViewMembership extends Component
       $image =  $this->image;
       // Define folder path
       $folder = '/uploads/membership';
-      $uploadedData = $this->uploadOne($image, $folder);
+      foreach ($this->image as $img) {
+      $uploadedData = $this->uploadOne($img, $folder);
 
-    } 
-
+ 
     
       $membership = new Memberships();
       $membership->name = $this->name;
@@ -66,9 +66,9 @@ class ViewMembership extends Component
       $membership->link = $this->hlink;
       $membership->status = $this->status;
       $membership->save();
-
+    } 
+  } 
        $this->resetInputFields();
-
        $this->dispatchBrowserEvent('swal:modal', [
               'type' => 'success',  
               'message' => 'Successfully save!', 
