@@ -62,7 +62,7 @@
                                 @endphp
                                 <ul class="sub-menu">
                                 @foreach($getpage as $page)
-                                    <li><a href="detail/page">{{$page->SubMenu->name}}</a></li>
+                                    <li><a href="{{ url('detail/page') }}">{{$page->SubMenu->name}}</a></li>
                                 @endforeach
                                 </ul>
                             </li>
