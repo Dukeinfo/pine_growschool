@@ -125,6 +125,7 @@
 
      <script>
             var picker = new Pikaday({ field: document.getElementById('dated') });
+            var picker2 = new Pikaday({ field: document.getElementById('newsDate') });
      </script>
 
 

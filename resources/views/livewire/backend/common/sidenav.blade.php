@@ -18,13 +18,31 @@
 					<span>Website</span>
 				</a>
 			</li>
+
+
+               <li>
+				<a href="javascript: void(0);" class="has-arrow waves-effect">
+					<i class='bx bx-image-add'></i>
+					<span>Master</span>
+				</a>
+					
+			  <ul class="sub-menu" aria-expanded="false">
+						<li><a href="{{route('view_menu')}}">Menu</a></li>
+						<li><a href="{{route('view_subnmenu')}}">Sub Menu</a>
+							<li><a href="{{route('view_class')}}">Class</a></li>
+						<li><a href="{{route('view_section')}}">Section</a></li>
+					</ul>
+			
+			</li>
+
+
 			<li>
 				<a href="{{route('view_home_slider')}}" class="waves-effect">
 					<i class="bx bx-image"></i>
 					<span>Home Slider</span>
 				</a>
 			</li>
-			<li>
+			<!-- <li>
 				<a href="{{route('view_menu')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
 					<span>Menu</span>
@@ -35,7 +53,7 @@
 					<i class="bx bx-home-circle"></i>
 					<span>Submenu</span>
 				</a>
-			</li>
+			</li> -->
 			<li>
 				<a href="{{route('create_page')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
@@ -94,6 +112,14 @@
 					<span>Testimonials</span>
 				</a>
 			</li>
+
+           <li>
+				<a href="{{route('view_news')}}" class="waves-effect">
+					<i class='bx bx-chat'></i>
+					<span>Latest News</span>
+				</a>
+			</li>
+
             <li>
 				<a href="javascript: void(0);" class="has-arrow waves-effect">
 					<i class='bx bx-image-add'></i>
@@ -104,6 +130,7 @@
 					<ul class="sub-menu" aria-expanded="false">
 						<li><a href="{{route('view_category')}}">Category</a></li>
 						<li><a href="{{route('manage_gallery')}}">Manage Gallery</a></li>
+						<li><a href="{{route('view_our_topper')}}">Our Toppers</a></li>
 					</ul>
 					{{-- <!-- <li><a href="{{url('admin/portfolio')}}">Portfolio</a></li> --> --}}
 				

@@ -14,19 +14,36 @@ use App\Http\Livewire\Backend\Menu\TrashMenu;
 use App\Http\Livewire\Backend\Submenu\ViewSubMenu;
 use App\Http\Livewire\Backend\Submenu\EditSubMenu;
 use App\Http\Livewire\Backend\Submenu\TrashSubMenu;
+
+use App\Http\Livewire\Backend\Master\ViewClass;
+use App\Http\Livewire\Backend\Master\EditClass;
+use App\Http\Livewire\Backend\Master\ViewSection;
+use App\Http\Livewire\Backend\Master\EditSection;
+
 use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
 use App\Http\Livewire\Backend\Blog\EditBlog;
 use App\Http\Livewire\Backend\Blog\TrashBlog;
+
+
 use App\Http\Livewire\Backend\Department\ViewDepartment;
 use App\Http\Livewire\Backend\Department\EditDepartment;
 use App\Http\Livewire\Backend\Department\TrashDepartment;
+
+use App\Http\Livewire\Backend\News\ViewLatestNews;
+use App\Http\Livewire\Backend\News\EditLatestNews;
+
+
 use App\Http\Livewire\Backend\Gallery\ViewGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\EditGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\TrashGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\ManageGallery;
 use App\Http\Livewire\Backend\Gallery\EditGallery;
 use App\Http\Livewire\Backend\Gallery\TrashGallery;
+
+use App\Http\Livewire\Backend\Gallery\ViewOurTopper;
+use App\Http\Livewire\Backend\Gallery\EditOurTopper;
+
 use App\Http\Livewire\Backend\Membership\ViewMembership;
 use App\Http\Livewire\Backend\Membership\EditMemberShip;
 use App\Http\Livewire\Backend\Membership\TrashMemberShip;
@@ -120,6 +137,12 @@ Route::get('/view/submenu', ViewSubMenu::class)->name('view_subnmenu');
 Route::get('/edit/submenu/{id}', EditSubMenu::class)->name('edit_sub_menu');
 Route::get('/view/submenu/trash', TrashSubMenu::class)->name('trash_subnmenu');
 
+Route::get('/view/class', ViewClass::class)->name('view_class');
+Route::get('/edit/class/{id}', EditClass::class)->name('edit_class');
+Route::get('/view/section', ViewSection::class)->name('view_section');
+Route::get('/edit/section/{id}', EditSection::class)->name('edit_section');
+
+
 // Route::post('ckeditor/upload', [CkImageUploadController::class, 'upload'])->name('image.upload');
 // Route::get('/ckeditor-image-upload', function () {
 //     return view('ckeditor_file_upload');
@@ -142,14 +165,25 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
     Route::get('/edit/category/{id}', EditGalleryCategory::class)->name('edit_category');
     Route::get('/view/category/trash', TrashGalleryCategory::class)->name('trash_category');
 
+
+    Route::get('/view/latestnews', ViewLatestNews::class)->name('view_news');
+    Route::get('/edit/latestnews/{id}', EditLatestNews::class)->name('edit_news');
+
     Route::get('/manage/gallery', ManageGallery::class)->name('manage_gallery');
     Route::get('/edit/gallery/{id}', EditGallery::class)->name('edit_gallery');
     Route::get('/manage/gallery/trash', EditGallery::class)->name('trash_gallery'); 
+
+   Route::get('/view/our-topper', ViewOurTopper::class)->name('view_our_topper');
+    Route::get('/edit/our-topper/{id}', EditOurTopper::class)->name('edit_our_topper');
+
 
     Route::get('/add/blog', AddBlog::class)->name('add_blog');
     Route::get('/manage/blog', ManageBlog::class)->name('manage_blog');
     Route::get('/edit/blog/{id}', EditBlog::class)->name('edit_blog');
     Route::get('/manage/blog/trash', TrashBlog::class)->name('trash_blog');
+
+    
+
 
     Route::get('/manage/seo', Metadetails::class)->name('manage_metadata');
     Route::get('/edit/seo/{id}', EditMetadetails::class)->name('edit_metadata');

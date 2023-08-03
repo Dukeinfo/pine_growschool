@@ -68,6 +68,7 @@
                                             @endphp                                      
                                             <img src="{{$thumb}}" alt="" class="border" width="100" height="70">
                                             @endif
+                                            
                                         @error('editimage') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
