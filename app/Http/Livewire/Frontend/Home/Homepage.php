@@ -13,7 +13,7 @@ class Homepage extends Component
 
     public $menus;
     public $sliders;
-    public $memberships;
+    public $memberships ,$boardmembers;
     public function render()
     {
        $this->menus = Menu::orderBy('sort_id','asc')->where('status','Active')->get();	

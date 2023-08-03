@@ -71,7 +71,7 @@ class ViewBoardMembers extends Component
       $folder = '/uploads/boardmembers';
       $uploadedData = $this->uploadOne($image, $folder);
 
-    } 
+      } 
 
       
     	$boardMembers = new BoardMembers();
