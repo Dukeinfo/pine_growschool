@@ -131,6 +131,7 @@
 						<li><a href="{{route('view_category')}}">Category</a></li>
 						<li><a href="{{route('manage_gallery')}}">Manage Gallery</a></li>
 						<li><a href="{{route('view_our_topper')}}">Our Toppers</a></li>
+						<li><a href="{{route('view_knowledge_home')}}">Knowledge Home</a></li>
 					</ul>
 					{{-- <!-- <li><a href="{{url('admin/portfolio')}}">Portfolio</a></li> --> --}}
 				

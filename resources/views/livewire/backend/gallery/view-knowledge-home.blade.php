@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Create Pages</h4>
+                        <h4 class="mb-sm-0 font-size-18">Knowledge  Home</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
                                 <li class="breadcrumb-item">Portfolio</li>
-                                <li class="breadcrumb-item active">Create Pages</li>
+                                <li class="breadcrumb-item active">Knowledge Home</li>
                             </ol>
                         </div>
 
@@ -26,49 +26,31 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Add Category</h4>
+                            <h4 class="card-title">Knowledge  Home</h4>
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
                             <!--success or error alert-->
+                            
+                            
                             <!--form starts-->
                             <div class="row g-3">
-                                <div class="col-md-4">
+
+
+                            	<div class="col-md-e">
                                     <div class="mb-3">
-                                        <label class="form-label">Menu</label>
-                                        <select class="form-select" wire:model="menu">
-                                                <option value="">Select</option>
-                                            @if(isset($getMenus))
-                                            @foreach($getMenus as $menu)
-                                              <option value="{{$menu->id}}"> {{$menu->name}}</option>
-                                            @endforeach
-                                        @endif 
-                                              
-                                        </select>
-                                         @error('menu') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">Sub Menu</label>
-                                        <select class="form-select" wire:model="submenu">
-                                                <option value="">Select</option>
-                                               @if (!is_null($subMenus)) 
-                                                @foreach($subMenus as $submenu)
-                                                   <option value="{{ $submenu->id }}">{{ $submenu->name }}</option>
-                                              @endforeach
-                                               @endif 
-                                              
-                                        </select>
-                                         @error('submenu') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label">Logo</label>
+                                        <input type="text" class="form-control" id="" wire:model="logo" placeholder="Logo">
+                                        @error('logo') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
-                                <div class="col-md-12">
+
+                                <div class="col-md-e">
                                     <div class="mb-3">
-                                        <label class="form-label">Heading</label>
-                                        <input type="text" class="form-control" id=""  wire:model="heading" placeholder="Heading">
-                                        @error('heading') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label"> Title</label>
+                                        <input type="text" class="form-control" id="" wire:model="title" placeholder="Title">
+                                        @error('title') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
@@ -76,11 +58,10 @@
                                     <div class="mb-3" >
                                         <label class="form-label">Description</label>
                                       
-                          
                                  <div wire:ignore>
                                          <textarea id="editor" wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat"></textarea>
                                  </div>
-                                  <script>
+                                 <script>
                                             document.addEventListener('livewire:load', function () {
                                                 // Get the CSRF token from the meta tag
                                                 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -100,43 +81,55 @@
                                                 CKEDITOR.instances.editor.on('change', function () {
                                                     @this.set('desc', CKEDITOR.instances.editor.getData());
                                                 });
-
-
                                                 Livewire.on('formSubmitted', function () {
-                                                                CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+                                                CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+
+                                                // document.querySelector('[wire:model="image"]').reset();
+
+                                                            });
                                                     });
-                                            });
-                                        </script>
-
-
-                                                                           
+                                            </script>
+                                 @error('desc') <span class="error">{{ $message }}</span> @enderror
+                                     
                                     </div>
                                 </div>
+
+                                <div class="col-md-e">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Link</label>
+                                        <input type="text" class="form-control" id="" wire:model="link" placeholder="http://example.com">
+                                        @error('link') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+
+                              
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control"  wire:model="sort" placeholder="Order NUmber">
-                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="number" class="form-control" id="" wire:model="sort_id" placeholder="Sorting Order" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
+                                        @error('sort_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
-                                        <select class="form-select" wire:model="status">
-                                                <option value="">Select</option>
-                                                <option>Active</option>
-                                                <option>Inactive</option>
+                                        <select wire:model="status" class="form-select">
+                                        	 <option value="">Select</option>
+                                            <option>Active</option>
+                                            <option>Inactive</option>
                                         </select>
-                                         @error('status') <span class="error">{{ $message }}</span> @enderror
+                                        @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div >
-                                    <button wire:loading.attr="disabled" type="submit" wire:click="createPage" class="btn btn-primary w-md">Submit</button>
-                                </div>
-                                 <div wire:loading wire:target="createPage">
-                                        <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
+                        
 
-                                     </div>
+                               <div>
+                                <button type="submit" wire:loading.attr="disabled"  class="btn btn-primary w-md" wire:click="addKnowledgeHome">Submit</button>
+                               
+                            </div>
+                            <div wire:loading wire:target="addKnowledgeHome">
+                                <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
+                             </div>
                             </div>
                         </div>
                     </div>
@@ -148,7 +141,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Manage Page</h4>
+                            <h4 class="card-title">Manage Knowledge  Home</h4>
                             <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
                         </div>
                         <div class="card-body">
@@ -156,46 +149,40 @@
                                 <table class="table table-bordered table-striped datatable">
                                     <thead>
                                         <tr>
-                                            <th>Menu</th>
-                                            <th>Sub Menu</th>
-                                            <th>Heading</th>
-                                            {{-- <th>Description</th> --}}
+                                            <th> Logo</th>
+                                            <th> Title</th>
+                                            <th> Description</th>
+                                            <th> Link</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                          @if(isset($records) && count($records)>0 )                      
-                           @foreach ($records as  $record) 
+                                      @if(isset($records) && count($records)>0 )                      
+                                         @foreach ($records as  $record)	
                                         <tr>
-                                            <td>{{$record->Menu->name ?? '' }}</td>
-                                             <td>{{$record->SubMenu->name ?? '' }}</td>
-                                            <td>
-                                             {{$record->heading ?? '' }}  
+                                            <td>  
+                                            {{$record->logo ?? '' }}             
                                             </td>
-                                            {{-- <td>
-                                                {!! Str::limit($record->description, 230) ?? '' !!}
-                                            </td> --}}
+                                            <td>{{$record->title ?? '' }}</td>
+                                           <td>{!!$record->description ?? '' !!}</td>
+                                        
+                                             <td>{{$record->link ?? '' }}</td>
                                             <td>{{$record->sort_id ?? '' }}</td>
+                                            <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>
                                             <td>
-                                                @if($record->status  == "Active")
-                                                        <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
-                                                        @else
-                                                    <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
-                                                @endif</td>
-                                            <td>
-                                                <a href="{{url('/admin/edit/page')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
+                                                <a href="{{url('/admin/edit/knowledge-home')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a href="javascript:void(0)" class="text-danger me-2" title="Delete" wire:click="delete({{ $record->id }})"><i class="fa fa-times fa-fw fa-lg"></i></a>
                                             </td>
                                         </tr>
-                                  @endforeach
+                                        @endforeach
                                       @else
                                  <tr>
-                                 <td colspan="5"> Record Not Found</td>
+                                 <td colspan="4"> Record Not Found</td>
                                 
                                  </tr>
-                                 @endif      
+                                 @endif 
                                     </tbody>
                                 </table>
                             </div>
@@ -208,6 +195,6 @@
 
             
         </div>
-        <!-- container-fluid -->
+        <!-- container-fluid <-->	</-->
     </div>
 </div>

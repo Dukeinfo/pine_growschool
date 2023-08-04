@@ -40,15 +40,16 @@ use App\Http\Livewire\Backend\Gallery\TrashGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\ManageGallery;
 use App\Http\Livewire\Backend\Gallery\EditGallery;
 use App\Http\Livewire\Backend\Gallery\TrashGallery;
-
 use App\Http\Livewire\Backend\Gallery\ViewOurTopper;
 use App\Http\Livewire\Backend\Gallery\EditOurTopper;
-
+use App\Http\Livewire\Backend\Gallery\ViewKnowledgeHome;
+use App\Http\Livewire\Backend\Gallery\EditKnowledgeHome;
 use App\Http\Livewire\Backend\Membership\ViewMembership;
 use App\Http\Livewire\Backend\Membership\EditMemberShip;
 use App\Http\Livewire\Backend\Membership\TrashMemberShip;
 use App\Http\Livewire\Backend\Seo\FooterSnippets;
 use App\Http\Livewire\Backend\Seo\HeaderSnippets;
+use App\Http\Livewire\Backend\Seo\EditHeaderSnippets;
 use App\Http\Livewire\Backend\Seo\Metadetails;
 use App\Http\Livewire\Backend\Seo\EditMetadetails;
 use App\Http\Livewire\Backend\Slider\ViewHomeSlider;
@@ -176,6 +177,9 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
    Route::get('/view/our-topper', ViewOurTopper::class)->name('view_our_topper');
     Route::get('/edit/our-topper/{id}', EditOurTopper::class)->name('edit_our_topper');
 
+    Route::get('/view/knowledge-home', ViewKnowledgeHome::class)->name('view_knowledge_home');
+     Route::get('/edit/knowledge-home/{id}', EditKnowledgeHome::class)->name('edit_knowledge_home');
+
 
     Route::get('/add/blog', AddBlog::class)->name('add_blog');
     Route::get('/manage/blog', ManageBlog::class)->name('manage_blog');
@@ -190,6 +194,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
 
     Route::get('/header/snippets', HeaderSnippets::class)->name('manage_snippets');
+     Route::get('/edit/header/snippets/{id}', EditHeaderSnippets::class)->name('edit_snippets');
     Route::get('/footer/snippets', FooterSnippets::class)->name('manage_footer_snippets');
 
     Route::get('/create/page', CreatePage::class)->name('create_page');

@@ -40,13 +40,13 @@
                             	<div class="col-md-e">
                                     <div class="mb-3">
                                         <label class="form-label">Logo</label>
-                                        <input type="file" class="form-control" id="" wire:model="image">
-                                        @error('image') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="text" class="form-control" id="" wire:model="logo" placeholder="Logo">
+                                        @error('logo') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
 
-                                <div class="col-md-3">
+                                <div class="col-md-e">
                                     <div class="mb-3">
                                         <label class="form-label"> Title</label>
                                         <input type="text" class="form-control" id="" wire:model="title" placeholder="Title">
@@ -98,8 +98,8 @@
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control" id="" wire:model="sort" placeholder="Sorting Order" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
-                                        @error('sort') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="number" class="form-control" id="" wire:model="sort_id" placeholder="Sorting Order" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
+                                        @error('sort_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -116,10 +116,10 @@
                         
 
                                <div>
-                                <button type="submit" wire:loading.attr="disabled"  class="btn btn-primary w-md" wire:click="addFacilities">Submit</button>
+                                <button type="submit" wire:loading.attr="disabled"  class="btn btn-primary w-md" wire:click="editKnowledgeHome">Submit</button>
                                
                             </div>
-                            <div wire:loading wire:target="addFacilities">
+                            <div wire:loading wire:target="editKnowledgeHome">
                                 <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
                              </div>
                             </div>
@@ -129,60 +129,7 @@
             </div>
             <!-- end row -->
             
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Manage Home Page Logo</h4>
-                            <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped datatable">
-                                    <thead>
-                                        <tr>
-                                            <th> Logo</th>
-                                            <th> Title</th>
-                                            <th> Description</th>
-                                            <th>Sorting Order#</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                      @if(isset($records) && count($records)>0 )                      
-                                         @foreach ($records as  $record)	
-                                        <tr>
-                                            <td>@php 
-                                                $thumb = !empty($record->image) ? getThumbnail($record->thumbnail)  : url('admin_assets/images/no-img.jpg');
-                                                @endphp                
-                                            <img src="{{$thumb}}" alt="" class="border" width="100" height="70"></td>
-                                            <td>{{$record->title ?? '' }}</td>
-                                           <td>{!!$record->description ?? '' !!}</td>
-                                        
-                                            <td>{{$record->sort_id ?? '' }}</td>
-                                            <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>
-                                            <td>
-                                                <a href="{{url('/admin/edit/facilities')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="javascript:void(0)" class="text-danger me-2" title="Delete" wire:click="delete({{ $record->id }})"><i class="fa fa-times fa-fw fa-lg"></i></a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                      @else
-                                 <tr>
-                                 <td colspan="4"> Record Not Found</td>
-                                
-                                 </tr>
-                                 @endif 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end row -->
-
+            
 
             
         </div>

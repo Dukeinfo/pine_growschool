@@ -121,7 +121,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Manage News Event</h4>
+                            <h4 class="card-title">Manage Latest News</h4>
                             <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
                         </div>
                         <div class="card-body">
