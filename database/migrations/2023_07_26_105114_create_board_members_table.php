@@ -21,6 +21,8 @@ class CreateBoardMembersTable extends Migration
             $table->string('image')->nullable();  
             $table->string('thumbnail')->nullable();  
             $table->integer('sort_id')->nullable(); 
+            $table->string('link')->nullable();
+
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();
             $table->string('login')->nullable();

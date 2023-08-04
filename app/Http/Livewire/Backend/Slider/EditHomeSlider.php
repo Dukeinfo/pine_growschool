@@ -15,12 +15,12 @@ class EditHomeSlider extends Component
 use WithFileUploads;
 use UploadTrait;
 
-    public $sliderId,$alt_tab,$sort,$image,$heading,$subheading,$editimage, $status ,$thumbnail; 
+    public $sliderId,$alt_tag,$sort,$image,$heading,$subheading,$editimage, $status ,$thumbnail; 
 
      public function mount($id){
         $slider = Slider::findOrFail($id);
         $this->sliderId = $slider->id;
-        $this->alt_tab = $slider->alt_tab;
+        $this->alt_tag = $slider->alt_tag;
         $this->image = $slider->image;
         $this->thumbnail = $slider->thumbnail;
         $this->heading = $slider->heading;
@@ -42,7 +42,7 @@ use UploadTrait;
         // $this->thumbnail = $thumbnailName;
 
             $slider = Slider::find($this->sliderId);
-            $slider->alt_tab = $this->alt_tab ?? NULL;
+            $slider->alt_tag = $this->alt_tag ?? NULL;
             $slider->slug =  strtolower(str_replace(' ', '-',$this->heading));
             $slider->image = $uploadedData['file_name']?? NULL;
             $slider->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
@@ -51,21 +51,21 @@ use UploadTrait;
             $slider->sort_id =$this->sort ?? NULL;
             $slider->status = $this->status ?? NULL;
             $slider->save();
-            return redirect()->route('view_home_slider'); 
+           
  
         }
         else{
             $slider = Slider::find($this->sliderId);
-            $slider->alt_tab = $this->alt_tab;
+            $slider->alt_tag = $this->alt_tag;
             $slider->slug =  strtolower(str_replace(' ', '-',$this->heading));
             $slider->sort_id =$this->sort;
             $slider->status = $this->status;
             $slider->heading = $this->heading;
             $slider->subheading = $this->subheading;
             $slider->save();
-            return redirect()->route('view_home_slider'); 
+           
         }
-        
+        return redirect()->route('view_home_slider'); 
 
      }
 

@@ -14,7 +14,7 @@ class ViewHomeSlider extends Component
 {
    use WithFileUploads;
    use UploadTrait;
-    public $alt_tab, $image,$heading,$subheading,$sort,$status;
+    public $alt_tag, $image,$heading,$subheading,$sort,$status;
     public $records ,$thumbnail;
 
      protected $rules = [
@@ -27,7 +27,7 @@ class ViewHomeSlider extends Component
      
       ];
       protected $messages = [
-          'alt_tab.required' => 'Alt Tab Required.',
+          // 'alt_tag.required' => 'Alt Tab Required.',
           'image.required' => 'Images Required.',
           'heading.required' => 'Heading Required.',
           'subheading.required' => 'Sub heading Required.',
@@ -35,7 +35,7 @@ class ViewHomeSlider extends Component
           'status.required' => 'Status Required.',
       ];
     private function resetInputFields(){
-        $this->alt_tab = '';
+        $this->alt_tag = '';
         $this->image = '';
         $this->heading = '';
         $this->subheading = '';
@@ -54,7 +54,7 @@ class ViewHomeSlider extends Component
 
  
       $slider = new Slider();
-      $slider->alt_tab = $this->alt_tab ?? NULL;
+      $slider->alt_tag = $this->alt_tag ?? NULL;
       $slider->slug =  strtolower(str_replace(' ', '-',$this->heading))?? Null;
       $slider->image = $uploadedData['file_name']?? NULL;
       $slider->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;

@@ -15,7 +15,8 @@ class ViewBoardMembers extends Component
     use WithFileUploads;
     use UploadTrait;
 
-    public  $dated,$heading,$desc,$image,$thumbnail,$sort_id,$status;
+    public  $records, $dated,$heading,$desc,$image,
+    $thumbnail,$sort_id,$status ,$link;
 
     protected $listeners = ["selectDate" => 'getDate'];
 
@@ -50,6 +51,8 @@ class ViewBoardMembers extends Component
         $this->image = '';
         $this->sort_id = '';
         $this->status = '';
+        $this->link = '';
+
         
     }
 
@@ -81,10 +84,14 @@ class ViewBoardMembers extends Component
       $boardMembers->image = $uploadedData['file_name'] ?? NULL;
       $boardMembers->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
       $boardMembers->sort_id =$this->sort_id;
+      $boardMembers->link =$this->link;
+
+      
       $boardMembers->status = $this->status;
       $boardMembers->save();
 
       $this->resetInputFields();
+      $this->emit('formSubmitted');
 
       $this->dispatchBrowserEvent('swal:modal', [
               'type' => 'success',  

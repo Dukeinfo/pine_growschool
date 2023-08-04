@@ -97,7 +97,7 @@
                                 <div class="col-md-e">
                                     <div class="mb-3">
                                         <label class="form-label"> Link</label>
-                                        <input type="text" class="form-control" id="" wire:model="link" placeholder="http://example.com">
+                                        <input type="url" class="form-control" id="" wire:model="link" value="https://example.com/" placeholder="http://example.com">
                                         @error('link') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

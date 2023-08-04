@@ -15,7 +15,7 @@ class EditBoardMembers extends Component
     use WithFileUploads;
     use UploadTrait;
 
-    public  $boardId,$dated,$heading,$desc,$image, $editimage,$sort_id,$status;
+    public  $boardId,$dated,$heading,$desc,$image, $link, $thumbnail,  $editimage,$sort_id,$status;
 
     protected $listeners = ["selectDate" => 'getDate'];
 
@@ -30,6 +30,9 @@ class EditBoardMembers extends Component
         $this->image = $boardMembers->image;
         $this->thumbnail = $boardMembers->thumbnail;
     	$this->sort_id = $boardMembers->sort_id;
+    	$this->link = $boardMembers->link;
+
+      
     	$this->status = $boardMembers->status;
      }
 
@@ -56,10 +59,12 @@ class EditBoardMembers extends Component
       $boardMembers->image = $uploadedData['file_name'] ?? NULL;
       $boardMembers->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
       $boardMembers->sort_id =$this->sort_id;
+      $boardMembers->link =$this->link;
+
       $boardMembers->status = $this->status;
       $boardMembers->save();
 
-       return redirect()->route('view_boardmembers'); 
+ 
 
      }else{
 
@@ -68,14 +73,17 @@ class EditBoardMembers extends Component
       $boardMembers->heading = $this->heading;
       $boardMembers->description = $this->desc;
       $boardMembers->sort_id =$this->sort_id;
+      $boardMembers->link =$this->link;
+
       $boardMembers->status = $this->status;
       $boardMembers->save();
-
-       return redirect()->route('view_boardmembers'); 
+ 
 
 
      }
+     $this->emit('formSubmitted');
 
+       return redirect()->route('view_boardmembers'); 
     }
 
     public function render()

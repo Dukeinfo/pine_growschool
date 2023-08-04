@@ -7,13 +7,15 @@ use App\Models\Menu;
 use App\Models\Submenu;
 use App\Models\CreatePage;
 use Illuminate\Support\Facades\Crypt;
-
+use Artesaos\SEOTools\Facades\SEOTools;
 class DetailpageView extends Component
 {
     public $pageId, $slug, $heading, $desc;
+    public $seotitle ,$seo_description ;
 
     public function mount($encrypted_id , $slug)
     {
+
 
         try {
        
@@ -25,6 +27,25 @@ class DetailpageView extends Component
         $this->heading = $pageData->heading;
         $this->desc = $pageData->description;
 
+        $this->seotitle = $pageData->SubMenu->seo_title;
+        $this->seo_description = $pageData->SubMenu->seo_description;
+
+    
+
+
+            SEOTools::setTitle($this->seotitle );
+            SEOTools::setDescription( $this->seo_description);
+            SEOTools::opengraph()->setUrl(url()->current());
+            SEOTools::setCanonical( url()->current() ?? '');
+            SEOTools::opengraph()->addProperty('type', 'website');
+            SEOTools::twitter()->setSite($this->seotitle);
+            SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
+         
+        
+            
+            
+      
+        
         // if ($this->slug !== $slug) {
         //     return redirect()->to(route('detail_page', ['item' => $this->pageId, 'slug' => $this->slug]));
         // }

@@ -12,37 +12,7 @@
             @endif
             @endforeach
             @endif
-           <!--  <div class="singleSlide">
-                <img src="{{asset('assets/images/slider/slider-1.jpg')}}" class="img-fluid" alt="">
-            </div>
-            <div class="singleSlide">
-                <img src="{{asset('assets/images/slider/slider-2.jpg')}}" class="img-fluid" alt="">
-            </div>
-            <div class="singleSlide">
-                <img src="{{asset('assets/images/slider/slider-3.jpg')}}" class="img-fluid" alt="">
-            </div>
-            <div class="singleSlide">
-                <img src="{{asset('assets/images/slider/slider-4.jpg')}}" class="img-fluid" alt="">
-            </div>
-            <div class="singleSlide">
-                <img src="{{asset('assets/images/slider/slider-5.jpg')}}" class="img-fluid" alt="">
-            </div>
-            <div class="singleSlide">
-                <img src="{{asset('assets/images/slider/slider-6.jpg')}}" class="img-fluid" alt="">
-            </div>
-            <div class="singleSlide">
-                <img src="{{asset('assets/images/slider/slider-7.jpg')}}" class="img-fluid" alt="">
-            </div>
-            <div class="singleSlide">
-                <img src="{{asset('assets/images/slider/slider-9.jpg')}}" class="img-fluid" alt="">
-            </div>
-            <div class="singleSlide">
-                <img src="{{asset('assets/images/slider/slider-11.jpg')}}" class="img-fluid" alt="">
-            </div>
-            <div class="singleSlide">
-                <img src="{{asset('assets/images/slider/slider-14.jpg')}}" class="img-fluid" alt="">
-            </div>
-     -->
+
         </div>
         <!-- Nav Item  -->
         <a href="javascript:void(0);" class="prevArrow">
@@ -484,6 +454,8 @@
                 <div class="col-lg-12">
                     <div class="testimonialSlider01 owl-carousel">
                         <!-- Testimonial Item -->
+                        @if(isset($testimonials))
+                        @foreach($testimonials as $teat)
                         <div class="testimonilaItem01">
                             <div class="tsAuthor">
                                 <img src="{{asset('assets/images/home1/t1.jpg')}}" alt="Pingrove">
@@ -494,31 +466,10 @@
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut amet iure ad quibusdam. Totam quis maiores alias! Doloremque, ad doloribus at omnis sunt laboriosam eum, sequi ipsam fugit, repellendus cupiditate rem earum corporis nulla atque a. Dolorem quos cumque voluptates cum sit similique mollitia eligendi.
                             </div>
                         </div>
+                        @endforeach
+                        @endif
                         <!-- Testimonial Item -->
-                        <!-- Testimonial Item -->
-                        <div class="testimonilaItem01">
-                            <div class="tsAuthor">
-                                <img src="{{asset('assets/images/home1/t2.jpg')}}" alt="Pingrove">
-                                <h5 class="tsNM">Smita Patil</h5>
-                                <span class="tsDesign">Actor & Model</span>
-                            </div>
-                            <div class="qutation">
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci doloremque exercitationem ratione. Sit quia dicta qui porro in odit quas illo blanditiis facere et, provident eum! Error a at odio est aut voluptas, architecto laboriosam. Corrupti tempore deleniti molestias in, explicabo alias esse dolorum a!
-                            </div>
-                        </div>
-                        <!-- Testimonial Item -->
-                        <!-- Testimonial Item -->
-                        <div class="testimonilaItem01">
-                            <div class="tsAuthor">
-                                <img src="{{asset('assets/images/home1/t3.jpg')}}" alt="Pingrove">
-                                <h5 class="tsNM">Cyrus Poonawala</h5>
-                                <span class="tsDesign">Chairman, IIS Pune</span>
-                            </div>
-                            <div class="qutation">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolorum quibusdam illum optio, deleniti totam voluptatem, quasi omnis iste sint est iusto molestiae blanditiis eaque exercitationem accusamus harum, eveniet architecto fugiat repellendus reiciendis sed? Consequatur quis hic deserunt dolorum tenetur pariatur facilis laborum vel nisi!
-                            </div>
-                        </div>
-                        <!-- Testimonial Item -->
+           
                     </div>
                 </div>
             </div>

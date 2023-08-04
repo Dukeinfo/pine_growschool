@@ -32,7 +32,7 @@
                         <div class="card-body">
                             <!--success or error alert-->
                             <!--form starts-->
-                            <div class="row g-3">
+                            <div class="row g-4">
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Dated</label>
@@ -44,14 +44,21 @@
                                
                                
 
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Heading</label>
                                         <input type="text" class="form-control" id=""  wire:model="heading" placeholder="Heading">
                                         @error('heading') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">link</label>
+                                        <input type="url" class="form-control" id=""  wire:model="link" placeholder="link">
+                                        @error('link') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                
                                 <div class="col-md-12">
                                     <div class="mb-3" >
                                         <label class="form-label">Message</label>
@@ -60,18 +67,35 @@
                                          <textarea id="editor" wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat"></textarea>
                                  </div>
                                  <script>
-                                    document.addEventListener('livewire:load', function () {
-                                        CKEDITOR.replace('editor');
-                                
-                                        CKEDITOR.instances.editor.on('change', function () {
-                                            @this.set('desc', CKEDITOR.instances.editor.getData());
-                                        });
+                          
 
-                                        Livewire.on('formSubmitted', function () {
-                                         CKEDITOR.instances.editor.setData(''); 
-                                         // Reset CKEditor content
-                                         });
-                                    });
+
+                                    document.addEventListener('livewire:load', function () {
+                    // Get the CSRF token from the meta tag
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        
+                    CKEDITOR.replace('editor', {
+                        // filebrowserUploadUrl: '{{ route("image.upload") }}', // Set the image upload endpoint URL
+                        filebrowserUploadUrl: "{{route('image.upload', ['_token' => csrf_token() ])}}",
+                        filebrowserUploadMethod: 'form', // Use form-based file upload (default is XMLHttpRequest)
+                        filebrowserBrowseUrl: '/ckfinder/ckfinder.html', // Set the CKFinder browse server URL
+                        filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images', // Set the CKFinder image browse server URL
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken // Pass the CSRF token with the request headers
+                        },
+                        
+                    });
+        
+                    CKEDITOR.instances.editor.on('change', function () {
+                        @this.set('desc', CKEDITOR.instances.editor.getData());
+                    });
+                        Livewire.on('formSubmitted', function () {
+                            CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+                            // document.querySelector('[wire:model="image"]').reset();
+           
+                 });
+                    
+                });
                                 </script>
                                            @error('desc') <span class="error">{{ $message }}</span> @enderror                          
                                   </div>
@@ -158,7 +182,7 @@ $thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_
        <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
 @endif</td>
                                             <td>
-                                                <a href="{{url('/admin/edit/boardmembers')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a href="{{route('edit_boardmembers',$record->id )}}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
                                             </td>
                                         </tr>

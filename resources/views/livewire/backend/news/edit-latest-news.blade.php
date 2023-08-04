@@ -57,29 +57,17 @@
                                         <label class="form-label">News</label>
                                     
                                  <div wire:ignore>
-                                         <textarea id="editor" wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat"></textarea>
+                                         <textarea  wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat" ></textarea>
                                  </div>
-                                 <script>
-                                    document.addEventListener('livewire:load', function () {
-                                        CKEDITOR.replace('editor');
-                                
-                                        CKEDITOR.instances.editor.on('change', function () {
-                                            @this.set('desc', CKEDITOR.instances.editor.getData());
-                                        });
-
-                                        Livewire.on('formSubmitted', function () {
-                                         CKEDITOR.instances.editor.setData(''); 
-                                         // Reset CKEditor content
-                                         });
-                                    });
-                                </script>
+                    
                                            @error('desc') <span class="error">{{ $message }}</span> @enderror                          
                                   </div>
                                 </div>
+                                
                                  <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Link</label>
-                                        <input type="text" class="form-control" id="" wire:model="link" placeholder="http://example.com">
+                                        <input type="url" class="form-control" id="" wire:model="link" placeholder="http://example.com">
                                         @error('link') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

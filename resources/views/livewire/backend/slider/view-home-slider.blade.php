@@ -52,7 +52,7 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Alt Tab</label>
-                                    <input type="text" class="form-control" id="" wire:model="alt_tab"  placeholder="Alt Tab">
+                                    <input type="text" class="form-control" id="" wire:model="alt_tag"  placeholder="Alt Tab">
                                     @error('alt_tab') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>

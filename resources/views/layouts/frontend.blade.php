@@ -4,12 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{-- <title>{{ $metaTitle ?: 'Pinegrow school' }}</title> --}}
-    <title>'Pinegrove School' </title>
-    <meta name="author" content="TheCodeholic">
-    <meta name="description" content="">
-
-
+    <!-- OR -->
+    {!! SEO::generate() !!}
 
     <!-- BEGIN: CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">

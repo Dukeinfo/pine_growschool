@@ -7,9 +7,9 @@
         <div class="heroSlider02 owl-carousel">
             @if(isset($sliders) )
             @foreach($sliders as $slider)
-              @if(isset($slider->image))
+              @if(isset($slider->image))   
                 <div class="singleSlide">
-                <img src="{{ asset('storage/uploads/slider').'/'.$slider->image }}" class="img-fluid" alt="">
+                <img src="{{ getsliderImages($slider->image ) ?? '' }}" class="img-fluid" alt="{{$slider->alt_tag}}">
                 </div>
             @endif
             @endforeach
@@ -96,22 +96,28 @@
                 </div>
             </div>
             <div class="row">
+                @if(isset($boardmembers) )
+                @foreach($boardmembers as $boardmember)
                 <div class="col-lg-4 col-sm-6">
                     <div class="blogItem02 text-end">
                         <div class="blogThumb">
-                            <img src="assets/images/news/news1.jpg" alt="Pingrove">
-                            <div class="pDate"><span>21</span> Jul</div>
+                            <img src="{{getboardmembers($boardmember->image)}}" alt="Pingrove">
+    
+                            <div class="pDate"><span>{{ \Carbon\Carbon::parse($boardmember->dated)->format('d') ?? '' }}
+                            </span>  {{ \Carbon\Carbon::parse($boardmember->dated)->format('M') ?? ''}} </div>
+                            <span></span>
+                           
                         </div>
                         <div class="blogContent text-start">
-                            <h3><a href="javascript:void();">The Teak House Show, titled 'Swaranjali - A Musical
-                                    Tribute</a>
+                            <h3><a href="javascript:void();">
+                                
+                                {{Str::limit($boardmember->heading, 50) ?? ''}}
+                            </a>
                             </h3>
-                            <p>The Teak House Show, titled 'Swaranjali - A Musical Tribute,' held at Pinegrove School,
-                                Subathu, mesmerized the audience with its fabulous display of talent and diligence. The
-                                skilled performances of the Teakians...
+                            <p>{!!Str::limit($boardmember->description, 220) ?? ''!!}
                             </p>
                         </div>
-                        <a class="immiPressBtn" href="javascript:void();">
+                        <a class="immiPressBtn" href="{{$boardmember->link ?? "#"}};" target="_blank">
                             <span>
                                 Read More
                                 <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
@@ -123,57 +129,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="blogItem02 text-end">
-                        <div class="blogThumb">
-                            <img src="assets/images/news/news2.jpg" alt="Pingrove">
-                            <div class="pDate"><span>15</span> Jul</div>
-                        </div>
-                        <div class="blogContent text-start">
-                            <h3><a href="javascript:void();">Inter House MUN Competition, held at Pinegrove School</a>
-                            </h3>
-                            <p>The three-day Inter House MUN Competition, held at Pinegrove School, Subathu, concluded
-                                successfully on July 15th, 2023, after intense brainstorming sessions. The competition
-                                witnessed eight delegates from each...
-                            </p>
-                        </div>
-                        <a class="immiPressBtn" href="javascript:void();">
-                            <span>
-                                Read More
-                                <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z" />
-                                </svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="blogItem02 text-end">
-                        <div class="blogThumb">
-                            <img src="assets/images/news/news3.jpg" alt="Pingrove">
-                            <div class="pDate"><span>03</span> Jul</div>
-                        </div>
-                        <div class="blogContent text-start">
-                            <h3><a href="javascript:void();">International Plastic Bag Free Day</a></h3>
-                            <p>Pinegrove School, Subathu actively participated in observing International Plastic Bag
-                                Free Day to increase awareness about the detrimental impact of plastic on the
-                                environment. During the morning assembly...
-                            </p>
-                        </div>
-                        <a class="immiPressBtn" href="javascript:void();">
-                            <span>
-                                Read More
-                                <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z" />
-                                </svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -261,54 +218,24 @@
                 </div>
             </div>
             <div class="row">
+                @if(isset($knowledgeHome))
+                @foreach($knowledgeHome as $knowldge)
                 <div class="col-lg-3 col-sm-6">
-                    <div class="serviceItem02 si04 text-center">
+                    <div class="serviceItem02 si04 text-center">   
                         <div class="serviceWrapper">
-                            <div class="serIcon"><i class="flaticon-open-book"></i></div>
-                            <h3><a href="javascript:void()">Academics</a></h3>
-                            <p>Great emphasis is laid on Academics as this is one of the important prerequisites for a
-                                successful future for the students.
+                            <div class="serIcon"><i class="{{$knowldge->logo ?? ''}}"></i></div>
+                            <h3><a href="javascript:void()">{{$knowldge->title ?? ""}}</a></h3>
+                            <p>
+
+                                {!!Str::limit($knowldge->description, 200) ?? ''!!}
                             </p>
-                            <a class="immiPressBtn" href="javascript:void()"><span>Read More</span></a>
+                            <a class="immiPressBtn" href="{{$knowldge->link ?? ""}}"><span>Read More</span></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="serviceItem02 si04 text-center">
-                        <div class="serviceWrapper">
-                            <div class="serIcon"><i class="flaticon-graduating-student"></i></div>
-                            <h3><a href="javascript:void()">Co-curriculars</a></h3>
-                            <p>Combined with Academics and Sports, Co-curricular activities at Pinegrove help in making
-                                a well-rounded individual.
-                            </p>
-                            <a class="immiPressBtn" href="javascript:void()"><span>Read More</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="serviceItem02 si04 text-center">
-                        <div class="serviceWrapper">
-                            <div class="serIcon"><i class="flaticon-targeting"></i></div>
-                            <h3><a href="javascript:void()">Games & Sports</a></h3>
-                            <p>Harnessing the Power of Sports: Fostering Leadership, Integrity, Hard Work and Teamwork
-                                through Physical Fitness.
-                            </p>
-                            <a class="immiPressBtn" href="javascript:void()"><span>Read More</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="serviceItem02 si04 text-center">
-                        <div class="serviceWrapper">
-                            <div class="serIcon"><i class="flaticon-online-registration"></i></div>
-                            <h3><a href="javascript:void()">How to Apply</a></h3>
-                            <p>The admission procedure starts with Registration of the child for admission. Registration
-                                is normally open throughout the year.
-                            </p>
-                            <a class="immiPressBtn" href="javascript:void()"><span>Read More</span></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                @endif
+         
             </div>
         </div>
     </section>
@@ -600,59 +527,22 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="testimonialSlider01 owl-carousel">
-                        
+                        @if(isset($testimonials))
+                        @foreach($testimonials as $teat)
                         <div class="testimonilaItem01">
                             <div class="tsAuthor">
-                                <img src="assets/images/testimonial/t1.jpg" alt="Pingrove">
-                                <h5 class="tsNM">Colonel Rahul Mishra</h5>
+                                <img src="{{gettestimonia($teat->photo)}}" alt="Pingrove">
+                                <h5 class="tsNM">{{$teat->name ?? ""}}</h5>
                                 <span class="tsDesign">Father of Palak Mishra</span>
                             </div>
                             <div class="qutation">
-                                My daughter Palak Mishra has been a student in the school for last 03 yrs. I am so very
-                                satisfied to see her have an all round development. This transformation is singularly
-                                accredited to the School faculty, teachers, the curriculum and seamless implementation
-                                of laid down protocols. Annual Function 2022 was a live example of the exemplary
-                                standards maintained by the school. Kudos and all the very best for all your future
-                                endeavors.
+                           {{$teat->description ?? ''}}
                             </div>
                         </div>
                         
-                        
-                        <div class="testimonilaItem01">
-                            <div class="tsAuthor">
-                                <img src="assets/images/testimonial/t2.jpg" alt="Pingrove">
-                                <h5 class="tsNM">Shamsher Chauhan</h5>
-                                <span class="tsDesign">&nbsp;</span>
-                            </div>
-                            <div class="qutation">
-                                Excellent residential School, nestled in the lap of nature, with state of art
-                                Infrastructure. Carefully designed school curriculum ensures all round growth of the
-                                students. Faculty as well as the admin team is highly qualified and professional. The
-                                school functions with clockwork precision. My daughter studied here for seven years and
-                                today the transformation that I see in her is remarkable. Sending my daughter to this
-                                coveted and prestigious institution of the country was the best decision of my life. My
-                                sincere thanks to team Pinegrove for all their hard work and contribution.
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="testimonilaItem01">
-                            <div class="tsAuthor">
-                                <img src="assets/images/testimonial/t3.jpg" alt="Pingrove">
-                                <h5 class="tsNM">Japsahib Singh Ahuja</h5>
-                                <span class="tsDesign">&nbsp;</span>
-                            </div>
-                            <div class="qutation">
-                                Passing out from a prestigious school like Pinegrove after studying there for 10 years
-                                was my life's best decision taken by my parents. I can fully claim that all the success
-                                I have achieved or would achieve in my life, would be majorly be attributed to my school
-                                and my parents for their bold decision of sending me to Pinegrove. Pinegrove's faculty
-                                has never been like teachers to me and rather have always treated me as a part of their
-                                family. Even today the teacher's here welcome me in a very homely manner and that is
-                                what makes Pinegrove my second home. God Bless Pinegrove.
-                            </div>
-                        </div>
-                        
+                        @endforeach
+                        @else
+                        @endif
                     </div>
                 </div>
             </div>

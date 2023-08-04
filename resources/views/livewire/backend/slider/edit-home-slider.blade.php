@@ -32,14 +32,28 @@
                             <form>
                             {{-- <!--form starts--> --}}
                             <div class="row g-3">
-                                <div class="col-md-3">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Heading</label>
+                                        <input type="text" class="form-control" id="" wire:model="heading" placeholder="">
+                                        @error('heading') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Sub Heading</label>
+                                       <textarea  class="form-control" id="" wire:model="subheading" placeholder="Sub Heading" name="" id="" cols="10" rows="5"></textarea>
+                                        @error('subheading') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Alt Tab</label>
-                                        <input type="text" class="form-control" id="" wire:model="alt_tab" placeholder="Alt Tab">
+                                        <input type="text" class="form-control" id="" wire:model="alt_tag" placeholder="Alt Tab">
                                         @error('alt_tab') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Slider Image</label>
                                         <input type="file" class="form-control" id="" wire:model="editimage" placeholder="">
@@ -57,14 +71,14 @@
                                         @error('editimage') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
                                         <input type="number" class="form-control" id="" wire:model="sort">
                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
                                         <select wire:model="status" class="form-select">
@@ -75,20 +89,7 @@
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Heading</label>
-                                        <input type="text" class="form-control" id="" wire:model="heading" placeholder="">
-                                        @error('heading') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Sub Heading</label>
-                                       <textarea  class="form-control" id="" wire:model="subheading" placeholder="Sub Heading" name="" id="" cols="10" rows="5"></textarea>
-                                        @error('subheading') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
+                  
                                 <div class="col-md-2" >
                                     <div class="mb-3" wire:loading.remove>
                                         <label class="form-label">&nbsp;</label><br>
