@@ -17,7 +17,7 @@ class CreateContactInfosTable extends Migration
             $table->id();
             $table->string('logo')->nullable(); 
             $table->longText('disclaimer')->nullable();
-            $table->string('email')->unique();
+            $table->string('email', 100)->unique();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
             $table->string('zip_code')->nullable(); 
