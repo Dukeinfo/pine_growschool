@@ -11,14 +11,34 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\Type\NullType;
 use Intervention\Image\Facades\Image;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\StaffImport ;
 
 class ViewStaff extends Component
 {
   use UploadTrait;
-
-    use WithFileUploads;
+  use WithFileUploads;
+  public $file;
     public $department_id,$name,$designation, $image,$thumbnail, $sort,$status;
     public $departments ,$records;
+
+
+    public function import()
+    {
+        $this->validate([
+            'file' => 'required|mimes:xlsx,xls|max:2048',
+        ]);
+
+        try {
+            Excel::import(new StaffImport, $this->file);
+            session()->flash('success', 'Departments imported successfully!');
+            $this->file = null;
+        } catch (\Exception $e) {
+            session()->flash('error', 'Error importing departments. Please check your Excel file and try again.');
+        }
+    }
+
+
     public function render()
     {
     	$this->departments = Department::get();

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- OR -->
     {!! SEO::generate() !!}
-
+    @stack('keywords')
     <!-- BEGIN: CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">

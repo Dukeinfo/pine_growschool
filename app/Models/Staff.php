@@ -10,6 +10,7 @@ class Staff extends Model
 {
     use HasFactory;
     use SoftDeletes;  //invoking
+    protected $guarded = [];
 
     public function Department()
     {

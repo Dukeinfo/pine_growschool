@@ -137,7 +137,7 @@
                                             <td>{{$record->year ?? '' }}</td>
                                             
                                             <td>{!!$record->issuenumber ?? '' !!}</td>
-                                            <td><a href="javascript:void(0)" wire:click="download('{{$record->document ?? '' }}')"> Download </a></td>
+                                            <td><a href="javascript:void(0)" wire:click="download('{{$record->id}}')" download=""> Download </a></td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td>
 @if($record->status  == "Active")

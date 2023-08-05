@@ -24,7 +24,8 @@ class Homepage extends Component
 
     public $menus;
     public $sliders;
-    public $memberships ,$boardmembers, $knowledgeHome ,$testimonials;
+    public $memberships ,$boardmembers, $knowledgeHome ,
+            $testimonials, $seo_keywords;
 
 public function mount(){
     SEOTools::setTitle('Pinegrow school | Home');
@@ -34,7 +35,7 @@ public function mount(){
     SEOTools::opengraph()->addProperty('type', 'website');
     SEOTools::twitter()->setSite('Pinegrow school');
     SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
- 
+    $this->seo_keywords ="keyword1  keyword2 keyword3";
 
     
     

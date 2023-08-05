@@ -30,4 +30,6 @@ function getsliderImages($value) {
 function gettestimonia($value) {
     return asset('storage/uploads/testimonia/'.$value);
 }
-
+function downloaddocument($value) {
+    return asset('storage/uploads/document/'.$value);
+}

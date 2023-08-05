@@ -1,6 +1,8 @@
 
 <div>
-
+    @push('keywords')
+    <meta name="keywords" content="{{$seo_keywords ?? ''}}">
+    @endpush
     <!-- END: Header Section -->
     <!-- BEGIN: Hero Slider Start -->
     <section class="heroSection04">

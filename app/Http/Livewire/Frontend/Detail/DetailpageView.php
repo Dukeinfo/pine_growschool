@@ -11,28 +11,22 @@ use Artesaos\SEOTools\Facades\SEOTools;
 class DetailpageView extends Component
 {
     public $pageId, $slug, $heading, $desc;
-    public $seotitle ,$seo_description ;
+    public $seotitle ,$seo_description  ,$seo_keywords , $url_link;
 
     public function mount($encrypted_id , $slug)
     {
-
-
         try {
-       
         $id = decrypt($encrypted_id);
         // Retrieve the item based on the ID
         $pageData = CreatePage::with(['SubMenu'])->findOrFail($id);
-        $this->pageId = $pageData->id;
-        $this->slug = $pageData->slug;
-        $this->heading = $pageData->heading;
-        $this->desc = $pageData->description;
-
-        $this->seotitle = $pageData->SubMenu->seo_title;
-        $this->seo_description = $pageData->SubMenu->seo_description;
-
-    
-
-
+            $this->pageId = $pageData->id;
+            $this->slug = $pageData->slug;
+            $this->heading = $pageData->heading;
+            $this->desc = $pageData->description;
+            $this->url_link = $pageData->url_link;
+            $this->seotitle = $pageData->SubMenu->seo_title;
+            $this->seo_description = $pageData->SubMenu->seo_description;
+            $this->seo_keywords = $pageData->SubMenu->seo_keywords ?? '';
             SEOTools::setTitle($this->seotitle );
             SEOTools::setDescription( $this->seo_description);
             SEOTools::opengraph()->setUrl(url()->current());
@@ -40,12 +34,6 @@ class DetailpageView extends Component
             SEOTools::opengraph()->addProperty('type', 'website');
             SEOTools::twitter()->setSite($this->seotitle);
             SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
-         
-        
-            
-            
-      
-        
         // if ($this->slug !== $slug) {
         //     return redirect()->to(route('detail_page', ['item' => $this->pageId, 'slug' => $this->slug]));
         // }

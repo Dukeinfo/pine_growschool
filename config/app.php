@@ -170,6 +170,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -241,6 +242,7 @@ return [
         // 'JsonLdMulti'   => Artesaos\SEOTools\Facades\JsonLdMulti::class,
         // or
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+        'Excel' =>  Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

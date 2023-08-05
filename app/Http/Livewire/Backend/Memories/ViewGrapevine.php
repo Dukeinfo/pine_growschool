@@ -14,7 +14,7 @@ class ViewGrapevine extends Component
 {
     use WithFileUploads;
 
-    public $grapDate, $year, $issuenumber,$document, $sort_id, $status;
+    public $grapDate,$docuemnt, $year,$records, $issuenumber,$document, $sort_id, $status;
 
      protected $listeners = ["selectDate" => 'getDate'];
 
@@ -80,10 +80,11 @@ class ViewGrapevine extends Component
           ]);
 
     }
-
-   public function download($file_name){
-     $path =asset('storage/uploads/document/'.$file_name);
+    public function download($id){
+        $getDownload = Grepevine::where('id', $id)->first();
+       $path =  Storage::path('public/uploads/document/'. $getDownload->document);
      return response()->download($path);
+
    } 
 
     public function render()

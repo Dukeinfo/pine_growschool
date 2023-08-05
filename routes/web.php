@@ -65,6 +65,8 @@ use App\Http\Livewire\Backend\Principal\EditMessage;
 use App\Http\Livewire\Backend\Facilities\ViewFacilities;
 use App\Http\Livewire\Backend\Facilities\EditFacilities;
 use App\Http\Livewire\Backend\Facilities\TrashFacilities;
+use App\Http\Livewire\Backend\Footer\ContactusView;
+use App\Http\Livewire\Backend\Footer\SocialAppsManager;
 use App\Http\Livewire\Backend\Memories\ViewGuestBook;
 use App\Http\Livewire\Backend\Memories\EditGuestBook;
 use App\Http\Livewire\Backend\Memories\ViewGrapevine;
@@ -226,7 +228,11 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
     Route::get('/view/grapevine', ViewGrapevine::class)->name('view_grapevine');
     Route::get('/edit/grapevine/{id}', EditGrapevine::class)->name('edit_grapevine');
-
+    Route::get('/contact-view', ContactusView::class)->name('contact_view');
+    Route::get('/social-view', SocialAppsManager::class)->name('social_view');
+    
+    
+    
 
       
      

@@ -30,6 +30,28 @@
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
+                            @if (session()->has('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                    
+                        @if (session()->has('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                            <form wire:submit.prevent="import" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="file">Choose Excel File (xlsx or xls)</label>
+                                    <input type="file" wire:model="file" id="file" class="form-control @error('file') is-invalid @enderror">
+                                    @error('file')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                        
+                                <button type="submit" class="btn btn-primary">Import</button>
+                            </form>
                             <!--success or error alert-->
                             <!--form starts-->
                             <div class="row g-3">
