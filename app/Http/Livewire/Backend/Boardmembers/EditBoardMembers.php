@@ -31,8 +31,6 @@ class EditBoardMembers extends Component
         $this->thumbnail = $boardMembers->thumbnail;
     	$this->sort_id = $boardMembers->sort_id;
     	$this->link = $boardMembers->link;
-
-      
     	$this->status = $boardMembers->status;
      }
 

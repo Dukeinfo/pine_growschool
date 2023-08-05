@@ -27,7 +27,6 @@ function getsliderImages($value) {
     return asset('storage/uploads/slider/'.$value);
 }
 
-
 function gettestimonia($value) {
     return asset('storage/uploads/testimonia/'.$value);
 }

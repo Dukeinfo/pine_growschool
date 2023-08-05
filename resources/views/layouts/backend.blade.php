@@ -124,13 +124,12 @@
      <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 
      <script>
-            var picker = new Pikaday({ field: document.getElementById('dated') });
-            var picker2 = new Pikaday({ field: document.getElementById('newsDate') });
+      var picker = new Pikaday({ field: document.getElementById('dated') });
+      var picker2 = new Pikaday({ field: document.getElementById('newsDate') });
+      var picker3 = new Pikaday({ field: document.getElementById('picDate') });
+      var picker4 = new Pikaday({ field: document.getElementById('grapDate') });
+      
      </script>
 
-
-
-
-      
     </body>
 </html>
