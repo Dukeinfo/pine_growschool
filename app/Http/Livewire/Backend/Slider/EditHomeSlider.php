@@ -15,12 +15,13 @@ class EditHomeSlider extends Component
 use WithFileUploads;
 use UploadTrait;
 
-    public $sliderId,$alt_tag,$sort,$image,$heading,$subheading,$editimage, $status ,$thumbnail; 
+    public $sliderId,$alt_tag,$link,$sort,$image,$heading,$subheading,$editimage, $status ,$thumbnail; 
 
      public function mount($id){
         $slider = Slider::findOrFail($id);
         $this->sliderId = $slider->id;
         $this->alt_tag = $slider->alt_tag;
+        $this->link = $slider->link;
         $this->image = $slider->image;
         $this->thumbnail = $slider->thumbnail;
         $this->heading = $slider->heading;
@@ -43,6 +44,7 @@ use UploadTrait;
 
             $slider = Slider::find($this->sliderId);
             $slider->alt_tag = $this->alt_tag ?? NULL;
+            $slider->link = $this->link ?? NULL;
             $slider->slug =  strtolower(str_replace(' ', '-',$this->heading));
             $slider->image = $uploadedData['file_name']?? NULL;
             $slider->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;

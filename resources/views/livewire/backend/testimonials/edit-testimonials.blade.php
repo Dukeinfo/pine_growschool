@@ -94,6 +94,14 @@ $thumb = !empty($thumbnail) ?  getThumbnail($thumbnail) : url('admin_assets/imag
     @error('desc') <span class="error">{{ $message }}</span> @enderror                                     
                                     </div>
                                 </div>
+
+                                 <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Link</label>
+                                    <input type="text" class="form-control" id="" wire:model="link"  placeholder="Link">
+                                    @error('link') <span class="error">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
                                 <div wire:loading.remove>
                                     <button type="submit" wire:click="editTestimonials" class="btn btn-primary w-md">Submit</button>
                                 </div>

@@ -72,27 +72,24 @@
 					<span>Our Staff</span>
 				</a>
 			</li>
-			
-			<li>
-				<a href="" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
+
+
+			    <li>
+				<a href="javascript: void(0);" class="has-arrow waves-effect">
+					<i class='bx bx-image-add'></i>
 					<span>Principal</span>
 				</a>
+					
+			  <ul class="sub-menu" aria-expanded="false">
+						<li><a href="{{route('create_message')}}">Message</a></li>
+						<li><a href="{{route('view_boardmembers')}}">Board Memebers</a>
+					   
+					</ul>
+			
 			</li>
+			
+			
 
-            <li>
-				<a href="{{route('create_message')}}" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
-					<span>Message</span>
-				</a>
-			</li>
-
-			<li>
-				<a href="{{route('view_boardmembers')}}" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
-					<span>Board Memebers</span>
-				</a>
-			</li>
 			<li>
 				<a href="{{route('view_facilities')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>

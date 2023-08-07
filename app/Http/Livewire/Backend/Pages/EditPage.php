@@ -25,6 +25,7 @@ class EditPage extends Component
 	        $this->submenu = $page->submenu_id;
 	        $this->heading = $page->heading;
 	        $this->desc = $page->description;
+          $this->link = $page->link;
 	    	$this->sort = $page->sort_id;
 	    	$this->status = $page->status;
 
@@ -54,6 +55,7 @@ class EditPage extends Component
       $createPage->heading = $this->heading ?? Null;
       $createPage->slug =  strtolower(str_replace(' ', '-',$this->heading))?? Null;
       $createPage->description = $this->desc ?? Null;
+      $createPage->link = $this->link ?? Null;
       $createPage->sort_id =$this->sort ?? Null;
       $createPage->status = $this->status ?? Null;
       $createPage->save();

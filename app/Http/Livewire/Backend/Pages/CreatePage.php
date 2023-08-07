@@ -14,7 +14,7 @@ class CreatePage extends Component
    public $menu=NULL;
    public $subMenus;
 
-   public $sort_id ,$getMenus , $records , $submenu,$heading,$desc,$sort,$status;
+   public $sort_id ,$getMenus , $records , $submenu,$heading,$desc,$link,$sort,$status;
 
     protected $rules = [ 
         'menu' => 'required', 
@@ -39,6 +39,7 @@ class CreatePage extends Component
         $this->submenu = ''; 
         $this->heading = ''; 
         $this->desc = '';
+        $this->link = '';
         $this->sort_id = '';
         $this->status = '';
        
@@ -70,6 +71,7 @@ class CreatePage extends Component
       $createPage->heading = $this->heading ?? Null;
       $createPage->slug =  strtolower(str_replace(' ', '-',$this->heading))?? Null;
       $createPage->description = $this->desc ?? Null;
+      $createPage->link = $this->link ?? Null;
       $createPage->sort_id =$this->sort ?? Null;
       $createPage->status = $this->status ?? Null;
       $createPage->save();

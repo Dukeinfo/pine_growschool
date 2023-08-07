@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();             
             $table->string('heading')->nullable();
             $table->longText('subheading')->nullable();
+            $table->string('link')->nullable();
             $table->bigInteger('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();

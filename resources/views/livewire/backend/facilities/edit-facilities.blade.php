@@ -102,6 +102,14 @@ $thumb = !empty($thumbnail) ? asset('uploads/thumbnail/'.basename($thumbnail)) :
                                     </div>
                                 </div>
 
+                                 <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Link</label>
+                                    <input type="text" class="form-control" id="" wire:model="link"  placeholder="Link">
+                                    @error('link') <span class="error">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+
                               
                                 <div class="col-md-2">
                                     <div class="mb-3">

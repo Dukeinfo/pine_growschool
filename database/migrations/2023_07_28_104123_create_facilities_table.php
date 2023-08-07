@@ -19,6 +19,7 @@ class CreateFacilitiesTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+            $table->string('link')->nullable();
             $table->integer('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();

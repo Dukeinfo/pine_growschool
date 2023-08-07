@@ -15,7 +15,7 @@ class EditFacilities extends Component
     use UploadTrait;	
 	use WithFileUploads;
 
-    public $facilityId,$image,$editimage,$title,$desc,$sort,$status;
+    public $facilityId,$image,$editimage,$title,$desc,$link,$sort,$status;
 
     public function mount($id)
      {
@@ -25,6 +25,7 @@ class EditFacilities extends Component
         $this->thumbnail = $facilities->thumbnail;
         $this->title = $facilities->title;
         $this->desc = $facilities->description;
+         $this->link = $facilities->link;
     	$this->sort = $facilities->sort_id;
     	$this->status = $facilities->status;
      }
@@ -43,6 +44,7 @@ class EditFacilities extends Component
       $facilities->thumbnail = $uploadedData['thumbnail_name'];
       $facilities->title = $this->title;
       $facilities->description = $this->desc;
+       $facilities->link = $this->link;
       $facilities->sort_id =$this->sort;
       $facilities->status = $this->status;
       $facilities->save();

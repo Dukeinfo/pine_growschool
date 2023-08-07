@@ -14,7 +14,7 @@ class ViewFacilities extends Component
     use UploadTrait;	
 	  use WithFileUploads;
 
-    public $image,$title,$desc,$sort,$status;
+    public $image,$title,$desc,$link,$sort,$status;
 
     protected $rules = [
         'image' => 'required', 
@@ -34,6 +34,7 @@ class ViewFacilities extends Component
         $this->image = '';
         $this->title = '';
         $this->desc = '';
+        $this->link = '';
         $this->sort = '';
         $this->status = '';
     }
@@ -55,6 +56,7 @@ class ViewFacilities extends Component
       $facilities->thumbnail = $uploadedData['thumbnail_name'];
       $facilities->title = $this->title;
       $facilities->description = $this->desc;
+      $facilities->link = $this->link;
       $facilities->sort_id =$this->sort;
       $facilities->status = $this->status;
       $facilities->save();

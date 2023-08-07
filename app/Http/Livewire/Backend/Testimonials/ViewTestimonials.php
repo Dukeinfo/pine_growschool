@@ -16,7 +16,7 @@ class ViewTestimonials extends Component
     use WithFileUploads;
     use UploadTrait;
 
-    public $name,$image,$sort_id,$status,$desc ,$records;
+    public $name,$image,$sort_id,$status,$desc , $link, $records;
     
 
     public function render()
@@ -48,6 +48,7 @@ class ViewTestimonials extends Component
         $this->sort_id = '';
         $this->status = '';
         $this->desc = '';
+        $this->link = '';
     }
 
 
@@ -73,6 +74,7 @@ class ViewTestimonials extends Component
       $testimonials->sort_id =$this->sort_id;
       $testimonials->status = $this->status;
       $testimonials->description = $this->desc;
+      $testimonials->link = $this->link;
       $testimonials->save();
       $this->resetInputFields();
         $this->dispatchBrowserEvent('swal:modal', [

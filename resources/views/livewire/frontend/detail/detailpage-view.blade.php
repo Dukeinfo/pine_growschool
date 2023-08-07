@@ -22,12 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-corner corner-position"></div>
-        <div class="background-text-wrapper">
-            <div class="bg-custom-header-text">
-                Why Us?
-            </div>
-        </div>
+        
     </section>
 
 
