@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Backend\Gallery;
 
+use App\Imports\OurToppersImport;
 use Livewire\Component;
 use App\Models\ClassMaster;
 use App\Models\SectionMaster;
@@ -14,10 +15,14 @@ use SebastianBergmann\Type\NullType;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 
+
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\StaffImport ;
 class ViewOurTopper extends Component
 {
     use WithFileUploads;
     use UploadTrait;
+    public $file;
     public $category,$name,$classname,$section,$percentage,$link,$image,$sort_id,$status;
 
     protected $rules = [
@@ -94,5 +99,20 @@ class ViewOurTopper extends Component
     	 $this->getSection = SectionMaster::orderBy('sort_id','asc')->where('status','Active')->get();	
     	 $this->records = OurTopper::orderBy('sort_id','asc')->get();	
         return view('livewire.backend.gallery.view-our-topper')->layout('layouts.backend');
+    }
+
+
+    public function import_tooper(){
+      $this->validate([
+        'file' => 'required|mimes:xlsx,xls|max:2048',
+    ]);
+
+    try {
+        Excel::import(new OurToppersImport, $this->file);
+        session()->flash('success', 'Topper imported successfully!');
+        $this->file = null;
+    } catch (\Exception $e) {
+        session()->flash('error', 'Error importing Topper students Please check your Excel file and try again.');
+    }
     }
 }

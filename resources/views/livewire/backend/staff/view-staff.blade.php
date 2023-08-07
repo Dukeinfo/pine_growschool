@@ -30,31 +30,52 @@
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
-                            @if (session()->has('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
                     
-                        @if (session()->has('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
+                             @if (session()->has('success'))
+                             <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                 <i class="mdi mdi-check-all me-2"></i>
+                                 {{ session('success') }}
+                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                             </div>
+                             @endif
+
+                             @if (session()->has('error'))
+                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                 <i class="mdi mdi-check-all me-2"></i>
+                                 {{ session('error') }}
+                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                             </div>
+                             @endif
+                    
+                    
                             <form wire:submit.prevent="import" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label for="file">Choose Excel File (xlsx or xls)</label>
-                                    <input type="file" wire:model="file" id="file" class="form-control @error('file') is-invalid @enderror">
-                                    @error('file')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                    @enderror
+                               <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="file">Choose Excel File (xlsx or xls)</label>
+                                        <input type="file" wire:model="file" id="file" class="form-control @error('file') is-invalid @enderror">
+                                        @error('file')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
+                                <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary " style="margin-top: 25px;">Import</button>
+
+                                <a class="btn btn-success"  style="margin-top: 25px;"  wire:click="export_staff()">Export Staff</a>
+                                
+                                <a class="btn btn-warning"  style="margin-top: 25px;"  wire:click="sampleexport()">Sample Staff</a>
+                            
+                            </div>
+                               </div>
+                           
                         
-                                <button type="submit" class="btn btn-primary">Import</button>
                             </form>
+
                             <!--success or error alert-->
                             <!--form starts-->
-                            <div class="row g-3">
+                            <hr>
+                            <div class="row g-3 ">
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Department</label>
@@ -72,35 +93,35 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="" wire:model="name" placeholder="Name">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="" wire:model="name" placeholder="Name">
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Designation</label>
-                                        <input type="text" class="form-control" id="" wire:model="designation" placeholder="Designation">
+                                        <input type="text" class="form-control @error('designation') is-invalid @enderror" id="" wire:model="designation" placeholder="Designation">
                                         @error('designation') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label"> Image</label>
-                                        <input type="file" class="form-control" wire:model="image">
+                                        <input type="file" class="form-control @error('image') is-invalid @enderror" wire:model="image">
                                          @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control"  wire:model="sort" placeholder="Order NUmber">
+                                        <input type="number" class="form-control @error('sort') is-invalid @enderror"  wire:model="sort" placeholder="Order NUmber">
                                          @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
-                                        <select class="form-select" wire:model="status">
+                                        <select class="form-select @error('status') is-invalid @enderror" wire:model="status">
                                                 <option value="">Select</option>
                                                 <option>Active</option>
                                                 <option>Inactive</option>

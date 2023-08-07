@@ -39,74 +39,74 @@
 
                                 <!-- resources/views/livewire/social-apps-manager.blade.php -->
 
-<div>
 
 
-    @if ($isEditing)
-        <h2>Edit Social App</h2>
-    @else
-        <h2>Create Social App</h2>
-    @endif
 
-    <form wire:submit.prevent="{{ $isEditing ? 'update' : 'store' }}" enctype="multipart/form-data">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" wire:model.defer="name" id="name" class="form-control @error('name') is-invalid @enderror">
-                        @error('name')
-                            <span class="invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <div class="form-group">
-                        <label for="link">Link</label>
-                        <input type="text" wire:model.defer="link" id="link" class="form-control @error('link') is-invalid @enderror">
-                        @error('link')
-                            <span class="invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <div class="form-group">
-                        <label for="logo">Logo</label>
-                        <input type="file" wire:model.defer="logo" id="logo" class="form-control">
-                        @if ($logo)
-                            <img src="{{ $logo->temporaryUrl() }}" alt="Logo Preview" width="100">
+                        @if ($isEditing)
+                            <h2>Edit Social App</h2>
+                        @else
+                            <h2>Create Social App</h2>
                         @endif
-                        @error('logo')
-                            <span class="invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-            <div class="form-group">
-                <label for="icon">Font Awesome Icon (fa fa-*)</label> 
-                <input type="text" wire:model.defer="icon" id="icon" class="form-control @error('icon') is-invalid @enderror">
-                <small class="form-text text-muted">Example: fa-brands fa-facebook-f , fa-brands fa-twitter, etc.</small>
-                @error('icon')
-                    <span class="invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-                </div>
-            </div>
 
-        <button type="submit"  class="btn btn-primary w-md" >{{ $isEditing ? 'Update' : 'Save' }}</button>
-        </div>
-    </form>
+                            <form wire:submit.prevent="{{ $isEditing ? 'update' : 'store' }}" enctype="multipart/form-data">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label for="name">Name</label>
+                                                <input type="text" wire:model.defer="name" id="name" class="form-control @error('name') is-invalid @enderror">
+                                                @error('name')
+                                                    <span class="invalid-feedback">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label for="link">Link</label>
+                                                <input type="text" wire:model.defer="link" id="link" class="form-control @error('link') is-invalid @enderror">
+                                                @error('link')
+                                                    <span class="invalid-feedback">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label for="logo">Logo</label>
+                                                <input type="file" wire:model.defer="logo" id="logo" class="form-control">
+                                                @if ($logo)
+                                                    <img src="{{ $logo->temporaryUrl() }}" alt="Logo Preview" width="100">
+                                                @endif
+                                                @error('logo')
+                                                    <span class="invalid-feedback">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                    <div class="form-group">
+                                        <label for="icon">Font Awesome Icon (fa fa-*)</label> 
+                                        <input type="text" wire:model.defer="icon" id="icon" class="form-control @error('icon') is-invalid @enderror">
+                                        <small class="form-text text-muted">Example: fa-brands fa-facebook-f , fa-brands fa-twitter, etc.</small>
+                                        @error('icon')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                        </div>
+                                    </div>
 
-    <hr>
+                                    <div>
+                                        <button type="submit" wire:loading.attr="disabled"  class="btn btn-primary w-md">{{ $isEditing ? 'Update' : 'Save' }}</button>
+                                    </div>
+                               
+                                </div>
+                            </form>
 
- 
-</div>
+
 
 
                     </div>

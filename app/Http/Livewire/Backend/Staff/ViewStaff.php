@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Backend\Staff;
 
+use App\Exports\ExportStaff;
+use App\Exports\SampleExport;
 use Livewire\Component;
 use App\Models\Department;
 use App\Models\Staff;
@@ -16,11 +18,13 @@ use App\Imports\StaffImport ;
 
 class ViewStaff extends Component
 {
-  use UploadTrait;
-  use WithFileUploads;
-  public $file;
+    use UploadTrait;
+    use WithFileUploads;
+    public $file;
     public $department_id,$name,$designation, $image,$thumbnail, $sort,$status;
     public $departments ,$records;
+    public   $selectedFields = ['name', 'designation', 'image' ,'sort_id' ,'status']; 
+    public  $customHeadings = ['Name', 'Designation', 'Image' ,'Sort id' ,'status']; 
 
 
     public function import()
@@ -31,13 +35,25 @@ class ViewStaff extends Component
 
         try {
             Excel::import(new StaffImport, $this->file);
-            session()->flash('success', 'Departments imported successfully!');
+            session()->flash('success', 'staff imported successfully!');
             $this->file = null;
         } catch (\Exception $e) {
-            session()->flash('error', 'Error importing departments. Please check your Excel file and try again.');
+            session()->flash('error', 'Error importing staff members Please check your Excel file and try again.');
         }
     }
 
+
+    public function export_staff(){
+        //  $data = Staff::all(); // Replace 'Example' with your model
+  
+
+        return Excel::download(new ExportStaff($this->selectedFields, $this->customHeadings), 'Staff.xlsx');
+   
+    }
+
+    public function sampleexport() {
+            return Excel::download(new SampleExport(), 'sample.xlsx');
+        }
 
     public function render()
     {

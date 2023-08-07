@@ -18,6 +18,47 @@
                         </div>
 
                     </div>
+                    @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="mdi mdi-check-all me-2"></i>
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+
+                    @if (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="mdi mdi-check-all me-2"></i>
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+           
+           
+                   <form wire:submit.prevent="import_tooper" enctype="multipart/form-data">
+                      <div class="row">
+                       <div class="col-md-6">
+                           <div class="form-group">
+                               <label for="file">Choose Excel File (xlsx or xls)</label>
+                               <input type="file" wire:model="file" id="file" class="form-control @error('file') is-invalid @enderror">
+                               @error('file')
+                                   <span class="invalid-feedback">{{ $message }}</span>
+                               @enderror
+                           </div>
+                       </div>
+                       <div class="col-md-6">
+                       <button type="submit" class="btn btn-primary " style="margin-top: 25px;">Import</button>
+
+                       <a class="btn btn-success"  style="margin-top: 25px;" >Export Staff</a>
+                       
+                       <a class="btn btn-warning"  style="margin-top: 25px;"  >Sample Staff</a>
+                   
+                   </div>
+                      </div>
+                  
+               
+                   </form>
+
                 </div>
             </div>
             <!-- end page title -->
@@ -25,11 +66,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+
+
+                        
                         <div class="card-header bg-transparent border-bottom py-3">
                             <h4 class="card-title">Add Our Toppers</h4>
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
+                        
                         <div class="card-body">
+                            
                             <!--success or error alert-->
                             <!--form starts-->
                             <div class="row g-3">
