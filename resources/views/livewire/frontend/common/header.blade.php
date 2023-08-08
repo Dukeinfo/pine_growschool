@@ -105,7 +105,10 @@
                                         $getpage =   App\Models\CreatePage::where('menu_id',$menu->id )->with(['SubMenu'])->orderBy('sort_id','asc')->where('status','Active')->get()    
                                    @endphp
                                     <ul class="sub-menu">
-                                        <li><a href="{{route($menu->link) ?? '#'}}">{{$menu->name ?? ''}}</a></li>
+                                        @php
+                                            $fallbackRouteName = 'fallback.route.name'; // Replace with the actual fallback route name
+                                        @endphp
+                                        <li><a href="{{isset($menu->link) ? route($menu->link) : '#' }}">{{$menu->name ?? ''}}</a></li>
                                    
                                              @foreach($getpage as $page)
                                              @if(isset($page))
