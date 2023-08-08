@@ -37,12 +37,30 @@
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label"> Name</label>
+                                        <label class="form-label"> Page Name</label>
                                         <input type="text" class="form-control" id="" wire:model="name" placeholder="Name">
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                              
+
+
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Route Name</label>
+                                        <select name="selected_route" wire:model="link" id="selected_route"  class="form-control">
+                                         <option value="" >Select page</option>
+                                          
+                                            @foreach(Route::getRoutes() as $route)
+                                            @if (str_starts_with($route->getName(), 'home.') )
+                                                <option value="{{ $route->getName() }}"  class="form-control">{{ $route->getName() }}</option>
+                                           @endif
+                                                @endforeach
+                                        </select>
+                                        @error('link') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+
+                           
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
@@ -90,8 +108,10 @@
                                     <thead>
                                         <tr>
                                             <th> Name</th>
+                                            <th>Route link</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
+
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -100,6 +120,8 @@
                                          @foreach ($records as  $record)	
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
+                                            <td>{{$record->link ?? '' }}</td>
+
                                         
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>

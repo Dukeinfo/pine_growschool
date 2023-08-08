@@ -82,33 +82,35 @@
                     <div class="header01Inner">
                         <!-- Logo -->
                         <div class="logo01">
-                            <a href="{{url('/')}}"><img src="{{asset('assets/images/logo.png')}}" alt="Pinegrove" /></a>
+                            <a href="{{route('homepage')}}"><img src="{{asset('assets/images/logo.png')}}" alt="Pinegrove" /></a>
                         </div>
                         <!-- Logo -->
                         <!-- Nav Menu -->
                         <a href="javascript:void(0)" class="menuBtn"><i class="fa-solid fa-bars"></i></a>
                         <nav class="mainMenu">
                             @php
-                            $getmenus = App\Models\Menu::orderBy('sort_id','asc')->where('status','Active')->get();	 
+                            $getmenus = App\Models\Menu::orderBy('sort_id','asc')->where('status','Active')->take(6)->get();	 
                              @endphp
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="{{url('/')}}">Home</a>
+                                    <a href="{{route('homepage')}}">Home</a>
                                 </li>
                                 @if(isset($getmenus) )
                                 @foreach($getmenus as $menu)
                                 <li class="menu-item-has-children">
-                                    <a href="javascript:void(0);">{{$menu->name ?? ''}}</a>
-                                       @php
-                                    $getpage =   App\Models\CreatePage::where('menu_id',$menu->id )->with(['SubMenu'])->orderBy('sort_id','asc')->where('status','Active')->get()    
+                            
+                                    <a href="javascript:void(0)}">{{$menu->name ?? ''}}</a>
+                                    
+                                    @php
+                                        $getpage =   App\Models\CreatePage::where('menu_id',$menu->id )->with(['SubMenu'])->orderBy('sort_id','asc')->where('status','Active')->get()    
                                    @endphp
                                     <ul class="sub-menu">
-                                        {{-- <li><a href="javascript:void();">Location</a></li> --}}
+                                        <li><a href="{{route($menu->link) ?? '#'}}">{{$menu->name ?? ''}}</a></li>
                                    
                                              @foreach($getpage as $page)
                                              @if(isset($page))
-                                                 @php $encryptedId = encrypt($page->id); @endphp
-                                                <li><a href="{{route('detail_page',['encrypted_id' => $encryptedId, 'slug' => $page->slug])}}">{{$page->SubMenu->display_name}}</a></li>
+                                                 {{-- @php $encryptedId = encrypt($page->id); @endphp --}}
+                                                <li><a href="{{route('detail_page',['page_id' => $page->id, 'slug' => $page->slug])}}">{{$page->SubMenu->display_name}}</a></li>
                                              @endif
                                             @endforeach
 

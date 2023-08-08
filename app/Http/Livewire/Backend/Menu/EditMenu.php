@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 class EditMenu extends Component
 {
-    public $menuId,$name,$sort,$status ,$clientIp;
+    public $menuId,$name,$sort,$status ,$clientIp ,$link;
       public function mount($id)
      {
         $menu = Menu::findOrFail($id);
@@ -22,6 +22,7 @@ class EditMenu extends Component
     {
         $menu = Menu::find($this->menuId);
         $menu->name = $this->name;
+        $menu->link = $this->link;
         $menu->sort_id =$this->sort;
         $menu->status = $this->status;
         $menu->login =  Auth::user()->id;

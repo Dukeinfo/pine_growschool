@@ -44,7 +44,7 @@ public function mount(){
 
     public function render()
     {
-       $this->menus = Menu::orderBy('sort_id','asc')->where('status','Active')->get();	
+       $this->menus = Menu::orderBy('sort_id','asc')->where('status','Active')->take(9)->get();	
        $this->sliders = Slider::orderBy('sort_id','asc')->where('status','Active')->get();	
        $this->memberships =  Memberships::orderBy('sort_id' ,'asc')->where('status','Active')->get(); 
        $this->boardmembers =  BoardMembers::orderBy('sort_id' ,'asc')->where('status','Active')->get(); 

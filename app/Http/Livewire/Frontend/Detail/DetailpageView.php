@@ -13,12 +13,15 @@ class DetailpageView extends Component
     public $pageId, $slug, $heading, $desc;
     public $seotitle ,$seo_description  ,$seo_keywords , $url_link;
 
-    public function mount($encrypted_id , $slug)
+    public function mount($page_id , $slug)
     {
         try {
-        $id = decrypt($encrypted_id);
+        // $id = decrypt($encrypted_id);
+        $id = $page_id;
+
         // Retrieve the item based on the ID
         $pageData = CreatePage::with(['SubMenu'])->findOrFail($id);
+
             $this->pageId = $pageData->id;
             $this->slug = $pageData->slug;
             $this->heading = $pageData->heading;

@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="immiPressBtn" href="javascript:void();"><span>Discover More</span></a>
+                        <a class="immiPressBtn" href="{{route('home.about_us')}}"><span>Discover More</span></a>
                     </div>
                     <!-- About Content -->
                 </div>
@@ -140,7 +140,7 @@
     <section class="serviceSection04 pt-0">
         <div class="container">
             @php
-            $ourTopper =   App\Models\OurTopper::where('status','Active')->get();	 
+            $ourTopper =   App\Models\OurTopper::where('status','Active')->orderBy('percentage' ,'DESC')->get();	 
            @endphp
                @if(isset( $ourTopper))
             <div class="row">

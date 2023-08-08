@@ -71,7 +71,15 @@ use App\Http\Livewire\Backend\Memories\ViewGuestBook;
 use App\Http\Livewire\Backend\Memories\EditGuestBook;
 use App\Http\Livewire\Backend\Memories\ViewGrapevine;
 use App\Http\Livewire\Backend\Memories\EditGrapevine;
-
+use App\Http\Livewire\Frontend\AboutUs;
+use App\Http\Livewire\Frontend\AdmissionProcess;
+use App\Http\Livewire\Frontend\ContactUs;
+use App\Http\Livewire\Frontend\Facilities;
+use App\Http\Livewire\Frontend\FaqsIntroduction;
+use App\Http\Livewire\Frontend\Gallery;
+use App\Http\Livewire\Frontend\GalleryDetail;
+use App\Http\Livewire\Frontend\Location;
+use App\Http\Livewire\Frontend\OurFounder;
 use Illuminate\Support\Facades\Route;
 
 
@@ -91,13 +99,26 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 // ============================= frontend route start  ======================
-
-Route::get('/', Homepage::class)->name('homepage');
-Route::get('detail/page/{encrypted_id}/{slug}', DetailpageView::class)->name('detail_page');
-
 Route::get('/phpinfo', function (){
     dd(phpinfo());
 });
+Route::get('/', Homepage::class)->name('homepage');
+Route::get('detail/page/{page_id}/{slug}', DetailpageView::class)->name('detail_page');
+
+Route::get('/about-us', AboutUs::class)->name('home.about_us');
+Route::get('/admission-process', AdmissionProcess::class)->name('home.admission_process');
+Route::get('/contact-us', ContactUs::class)->name('home.contact_us');
+Route::get('/facilities', Facilities::class)->name('home.facilities');
+Route::get('/faqs', FaqsIntroduction::class)->name('home.faqs_introduction');
+Route::get('/gallery', Gallery::class)->name('home.gallery');
+Route::get('/gallery-detail', GalleryDetail::class)->name('home.gallery_detail');
+Route::get('/location', Location::class)->name('home.location');
+Route::get('/our-founder', OurFounder::class)->name('home.our_founder');
+
+
+
+
+
 
 // ============================= frontend route end ======================
 // admin routings

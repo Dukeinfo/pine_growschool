@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class ViewMenu extends Component
 {
 
-    public $name,$sort,$status ,$records ,$clientIp;
+    public $name,$sort,$status ,$records ,$clientIp ,$link;
 
     public function render(Request $request)
     {
@@ -36,6 +36,7 @@ class ViewMenu extends Component
         $this->name = '';
         $this->sort = '';
         $this->status = '';
+        $this->link = '';
     }
 
 
@@ -45,10 +46,10 @@ class ViewMenu extends Component
 
       $menu = new Menu();
       $menu->name = $this->name;
+      $menu->link = $this->link;
       $menu->sort_id =$this->sort;
       $menu->status = $this->status;
       $menu->login =  Auth::user()->id;
-
       $menu->ip_address =  $this->clientIp;
       $menu->save();
 
