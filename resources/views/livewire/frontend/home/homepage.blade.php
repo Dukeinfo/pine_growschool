@@ -163,7 +163,7 @@
                                 <div class="serviceItem02 text-center">
                                     <div class="serviceWrapper p-4">
                                         <p class="h5 mb-2">{{$student->name ?? ''}}</p>
-                                        <img src="{{getTopperImages($student->image)}}" class="img-fluid rounded" alt="">
+                                        <img src="{{isset($student->image) ? getTopperImages($student->image) : asset('no_image.jpg')}}" class="img-fluid rounded" alt="">
                                         <p class="mb-1 mt-3 h6">Class {{$student->class ?? ''}}</p>
                                         <p class="mb-0">{{$student->percentage ?? ''}}</p>
                                     </div>
@@ -193,7 +193,8 @@
                                 <div class="serviceItem02 text-center">
                                     <div class="serviceWrapper p-4">
                                         <p class="h5 mb-2">{{$student->name ?? ''}}</p>
-                                        <img src="{{getTopperImages($student->image)}}" class="img-fluid rounded" alt="">
+                                        <img src="{{isset($student->image) ? getTopperImages($student->image) : asset('no_image.jpg')}}" class="img-fluid rounded" alt="">
+                                         
                                         <p class="mb-1 mt-3 h6">Class {{$student->class ?? ''}}</p>
                                     
                                         <p class="mb-0">&nbsp;</p>
