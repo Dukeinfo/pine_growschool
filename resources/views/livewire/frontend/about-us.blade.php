@@ -128,7 +128,7 @@
                         <h5 class="subTitle">Who We Are?</h5>
                         <h2 class="secTitle">About School</h2>
     
-                        <img src="assets/images/pinegrove-subathu.JPG" class="img-fluid rounded mb-4" alt="">
+                       <img src="{{asset('assets/images/pinegrove-subathu.jpg')}}" class="img-fluid rounded mb-4" alt="">
     
                         <p>Pinegrove School Subathu established in 1998, is a co-educational, purely residential, English medium boarding school affiliated to the Central Board of Secondary Education (CBSE), Delhi, from Class 6th up to Class 12th.</p>
                        <p>Pinegrove is a prominent member of the IPSC (Indian Public Schools' Conference), the Round Square (UK), BSAI (Boarding Schools' Association of India), the BSA (UK), IAYP (International Awards for Young People) AFS (American Field Ambulance), NPSC (National Progressive Schools' Conference) and was awarded the International School Awards (ISA) from the British Council. The school encompasses NCC (National Cadet Corps), Nurtured Heart Approach (NHA) and holds the prestigious ISO 9001:2015 certification (BSI).</p>

@@ -7,7 +7,7 @@
                 <a href="javascript:void(0);" class="widgetCloser"><i class="fa-solid fa-xmark"></i></a>
                 <div class="aboutWidgetArea">
                     <div class="wdLogo">
-                        <a href="javascript:void()"><img src="assets/images/logo.png" alt="Pinegrove"></a>
+                        <a href="javascript:void()"><img src="{{asset('assets/images/logo.png')}}" alt="Pinegrove"></a>
                     </div>
                     <p>
                         Pinegrove School, established in 1991, is a Co-educational, purely residential, English medium

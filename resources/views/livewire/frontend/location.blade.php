@@ -130,7 +130,7 @@
                     <h5 class="subTitle">Where We Are?</h5>
                     <h2 class="secTitle">Our Location</h2>
 
-                    <img src="assets/images/location.JPG" class="img-fluid rounded mb-4" alt="">
+                    <img src="{{asset('assets/images/location.jpg')}}" class="img-fluid rounded mb-4" alt="">
 
                     <p>Pinegrove School, Subathu is located in the salubrious and pristine environment of Solan District in the Shimla ranges and is situated in the most picturesque scenery and pollution-free environment at a height of about 3300 feet in exotic valley of erstwhile Kuthar State on the Subathu-Kuthar-Kasauli- State Highway along the banks of a perennial stream. The gentle gurgling brook with cascading waters, babbles through the campus thus heightening the serenity of the campus.</p>
                     

@@ -134,7 +134,7 @@
                        @foreach ($records as  $record)                     
                                 
                                         <tr>
-                                            <td>{{$record->menu_id ?? '' }}</td>
+                                            <td>{{$record->Menu->name ?? '' }}</td>
                                             
                                             <td>
                                                 {{$record->title ?? '' }}
