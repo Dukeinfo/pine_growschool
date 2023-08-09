@@ -57,7 +57,7 @@
                                         <label class="form-label">News</label>
                                     
                                  <div wire:ignore>
-                                         <textarea  wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat" ></textarea>
+                                         <textarea  id="editor" wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat" ></textarea>
                                  </div>
                                  <script>
                                             document.addEventListener('livewire:load', function () {

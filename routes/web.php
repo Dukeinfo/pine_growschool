@@ -16,8 +16,10 @@ use App\Http\Livewire\Backend\Submenu\EditSubMenu;
 use App\Http\Livewire\Backend\Submenu\TrashSubMenu;
 use App\Http\Livewire\Backend\Master\ViewClass;
 use App\Http\Livewire\Backend\Master\EditClass;
+use App\Http\Livewire\Backend\Master\TrashClass;
 use App\Http\Livewire\Backend\Master\ViewSection;
 use App\Http\Livewire\Backend\Master\EditSection;
+use App\Http\Livewire\Backend\Master\TrashSection;
 use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
 use App\Http\Livewire\Backend\Blog\EditBlog;
@@ -27,6 +29,7 @@ use App\Http\Livewire\Backend\Department\EditDepartment;
 use App\Http\Livewire\Backend\Department\TrashDepartment;
 use App\Http\Livewire\Backend\News\ViewLatestNews;
 use App\Http\Livewire\Backend\News\EditLatestNews;
+use App\Http\Livewire\Backend\News\TrashLatestNews;
 use App\Http\Livewire\Backend\Gallery\ViewGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\EditGalleryCategory;
 use App\Http\Livewire\Backend\Gallery\TrashGalleryCategory;
@@ -164,9 +167,10 @@ Route::get('/view/submenu/trash', TrashSubMenu::class)->name('trash_subnmenu');
 
 Route::get('/view/class', ViewClass::class)->name('view_class');
 Route::get('/edit/class/{id}', EditClass::class)->name('edit_class');
+Route::get('/view/class/trash', TrashClass::class)->name('trash_class');
 Route::get('/view/section', ViewSection::class)->name('view_section');
 Route::get('/edit/section/{id}', EditSection::class)->name('edit_section');
-
+Route::get('/view/section/trash', TrashSection::class)->name('trash_section');
 
 // Route::post('ckeditor/upload', [CkImageUploadController::class, 'upload'])->name('image.upload');
 // Route::get('/ckeditor-image-upload', function () {
@@ -193,6 +197,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
     Route::get('/view/latestnews', ViewLatestNews::class)->name('view_news');
     Route::get('/edit/latestnews/{id}', EditLatestNews::class)->name('edit_news');
+    Route::get('/view/latestnews/trash', TrashLatestNews::class)->name('trash_news');
 
     Route::get('/manage/gallery', ManageGallery::class)->name('manage_gallery');
     Route::get('/edit/gallery/{id}', EditGallery::class)->name('edit_gallery');
