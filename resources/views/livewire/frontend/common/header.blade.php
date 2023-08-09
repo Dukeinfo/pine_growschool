@@ -100,7 +100,7 @@
                                 @foreach($getmenus as $menu)
                                 <li class="menu-item-has-children">
                                     @php
-                                    $getSubmenus = App\Models\Submenu::where('menu_id',$menu->id )->orderBy('sort_id','asc')->where('status','Active')->get();	 
+                                    $getSubmenus = App\Models\Submenu::where('cms', 'No')->where('menu_id',$menu->id )->orderBy('sort_id','asc')->where('status','Active')->get();	 
 
                                      $getpage =   App\Models\CreatePage::where('menu_id',$menu->id )->with(['SubMenu'])->orderBy('sort_id','asc')->where('status','Active')->get()    
                                 @endphp
@@ -112,15 +112,18 @@
                                         @php
                                             $fallbackRouteName = 'fallback.route.name'; // Replace with the actual fallback route name
                                         @endphp
-                                        <li><a href="{{isset($menu->link) ? route($menu->link) : '#' }}">{{$menu->name ?? ''}}</a></li>
-                                   
+                                        @if(isset($getSubmenus))
+                                        @foreach($getSubmenus as $submenu)
+                                        
+                                        <li><a href="{{isset($submenu->pname) ? route($submenu->pname) : '#' }}">{{$submenu->name ?? ''}}</a></li>
+                                   @endforeach
+                                   @endif
+
+
                                         @if(isset($getpage))
                                              @foreach($getpage as $page)
                                                  {{-- @php $encryptedId = encrypt($page->id); @endphp --}}
                                                 <li><a href="{{route('detail_page',['page_id' => $page->id ?? '', 'slug' => $page->SubMenu->display_name ?? ''])}}">{{$page->SubMenu->display_name ?? ''}}</a></li>
-                                            
-                                            
-                                            
                                                 @endforeach
                                                 @endif
    
