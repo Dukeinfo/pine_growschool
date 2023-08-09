@@ -89,12 +89,20 @@
                                 </div>
 
                            
+                         
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label"> Page Name</label>
-                                        <input type="text" class="form-control"  wire:model="pname" placeholder="Page Name" {{$cms == "Yes" ? 'disabled' : ''}} >
+                                        <select name="selected_route" wire:model="pname" id="selected_route"  class="form-control">
+                                         <option  >Select page</option>
+                                          
+                                            @foreach(Route::getRoutes() as $route)
+                                            @if (str_starts_with($route->getName(), 'home.') )
+                                                <option value="{{ $route->getName() }}"  class="form-control">{{ $route->getName() }}</option>
+                                           @endif
+                                                @endforeach
+                                        </select>
                                         @error('pname') <span class="error">{{ $message }}</span> @enderror
-                                   
                                     </div>
                                 </div>
                           
@@ -146,31 +154,10 @@ $thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/ima
                                 <div class="col-md-12">
                                     <div class="mb-3" wire:ignore>
                                         <label class="form-label"> Seo Description</label>
-                                       <textarea id="editor" wire:model="seo_description" placeholder="Seo Description here..." class="form-control xtra-cat"></textarea>  @error('seo_description') <span class="error">{{ $message }}</span> @enderror
+                                       <textarea  wire:model="seo_description" placeholder="Seo Description here..." class="form-control xtra-cat"></textarea>  @error('seo_description') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>
-                                    <script>
-                                            document.addEventListener('livewire:load', function () {
-                                                // Get the CSRF token from the meta tag
-                                                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                                    
-                                                CKEDITOR.replace('editor', {
-                                                    // filebrowserUploadUrl: '{{ route("image.upload") }}', // Set the image upload endpoint URL
-                                                    filebrowserUploadUrl: "{{route('image.upload', ['_token' => csrf_token() ])}}",
-                                                    filebrowserUploadMethod: 'form', // Use form-based file upload (default is XMLHttpRequest)
-                                                    filebrowserBrowseUrl: '/ckfinder/ckfinder.html', // Set the CKFinder browse server URL
-                                                    filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images', // Set the CKFinder image browse server URL
-                                                    headers: {
-                                                        'X-CSRF-TOKEN': csrfToken // Pass the CSRF token with the request headers
-                                                    },
-                                                    
-                                                });
-                                    
-                                                CKEDITOR.instances.editor.on('change', function () {
-                                                    @this.set('seo_description', CKEDITOR.instances.editor.getData());
-                                                });
-                                            });
-                                        </script>
+                                   
                                         
                                 </div>
                                 <div class="col-md-12">
