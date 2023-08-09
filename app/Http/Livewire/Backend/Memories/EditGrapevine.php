@@ -25,7 +25,7 @@ class EditGrapevine extends Component
         $this->grapDate = $grepevine->date;
         $this->year = $grepevine->year;
         $this->issuenumber = $grepevine->issuenumber;
-        $this->editdocument = $grepevine->document;
+        $this->document = $grepevine->document;
     	$this->sort_id = $grepevine->sort_id;
     	$this->status = $grepevine->status;
      }

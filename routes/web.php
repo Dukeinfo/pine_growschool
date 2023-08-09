@@ -38,6 +38,7 @@ use App\Http\Livewire\Backend\Gallery\EditGallery;
 use App\Http\Livewire\Backend\Gallery\TrashGallery;
 use App\Http\Livewire\Backend\Gallery\ViewOurTopper;
 use App\Http\Livewire\Backend\Gallery\EditOurTopper;
+use App\Http\Livewire\Backend\Gallery\TrashOurTopper;
 use App\Http\Livewire\Backend\Gallery\ViewKnowledgeHome;
 use App\Http\Livewire\Backend\Gallery\EditKnowledgeHome;
 use App\Http\Livewire\Backend\Membership\ViewMembership;
@@ -205,6 +206,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
    Route::get('/view/our-topper', ViewOurTopper::class)->name('view_our_topper');
     Route::get('/edit/our-topper/{id}', EditOurTopper::class)->name('edit_our_topper');
+   Route::get('/view/our-topper/trash', TrashOurTopper::class)->name('trash_our_topper');
 
     Route::get('/view/knowledge-home', ViewKnowledgeHome::class)->name('view_knowledge_home');
      Route::get('/edit/knowledge-home/{id}', EditKnowledgeHome::class)->name('edit_knowledge_home');

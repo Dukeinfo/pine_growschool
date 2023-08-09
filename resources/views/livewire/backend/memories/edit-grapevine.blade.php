@@ -73,7 +73,7 @@
                                         <input type="file" class="form-control" id="" wire:model="editdocument" >
                                         @error('editdocument') <span class="error">{{ $message }}</span> @enderror
                                     </div>
-                                    <a href="javascript:void(0)" wire:click="download('{{$editdocument ?? '' }}')"> Download </a>
+                                    <a href="javascript:void(0)" wire:click="download('{{$document ?? '' }}')"> Download </a>
 
                                 </div>
                                  
