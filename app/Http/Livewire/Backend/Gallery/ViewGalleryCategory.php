@@ -10,6 +10,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\Type\NullType;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 class ViewGalleryCategory extends Component
 {
     use WithFileUploads;
@@ -49,7 +50,7 @@ class ViewGalleryCategory extends Component
 
       $categories = new Categories();
       $categories->name = $this->name ?? NULL;
-      $categories->slug =  strtolower(str_replace(' ', '-',$this->name))?? Null;
+      $categories->slug =  $this->createSlug($this->name ?? NULL);
       $categories->image = $uploadedData['file_name'] ?? NULL;
       $categories->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
       $categories->sort_id =$this->sort ?? NULL;
@@ -66,6 +67,39 @@ class ViewGalleryCategory extends Component
 
 
    }
+
+
+     //CREATE SLUG
+    public function createSlug($title, $id = 0)
+       {
+        $slug =  Str::slug($title);
+        $allSlugs = $this->getRelatedSlugs($slug, $id);
+        if (! $allSlugs->contains('slug', $slug)){
+            return $slug;
+        }
+
+        $i = 1;
+        $is_contain = true;
+        do {
+            $newSlug = $slug . '-' . $i;
+            if (!$allSlugs->contains('slug', $newSlug)) {
+                $is_contain = false;
+                return $newSlug;
+            }
+            $i++;
+        } while ($is_contain);
+      }
+
+
+      //INCREMENT SLUG
+      protected function getRelatedSlugs($slug, $id = 0)
+      {
+          return Categories::select('slug')->where('slug', 'like', $slug.'%')
+          ->where('id', '<>', $id)
+          ->get();
+      }
+
+
 
    public function delete($id){
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-
+use Illuminate\Support\Str;
 class ManageGallery extends Component
 {
 	use WithFileUploads;
@@ -88,9 +88,9 @@ class ManageGallery extends Component
       $gallery->title = $this->title;
       $gallery->year = $this->year;
       $gallery->s_name = $this->s_name;
-
       $gallery->image = $uploadedData['file_name'] ?? NULL;
       $gallery->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
+      $gallery->slug =  $this->createSlug($this->title ?? NULL);
       $gallery->sort_id =$this->sort;
       $gallery->status = $this->status;
       $gallery->save();
@@ -106,6 +106,37 @@ class ManageGallery extends Component
 
 
    }
+
+      //CREATE SLUG
+    public function createSlug($title, $id = 0)
+       {
+        $slug =  Str::slug($title);
+        $allSlugs = $this->getRelatedSlugs($slug, $id);
+        if (! $allSlugs->contains('slug', $slug)){
+            return $slug;
+        }
+
+        $i = 1;
+        $is_contain = true;
+        do {
+            $newSlug = $slug . '-' . $i;
+            if (!$allSlugs->contains('slug', $newSlug)) {
+                $is_contain = false;
+                return $newSlug;
+            }
+            $i++;
+        } while ($is_contain);
+      }
+
+
+      //INCREMENT SLUG
+      protected function getRelatedSlugs($slug, $id = 0)
+      {
+          return Gallery::select('slug')->where('slug', 'like', $slug.'%')
+          ->where('id', '<>', $id)
+          ->get();
+      }
+
 
 
      public function delete($id){

@@ -125,16 +125,21 @@
                     </div>
                     <div class="col-lg-8">
                         <h5 class="subTitle">Picture Gallery</h5>
-                        <h2 class="secTitle">Convocation Ceremony</h2>
+                        <h2 class="secTitle">{{$category}}</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A ducimus similique error asperiores fugit provident iure beatae odit cumque, doloribus vero fugiat ex, rerum quidem maxime iste maiores consectetur? Aliquid voluptatum sunt illum eius!</p>
     
                         <div class="row photos g-4">
+                         @if(isset($records) && count($records)>0 )                      
+                           @foreach ($records as  $record) 
+   
                             <div class="col-sm-6 col-md-4 col-lg-4 item">
-                                <a href="assets/images/gallery/img3.jpg" data-lightbox="photos">
-                                    <img class="img-fluid" src="assets/images/gallery/img3.jpg">
+                                <a href="{{ asset('storage/uploads/gallery').'/'.$record->image }}" data-lightbox="photos">
+                                    <img class="img-fluid" src="{{ asset('storage/uploads/gallery').'/'.$record->image }}">
                                 </a>
                             </div>
-                            <div class="col-sm-6 col-md-4 col-lg-4 item">
+                          @endforeach
+                              @endif   
+                           <!--  <div class="col-sm-6 col-md-4 col-lg-4 item">
                                 <a href="assets/images/gallery/gd1.jpg" data-lightbox="photos">
                                     <img class="img-fluid" src="assets/images/gallery/gd1.jpg">
                                 </a>
@@ -178,7 +183,7 @@
                                 <a href="assets/images/gallery/gd9.jpg" data-lightbox="photos">
                                     <img class="img-fluid" src="assets/images/gallery/gd9.jpg">
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

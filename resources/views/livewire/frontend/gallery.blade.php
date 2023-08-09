@@ -130,20 +130,30 @@
                             ex ea consequuntur atque earum, iusto perferendis!</p>
     
                         <div class="row">
+                    @if(isset($categoires))                      
+                        @foreach ($categoires as  $category) 
+
+                          @php
+                            $photos = App\Models\Gallery::where(['category_id'=> $category->id,'status'=>'Active' ])->get();  
+                            $count=count($photos);    
+                          @endphp
+        
                             <div class="col-lg-6 col-sm-6">
                                 <div class="blogItem01 biMB">
     
                                     <div class="blogThumb">
-                                        <img src="assets/images/gallery/img1.jpg" alt="">
+                                    <img src="{{ asset('storage/uploads/gallery_cat').'/'.$category->image }}" alt="">
+
                                     </div>
                                     <div class="blogContent p-4">
                                         <sapn class="small">
-                                            <i class="fa fa-images me-2"></i> Total Photos: 10
+                                            <i class="fa fa-images me-2"></i> Total Photos:{{$count ?? '' }}
                                         </sapn>
                                         <h5>
-                                            <a href="" class="text-dark">Inter School Competition</a>
+                                            <a href="" class="text-dark">{{ $category->name ?? '' }}</a>
                                         </h5>
-                                        <a class="rmBtn" href="">View More
+                                     
+                                     <a class="rmBtn" href="{{route('home.gallery_detail',[ 'category_id' => $category->id])}}">View More
                                             <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -154,7 +164,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-sm-6">
+                    @endforeach
+                        @endif    
+
+
+                            <!-- <div class="col-lg-6 col-sm-6">
                                 <div class="blogItem01 biMB">
     
                                     <div class="blogThumb">
@@ -273,11 +287,15 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-5 mx-auto mt-5">
+                            </div> -->
+ <div class="pagination">
+              {!! $categoires->links() !!}
+ </div>
+                         <!-- <div class="col-lg-5 mx-auto mt-5">
                                 <nav class="justify-content-center">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled">
+                                 <ul class="pagination">
+                                        
+                                         <li class="page-item disabled">
                                             <a class="page-link">Previous</a>
                                         </li>
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -287,15 +305,37 @@
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                                         <li class="page-item">
                                             <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
+                                        </li> 
+                                    </ul> 
                                 </nav>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </section>
         <!-- End: Section -->
     
+                           
+ 
+    <style>
+.pagination svg {
+    width: 20px;
+}
+.pagination nav {
+    display: flex;
+}
+.pagination nav > div + div {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+.pagination nav > div + div > div + div {
+    margin-left: 20px;
+}
+.pagination nav > div + div p.text-sm {
+    margin: 0;
+}
+</style>
 </div>

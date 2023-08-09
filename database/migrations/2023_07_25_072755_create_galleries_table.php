@@ -21,6 +21,7 @@ class CreateGalleriesTable extends Migration
             $table->string('s_name')->nullable(); 
             $table->string('image')->nullable(); 
             $table->string('thumbnail')->nullable(); 
+            $table->text('slug')->nullable();
             $table->integer('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();

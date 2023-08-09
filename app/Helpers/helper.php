@@ -33,3 +33,6 @@ function gettestimonia($value) {
 function downloaddocument($value) {
     return asset('storage/uploads/document/'.$value);
 }
+
+
+
