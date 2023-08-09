@@ -83,6 +83,7 @@ use App\Http\Livewire\Frontend\OurFounder;
 use Illuminate\Support\Facades\Route;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
