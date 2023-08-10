@@ -66,7 +66,7 @@ class ContactUs extends Component
 if (empty($this->getErrorBag()->messages())) {
       
         // Send email
-        Mail::to('your@email.com')->send(new ContactUsMail([
+        Mail::to('info@juriskart.com')->send(new ContactUsMail([
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
