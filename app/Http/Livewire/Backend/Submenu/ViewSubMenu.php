@@ -32,7 +32,7 @@ class ViewSubMenu extends Component
     protected $rules = [ 
         'menu_id' => 'required', 
         'name' => 'required | unique:submenus,name', 
-        'sort_id' => 'required | unique:submenus,sort_id',
+        'sort_id' => 'required',
         'cms' => 'required', 
         // 'pname' => 'required', 
         'status' => 'required', 
