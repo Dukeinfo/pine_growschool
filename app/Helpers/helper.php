@@ -13,6 +13,10 @@ function authUserId(){
 function getThumbnail($value) {
     return asset('uploads/thumbnail/'.$value);
 }
+function getsubmenuImage($value) {
+    return asset('storage/uploads/submenu/'.$value);
+}
+
 
 
 function getTopperImages($value) {
@@ -36,3 +40,7 @@ function downloaddocument($value) {
 
 
 
+function getUserIp()
+{
+    return !empty(request()->server('HTTP_CF_CONNECTING_IP')) ? request()->server('HTTP_CF_CONNECTING_IP') : request()->getClientIp();
+}

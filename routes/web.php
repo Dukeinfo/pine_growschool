@@ -57,6 +57,8 @@ use App\Http\Livewire\Backend\Testimonials\EditTestimonials;
 use App\Http\Livewire\Backend\Testimonials\TrashTestimonials;
 use App\Http\Livewire\Backend\Boardmembers\ViewBoardMembers;
 use App\Http\Livewire\Backend\Boardmembers\EditBoardMembers;
+use App\Http\Livewire\Backend\Contact\ContactFormEntries;
+use App\Http\Livewire\Backend\Contact\ViewContactFormEntry;
 use App\Http\Livewire\Backend\Login\AdminLogin;
 use App\Http\Livewire\Backend\Pages\CreatePage;
 use App\Http\Livewire\Backend\Pages\EditPage;
@@ -261,9 +263,9 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
     Route::get('/social-view', SocialAppsManager::class)->name('social_view');
     
     
-    
+    Route::get('/contact-entries', ContactFormEntries::class)->name('contact_entries');
 
-      
+    Route::get('/contact-entry/{id}', ViewContactFormEntry::class)->name('contact_view_entry');
      
     
 });

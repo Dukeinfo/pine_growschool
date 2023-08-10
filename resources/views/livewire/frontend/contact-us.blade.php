@@ -107,38 +107,60 @@
                             <h5 class="subTitle">Get in Touch</h5>
                             <h3 class="secTitle">Have any Question?<br> Feel Free to Reach Us</h3>
                             <div class="contactForm">
-                                <form id="contact_form">
+                                <form id="contact_form" wire:submit.prevent="send">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-12 col-sm-6">
                                             <div class="input-box">
-                                                <input type="text" name="firstName" placeholder="Name">
+                                                <input type="text" wire:model="name" name="firstName" placeholder="Name">
+                                                @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-12 col-sm-6">
                                             <div class="input-box">
-                                                <input type="text" name="conEmail" placeholder="Email address">
+                                                <input type="email" wire:model="email" name="conEmail" placeholder="Email address">
+                                                @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+                                           
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-12 col-sm-6">
                                             <div class="input-box">
-                                                <input type="text" name="conPhone" placeholder="Phone" autocomplete="off">
+                                                <input type="text" wire:model="phone" name="conPhone" placeholder="Phone" autocomplete="off">
+                                                @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
+                                            
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-12 col-sm-6">
                                             <div class="input-box">
-                                                <input type="text" name="conSubject" placeholder="Subject">
-                                            </div>
+                                                <input type="text" wire:model="subject" name="conSubject" placeholder="Subject">
+                                                @error('subject') <span class="text-danger">{{ $message }}</span> @enderror
+                                            
+                                            </div> 
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="input-box">
-                                                <textarea name="conMessage" placeholder="Message"></textarea>
+                                                <textarea name="conMessage"  wire:model="message" placeholder="Message"></textarea>
+                                                @error('message') <span class="text-danger">{{ $message }}</span> @enderror
+                                            
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <button type="submit" value="Send Message" class="immiPressBtn">
+                                            <button type="submit" wire:loading.attr="disabled" value="Send Message" class="immiPressBtn">
                                                 <span>Send Message</span>
                                             </button>
-                                            <div class="alert con_message"></div>
+
+
+                                          
+                                            <div wire:loading wire:target="send">
+                                                <img src="{{asset('loading.gif')}}" width="70" height="70" class="m-auto mt-1/4">
+                                             </div>
+                                            {{-- <div class="alert con_message"></div> --}}
+                                            @if (session()->has('success'))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                <i class="mdi mdi-check-all me-2"></i>
+                                                {{ session('success') }}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </form>

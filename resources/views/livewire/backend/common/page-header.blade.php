@@ -219,7 +219,7 @@
 				<a class="dropdown-item" href="{{route('admin_profile')}}"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Profile</span></a>
 				<a class="dropdown-item" href="{{route('contact_view')}}"><i class="bx bx-wallet font-size-16 align-middle me-1"></i> <span key="t-my-wallet">Contact us</span></a>
 				<a class="dropdown-item d-block" href="{{route('social_view')}}"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span key="t-settings"> Social App</span></a>
-				<a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span key="t-lock-screen">Lock screen</span></a>
+				<a class="dropdown-item" href="{{route('contact_entries')}}"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span key="t-lock-screen">Messages </span></a>
 				<div class="dropdown-divider"></div>
 				
 				<form method="post" id="logoutForm" action="{{route('adminlogout')}}">

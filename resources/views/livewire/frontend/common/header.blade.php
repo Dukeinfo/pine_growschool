@@ -90,7 +90,8 @@
                         <nav class="mainMenu">
                             @php
                             $getmenus = App\Models\Menu::orderBy('sort_id','asc')->where('status','Active')->take(6)->get();	 
-                             @endphp
+                           
+                           @endphp
                             <ul class="sub-menu">
                                 <li>
                                     <a href="{{route('homepage')}}">Home</a>
@@ -98,26 +99,35 @@
                                 @if(isset($getmenus) )
                                 @foreach($getmenus as $menu)
                                 <li class="menu-item-has-children">
-                            
+                                    @php
+                                    $getSubmenus = App\Models\Submenu::where('cms', 'No')->where('menu_id',$menu->id )->orderBy('sort_id','asc')->where('status','Active')->get();	 
+
+                                     $getpage =   App\Models\CreatePage::where('menu_id',$menu->id )->with(['SubMenu'])->orderBy('sort_id','asc')->where('status','Active')->get()    
+                                @endphp
+                                
                                     <a href="javascript:void(0)}">{{$menu->name ?? ''}}</a>
                                     
-                                    @php
-                                        $getpage =   App\Models\CreatePage::where('menu_id',$menu->id )->with(['SubMenu'])->orderBy('sort_id','asc')->where('status','Active')->get()    
-                                   @endphp
+                              
                                     <ul class="sub-menu">
                                         @php
                                             $fallbackRouteName = 'fallback.route.name'; // Replace with the actual fallback route name
                                         @endphp
-                                        <li><a href="{{isset($menu->link) ? route($menu->link) : '#' }}">{{$menu->name ?? ''}}</a></li>
-                                   
-                                             @foreach($getpage as $page)
-                                             @if(isset($page))
-                                                 {{-- @php $encryptedId = encrypt($page->id); @endphp --}}
-                                                <li><a href="{{route('detail_page',['page_id' => $page->id, 'slug' => $page->slug])}}">{{$page->SubMenu->display_name}}</a></li>
-                                             @endif
-                                            @endforeach
+                                        @if(isset($getSubmenus))
+                                        @foreach($getSubmenus as $submenu)
+                                        
+                                        <li><a href="{{isset($submenu->pname) ? route($submenu->pname) : '#' }}">{{$submenu->name ?? ''}}</a></li>
+                                   @endforeach
+                                   @endif
 
-                                    
+
+                                        @if(isset($getpage))
+                                             @foreach($getpage as $page)
+                                                 {{-- @php $encryptedId = encrypt($page->id); @endphp --}}
+                                                <li><a href="{{route('detail_page',['page_id' => $page->id ?? '', 'slug' => $page->SubMenu->display_name ?? ''])}}">{{$page->SubMenu->display_name ?? ''}}</a></li>
+                                                @endforeach
+                                                @endif
+   
+                                   
                                     </ul>
                                 </li>
                                 @endforeach
@@ -125,7 +135,7 @@
 
 
                                 <li>
-                                    <a href="javascript:void(0);">Calendar</a>
+                                    <a href="{{route('home.contact_us')}}">Contact us</a>
                                 </li>
                             </ul>
                         </nav>
