@@ -48,10 +48,8 @@
                        </div>
                        <div class="col-md-6">
                        <button type="submit" class="btn btn-primary " style="margin-top: 25px;">Import</button>
-
-                       <a class="btn btn-success"  style="margin-top: 25px;" >Export Staff</a>
-                       
-                       <a class="btn btn-warning"  style="margin-top: 25px;"  >Sample Staff</a>
+                       <a class="btn btn-success"  style="margin-top: 25px;"  wire:click="export_topper()">Export Topper</a>
+                       <a class="btn btn-warning"  style="margin-top: 25px;"  wire:click="sampleexport()">Sample Topper</a>
                    
                    </div>
                       </div>

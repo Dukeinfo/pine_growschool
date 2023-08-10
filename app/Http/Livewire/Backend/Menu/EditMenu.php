@@ -24,7 +24,7 @@ class EditMenu extends Component
         $menu->name = $this->name;
         $menu->link = $this->link;
         $menu->sort_id =$this->sort;
-        $menu->link =$this->link;
+        // $menu->link =$this->link;
 
         $menu->status = $this->status;
         $menu->login =  Auth::user()->id;

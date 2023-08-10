@@ -90,40 +90,42 @@
 
                            
                          
+
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label"> Page Name</label>
-                                        <select name="selected_route" wire:model="pname" id="selected_route"  class="form-control">
+                                        <select name="selected_route"  wire:model="pname"  @if($cms == "Yes") disabled  @endif   id="selected_route"   class="form-control">
                                          <option  >Select page</option>
                                           
                                             @foreach(Route::getRoutes() as $route)
                                             @if (str_starts_with($route->getName(), 'home.') )
-                                                <option value="{{ $route->getName() }}"  class="form-control">{{ $route->getName() }}</option>
+                                                <option value="{{ $route->getName() }}"    class="form-control">{{ $route->getName() }}</option>
                                            @endif
                                                 @endforeach
                                         </select>
                                         @error('pname') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                          
+                        
                             <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Upload image  <span class="text-danger">*</span></label>
-                                        <input type="file" class="form-control"   wire:model="editimage">
+                                        <input type="file" class="form-control"  @if($cms == "No") disabled  @endif  wire:model="editimage">
 
- @if(isset($editimage))  
- <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
-@else                                        
-@php    
-$thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/images/no-img.jpg');
-@endphp                                      
-<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
-@endif
+                                        @if(isset($editimage))  
+                                        <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
+                                        @else                                        
+                                        @php    
+                                        $thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/images/no-img.jpg');
+                                        @endphp                                      
+                                        <img src="{{$thumb}}" alt="" class="border" width="100" height="70">
+                                        @endif
                                         @error('editimage') <span class="error">{{ $message }}</span> @enderror
                                     
                                     </div>
                                 </div>
                                 
+                             
 
                                 <div class="col-md-6">
                                     <div class="mb-3">

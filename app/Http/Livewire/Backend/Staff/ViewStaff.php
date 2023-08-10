@@ -45,8 +45,6 @@ class ViewStaff extends Component
 
     public function export_staff(){
         //  $data = Staff::all(); // Replace 'Example' with your model
-  
-
         return Excel::download(new ExportStaff($this->selectedFields, $this->customHeadings), 'Staff.xlsx');
    
     }

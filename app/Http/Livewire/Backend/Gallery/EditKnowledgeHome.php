@@ -8,7 +8,7 @@ use App\Models\KnowledgeHome;
 class EditKnowledgeHome extends Component
 {
 
-   public $knowledgeId,$logo,$title,$desc,$link,$sort_id,$status;
+   public $knowledgeId,$logo,$title,$desc,$link,$sort_id,$status ,$sort;
 
     public function mount($id)
      {

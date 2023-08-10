@@ -13,7 +13,7 @@
                      <a href="{{url('/')}}"><img src="{{asset('assets/images/flogo.png')}}" alt="Pinegrove"></a>
                     
                     
-                    <p>{{$contactInfo->disclaimer ?? ''}}
+                    <p>{{$contactInfo->disclaimer ?? 'Pinegrove School, established in 1991, is a Co-educational, purely residential, English medium public school affiliated to the Central Board of Secondary Education (CBSE), Delhi, up to 10th and 12th Grades. Pinegrove is a Regional Member of the Round Square, is accredited with ISO 9001:2008 (BSI) and is a member of the prestigious Indian Public Schools` Conference (IPSC).'}}
                     </p>
                     <div class="abSocial">
                         <a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
@@ -89,7 +89,7 @@
     <div class="container pb-5">
         <div class="row">
             <div class="col-md-6">
-                <p class="copyright">Copyright 2023 by Pinegrove All Right Reserved.</p>
+                <p class="copyright">Copyright {{date('Y')}} by Pinegrove All Right Reserved.</p>
             </div>
             <div class="col-md-6">
                 <div class="crMenu">

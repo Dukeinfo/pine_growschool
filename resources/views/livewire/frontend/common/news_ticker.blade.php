@@ -32,3 +32,4 @@
         </div>
     </div>
 </section>
+<div class="blanks"></div>

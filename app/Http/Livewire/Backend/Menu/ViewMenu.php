@@ -46,7 +46,7 @@ class ViewMenu extends Component
 
       $menu = new Menu();
       $menu->name = $this->name;
-      $menu->link = $this->link;
+      // $menu->link = $this->link;
       $menu->sort_id =$this->sort;
       $menu->status = $this->status;
       $menu->login =  Auth::user()->id;

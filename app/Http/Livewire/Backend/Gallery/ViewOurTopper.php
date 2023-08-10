@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Backend\Gallery;
 
+use App\Exports\ExportTopper;
+use App\Exports\ExportTopperSample;
 use App\Imports\OurToppersImport;
 use Livewire\Component;
 use App\Models\ClassMaster;
@@ -22,8 +24,13 @@ class ViewOurTopper extends Component
 {
     use WithFileUploads;
     use UploadTrait;
-    public $file;
+    public $file  ,$getClass   ,$getSection  ,$records;
+
     public $category,$name,$classname,$section,$percentage,$link,$image,$sort_id,$status;
+    public   $selectedFields = [ 'category',	'name',	'class',	'section'	,'percentage'	,'image'	,'thumbnail',	'link',	'sort_id',	'status']; 
+    public  $customHeadings = [ 'Category',	'Name',	'Class',	'Section'	,'Percentage'	,'Image'	,'Thumbnail',	'Link',	'Sort ID',	'Status']; 
+
+   
 
     protected $rules = [
         'category' => 'required', 
@@ -115,4 +122,20 @@ class ViewOurTopper extends Component
         session()->flash('error', 'Error importing Topper students Please check your Excel file and try again.');
     }
     }
+
+    
+
+
+public function export_topper(){
+  //  $data = Staff::all(); // Replace 'Example' with your model
+  return Excel::download(new ExportTopper($this->selectedFields, $this->customHeadings), 'OurToppesr.xlsx');
+
+}
+
+public function sampleexport() {
+      return Excel::download(new ExportTopperSample(), 'toppersample.xlsx');
+  }
+
+
+
 }

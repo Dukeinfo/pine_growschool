@@ -36,7 +36,7 @@ class ViewSubMenu extends Component
         'cms' => 'required', 
         // 'pname' => 'required', 
         'status' => 'required', 
-        'image' =>  'required|file', 
+        // 'image' =>  'required|file', 
      
       ];
       protected $messages = [

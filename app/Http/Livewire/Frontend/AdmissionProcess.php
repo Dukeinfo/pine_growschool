@@ -28,7 +28,7 @@ class AdmissionProcess extends Component
     SEOTools::twitter()->setSite('Pinegrow school');
     SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
     $keywords = $this->seo_keywords;
-    SEOMeta::addKeyword( $keywords);
+    SEOMeta::addKeyword( $keywords ?? '');
     
 }
 
