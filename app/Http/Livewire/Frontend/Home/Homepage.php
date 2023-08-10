@@ -35,8 +35,6 @@ public function mount(){
     SEOTools::opengraph()->addProperty('type', 'website');
     SEOTools::twitter()->setSite('Pinegrow school');
     SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
-
-
     $keywords = $this->seo_keywords;
     SEOMeta::addKeyword( $keywords);
     

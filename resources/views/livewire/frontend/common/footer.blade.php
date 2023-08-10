@@ -1,18 +1,19 @@
 
 <footer class="footer_02" style="background-image: url({{asset('assets/images/bg/footer-bg.png')}});">
 
+    @php
+     $contactInfo = App\Models\ContactInfo::orderBy('sort_id','asc')->where('status','Active')->first();     
+                           
+    @endphp
     <div class="container">
         <div class="row">
             <!-- About Widget -->
             <div class="col-lg-3 col-md-5">
                 <aside class="aboutWidget">
-                    <a href="{{url('/')}}"><img src="{{asset('assets/images/flogo.png')}}" alt="Pinegrove"></a>
+                     <a href="{{url('/')}}"><img src="{{asset('assets/images/flogo.png')}}" alt="Pinegrove"></a>
                     
-                    <p>Pinegrove School, established in 1991, is a Co-educational, purely residential, English
-                        medium public school affiliated to the Central Board of Secondary Education (CBSE), Delhi,
-                        up to 10th and 12th Grades. Pinegrove is a Regional Member of the Round Square, is
-                        accredited with ISO 9001:2008 (BSI) and is a member of the prestigious Indian Public
-                        Schools` Conference (IPSC).
+                    
+                    <p>{{$contactInfo->disclaimer ?? ''}}
                     </p>
                     <div class="abSocial">
                         <a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
@@ -45,17 +46,17 @@
                     <div class="iconBox01">
                         <div class="ibBox"><i class="flaticon-placeholder"></i></div>
                         <h3 class="ibTitle">Address</h3>
-                        <p>Kuthar Road, Subathu 173 206<br>Distt. Solan HP, India</p>
+                        <p>{{$contactInfo->address ?? ''}}</p>
                     </div>
                     <div class="iconBox01">
                         <div class="ibBox"><i class="flaticon-phone-call"></i></div>
                         <h3 class="ibTitle">Phone</h3>
-                        <p>+91 980 5004 116</p>
+                        <p>{{$contactInfo->phone ?? ''}}</p>
                     </div>
                     <div class="iconBox01">
                         <div class="ibBox"><i class="flaticon-email-1"></i></div>
                         <h3 class="ibTitle">Email</h3>
-                        <p>subathu@pinegroveschool.com</p>
+                        <p>{{$contactInfo->email ?? ''}}</p>
                     </div>
                 </aside>
             </div>
