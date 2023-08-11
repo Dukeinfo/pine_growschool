@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call(Menuseeder::class);
         $this->call(SubmenuSeeder::class);
         $this->call(KnowledgeHomeSeeder::class);
+        $this->call(ClassSeeder::class);
+        $this->call(SectionSeeder::class);
 
 
-        
-        
+        // SELECT name, COUNT(*) as count FROM submenus GROUP BY name HAVING COUNT(*) > 1;
     }
 }

@@ -61,7 +61,7 @@
                                 <div class="blogItem01 biMB">
     
                                     <div class="blogThumb">
-                                    <img src="{{ asset('storage/uploads/gallery_cat').'/'.$category->image }}" alt="">
+                                    <img src="{{ isset($category->image) ? getGalleryCategory($category->image) : asset('no_image.jpg') }}" alt="">
 
                                     </div>
                                     <div class="blogContent p-4">
@@ -207,28 +207,18 @@
                                     </div>
                                 </div>
                             </div> -->
- <div class="pagination">
-              {!! $categoires->links() !!}
- </div>
-                         <!-- <div class="col-lg-5 mx-auto mt-5">
-                                <nav class="justify-content-center">
-                                 <ul class="pagination">
-                                        
-                                         <li class="page-item disabled">
-                                            <a class="page-link">Previous</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li> 
-                                    </ul> 
-                                </nav>
-                            </div>
-                        </div> -->
+                    {{-- <div class="pagination"> --}}
+
+                        
+                        <div class="col-lg-5 mx-auto mt-5">
+                            <nav class="justify-content-center">
+                                {!! $categoires->links() !!}
+
+                            </nav>
+                        </div>
+                    {{-- </div> --}}
+  
+                        </div>
                     </div>
                 </div>
             </div>

@@ -24,6 +24,12 @@ function getboardmembers($value) {
     return asset('storage/uploads/boardmembers/'.$value);
 }
 
+function getGalleryCategory($value) {
+    return asset('storage/uploads/gallery_cat/'.$value);
+}
+
+
+
 function getsliderImages($value) {
     return asset('storage/uploads/slider/'.$value);
 }
@@ -39,3 +45,5 @@ function getUserIp()
 {
     return !empty(request()->server('HTTP_CF_CONNECTING_IP')) ? request()->server('HTTP_CF_CONNECTING_IP') : request()->getClientIp();
 }
+
+

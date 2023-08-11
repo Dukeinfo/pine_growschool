@@ -42,7 +42,24 @@
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-
+                                <div class="col-md-2">
+                                    <div class="mb-3">
+                                        <label class="form-label">Sorting Order#</label>
+                                        <input type="number" class="form-control" id="" wire:model="sort" placeholder="Sorting Order" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
+                                        @error('sort') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="mb-3">
+                                        <label class="form-label">Status</label>
+                                        <select wire:model="status" class="form-select">
+                                        	 <option value="">Select</option>
+                                            <option>Active</option>
+                                            <option>Inactive</option>
+                                        </select>
+                                        @error('status') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="mb-3" >
                                         <label class="form-label">Description</label>
@@ -78,24 +95,7 @@
                                 </div>
 
                               
-                                <div class="col-md-2">
-                                    <div class="mb-3">
-                                        <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control" id="" wire:model="sort" placeholder="Sorting Order" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
-                                        @error('sort') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="mb-3">
-                                        <label class="form-label">Status</label>
-                                        <select wire:model="status" class="form-select">
-                                        	 <option value="">Select</option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                        </select>
-                                        @error('status') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
+
                         
 
                                <div>

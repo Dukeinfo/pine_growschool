@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class ViewClass extends Component
 {
 
-	public $classname,$sort_id,$status,$clientIp; 
+	public $classname,$sort_id,$status,$clientIp ,$records; 
 
 	protected $rules = [
         'classname' => 'required', 

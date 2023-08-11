@@ -20,11 +20,17 @@ class Gallery extends Component
 {
 
    use WithPagination;
-
+   protected $paginationTheme = 'bootstrap';
    public $selectedRecords = 2;
 
    public $seo_keywords;
 
+   public $search = '';
+ 
+   public function updatingSearch()
+   {
+	   $this->resetPage();
+   }
 	public function mount(){
 	    SEOTools::setTitle('Pinegrow school | Gallery');
 	    SEOTools::setDescription('This is my page description of Pinegrow school');
@@ -41,8 +47,13 @@ class Gallery extends Component
 
     public function render()
     {
-        return view('livewire.frontend.gallery',[
-        'categoires' => Categories::where('status','Active')->orderBy('sort_id')->latest()->paginate($this->selectedRecords)
-      ])->layout('layouts.frontend');
+		$categories = Categories::where('status', 'Active')
+            ->orderBy('sort_id')
+            ->latest()
+            ->paginate($this->selectedRecords);
+
+        return view('livewire.frontend.gallery', [
+            'categoires' => $categories,
+        ])->layout('layouts.frontend');
     }
 }

@@ -154,12 +154,7 @@
                                                 <label class="form-label"> Seo Description</label>
                                                 <textarea wire:model="seo_description" rows="5" cols="5" placeholder="Seo Description here..." class="form-control xtra-cat"></textarea>
                                                 @error('seo_description') <span class="error">{{ $message }}</span> @enderror
-                                            </div>
-                                        
-                                    
-                    
-                     
-                                   
+                                            </div>              
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -220,15 +215,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                 @if(isset($records) && count($records)>0 )                      
-               @foreach ($records as  $record)
+                                        @if(isset($records) && count($records)>0 )                      
+                                            @foreach ($records as  $record)
                  
                                         <tr><td>
                                             {{$record->sort_id ?? '' }} 
                                         </td>
                                             <td> {{$record->Menu->name ?? '' }}</td>
                                             <td>  
-                                                <img src="{{ getThumbnail($record->thumbnail) }}" alt="Image" width="100" height="70"/>
+                                                <img src="{{isset($record->thumbnail) ?  getThumbnail($record->thumbnail) : asset('no_image.jpg')}}" alt="Image" width="100" height="70"/>
                                             
                                             </td>
                                             <td>{{$record->name ?? '' }}</td>

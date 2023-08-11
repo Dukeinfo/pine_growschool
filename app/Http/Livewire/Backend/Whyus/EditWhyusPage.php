@@ -17,7 +17,7 @@ class EditWhyusPage extends Component
     use UploadTrait;	
     use WithFileUploads;
 
-    public $whyusId,$title,$heading,$image,$editimage,$desc,$link,$sort_id,$status;
+    public $whyusId,$title,$heading,$image,$editimage,$desc,$link,$sort_id,$status ,$thumbnail;
 
 
       public function mount($id){
@@ -54,7 +54,6 @@ class EditWhyusPage extends Component
       $whyus->status = $this->status;
       $whyus->save();
 
-      return redirect()->route('whyus_page'); 
 
      } else{  
 
@@ -68,9 +67,9 @@ class EditWhyusPage extends Component
       $whyus->status = $this->status;
       $whyus->save();
 
-      return redirect()->route('whyus_page'); 
 
       }  
+      return redirect()->route('whyus_page'); 
      
    }
 
