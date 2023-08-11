@@ -17,15 +17,12 @@ function getsubmenuImage($value) {
     return asset('storage/uploads/submenu/'.$value);
 }
 
-
-
 function getTopperImages($value) {
     return asset('storage/uploads/our_topper/'.$value);
 }
 function getboardmembers($value) {
     return asset('storage/uploads/boardmembers/'.$value);
 }
-
 
 function getsliderImages($value) {
     return asset('storage/uploads/slider/'.$value);
@@ -37,8 +34,6 @@ function gettestimonia($value) {
 function downloaddocument($value) {
     return asset('storage/uploads/document/'.$value);
 }
-
-
 
 function getUserIp()
 {

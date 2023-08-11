@@ -15,10 +15,12 @@ class CreateWhyusesTable extends Migration
     {
         Schema::create('whyuses', function (Blueprint $table) {
             $table->id();
-            $table->string('heading')->nullable();
-            $table->string('subheading')->nullable(); 
+            $table->string('title')->nullable();
+            $table->string('heading')->nullable(); 
             $table->text('description')->nullable();
             $table->string('slug')->nullable();
+            $table->string('image')->nullable();  
+            $table->string('thumbnail')->nullable();
             $table->string('link')->nullable();
              $table->integer('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');

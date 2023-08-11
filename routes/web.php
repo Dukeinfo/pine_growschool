@@ -52,6 +52,8 @@ use App\Http\Livewire\Backend\Seo\EditMetadetails;
 use App\Http\Livewire\Backend\Slider\ViewHomeSlider;
 use App\Http\Livewire\Backend\Slider\EditHomeSlider;
 use App\Http\Livewire\Backend\Slider\TrashHomeSlider;
+use App\Http\Livewire\Backend\Whyus\WhyusPage;
+use App\Http\Livewire\Backend\Whyus\EditWhyusPage;
 use App\Http\Livewire\Backend\Testimonials\ViewTestimonials;
 use App\Http\Livewire\Backend\Testimonials\EditTestimonials;
 use App\Http\Livewire\Backend\Testimonials\TrashTestimonials;
@@ -184,6 +186,9 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
     Route::get('/view/slider', ViewHomeSlider::class)->name('view_home_slider');
     Route::get('/edit/slider/{id}', EditHomeSlider::class)->name('edit_home_slider');
     Route::get('/view/slider/trash', TrashHomeSlider::class)->name('trash_home_slider');
+
+    Route::get('/whyus/page', WhyusPage::class)->name('whyus_page');
+    Route::get('/whyus/page/{id}', EditWhyusPage::class)->name('edit_whyus_page');
 
     Route::get('/view/membership', ViewMembership::class)->name('view_membership');
     Route::get('/edit/membership/{id}', EditMemberShip::class)->name('edit_membership');

@@ -71,7 +71,7 @@ class ViewSubMenu extends Component
         'image' => $uploadedData['file_name'] ?? Null,
         'thumbnail' => $uploadedData['thumbnail_name'] ?? Null,
         'url_link' => $this->url_link ?? Null,
-        'display_name' => $this->display_name ?? Null,
+        'display_name' => $this->display_name ?? Null,   //use slug here
         'seo_title' => $this->seo_title ?? Null,
         'seo_keywords' => $this->seo_keywords ?? Null,
         'seo_description' => $this->seo_description ?? Null,

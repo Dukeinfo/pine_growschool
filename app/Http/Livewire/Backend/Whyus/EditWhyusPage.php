@@ -10,53 +10,39 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
-class WhyusPage extends Component
+
+class EditWhyusPage extends Component
 {
+
     use UploadTrait;	
     use WithFileUploads;
 
-    public $title,$heading,$image,$desc,$link,$sort_id,$status;
+    public $whyusId,$title,$heading,$image,$editimage,$desc,$link,$sort_id,$status;
 
-    protected $rules = [
-        'title' => 'required', 
-        'heading' => 'required',
-        'image' => 'required', 
-        'desc' => 'required', 
-        'sort_id' => 'required', 
-        'status' => 'required', 
-       
-      ];
-      protected $messages = [
-          'title.required' => 'Title Required.',
-          'heading.required' => 'Heading Required.',
-          'image.required' => 'Image Required.',
-          'desc.required' => 'Description Required.',
-          'sort_id.required' => 'Sort Id Required.',
-          'status.required' => 'Status Required.',
-          
-      ];
-    private function resetInputFields(){
-        $this->title = '';
-        $this->heading = '';
-        $this->image = '';
-        $this->desc = '';
-        $this->link = '';
-        $this->sort_id = '';
-        $this->status = '';
-    }
 
-    public function addWhyus(){
+      public function mount($id){
+        $whyus = Whyus::findOrFail($id);
+        $this->whyusId = $whyus->id;
+        $this->title = $whyus->title;
+        $this->heading = $whyus->heading;
+        $this->image = $whyus->image;
+        $this->thumbnail = $whyus->thumbnail;
+        $this->desc = $whyus->description;
+        $this->sort_id = $whyus->sort_id;
+    	$this->status = $whyus->status;
+     }
 
-     $validatedData = $this->validate();
-     if(!is_null($this->image)){
-      $image =  $this->image;
+
+     public function editWhyus(){
+
+    
+     if(!is_null($this->editimage)){
+      $image =  $this->editimage;
       // Define folder path
       $folder = '/uploads/whyus';
       $uploadedData = $this->uploadOne($image, $folder);
 
-    }   
-
-      $whyus = new Whyus();
+      $whyus =Whyus::find($this->whyusId);
       $whyus->title = $this->title;
       $whyus->heading = $this->heading;
       $whyus->slug =  $this->createSlug($this->title ?? NULL);
@@ -68,16 +54,24 @@ class WhyusPage extends Component
       $whyus->status = $this->status;
       $whyus->save();
 
-       $this->resetInputFields();
+      return redirect()->route('whyus_page'); 
 
-       $this->dispatchBrowserEvent('swal:modal', [
-              'type' => 'success',  
-              'message' => 'Successfully save!', 
-          ]); 
+     } else{  
 
-    
+      $whyus =Whyus::find($this->whyusId);
+      $whyus->title = $this->title;
+      $whyus->heading = $this->heading;
+      $whyus->slug =  $this->createSlug($this->title ?? NULL);
+      $whyus->description = $this->desc;
+      $whyus->link = $this->link;
+      $whyus->sort_id =$this->sort_id;
+      $whyus->status = $this->status;
+      $whyus->save();
 
+      return redirect()->route('whyus_page'); 
 
+      }  
+     
    }
 
       //CREATE SLUG
@@ -110,20 +104,8 @@ class WhyusPage extends Component
           ->get();
       }
 
-
-
-     public function delete($id){
-
-      $whyus = Whyus::findOrFail($id);
-      if(!is_null($whyus)){
-        $whyus->delete();
-      }
-
-     }
-
     public function render()
     {
-        $this->records = Whyus::orderBy('sort_id','asc')->get();	
-        return view('livewire.backend.whyus.whyus-page')->layout('layouts.backend');
+        return view('livewire.backend.whyus.edit-whyus-page')->layout('layouts.backend');
     }
 }

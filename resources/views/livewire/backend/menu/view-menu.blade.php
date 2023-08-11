@@ -108,7 +108,6 @@
                                     <thead>
                                         <tr>
                                             <th> Name</th>
-                                            <th>Route link</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
 
@@ -120,7 +119,7 @@
                                          @foreach ($records as  $record)	
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
-                                            <td>{{$record->link ?? '' }}</td>
+                                            
 
                                         
                                             <td>{{$record->sort_id ?? '' }}</td>

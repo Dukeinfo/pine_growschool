@@ -45,7 +45,7 @@
             <div class="socialItem">
 
 
-                      @forelse($SocialApps as  $SocialApp)
+                   @forelse($SocialApps as  $SocialApp)
 
                     <a href="{{$SocialApp->link ?? ''}}"><i class="{{$SocialApp->icon ?? ''}}"></i></a>
                     @empty
@@ -53,7 +53,7 @@
                     <a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a>
                     <a href="javascript:void(0);"><i class="fa-brands fa-youtube"></i></a>
                     <a href="javascript:void(0);"><i class="fa-brands fa-twitter"></i></a>
-                        @endforelse
+                 @endforelse
             </div>
                 <iframe
                     src="{{$contactInfo->map ?? ''}}"

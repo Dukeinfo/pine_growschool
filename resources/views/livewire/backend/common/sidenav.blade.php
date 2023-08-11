@@ -42,18 +42,13 @@
 					<span>Home Slider</span>
 				</a>
 			</li>
-			<!-- <li>
-				<a href="{{route('view_menu')}}" class="waves-effect">
+		    <li>
+				<a href="{{route('whyus_page')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
-					<span>Menu</span>
+					<span>Why Us</span>
 				</a>
 			</li>
-			<li>
-				<a href="{{route('view_subnmenu')}}" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
-					<span>Submenu</span>
-				</a>
-			</li> -->
+		
 			<li>
 				<a href="{{route('create_page')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
