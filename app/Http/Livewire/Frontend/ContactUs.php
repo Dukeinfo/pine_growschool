@@ -61,6 +61,9 @@ class ContactUs extends Component
             'phone' => $this->phone,
             'subject' => $this->subject,
             'message' => $this->message,
+            'ip_address' => getUserIp(),
+
+            
         ]);
 // Send email only when validation and database entry are successful
 if (empty($this->getErrorBag()->messages())) {
@@ -72,6 +75,8 @@ if (empty($this->getErrorBag()->messages())) {
             'phone' => $this->phone,
             'subject' => $this->subject,
             'message' => $this->message,
+            'ip_address' => getUserIp(),
+
         ]));
     }
 
