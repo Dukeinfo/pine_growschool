@@ -27,7 +27,7 @@ class OurFounder extends Component
     $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
     if($seoMetaData){
         
-    SEOTools::setTitle($seoMetaData->title ?? '');
+    SEOTools::setTitle($seoMetaData->title ?? 'OurFounder');
     SEOTools::setDescription($seoMetaData->description ?? '');
     SEOTools::opengraph()->setUrl(url()->current());
     SEOTools::setCanonical(url()->current());

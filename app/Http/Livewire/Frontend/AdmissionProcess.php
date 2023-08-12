@@ -24,7 +24,7 @@ public function mount(){
     $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
     if($seoMetaData){
         
-    SEOTools::setTitle($seoMetaData->title ?? '');
+    SEOTools::setTitle($seoMetaData->title ?? 'Addmission & fee');
     SEOTools::setDescription($seoMetaData->description ?? '');
     SEOTools::opengraph()->setUrl(url()->current());
     SEOTools::setCanonical(url()->current());
