@@ -9,7 +9,7 @@ use Livewire\Component;
 class Metadetails extends Component
 {
 
-    public $getMenus,$menu_id,$status,$seo_title,$seo_description,$seo_keywords;
+    public $name ,$getMenus,$menu_id,$status,$seo_title,$seo_description,$seo_keywords ,$records;
 
     protected $rules = [
         'menu_id' => 'required', 
@@ -48,10 +48,15 @@ class Metadetails extends Component
     	
       $metadetails = new appMetadetails();
       $metadetails->menu_id = $this->menu_id;
+      $metadetails->name = $this->name ?? Null;
+      $metadetails->slug = strtolower(str_replace(' ', '-',$this->name))?? Null;
       $metadetails->status =$this->status;
       $metadetails->title = $this->seo_title;
       $metadetails->description = $this->seo_description;
       $metadetails->keywords = $this->seo_keywords;
+      $metadetails->ip_address =getUserIp();
+      $metadetails->login = authUserId();
+
       $metadetails->save();
 
       $this->resetInputFields(); 

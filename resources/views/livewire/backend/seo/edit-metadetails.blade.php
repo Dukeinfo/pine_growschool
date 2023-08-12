@@ -47,6 +47,24 @@
 
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Route Name</label>
+                                        <select name="selected_route" wire:model="name"     id="selected_route"   class="form-control">
+                                         <option  >Select Route</option>
+                                          
+                                            @foreach(Route::getRoutes() as $route)
+                                            @if (str_starts_with($route->getName(), 'home.') )
+                                            @php
+                                             $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
+                                            @endphp
+                                                <option value="{{ $route->getName() }}"    class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
+                                           @endif
+                                                @endforeach
+                                        </select>
+                                        @error('name') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
@@ -69,23 +87,8 @@
                                 <div class="col-md-12">
                                     <div class="mb-3" wire:ignore>
                                         <label for="" class="form-label">Description</label>
-                                        <textarea name="seo_description" wire:model="seo_description" id="editor" cols="" rows="6" class="form-control" placeholder="Description type here..."></textarea>
-                                        <script>
-                                    document.addEventListener('livewire:load', function () {
-                                        CKEDITOR.replace('editor');
-                                
-                                        CKEDITOR.instances.editor.on('change', function () {
-                                            @this.set('seo_description', CKEDITOR.instances.editor.getData());
-                                    
-                                      
-                                        });
-                                         Livewire.on('formSubmitted', function () {
-                                         CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
-                                       
-                                                  
-                                          });
-                                    });
-                                </script>
+                                        <textarea name="seo_description" wire:model="seo_description"   cols="" rows="6" class="form-control" placeholder="Description type here..."></textarea>
+                 
                                 
                                         @error('seo_description') <span class="error">{{ $message }}</span> @enderror
                                    

@@ -10,4 +10,6 @@ class Message extends Model
 {
     use HasFactory;
     use SoftDeletes;  //invoking
+
+    protected $guarded = [];
 }

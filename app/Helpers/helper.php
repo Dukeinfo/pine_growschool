@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Location;
+use App\Models\Menu;
 use App\Models\User;
 
 use Carbon\Carbon;
@@ -9,7 +10,10 @@ use Illuminate\Support\Facades\Auth;
 function authUserId(){
     return Auth::id();
  }
-
+ function getMenuName($id){
+    $menuName = Menu::where('id', $id)->first();
+    return $menuName->name;
+}
 function getThumbnail($value) {
     return asset('uploads/thumbnail/'.$value);
 }

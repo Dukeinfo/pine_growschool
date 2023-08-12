@@ -9,7 +9,7 @@ use App\Models\Metadetails;
 class EditMetadetails extends Component
 {
 
-    public $metaId,$getMenus,$menu_id,$status,$seo_title,$seo_description,$seo_keywords;
+    public $name ,$metaId,$getMenus,$menu_id,$status,$seo_title,$seo_description,$seo_keywords;
 
   
     public function mount($id){
@@ -33,6 +33,8 @@ class EditMetadetails extends Component
       $metadetails =Metadetails::find($this->metaId);
       $metadetails->menu_id = $this->menu_id;
       $metadetails->status =$this->status;
+      $metadetails->name = $this->name ?? Null;
+      $metadetails->slug = strtolower(str_replace(' ', '-',$this->name))?? Null;
       $metadetails->title = $this->seo_title;
       $metadetails->description = $this->seo_description;
       $metadetails->keywords = $this->seo_keywords;

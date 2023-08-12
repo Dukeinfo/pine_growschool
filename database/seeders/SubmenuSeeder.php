@@ -762,6 +762,9 @@ class SubmenuSeeder extends Seeder
 
         foreach ($submenus as &$submenu) {
           $submenu['cms'] = 'No';
+      
+
+          
       }
       
       // Now you can proceed with inserting the updated data into the database

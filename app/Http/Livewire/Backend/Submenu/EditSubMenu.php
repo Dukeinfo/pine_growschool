@@ -81,7 +81,7 @@ class EditSubMenu extends Component
       $submenu->name = $this->name;
       $submenu->sort_id =$this->sort_id;
       $submenu->cms =$this->cms;
-      $submenu->pname =$this->pname;
+      $submenu->pname =$this->pname ?? NULL;
       $submenu->status = $this->status;
 
       $submenu->url_link =   $this->url_link ;

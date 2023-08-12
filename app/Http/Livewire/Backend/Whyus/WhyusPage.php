@@ -22,7 +22,7 @@ class WhyusPage extends Component
     public $i = 1;
 
     public $title,$heading,$image,$desc,$link,$sort_id,$status;
-    public $item;
+    public $item ,$records;
 
     protected $rules = [
         'title' => 'required', 
@@ -69,12 +69,14 @@ class WhyusPage extends Component
     public function addWhyus(){
 
      $validatedData = $this->validate();
+
      if(!is_null($this->image)){
       $image =  $this->image;
+ 
       // Define folder path
       $folder = '/uploads/whyus';
       $uploadedData = $this->uploadOne($image, $folder);
-
+      // dd( $uploadedData );
     }   
 
       $whyus = new Whyus();
