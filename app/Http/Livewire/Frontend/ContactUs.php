@@ -41,8 +41,8 @@ class ContactUs extends Component
     SEOTools::setCanonical(url()->current());
     SEOTools::opengraph()->addProperty('type', 'website');
     SEOTools::twitter()->setSite($seoMetaData->title ?? '');
-    $keywords = $seoMetaData->keywords;
-    SEOMeta::addKeyword( $keywords ?? '');
+    $keywords = $seoMetaData->keywords ?? "";
+    SEOMeta::addKeyword( $keywords );
 
 }
 
