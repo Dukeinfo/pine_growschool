@@ -33,7 +33,7 @@ class ContactUs extends Component
    public function mount(){
     $getRouteName =  Route::currentRouteName(); 
     $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
-    if($seoMetaData){
+
         
     SEOTools::setTitle($seoMetaData->title ?? 'Contact us');
     SEOTools::setDescription($seoMetaData->description ?? '');
@@ -43,7 +43,7 @@ class ContactUs extends Component
     SEOTools::twitter()->setSite($seoMetaData->title ?? '');
     $keywords = $seoMetaData->keywords;
     SEOMeta::addKeyword( $keywords);
-}
+
 }
 
     public function render()
