@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Whyus;
 
 use Livewire\Component;
 use App\Models\Whyus;
+use App\Models\WhyusItem;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -16,8 +17,14 @@ class EditWhyusPage extends Component
 
     use UploadTrait;	
     use WithFileUploads;
+    
+    /*add row*/
+    public $inputs = [];
+    public $i = 1;
 
     public $whyusId,$title,$heading,$image,$editimage,$desc,$link,$sort_id,$status ,$thumbnail;
+
+     public $item;
 
 
       public function mount($id){
@@ -29,8 +36,24 @@ class EditWhyusPage extends Component
         $this->thumbnail = $whyus->thumbnail;
         $this->desc = $whyus->description;
         $this->sort_id = $whyus->sort_id;
-    	$this->status = $whyus->status;
+    	  $this->status = $whyus->status;
+
+       
      }
+
+        public function add($i)
+    {
+        $i = $i + 1;
+        $this->i = $i;
+        array_push($this->inputs ,$i);
+    }
+
+
+    public function remove($i)
+     {
+        unset($this->inputs[$i]);
+     }
+
 
 
      public function editWhyus(){

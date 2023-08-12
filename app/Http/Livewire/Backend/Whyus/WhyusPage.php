@@ -4,18 +4,25 @@ namespace App\Http\Livewire\Backend\Whyus;
 
 use Livewire\Component;
 use App\Models\Whyus;
+use App\Models\WhyusItem;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
+
 class WhyusPage extends Component
 {
     use UploadTrait;	
     use WithFileUploads;
 
+    /*add row*/
+    public $inputs = [];
+    public $i = 1;
+
     public $title,$heading,$image,$desc,$link,$sort_id,$status;
+    public $item;
 
     protected $rules = [
         'title' => 'required', 
@@ -45,9 +52,23 @@ class WhyusPage extends Component
         $this->status = '';
     }
 
+       public function add($i)
+    {
+        $i = $i + 1;
+        $this->i = $i;
+        array_push($this->inputs ,$i);
+    }
+
+
+    public function remove($i)
+     {
+        unset($this->inputs[$i]);
+     }
+
+
     public function addWhyus(){
 
-     $validatedData = $this->validate();
+     //$validatedData = $this->validate();
      if(!is_null($this->image)){
       $image =  $this->image;
       // Define folder path
@@ -67,6 +88,15 @@ class WhyusPage extends Component
       $whyus->sort_id =$this->sort_id;
       $whyus->status = $this->status;
       $whyus->save();
+
+      foreach ($this->item as $key => $value) {
+
+         $whyusItem = new WhyusItem();
+         $whyusItem->whyus_id = $whyus->id;
+         $whyusItem->item = $this->item[$key];
+         $whyusItem->save();
+
+      }
 
        $this->resetInputFields();
 

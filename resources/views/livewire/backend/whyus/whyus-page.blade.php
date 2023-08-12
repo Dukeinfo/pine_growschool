@@ -95,6 +95,27 @@
                                     </div>
                                 </div>
 
+                               
+                                <div class="col-md-e">
+                                    <div class="mb-3">
+                                        <label class="form-label"> List Item</label>
+                                        <input type="text" class="form-control" id="" wire:model="item.0" placeholder="List Item">
+                                        @error('item') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                    <button class="btn text-white btn-info btn-sm" wire:click.prevent="add({{$i}})">Add</button>
+                                </div>
+
+                                @foreach($inputs as $key => $value)
+                                 <div class="col-md-e">
+                                    <div class="mb-3">
+                                        <label class="form-label"> List Item</label>
+                                        <input type="text" class="form-control" id="" wire:model="item.{{ $value }}" placeholder="List Item">
+                                        @error('item') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                    <button class="btn btn-danger btn-sm" wire:click.prevent="remove({{$key}})">remove</button>
+                                </div>
+                              @endforeach
+
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Image</label>
