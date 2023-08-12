@@ -42,7 +42,7 @@ class ContactUs extends Component
     SEOTools::opengraph()->addProperty('type', 'website');
     SEOTools::twitter()->setSite($seoMetaData->title ?? '');
     $keywords = $seoMetaData->keywords;
-    SEOMeta::addKeyword( $keywords);
+    SEOMeta::addKeyword( $keywords ?? '');
 
 }
 
