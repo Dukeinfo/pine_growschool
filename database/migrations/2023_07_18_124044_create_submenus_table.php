@@ -24,6 +24,7 @@ class CreateSubmenusTable extends Migration
             $table->string('thumbnail')->nullable(); 
             $table->string('url_link')->nullable(); 
             $table->string('display_name')->nullable(); 
+            $table->text('slug')->nullable() ;
             $table->longText('seo_title')->nullable(); 
             $table->longText('seo_description')->nullable(); 
             $table->longText('seo_keywords')->nullable(); 

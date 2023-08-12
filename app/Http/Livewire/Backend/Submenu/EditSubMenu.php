@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 class EditSubMenu extends Component
 {
   use WithFileUploads;
@@ -63,6 +64,7 @@ class EditSubMenu extends Component
       $submenu->thumbnail =  $uploadedData['thumbnail_name'] ?? NULL;
       $submenu->url_link =   $this->url_link ;
       $submenu->display_name =   $this->display_name ;
+      $submenu->slug =  $this->createSlug($this->display_name ?? NULL);
       $submenu->seo_title =   $this->seo_title ;
       $submenu->seo_keywords =   $this->seo_keywords ;
       $submenu->seo_description =   $this->seo_description ;
@@ -84,6 +86,7 @@ class EditSubMenu extends Component
 
       $submenu->url_link =   $this->url_link ;
       $submenu->display_name =   $this->display_name ;
+      $submenu->slug =  $this->createSlug($this->display_name ?? NULL);
       $submenu->seo_title =   $this->seo_title ;
       $submenu->seo_keywords =   $this->seo_keywords ;
       $submenu->seo_description =   $this->seo_description ;
@@ -97,8 +100,39 @@ class EditSubMenu extends Component
             'type' => 'success',  
             'message' => 'Successfully updated!', 
             ]); 
-      return redirect()->route('view_subnmenu'); 
+        return redirect()->route('view_subnmenu'); 
       }
+
+           //CREATE SLUG
+    public function createSlug($title, $id = 0)
+       {
+        $slug =  Str::slug($title);
+        $allSlugs = $this->getRelatedSlugs($slug, $id);
+        if (! $allSlugs->contains('slug', $slug)){
+            return $slug;
+        }
+
+        $i = 1;
+        $is_contain = true;
+        do {
+            $newSlug = $slug . '-' . $i;
+            if (!$allSlugs->contains('slug', $newSlug)) {
+                $is_contain = false;
+                return $newSlug;
+            }
+            $i++;
+        } while ($is_contain);
+      }
+
+
+      //INCREMENT SLUG
+      protected function getRelatedSlugs($slug, $id = 0)
+      {
+          return Submenu::select('slug')->where('slug', 'like', $slug.'%')
+          ->where('id', '<>', $id)
+          ->get();
+      }
+
 
       
 }

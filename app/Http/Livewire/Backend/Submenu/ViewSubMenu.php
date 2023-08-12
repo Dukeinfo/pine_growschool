@@ -11,6 +11,7 @@ use Livewire\Component;
 use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 class ViewSubMenu extends Component
 {
   use UploadTrait;
@@ -72,6 +73,7 @@ class ViewSubMenu extends Component
         'thumbnail' => $uploadedData['thumbnail_name'] ?? Null,
         'url_link' => $this->url_link ?? Null,
         'display_name' => $this->display_name ?? Null,   //use slug here
+        'slug' =>  $this->createSlug($this->display_name ?? NULL),
         'seo_title' => $this->seo_title ?? Null,
         'seo_keywords' => $this->seo_keywords ?? Null,
         'seo_description' => $this->seo_description ?? Null,
@@ -96,6 +98,38 @@ class ViewSubMenu extends Component
       $this->image = null;
         // return   redirect(request()->header('Referer'));
     } 
+
+
+        //CREATE SLUG
+    public function createSlug($title, $id = 0)
+       {
+        $slug =  Str::slug($title);
+        $allSlugs = $this->getRelatedSlugs($slug, $id);
+        if (! $allSlugs->contains('slug', $slug)){
+            return $slug;
+        }
+
+        $i = 1;
+        $is_contain = true;
+        do {
+            $newSlug = $slug . '-' . $i;
+            if (!$allSlugs->contains('slug', $newSlug)) {
+                $is_contain = false;
+                return $newSlug;
+            }
+            $i++;
+        } while ($is_contain);
+      }
+
+
+      //INCREMENT SLUG
+      protected function getRelatedSlugs($slug, $id = 0)
+      {
+          return Submenu::select('slug')->where('slug', 'like', $slug.'%')
+          ->where('id', '<>', $id)
+          ->get();
+      }
+
 
     private function resetFormFields()
     {
