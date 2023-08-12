@@ -123,7 +123,7 @@
                                         @if(isset($getpage))
                                              @foreach($getpage as $page)
                                                  {{-- @php $encryptedId = encrypt($page->id); @endphp --}}
-                                                <li><a href="{{route('detail_page',['page_id' => $page->id ?? '', 'slug' => $page->SubMenu->display_name ?? ''])}}">{{$page->SubMenu->display_name ?? ''}}</a></li>
+                                                <li><a href="{{route('detail_page',['page_id' => $page->id ?? '', 'slug' => $page->SubMenu->slug ?? ''])}}">{{$page->SubMenu->display_name ?? ''}}</a></li>
                                                 @endforeach
                                                 @endif
    
