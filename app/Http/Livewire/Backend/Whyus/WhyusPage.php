@@ -68,7 +68,7 @@ class WhyusPage extends Component
 
     public function addWhyus(){
 
-     //$validatedData = $this->validate();
+     $validatedData = $this->validate();
      if(!is_null($this->image)){
       $image =  $this->image;
       // Define folder path
@@ -89,6 +89,8 @@ class WhyusPage extends Component
       $whyus->status = $this->status;
       $whyus->save();
 
+
+    if (is_array($this->item)){
       foreach ($this->item as $key => $value) {
 
          $whyusItem = new WhyusItem();
@@ -97,6 +99,7 @@ class WhyusPage extends Component
          $whyusItem->save();
 
       }
+    }  
 
        $this->resetInputFields();
 
