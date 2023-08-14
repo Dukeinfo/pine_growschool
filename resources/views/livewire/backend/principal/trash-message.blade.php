@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Restore News Event</h4>
+                            <h4 class="card-title">Restore Messages</h4>
                             <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
                         </div>
                         <div class="card-body">
@@ -16,46 +16,38 @@
                                 <table class="table table-bordered table-striped datatable">
                                     <thead>
                                         <tr>
-                                            <th>Dated</th>
-                                            <th>Image</th>
+                                            <th>Headmaster Name</th>
                                             <th>Heading</th>
-                                            <th>Description</th>
+                                            <th>Punch Line</th>
+                                            <th>Message</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                          @if(isset($records) && count($records)>0 )                      
-                           @foreach ($records as  $record) 
+                                      @if(isset($records) && count($records)>0 )                      
+                                         @foreach ($records as  $record)	
                                         <tr>
-                                            <td>{{$record->dated ?? '' }}</td>
-                                            <td>@php      
-$thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_assets/images/no-img.jpg');
-@endphp                                      
-<img src="{{$thumb}}" alt="" class="border" width="100" height="70"></td>
-                                            
-                                            <td>{{$record->heading ?? '' }}</td>
-                                            <td>{!!$record->description ?? '' !!}</td>
+                                            <td>{{$record->name ?? '' }}</td>
+                                             <td>{{$record->heading ?? '' }}</td>
+                                              <td>{{$record->punch_line ?? '' }}</td>s
+                                           <td>{!!$record->message ?? '' !!}</td>
+                                        
                                             <td>{{$record->sort_id ?? '' }}</td>
-                                            <td>
-@if($record->status  == "Active")
-        <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
-         @else
-       <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
-@endif</td>
+                                            <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>
                                             <td>
                                                 
-                                                <a href="javascript:void(0)" class="text-danger me-2" title="Restore"><i class="fa fa-times fa-fw fa-lg" wire:click="restore({{ $record->id }})"></i></a>
+                                                <a href="javascript:void(0)" class="text-danger me-2" title="Restore" wire:click="restore({{ $record->id }})"><i class="fa fa-times fa-fw fa-lg"></i></a>
                                             </td>
                                         </tr>
-                                  @endforeach
+                                        @endforeach
                                       @else
                                  <tr>
-                                 <td colspan="5"> Record Not Found</td>
+                                 <td colspan="4"> Record Not Found</td>
                                 
                                  </tr>
-                                 @endif      
+                                 @endif 
                                     </tbody>
                                 </table>
                             </div>
@@ -68,6 +60,6 @@ $thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_
 
             
         </div>
-        <!-- container-fluid -->
+        <!-- container-fluid <-->	</-->
     </div>
 </div>

@@ -41,6 +41,7 @@ use App\Http\Livewire\Backend\Gallery\EditOurTopper;
 use App\Http\Livewire\Backend\Gallery\TrashOurTopper;
 use App\Http\Livewire\Backend\Gallery\ViewKnowledgeHome;
 use App\Http\Livewire\Backend\Gallery\EditKnowledgeHome;
+use App\Http\Livewire\Backend\Gallery\TrashKnowledgeHome;
 use App\Http\Livewire\Backend\Membership\ViewMembership;
 use App\Http\Livewire\Backend\Membership\EditMemberShip;
 use App\Http\Livewire\Backend\Membership\TrashMemberShip;
@@ -54,26 +55,32 @@ use App\Http\Livewire\Backend\Slider\EditHomeSlider;
 use App\Http\Livewire\Backend\Slider\TrashHomeSlider;
 use App\Http\Livewire\Backend\Whyus\WhyusPage;
 use App\Http\Livewire\Backend\Whyus\EditWhyusPage;
+use App\Http\Livewire\Backend\Whyus\TrashWhyusPage;
 use App\Http\Livewire\Backend\Testimonials\ViewTestimonials;
 use App\Http\Livewire\Backend\Testimonials\EditTestimonials;
 use App\Http\Livewire\Backend\Testimonials\TrashTestimonials;
 use App\Http\Livewire\Backend\Boardmembers\ViewBoardMembers;
 use App\Http\Livewire\Backend\Boardmembers\EditBoardMembers;
+use App\Http\Livewire\Backend\Boardmembers\TrashBoardMembers;
 use App\Http\Livewire\Backend\Contact\ContactFormEntries;
 use App\Http\Livewire\Backend\Contact\ViewContactFormEntry;
+use App\Http\Livewire\Backend\Contact\TrashContactFormEntries;
 use App\Http\Livewire\Backend\Login\AdminLogin;
 use App\Http\Livewire\Backend\Pages\CreatePage;
 use App\Http\Livewire\Backend\Pages\EditPage;
+use App\Http\Livewire\Backend\Pages\TrashPage;
 use App\Http\Livewire\Backend\Profile\AdminProfile;
 use App\Http\Livewire\Backend\Staff\ViewStaff;
 use App\Http\Livewire\Backend\Staff\EditStaff;
 use App\Http\Livewire\Backend\Staff\TrashStaff;
 use App\Http\Livewire\Backend\Principal\Message;
 use App\Http\Livewire\Backend\Principal\EditMessage;
+use App\Http\Livewire\Backend\Principal\TrashMessage;
 use App\Http\Livewire\Backend\Facilities\ViewFacilities;
 use App\Http\Livewire\Backend\Facilities\EditFacilities;
 use App\Http\Livewire\Backend\Facilities\TrashFacilities;
 use App\Http\Livewire\Backend\Footer\ContactusView;
+use App\Http\Livewire\Backend\Footer\TrashContactus;
 use App\Http\Livewire\Backend\Footer\SocialAppsManager;
 use App\Http\Livewire\Backend\Memories\ViewGuestBook;
 use App\Http\Livewire\Backend\Memories\EditGuestBook;
@@ -189,6 +196,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
     Route::get('/whyus/page', WhyusPage::class)->name('whyus_page');
     Route::get('/whyus/page/{id}', EditWhyusPage::class)->name('edit_whyus_page');
+    Route::get('/whyus/page/trash', TrashWhyusPage::class)->name('trash_whyus_page');
 
     Route::get('/view/membership', ViewMembership::class)->name('view_membership');
     Route::get('/edit/membership/{id}', EditMemberShip::class)->name('edit_membership');
@@ -217,7 +225,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
     Route::get('/view/knowledge-home', ViewKnowledgeHome::class)->name('view_knowledge_home');
      Route::get('/edit/knowledge-home/{id}', EditKnowledgeHome::class)->name('edit_knowledge_home');
-
+     Route::get('/view/knowledge-home/trash', TrashKnowledgeHome::class)->name('trash_knowledge_home');
 
     Route::get('/add/blog', AddBlog::class)->name('add_blog');
     Route::get('/manage/blog', ManageBlog::class)->name('manage_blog');
@@ -237,7 +245,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
     Route::get('/create/page', CreatePage::class)->name('create_page');
     Route::get('/edit/page/{id}', EditPage::class)->name('edit_page');
-    
+    Route::get('/create/page/trash', TrashPage::class)->name('trash_page');
 
     Route::get('/view/department', ViewDepartment::class)->name('view_department');
     Route::get('/edit/department/{id}', EditDepartment::class)->name('edit_department');
@@ -249,10 +257,11 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
 
      Route::get('/view/boardmembers', ViewBoardMembers::class)->name('view_boardmembers');
      Route::get('/edit/boardmembers/{id}', EditBoardMembers::class)->name('edit_boardmembers');
+     Route::get('/view/boardmembers/trash', TrashBoardMembers::class)->name('trash_boardmembers');
 
     Route::get('/ceate/message', Message::class)->name('create_message');
     Route::get('/edit/message/{id}', EditMessage::class)->name('edit_message');
-
+    Route::get('/ceate/message/trash', TrashMessage::class)->name('trash_message');
 
     Route::get('/view/facilities', ViewFacilities::class)->name('view_facilities');
     Route::get('/edit/facilities/{id}', EditFacilities::class)->name('edit_facilities');
@@ -265,12 +274,14 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
     Route::get('/view/grapevine', ViewGrapevine::class)->name('view_grapevine');
     Route::get('/edit/grapevine/{id}', EditGrapevine::class)->name('edit_grapevine');
     Route::get('/contact-view', ContactusView::class)->name('contact_view');
+    Route::get('/contact-view/trash', TrashContactus::class)->name('trash_contact');
+
     Route::get('/social-view', SocialAppsManager::class)->name('social_view');
     
     
     Route::get('/contact-entries', ContactFormEntries::class)->name('contact_entries');
-
     Route::get('/contact-entry/{id}', ViewContactFormEntry::class)->name('contact_view_entry');
+    Route::get('/contact-entries/trash', TrashContactFormEntries::class)->name('trash_contact_entries');
      
     
 });

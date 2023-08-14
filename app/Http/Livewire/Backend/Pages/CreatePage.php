@@ -84,4 +84,13 @@ class CreatePage extends Component
         $this->emit('formSubmitted');
     }
 
+     public function delete($id){
+
+      $createPage = appCreatePage::findOrFail($id);
+      if(!is_null($createPage)){
+        $createPage->delete();
+      }
+
+     }
+
 }
