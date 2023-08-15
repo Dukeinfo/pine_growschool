@@ -18,7 +18,7 @@ class CreatePage extends Component
 
     protected $rules = [ 
         'menu' => 'required', 
-        'submenu' => 'required', 
+        'submenu' => 'required |unique:create_pages,submenu_id', 
         'heading' => 'required', 
         'desc' => 'required',
         'sort' => 'required', 
@@ -28,6 +28,7 @@ class CreatePage extends Component
       protected $messages = [
           'menu.required' => 'Menu Required.',
           'submenu.required' => 'Sub Menu Required.',
+          'submenu.unique' => 'SubMenu Already taken',
           'heading.required' => 'Heading Required.',
           'desc.required' => 'Description Required.',
           'sort.required' => 'Sort Id Required.',

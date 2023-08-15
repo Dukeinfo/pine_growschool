@@ -8,6 +8,14 @@
     {!! SEO::generate() !!}
     @stack('keywords')
     <!-- BEGIN: CSS -->
+    @php
+        $headerSnippets = App\Models\Headersnippets::get();
+    @endphp
+        @forelse($headerSnippets as $snippet)
+            {{ $snippet->description }}
+        @empty
+        @endforelse
+
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/fontawesome-all.css')}}">
@@ -43,6 +51,7 @@
 
     <!-- BEGIN: Topbar Section -->
 @include('livewire.frontend.common.header')
+
     <!-- BEGIN: Header Section -->
 
     <!-- BEGIN: Popup Sidebar Widget -->
@@ -67,7 +76,33 @@
     <a href="javascript:void(0);" id="backtotop"><i class="fa-solid fa-arrow-up"></i></a>
     {{-- <a href="javascript:void(0);" id="backtotop"><i class="fa-solid fa-arrow-up"></i></a> --}}
     <!-- Bact To Top -->
+<!-- Include JavaScript to load submenu items when a menu item is clicked -->
+
+<!-- Include JavaScript to load submenu items when hovering over a menu item -->
 <script>
+    const submenuLoaders = {};
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuItemsWithSubmenus = document.querySelectorAll('.menu-item-has-children > a');
+
+        menuItemsWithSubmenus.forEach(menuItem => {
+            const menuId = /* extract menu ID from data attribute or other logic */;
+            submenuLoaders[menuId] = Livewire.find('submenu-loader:' + menuId);
+
+            menuItem.addEventListener('mouseenter', function () {
+                if (!submenuLoaders[menuId]) {
+                    return;
+                }
+
+                // Call the loadSubmenus method of the Livewire component
+                submenuLoaders[menuId].call('loadSubmenus');
+            });
+        });
+    });
+</script>
+
+<script>
+    
   document.addEventListener('livewire:load', function () {
         $('.popupBtn').on('click', function (e) {
         e.preventDefault();

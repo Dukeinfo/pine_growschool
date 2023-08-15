@@ -5,6 +5,8 @@ namespace App\Providers;
 // use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use App\View\Components\Frontend;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Paginator::useBootstrap();
-        // Paginator::useBootstrap('bootstrap-5');
-        // Paginator::useBootstrap('5.2.0-beta1');/
+        Blade::component('frontend', Frontend::class);
+
     }
 }

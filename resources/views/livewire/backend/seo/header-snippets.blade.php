@@ -36,10 +36,10 @@
                                     <div class="mb-3">
                                         <label class="form-label">Category</label>
                                         <select class="form-select" wire:model="category">
-                                    <option value="">Select</option>
-                                    <option>Google Analytics Code</option>
-                                    <option>Facebook Pixel Code</option>
-                                    <option>Other Meta Tags</option>
+                                            <option value="" >Select</option>
+                                            <option value="Google">Google Analytics Code</option>
+                                            <option value="Facebook"> Facebook Pixel Code</option>
+                                            <option value="Other">Other Meta Tags</option>
                                         </select>
                                          @error('category') <span class="error">{{ $message }}</span> @enderror
                                     </div>

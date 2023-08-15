@@ -6,24 +6,41 @@ use Livewire\Component;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 class EditMenu extends Component
 {
-    public $menuId,$name,$sort,$status ,$clientIp ,$link;
+    public $menuId,$name,$sort_id,$status ,$clientIp ,$link;
       public function mount($id)
      {
         $menu = Menu::findOrFail($id);
         $this->menuId = $menu->id;
         $this->name = $menu->name;
-    	$this->sort = $menu->sort_id;
-    	$this->status = $menu->status;
+    	  $this->sort_id = $menu->sort_id;
+  
+    	  $this->status = $menu->status;
+     }
+     protected function rules()
+     {
+         return [
+             'name' => ['required', Rule::unique('menus')->ignore($this->menuId)],
+             'sort_id' => ['required', Rule::unique('menus')->ignore($this->menuId)],
+             'status' => 'required',
+         ];
      }
 
+      protected $messages = [
+        'name.required' => 'Name is required.',
+        'sort_id.required' => 'Sort is required.',
+        'sort_id.unique' => 'This Sort number is already taken.',
+        'status.required' => 'Status is required.',
+      ];
    public function editMenu()
     {
+      $this->validate();
         $menu = Menu::find($this->menuId);
         $menu->name = $this->name;
         $menu->link = $this->link;
-        $menu->sort_id =$this->sort;
+        $menu->sort_id =$this->sort_id;
         // $menu->link =$this->link;
 
         $menu->status = $this->status;

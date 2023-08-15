@@ -35,7 +35,12 @@
 			
 			</li>
 
-
+			<li>
+				<a href="{{route('create_page')}}" class="waves-effect">
+					<i class="bx bx-home-circle"></i>
+					<span>Create Page</span>
+				</a>
+			</li>
 			<li>
 				<a href="{{route('view_home_slider')}}" class="waves-effect">
 					<i class="bx bx-image"></i>
@@ -49,12 +54,7 @@
 				</a>
 			</li>
 		
-			<li>
-				<a href="{{route('create_page')}}" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
-					<span>Create Page</span>
-				</a>
-			</li>
+		
 			<li>
 				<a href="{{route('view_department')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>

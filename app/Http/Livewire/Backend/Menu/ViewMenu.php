@@ -27,6 +27,8 @@ class ViewMenu extends Component
       ];
       protected $messages = [
           'name.required' => 'Name Required.',
+          'name.unique' => 'This Menu name is already taken.',
+
           'sort.required' => 'Sort Required.',
           'sort.unique' => 'Sort number already taken.',
 

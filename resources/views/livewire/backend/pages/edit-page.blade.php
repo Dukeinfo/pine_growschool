@@ -51,7 +51,7 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Sub Menu</label>
-                                        <select class="form-select" wire:model="submenu">
+                                        <select class="form-select" wire:model="submenu_id">
                                                 <option value="">Select</option>
                                                @if (!is_null($subMenus)) 
                                                 @foreach($subMenus as $submenu)

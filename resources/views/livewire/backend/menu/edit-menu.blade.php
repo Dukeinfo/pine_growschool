@@ -59,8 +59,8 @@
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control" id="" wire:model="sort" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
-                                        @error('sort') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="number" class="form-control" id="" wire:model="sort_id" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
+                                        @error('sort_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">

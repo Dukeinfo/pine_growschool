@@ -7,7 +7,7 @@ use App\Models\Headersnippets as appHeadersnippets;
 
 class HeaderSnippets extends Component
 {
-   public $category, $desc, $sort_id, $status;
+   public $category, $desc, $sort_id, $status , $records;
 
    protected $rules = [
         'category' => 'required', 
@@ -33,7 +33,7 @@ class HeaderSnippets extends Component
 
       $validatedData = $this->validate();
 
-      $check =appHeadersnippets::where(['category'=> $this->category  ])->count();	
+      $check = appHeadersnippets::where(['category'=> $this->category  ])->count();	
 
       if($check==1){
 
