@@ -101,6 +101,10 @@
                                             <td>
                                                
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Restore" wire:click="restore({{ $record->id }})">Restore</a>
+
+                                                <a href="javascript:void(0)" class="text-danger me-2" title="Restore" wire:click="p_delete({{ $record->id }})">Delete</a>
+                                                
+
                                             </td>
                                         </tr>
                                         @endforeach

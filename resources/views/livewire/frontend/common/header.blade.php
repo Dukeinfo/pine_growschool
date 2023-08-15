@@ -81,7 +81,7 @@
                 <div class="header01Inner">
                     <!-- Logo -->
                     <div class="logo01">
-                        <a href="{{ route('homepage') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Pinegrove" /></a>
+                        <a href="{{ route('home.homepage') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Pinegrove" /></a>
                     </div>
                     <!-- Logo -->
                     <!-- Nav Menu -->

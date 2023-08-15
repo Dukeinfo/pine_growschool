@@ -104,7 +104,6 @@
                     <div class="blogItem02 text-end">
                         <div class="blogThumb">
                             <img src="{{getboardmembers($boardmember->image)}}" alt="Pingrove">
-    
                             <div class="pDate"><span>{{ \Carbon\Carbon::parse($boardmember->dated)->format('d') ?? '' }}
                             </span>  {{ \Carbon\Carbon::parse($boardmember->dated)->format('M') ?? ''}} </div>
                             <span></span>

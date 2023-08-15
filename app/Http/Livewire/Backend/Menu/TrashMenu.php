@@ -22,4 +22,10 @@ class TrashMenu extends Component
 
        return redirect()->route('view_menu');
     }
+
+    public function p_delete($id){
+      Menu::onlyTrashed()->find($id)->forceDelete();
+      return redirect()->back();
+
+    }
 }

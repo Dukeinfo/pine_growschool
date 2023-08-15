@@ -47,7 +47,6 @@ class ViewSubMenu extends Component
           'sort_id.unique' => 'Sort number already taken.',
 
           'cms.required' => 'CMS Required.',
-          // 'pname.required' => 'Page name Required.',
           'status.required' => 'Status Required.',
           
       ];
@@ -73,7 +72,7 @@ class ViewSubMenu extends Component
         'thumbnail' => $uploadedData['thumbnail_name'] ?? Null,
         'url_link' => $this->url_link ?? Null,
         'display_name' => $this->display_name ?? Null,   //use slug here
-        'slug' =>  $this->createSlug($this->display_name ?? NULL),
+        'slug' =>  $this->createSlug($this->url_link ?? NULL),
         'seo_title' => $this->seo_title ?? Null,
         'seo_keywords' => $this->seo_keywords ?? Null,
         'seo_description' => $this->seo_description ?? Null,

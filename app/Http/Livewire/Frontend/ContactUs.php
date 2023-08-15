@@ -31,6 +31,7 @@ class ContactUs extends Component
    public $seo_keywords;
 
    public function mount(){
+
     $getRouteName =  Route::currentRouteName(); 
     $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
 
@@ -87,7 +88,7 @@ if (empty($this->getErrorBag()->messages())) {
 
     session()->flash('success', 'Your message has been sent successfully.');
     $this->resetForm();
-    return redirect()->route('homepage');
+    return redirect()->route('home.homepage');
     }
 
     private function resetForm()

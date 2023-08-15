@@ -12,7 +12,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{route('homepage')}}" target="_blank" class="waves-effect">
+				<a href="{{route('home.homepage')}}" target="_blank" class="waves-effect">
 		
 					<i class='bx bx-globe'></i>
 					<span>Website</span>

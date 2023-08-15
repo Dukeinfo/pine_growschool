@@ -15,6 +15,8 @@ class EditMenu extends Component
         $menu = Menu::findOrFail($id);
         $this->menuId = $menu->id;
         $this->name = $menu->name;
+        $this->link = $menu->link;
+
     	  $this->sort_id = $menu->sort_id;
   
     	  $this->status = $menu->status;
@@ -23,7 +25,7 @@ class EditMenu extends Component
      {
          return [
              'name' => ['required', Rule::unique('menus')->ignore($this->menuId)],
-             'sort_id' => ['required', Rule::unique('menus')->ignore($this->menuId)],
+             'sort_id' => ['required'],
              'status' => 'required',
          ];
      }
@@ -39,7 +41,7 @@ class EditMenu extends Component
       $this->validate();
         $menu = Menu::find($this->menuId);
         $menu->name = $this->name;
-        $menu->link = $this->link;
+        $menu->link = $this->link ?? NUll;
         $menu->sort_id =$this->sort_id;
         // $menu->link =$this->link;
 

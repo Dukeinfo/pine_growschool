@@ -86,7 +86,7 @@ class EditSubMenu extends Component
 
       $submenu->url_link =   $this->url_link ;
       $submenu->display_name =   $this->display_name ;
-      $submenu->slug =  $this->createSlug($this->display_name ?? NULL);
+      $submenu->slug =  $this->createSlug($this->url_link ?? NULL);
       $submenu->seo_title =   $this->seo_title ;
       $submenu->seo_keywords =   $this->seo_keywords ;
       $submenu->seo_description =   $this->seo_description ;

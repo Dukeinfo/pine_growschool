@@ -42,20 +42,28 @@
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                {{-- <div class="col-md-3">
+                                <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label"> Route Name</label>
                                         <select name="selected_route" wire:model="link" id="selected_route"  class="form-control">
                                          <option value="" >Select page</option>
+                                          
                                             @foreach(Route::getRoutes() as $route)
                                             @if (str_starts_with($route->getName(), 'home.') )
-                                                <option value="{{ $route->getName() }}"  class="form-control">{{ $route->getName() }}</option>
+                                            @php
+                                            $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
+                                           @endphp
+                                                <option value="{{ $route->getName() }}"    class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
+                                               
                                            @endif
                                                 @endforeach
                                         </select>
                                         @error('link') <span class="error">{{ $message }}</span> @enderror
                                     </div>
-                                </div> --}}
+                                </div>
+
+
+                                
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>

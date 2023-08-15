@@ -11,9 +11,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="bannerTitle">{{$display_name ?? ''}}</h2>
+                    <h2 class="bannerTitle">{{$name ?? ''}}</h2>
                     <div class="breadcrumbs">
-                        <a href="{{route('homepage')}}">Home</a>
+                        <a href="{{route('home.homepage')}}">Home</a>
                         <span>/</span>
                         <a href="javascript:void()">About Us</a>
                         <span>/</span>

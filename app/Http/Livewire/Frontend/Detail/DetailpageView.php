@@ -12,7 +12,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 
 class DetailpageView extends Component
 {
-    public $pageId, $slug, $heading, $desc ,$image ,$display_name; 
+    public $pageId, $slug, $heading, $desc ,$image ,$display_name ,$name; 
     public $seotitle ,$seo_description  ,$seo_keywords , $url_link;
 
     public function mount($page_id , $slug)
@@ -20,10 +20,12 @@ class DetailpageView extends Component
         try {
         // $id = decrypt($encrypted_id);
         $id = $page_id;
-
+ 
         // Retrieve the item based on the ID
         $pageData = CreatePage::with(['SubMenu'])->findOrFail($id);
-
+        if ($pageData->SubMenu->status === 'Inactive' ||  !$pageData || $pageData->status === 'Inactive'  ) {
+            abort(404);
+        }
             $this->pageId = $pageData->id;
             $this->slug = $pageData->slug;
             $this->heading = $pageData->heading;
@@ -33,7 +35,9 @@ class DetailpageView extends Component
             
             $this->url_link = $pageData->url_link;
             $this->seotitle = $pageData->SubMenu->seo_title;
-            $this->display_name = $pageData->SubMenu->display_name;
+            // $this->display_name = $pageData->SubMenu->display_name;
+            $this->name = $pageData->SubMenu->name;
+
             $this->seo_description = $pageData->SubMenu->seo_description;
             $this->seo_keywords = $pageData->SubMenu->seo_keywords ?? '';
             SEOTools::setTitle($this->seotitle );
