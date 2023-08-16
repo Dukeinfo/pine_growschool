@@ -2,6 +2,11 @@
 
 <ul class="sub-menu">
     @foreach($menus as $menu)
+       @if ($menu->status === 'Inactive')
+        @php
+            abort(404);
+        @endphp
+    @endif
     @if(!empty($menu->link))
     <li>
         <a href="{{ !empty($menu->link) ? route($menu->link) : '#' }}">{{ $menu->name ?? '' }}</a>

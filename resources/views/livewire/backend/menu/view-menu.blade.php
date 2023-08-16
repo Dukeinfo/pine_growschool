@@ -48,7 +48,7 @@
                                     <div class="mb-3">
                                         <label class="form-label"> Route Name</label>
                                         <select name="selected_route" wire:model="link" id="selected_route"  class="form-control">
-                                         <option value="" >Select page</option>
+                                         <option value="{{NULL}}" >Select page</option>
                                           
                                             @foreach(Route::getRoutes() as $route)
                                             @if (str_starts_with($route->getName(), 'home.') )

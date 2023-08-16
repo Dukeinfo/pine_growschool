@@ -35,7 +35,6 @@ class ViewSubMenu extends Component
         'name' => 'required | unique:submenus,name', 
         'sort_id' => 'required',
         'cms' => 'required', 
-        // 'pname' => 'required', 
         'status' => 'required', 
         // 'image' =>  'required|file', 
      
@@ -45,7 +44,7 @@ class ViewSubMenu extends Component
           'name.required' => 'Name Required.',
           'sort_id.required' => 'Sort Required.',
           'sort_id.unique' => 'Sort number already taken.',
-
+     
           'cms.required' => 'CMS Required.',
           'status.required' => 'Status Required.',
           
@@ -53,7 +52,25 @@ class ViewSubMenu extends Component
 
 
     public function addsubMenu(){
-    $validatedData = $this->validate();
+      if($this->cms == "Yes"){
+        $this->validate([
+          'menu_id' => 'required', 
+          'name' => 'required | unique:submenus,name', 
+          'sort_id' => 'required',
+          'cms' => 'required', 
+          'url_link' => 'required', 
+          'status' => 'required', 
+          'image' =>  'required|file', 
+        ]);
+      }
+    $this->validate([
+      'menu_id' => 'required', 
+      'name' => 'required | unique:submenus,name', 
+      'sort_id' => 'required',
+      'cms' => 'required', 
+      'status' => 'required', 
+      'pname'=> 'required', 
+    ]);
       if(!is_null($this->image)){
         $image =  $this->image;
         // Define folder path
@@ -72,7 +89,7 @@ class ViewSubMenu extends Component
         'thumbnail' => $uploadedData['thumbnail_name'] ?? Null,
         'url_link' => $this->url_link ?? Null,
         'display_name' => $this->display_name ?? Null,   //use slug here
-        'slug' =>  $this->createSlug($this->url_link ?? NULL),
+        'slug' =>  $this->createSlug($this->name ?? NULL),
         'seo_title' => $this->seo_title ?? Null,
         'seo_keywords' => $this->seo_keywords ?? Null,
         'seo_description' => $this->seo_description ?? Null,

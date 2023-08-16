@@ -103,15 +103,15 @@
 
 <script>
     
-  document.addEventListener('livewire:load', function () {
-        $('.popupBtn').on('click', function (e) {
-        e.preventDefault();
-        $('.popupSidebarSsec').toggleClass('active');
-    });
-    $('.popupSidebarOverlay, .widgetCloser').on('click', function () {
-        $('.popupSidebarSsec').removeClass('active');
-    });
-});
+//   document.addEventListener('livewire:load', function () {
+//         $('.popupBtn').on('click', function (e) {
+//         e.preventDefault();
+//         $('.popupSidebarSsec').toggleClass('active');
+//     });
+//     $('.popupSidebarOverlay, .widgetCloser').on('click', function () {
+//         $('.popupSidebarSsec').removeClass('active');
+//     });
+// });
 
 
 </script>
@@ -129,8 +129,7 @@
     <!-- Custome Js -->
     <script src="{{asset('assets/js/theme.js')}}"></script>
 
-    <!-- new Custome Js added -->
-    <script src="{{asset('assets/js/theme.js')}}"></script>
+
     <!-- END: JS -->
     @livewireScripts
 

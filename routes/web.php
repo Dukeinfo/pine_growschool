@@ -118,8 +118,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/phpinfo', function (){
     dd(phpinfo());
 });
-Route::get('/', Homepage::class)->name('home.homepage');
 Route::get('detail/page/{page_id}/{slug}', DetailpageView::class)->name('detail_page');
+Route::group(['middleware' => ['check-menu-route-status']], function () {
+Route::get('/', Homepage::class)->name('home.homepage');
 
 Route::get('/about-us', AboutUs::class)->name('home.about_us');
 Route::get('/admission-process', AdmissionProcess::class)->name('home.admission_process');
@@ -133,6 +134,7 @@ Route::get('/our-founder', OurFounder::class)->name('home.our_founder');
 
 
 
+});
 
 
 

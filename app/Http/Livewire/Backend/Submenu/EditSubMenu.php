@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+
 class EditSubMenu extends Component
 {
   use WithFileUploads;
@@ -45,9 +47,33 @@ class EditSubMenu extends Component
         return view('livewire.backend.submenu.edit-sub-menu')->layout('layouts.backend');
     }
 
+    protected function rules()
+    {
+        return [
+      'menu_id' => 'required', 
+      'name' => ['required', Rule::unique('submenus')->ignore($this->submenuId)],
+      'sort_id' => 'required',
+      'cms' => 'required', 
+      'url_link' => 'required', 
+      'status' => 'required', 
+      // 
+   
+    ];
+  }
 
+    protected $messages = [
+        'menu_id.required' => 'Menu Required.',
+        'name.required' => 'Name Required.',
+        'sort_id.required' => 'Sort Required.',
+        'url_link.required' => 'Url name required.',
+        'cms.required' => 'CMS Required.',
+        'status.required' => 'Status Required.',
+        
+    ];
       public function editsubMenu()
     {
+
+      $this->validate();
       if(!is_null($this->editimage)){
         $image =  $this->editimage;
         // Define folder path
@@ -58,13 +84,20 @@ class EditSubMenu extends Component
       $submenu->name = $this->name;
       $submenu->sort_id =$this->sort_id;
       $submenu->cms =$this->cms;
-      $submenu->pname =$this->pname;
+      if($this->cms == "Yes"){
+
+        $submenu->pname =  NULL;
+      }else{
+
+        $submenu->pname =  $this->pname;
+      }
+
       $submenu->status = $this->status;
       $submenu->image =   $uploadedData['file_name'] ?? NULL;
       $submenu->thumbnail =  $uploadedData['thumbnail_name'] ?? NULL;
       $submenu->url_link =   $this->url_link ;
       $submenu->display_name =   $this->display_name ;
-      $submenu->slug =  $this->createSlug($this->display_name ?? NULL);
+      $submenu->slug =  $this->createSlug($this->name ?? NULL);
       $submenu->seo_title =   $this->seo_title ;
       $submenu->seo_keywords =   $this->seo_keywords ;
       $submenu->seo_description =   $this->seo_description ;
@@ -81,7 +114,13 @@ class EditSubMenu extends Component
       $submenu->name = $this->name;
       $submenu->sort_id =$this->sort_id;
       $submenu->cms =$this->cms;
-      $submenu->pname =$this->pname ?? NULL;
+      if($this->cms == "Yes"){
+
+        $submenu->pname =  NULL;
+      }else{
+
+        $submenu->pname =  $this->pname;
+      }
       $submenu->status = $this->status;
 
       $submenu->url_link =   $this->url_link ;

@@ -1,3 +1,4 @@
+document.addEventListener('livewire:load', function () {
 (function ($) {
     'use strict';
     
@@ -607,3 +608,5 @@
     });
     
 })(jQuery);
+
+});

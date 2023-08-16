@@ -94,10 +94,9 @@
                             
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label"> Page Name</label>
-                                        <select name="selected_route" wire:model="pname"   @if($cms == "Yes") disabled     @endif  id="selected_route"   class="form-control">
-                                            <option  value="">Select page (NULL)</option>
-
+                                        <label class="form-label"> Page Name @if($cms == "No") <span class="text-danger">*</span>     @endif </label>
+                                        <select name="selected_route" wire:model="pname"   @if($cms == "Yes") disabled      @endif  id="selected_route"   class="form-control">
+                                         <option  value="">Select page (NULL)</option>
                                           
                                             @foreach(Route::getRoutes() as $route)
                                             @if (str_starts_with($route->getName(), 'home.') )
@@ -133,7 +132,7 @@
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label"> URL Name</label>
+                                        <label class="form-label"> URL Name  <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" {{$cms == "No" ? 'disabled' : ''}}   wire:model="url_link" 
                                         placeholder="URL Name" >
                                         @error('url_link') <span class="error">{{ $message }}</span> @enderror
@@ -141,15 +140,15 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label"> Display Name</label>
                                         <input type="text" class="form-control"  {{$cms == "No" ? 'disabled' : ''}}   wire:model="display_name" placeholder="Display Name">
                                         @error('display_name') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>
-                                </div>
-                                <div class="col-md-12">
+                                </div> --}}
+                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label"> Seo Title</label>
                                         <input type="text" class="form-control"  wire:model="seo_title" placeholder="Seo Title">
@@ -176,7 +175,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Status</label>
+                                        <label class="form-label">Status <span class="text-danger">*</span></label>
                                             <select wire:model="status" class="form-select">
                                                 <option value="">Select</option>
                                                 <option value="Active">Active</option>
