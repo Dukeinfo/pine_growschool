@@ -135,7 +135,7 @@
                                     <div class="mb-3">
                                         <label class="form-label"> URL Name</label>
                                         <input type="text" class="form-control" {{$cms == "No" ? 'disabled' : ''}}   wire:model="url_link" 
-                                        placeholder="URL Name">
+                                        placeholder="URL Name" >
                                         @error('url_link') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>

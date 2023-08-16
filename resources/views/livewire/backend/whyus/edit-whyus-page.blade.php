@@ -36,6 +36,20 @@
                             <!--form starts-->
                             <div class="row g-3">
 
+                                 <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Page Sections</label>
+                                            <select wire:model="category" class="form-select">
+                                                <option value="">Select</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                
+                                            </select>
+                                        @error('category') <span class="error">{{ $message }}</span> @enderror
+
+                                    </div>
+                                </div>
 
                             	
                                 <div class="col-md-e">
@@ -46,14 +60,16 @@
                                     </div>
                                 </div>
 
-
-                                <div class="col-md-e">
+                                  <div class="col-md-e">
                                     <div class="mb-3">
-                                        <label class="form-label"> Heading</label>
-                                        <input type="text" class="form-control" id="" wire:model="heading" placeholder="Heading">
-                                        @error('heading') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label">Sub Title</label>
+                                        <input type="text" class="form-control" id="" wire:model="sub_title" placeholder="Sub Title">
+                                        @error('sub_title') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
+
+
+                               
 
                                 <div class="col-md-12">
                                     <div class="mb-3" >

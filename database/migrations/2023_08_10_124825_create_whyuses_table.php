@@ -15,7 +15,9 @@ class CreateWhyusesTable extends Migration
     {
         Schema::create('whyuses', function (Blueprint $table) {
             $table->id();
+            $table->integer('category')->nullable(); 
             $table->string('title')->nullable();
+            $table->string('sub_title')->nullable(); 
             $table->string('heading')->nullable(); 
             $table->text('description')->nullable();
             $table->string('slug')->nullable();

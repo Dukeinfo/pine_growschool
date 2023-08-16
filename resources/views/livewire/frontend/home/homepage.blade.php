@@ -39,8 +39,15 @@
             <div class="row">
                 <div class="col-lg-6">
                     <!-- About Thumb -->
+                 @php
+                 $categoryFirst = App\Models\Whyus::where('category', 1)->where('status', 'Active')->first();
+                 @endphp
                     <div class="abFact">
-                        <img src="assets/images/about.jpg" alt="Pingrove">
+                    @if (isset($categoryFirst->image))
+                        <img src="{{ asset('storage/uploads/whyus/' . $categoryFirst->image) }}"  alt="Pinegrove">
+                        @else
+                       <img src="assets/images/about.jpg" alt="Pingrove">
+                    @endif
                         <div class="abContent">
                             <a href="https://pinegrove.in/assets/img/School.mp4" class="popup_video withText">
                                 <i class="fa-sharp fa-solid fa-play"></i>
@@ -49,21 +56,48 @@
                     </div>
                     <!-- About Thumb -->
                 </div>
+
+                <!-- category 1 for common page-->
                 <div class="col-lg-6">
                     <!-- About Content -->
                     <div class="aboutContent02">
-                        <h5 class="subTitle">Unlocking Excellence</h5>
-                        <h2 class="secTitle">Embrace Limitless Potential at Our Premier Boarding School</h2>
-                        <p>
-                            Pinegrove School, established in 1991, is a co-educational, purely residential, English
-                            medium boarding school affiliated to the Central Board of Secondary Education (CBSE), Delhi,
-                            upto Class 12th. Pinegrove is a proud member of the prestigious Indian Public Schools'
-                            Conference (IPSC), Global Member of the Round Square, member of the NPSC, NCC, AFS, and is
-                            accredited with ISO 9001:2015 (BSI) certification. The school is also a member of the IAYP
+                        <h5 class="subTitle">{{$categoryFirst->title ?? 'Unlocking Excellence'}}</h5>
+                        <h2 class="secTitle">{{$categoryFirst->sub_title ?? 'Embrace Limitless Potential at Our Premier Boarding School'}}</h2>
+
+                        @if(isset($categoryFirst->description) )
+                        
+                            {!!$categoryFirst->description ?? ''!!}
+                        @else 
+                         <p>
+                            Pinegrove School, established in 1991, is a co-educational, purely residential, English medium boarding school affiliated to the Central Board of Secondary Education (CBSE), Delhi, upto Class 12th. Pinegrove is a proud member of the prestigious Indian Public Schools' Conference (IPSC), Global Member of the Round Square, member of the NPSC, NCC, AFS, and is accredited with ISO 9001:2015 (BSI) certification. The school is also a member of the IAYP
                         </p>
+                        @endif
+
+                     @if($categoryFirst)   
+                        @php
+                        $listItems = App\Models\WhyusItem::where('whyus_id', $categoryFirst->id)->get();
+                        @endphp
                         <div class="row">
+
                             <div class="col-xl-12 col-sm-6">
-                                <div class="iconBox02">
+
+                             @foreach($listItems as  $item)
+
+                             <div class="iconBox02">
+                                    <h3 class="ibTitle">{{$item->item ?? ''}}</h3>
+                                </div>
+                            @endforeach
+                            </div>
+                        </div>
+
+                      @else
+                      
+
+                        <div class="row">
+
+                            <div class="col-xl-12 col-sm-6">
+  
+                              <div class="iconBox02">
                                     <h3 class="ibTitle">High standards in value education</h3>
                                 </div>
                                 <div class="iconBox02">
@@ -72,8 +106,14 @@
                                 <div class="iconBox02">
                                     <h3 class="ibTitle">Highest standards of academic and sporting excellence</h3>
                                 </div>
+                      
                             </div>
-                        </div>
+                        </div>  
+                      
+
+
+
+                      @endif  
                         <a class="immiPressBtn" href="{{route('home.about_us')}}"><span>Discover More</span></a>
                     </div>
                     <!-- About Content -->
@@ -242,22 +282,56 @@
         </div>
     </section>
     <!-- END: Service Section End -->
+
+
+ @php
+  $categorySecond = App\Models\Whyus::where('category', 2)->where('status', 'Active')->first();
+ @endphp
     <section class="aboutSection02 position-relative">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="aboutContent02">
-                        <h5 class="subTitle">Where Excellence Meets Education</h5>
-                        <h2 class="secTitle">A Home Away from Home</h2>
+                        <h5 class="subTitle">
+                         {{$categorySecond->title ?? 'Where Excellence Meets Education'}}</h5>
+                        <h2 class="secTitle">
+                        {{$categorySecond->sub_title ?? 'A Home Away from Home'}}</h2>
+
+                         @if(isset($categorySecond->description) )
+                        
+                            {!!$categorySecond->description ?? ''!!}
+                        @else 
                         <p>
                             Pinegrove is very conscious of the quality of its finished product "The Child". The
                             resultant fruit of an all-round nicely developed and well-balanced personality is harvested
                             by the school after long, onerous, time consuming and tedious hours of labour put in by a
                             competent team of trained, zealous and devoted teachers.
                         </p>
+                        @endif
+
+                     @if($categorySecond)      
+                        @php
+                        $listItems = App\Models\WhyusItem::where('whyus_id', $categorySecond->id)->get();
+                        @endphp
                         <div class="row">
                             <div class="col-xl-12 col-sm-6">
-                                <div class="iconBox02">
+                            @foreach($listItems as  $item)
+
+                               <div class="iconBox02">
+                                    <h3 class="ibTitle">{{$item->item ?? ''}}</h3>
+                                </div>
+                            @endforeach    
+                            </div>
+                        </div>
+                     
+                      @else
+
+
+                        <div class="row">
+
+                            <div class="col-xl-12 col-sm-6">
+  
+                              <div class="iconBox02">
                                     <h3 class="ibTitle">Immersive and Focused Learning Environment</h3>
                                 </div>
                                 <div class="iconBox02">
@@ -266,8 +340,12 @@
                                 <div class="iconBox02">
                                     <h3 class="ibTitle">Well-Equipped Classrooms with Modern Technology</h3>
                                 </div>
+                      
                             </div>
-                        </div>
+                        </div> 
+
+
+                      @endif  
                         <a class="immiPressBtn" href="javascript:void();"><span>Discover More</span></a>
                     </div>
                 </div>
@@ -344,18 +422,46 @@
                         </button>
                     </div>
                 </div>
+
+                 @php
+                 $categoryThird = App\Models\Whyus::where('category', 3)->where('status', 'Active')->first();
+                 @endphp
                 <div class="col-lg-6 offset-lg-1">
                     <div class="aboutContent02">
-                        <h5 class="subTitle">International Exchange Programs</h5>
-                        <h2 class="secTitle">International Outlook</h2>
+                        <h5 class="subTitle">{{$categoryThird->title ?? 'International Exchange Programs'}}</h5>
+                        <h2 class="secTitle">
+                        {{$categoryThird->title ?? 'International Outlook'}}</h2>
+                        @if(isset($categoryThird->description) )
+                        
+                            {!!$categoryThird->description ?? ''!!}
+                        @else 
                         <p>
                             To provide our students with a global outlook, we offer annual International Exchange
                             Programs and Projects in various countries including Australia, South Africa, Germany,
                             France, the USA, and the UK. Through these experiences, our students gain valuable
                             international perspectives that broaden their horizons and enhance their educational
                             journey.
-                        </p>
+                        </p> 
+                        @endif
+
+                      
+                       @if($categoryThird)
+                        @php
+                        $listItems = App\Models\WhyusItem::where('whyus_id', $categoryThird->id)->get();
+                        @endphp
                         <div class="row">
+                            <div class="col-xl-12 col-sm-6">
+                             @foreach($listItems as  $item)
+
+                               <div class="iconBox02">
+                                    <h3 class="ibTitle">{{$item->item ?? ''}}</h3>
+                                </div>
+                            @endforeach
+                               
+                            </div>
+                        </div>
+                      @else
+                          <div class="row">
                             <div class="col-xl-12 col-sm-6">
                                 <div class="iconBox02">
                                     <h3 class="ibTitle">Learn to navigate cross-cultural interactions</h3>
@@ -369,6 +475,8 @@
                                 </div>
                             </div>
                         </div>
+                      @endif
+
                         <a class="immiPressBtn" href="javascript:void();"><span>Discover More</span></a>
                     </div>
                 </div>

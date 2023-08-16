@@ -22,7 +22,7 @@ class EditWhyusPage extends Component
     public $inputs = [];
     public $i = 1;
 
-    public $whyusId,$title,$heading,$image,$editimage,$desc,$link,$sort_id,$status ,$thumbnail;
+    public $whyusId,$category,$title,$sub_title,$heading,$image,$editimage,$desc,$link,$sort_id,$status ,$thumbnail;
 
      public $item;
 
@@ -30,8 +30,9 @@ class EditWhyusPage extends Component
       public function mount($id){
         $whyus = Whyus::findOrFail($id);
         $this->whyusId = $whyus->id;
+        $this->category = $whyus->category;
         $this->title = $whyus->title;
-        $this->heading = $whyus->heading;
+        $this->sub_title = $whyus->sub_title;
         $this->image = $whyus->image;
         $this->thumbnail = $whyus->thumbnail;
         $this->desc = $whyus->description;
@@ -54,6 +55,8 @@ class EditWhyusPage extends Component
         unset($this->inputs[$i]);
      }
 
+     
+
 
 
      public function editWhyus(){
@@ -66,8 +69,9 @@ class EditWhyusPage extends Component
       $uploadedData = $this->uploadOne($image, $folder);
 
       $whyus =Whyus::find($this->whyusId);
+      $whyus->category = $this->category;
       $whyus->title = $this->title;
-      $whyus->heading = $this->heading;
+      $whyus->sub_title = $this->sub_title;
       $whyus->slug =  $this->createSlug($this->title ?? NULL);
       $whyus->image = $uploadedData['file_name'] ?? NULL;
       $whyus->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
@@ -81,8 +85,9 @@ class EditWhyusPage extends Component
      } else{  
 
       $whyus =Whyus::find($this->whyusId);
+      $whyus->category = $this->category;
       $whyus->title = $this->title;
-      $whyus->heading = $this->heading;
+      $whyus->sub_title = $this->sub_title;
       $whyus->slug =  $this->createSlug($this->title ?? NULL);
       $whyus->description = $this->desc;
       $whyus->link = $this->link;

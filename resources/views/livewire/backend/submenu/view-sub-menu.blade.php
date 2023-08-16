@@ -236,7 +236,7 @@
                                           
                                             <td>{{$record->cms ?? '' }}</td>
                                             <td>{{$record->pname ?? '' }}</td>
-                                            <td><span class="badge badge-soft-success">{{$record->status ?? '' }}<</span></td>
+                                            <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>
                                             <td>
                                                 <a href="{{url('/admin/edit/submenu')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>

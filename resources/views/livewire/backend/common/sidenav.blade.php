@@ -12,15 +12,16 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{route('home.homepage')}}" target="_blank" class="waves-effect">
+				 <a href="{{route('home.homepage')}}" target="_blank" class="waves-effect"> 
 		
 					<i class='bx bx-globe'></i>
 					<span>Website</span>
 				</a>
+				
 			</li>
 
 
-               <li>
+            <li>
 				<a href="javascript: void(0);" class="has-arrow waves-effect">
 					<i class='bx bx-image-add'></i>
 					<span>Master</span>
@@ -50,7 +51,7 @@
 		    <li>
 				<a href="{{route('whyus_page')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
-					<span>Why Us</span>
+					<span>Home Sections</span>
 				</a>
 			</li>
 		

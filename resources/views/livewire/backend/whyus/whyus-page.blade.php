@@ -37,6 +37,22 @@
                             <div class="row g-3">
 
 
+                                  <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Page Sections</label>
+                                            <select wire:model="category" class="form-select">
+                                                <option value="">Select</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                
+                                            </select>
+                                        @error('category') <span class="error">{{ $message }}</span> @enderror
+
+                                    </div>
+                                </div>
+
+
                             	
                                 <div class="col-md-e">
                                     <div class="mb-3">
@@ -46,15 +62,16 @@
                                     </div>
                                 </div>
 
-
-                                <div class="col-md-e">
+                                   <div class="col-md-e">
                                     <div class="mb-3">
-                                        <label class="form-label"> Heading</label>
-                                        <input type="text" class="form-control" id="" wire:model="heading" placeholder="Heading">
-                                        @error('heading') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label">Sub Title</label>
+                                        <input type="text" class="form-control" id="" wire:model="sub_title" placeholder="Sub Title">
+                                        @error('sub_title') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
+
+                                
                                 <div class="col-md-12">
                                     <div class="mb-3" >
                                         <label class="form-label">Description</label>
@@ -179,9 +196,10 @@
                                 <table class="table table-bordered table-striped datatable">
                                     <thead>
                                         <tr>
+                                            <th> Page Section</th>
                                             <th> Image</th>
                                             <th> Title</th>
-                                            <th> Heading</th>
+                                            <th> Sub Title</th>
                                             <th> Description</th>
                                             <th> Link</th>
                                             <th>Sorting Order#</th>
@@ -193,14 +211,17 @@
                                       @if(isset($records) && count($records)>0 )                      
                                          @foreach ($records as  $record)	
                                         <tr>
+                                            <td>{{$record->category ?? '' }}</td>       
                                             <td>  
                                             @php      
 $thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_assets/images/no-img.jpg');
 @endphp                                      
 <img src="{{$thumb}}" alt="" class="border" width="100" height="70">            
                                             </td>
+
                                             <td>{{$record->title ?? '' }}</td>
-                                            <td>{{$record->heading ?? '' }}</td>
+                                            <td>{{$record->sub_title ?? '' }}</td>
+                                            
                                            <td>{!!$record->description ?? '' !!}</td>
                                         
                                              <td>{{$record->link ?? '' }}</td>

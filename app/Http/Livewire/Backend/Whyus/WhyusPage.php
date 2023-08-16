@@ -21,21 +21,23 @@ class WhyusPage extends Component
     public $inputs = [];
     public $i = 1;
 
-    public $title,$heading,$image,$desc,$link,$sort_id,$status;
+    public $category,$title,$sub_title,$image,$desc,$link,$sort_id,$status;
     public $item ,$records;
 
     protected $rules = [
-        'title' => 'required', 
-        'heading' => 'required',
+        'category' => 'required| unique:whyuses,category',
+        'title' => 'required',  
+        'sub_title' => 'required', 
         'image' => 'required', 
         'desc' => 'required', 
-        'sort_id' => 'required', 
+        'sort_id' => 'required| unique:whyuses,sort_id', 
         'status' => 'required', 
        
       ];
       protected $messages = [
+          'category.required' => 'Page Section Required.',
           'title.required' => 'Title Required.',
-          'heading.required' => 'Heading Required.',
+          'sub_title.required' => 'Sub Title Required.',
           'image.required' => 'Image Required.',
           'desc.required' => 'Description Required.',
           'sort_id.required' => 'Sort Id Required.',
@@ -43,13 +45,15 @@ class WhyusPage extends Component
           
       ];
     private function resetInputFields(){
+        $this->category = '';
         $this->title = '';
-        $this->heading = '';
+        $this->sub_title = '';
         $this->image = '';
         $this->desc = '';
         $this->link = '';
         $this->sort_id = '';
         $this->status = '';
+        $this->item ='';
     }
 
        public function add($i)
@@ -80,8 +84,9 @@ class WhyusPage extends Component
     }   
 
       $whyus = new Whyus();
+      $whyus->category = $this->category;
       $whyus->title = $this->title;
-      $whyus->heading = $this->heading;
+      $whyus->sub_title = $this->sub_title;
       $whyus->slug =  $this->createSlug($this->title ?? NULL);
       $whyus->image = $uploadedData['file_name'] ?? NULL;
       $whyus->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
