@@ -5,23 +5,26 @@ namespace App\Http\Livewire\Backend\Pages;
 use Livewire\Component;
 use App\Models\Menu;
 use App\Models\Submenu;
+use App\Models\PageContent;
 use App\Models\CreatePage as appCreatePage;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Traits\UploadTrait;
-class CreatePage extends Component
+
+class AddPageContent extends Component
 {
+     use UploadTrait; 
+     use WithFileUploads;
 
-   use UploadTrait; 
-   use WithFileUploads;
+    /*dynamic dependant deropdown*/
+    public $menu=NULL;
+    public $getMenus;
+    public $subMenus;
 
-   /*dynamic dependant deropdown*/
-   public $menu=NULL;
-   public $subMenus;
+    public $sort_id, $records , $submenu,$heading,$desc,$image,$link,$sort,$status;
 
-   public $sort_id ,$getMenus , $records , $submenu,$heading,$desc,$image,$link,$sort,$status;
 
     protected $rules = [ 
         'menu' => 'required', 
@@ -59,20 +62,19 @@ class CreatePage extends Component
     public function render()
     {
     	$this->getMenus = Menu::get();
-    	 $this->records = appCreatePage::orderBy('sort_id','asc')->get();
-        return view('livewire.backend.pages.create-page')->layout('layouts.backend');
+    	$this->records = PageContent::orderBy('sort_id','asc')->get();
+        return view('livewire.backend.pages.add-page-content')->layout('layouts.backend');
     }
+
 
     public function updatedMenu($menuId)
     {
         if (!is_null($menuId)) {
-            $this->subMenus = Submenu::where('menu_id', $menuId)->where('cms','Yes')->get();
+            $this->subMenus = Submenu::where('menu_id', $menuId)->get();
         }
     }
 
-
-
-    public function createPage(){
+     public function addContent(){
 
       $validatedData = $this->validate();
 
@@ -85,18 +87,18 @@ class CreatePage extends Component
       // dd( $uploadedData );
     }   
 
-      $createPage = new appCreatePage();
-      $createPage->menu_id = $this->menu ?? Null;
-      $createPage->submenu_id = $this->submenu ?? Null;
-      $createPage->heading = $this->heading ?? Null;
-      $createPage->slug =  strtolower(str_replace(' ', '-',$this->heading))?? Null;
-      $createPage->description = $this->desc ?? Null;
-      $createPage->image = $uploadedData['file_name'] ?? NULL;
-      $createPage->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
-      $createPage->link = $this->link ?? Null;
-      $createPage->sort_id =$this->sort ?? Null;
-      $createPage->status = $this->status ?? Null;
-      $createPage->save();
+      $pageContent = new PageContent();
+      $pageContent->menu_id = $this->menu ?? Null;
+      $pageContent->submenu_id = $this->submenu ?? Null;
+      $pageContent->heading = $this->heading ?? Null;
+      $pageContent->slug =  strtolower(str_replace(' ', '-',$this->heading))?? Null;
+      $pageContent->description = $this->desc ?? Null;
+      $pageContent->image = $uploadedData['file_name'] ?? NULL;
+      $pageContent->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
+      $pageContent->link = $this->link ?? Null;
+      $pageContent->sort_id =$this->sort ?? Null;
+      $pageContent->status = $this->status ?? Null;
+      $pageContent->save();
       $this->resetInputFields();
         $this->dispatchBrowserEvent('swal:modal', [
                 'type' => 'success',  
@@ -108,11 +110,10 @@ class CreatePage extends Component
 
      public function delete($id){
 
-      $createPage = appCreatePage::findOrFail($id);
-      if(!is_null($createPage)){
-        $createPage->delete();
+      $pageContent = PageContent::findOrFail($id);
+      if(!is_null($pageContent)){
+        $pageContent->delete();
       }
 
      }
-
 }

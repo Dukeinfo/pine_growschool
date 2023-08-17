@@ -114,7 +114,7 @@
 
 
                       @endif  
-                        <a class="immiPressBtn" href="{{route('home.about_us')}}"><span>Discover More</span></a>
+                        <a class="immiPressBtn" href="{{$categoryFirst->link ?? 'javascript:void()'}}" target="_blank"><span>Discover More</span></a>
                     </div>
                     <!-- About Content -->
                 </div>
@@ -346,7 +346,8 @@
 
 
                       @endif  
-                        <a class="immiPressBtn" href="javascript:void();"><span>Discover More</span></a>
+                        
+                          <a class="immiPressBtn" href="{{$categorySecond->link ?? 'javascript:void()'}}" target="_blank"><span>Discover More</span></a>
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1">
@@ -477,7 +478,7 @@
                         </div>
                       @endif
 
-                        <a class="immiPressBtn" href="javascript:void();"><span>Discover More</span></a>
+                       <a class="immiPressBtn" href="{{$categoryThird->link ?? 'javascript:void()'}}" target="_blank"><span>Discover More</span></a>
                     </div>
                 </div>
             </div>

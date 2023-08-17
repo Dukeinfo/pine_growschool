@@ -29,7 +29,8 @@ class DetailpageView extends Component
             $this->pageId = $pageData->id;
             $this->slug = $pageData->slug;
             $this->heading = $pageData->heading;
-            $this->image = $pageData->SubMenu->image;
+           /* $this->image = $pageData->SubMenu->image;*/
+           $this->image = $pageData->image;
 
             $this->desc = $pageData->description;
             

@@ -42,20 +42,33 @@
 					<span>Create Page</span>
 				</a>
 			</li>
-			<li>
-				<a href="{{route('view_home_slider')}}" class="waves-effect">
-					<i class="bx bx-image"></i>
-					<span>Home Slider</span>
-				</a>
-			</li>
-		    <li>
-				<a href="{{route('whyus_page')}}" class="waves-effect">
+
+             <li>
+				<a href="{{route('page_content')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
-					<span>Home Sections</span>
+					<span>Page Content</span>
 				</a>
 			</li>
-		
-		
+
+
+            <li>
+				<a href="javascript: void(0);" class="has-arrow waves-effect">
+					<i class='bx bx-image-add'></i>
+					<span>Home</span>
+				</a>
+					
+			  <ul class="sub-menu" aria-expanded="false">
+						<li><a href="{{route('view_home_slider')}}">Home Slider</a></li>
+						<li><a href="{{route('whyus_page')}}">Home Sections</a>
+						<li><a href="{{route('view_boardmembers')}}">Board Memebers</a>
+					    <li><a href="{{route('view_our_topper')}}">Our Toppers</a></li>
+						<li><a href="{{route('view_knowledge_home')}}">Knowledge Home</a></li>		
+                       <li><a href="{{route('view_membership')}}">Memebership</a>
+					</ul>
+			
+			</li>
+
+
 			<li>
 				<a href="{{route('view_department')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
@@ -78,7 +91,7 @@
 					
 			  <ul class="sub-menu" aria-expanded="false">
 						<li><a href="{{route('create_message')}}">Message</a></li>
-						<li><a href="{{route('view_boardmembers')}}">Board Memebers</a>
+						
 					   
 					</ul>
 			
@@ -93,12 +106,7 @@
 				</a>
 			</li>
 		
-			<li>
-				<a href="{{route('view_membership')}}" class="waves-effect">
-					<i class='bx bx-user'></i>
-					<span>Memberships</span>
-				</a>
-			</li>
+			
 			<li>
 				<a href="{{route('view_testimonials')}}" class="waves-effect">
 					<i class='bx bx-chat'></i>
@@ -142,10 +150,9 @@
 					<ul class="sub-menu" aria-expanded="false">
 						<li><a href="{{route('view_category')}}">Category</a></li>
 						<li><a href="{{route('manage_gallery')}}">Manage Gallery</a></li>
-						<li><a href="{{route('view_our_topper')}}">Our Toppers</a></li>
-						<li><a href="{{route('view_knowledge_home')}}">Knowledge Home</a></li>
+						
 					</ul>
-					{{-- <!-- <li><a href="{{url('admin/portfolio')}}">Portfolio</a></li> --> --}}
+					
 				
 			</li>
 

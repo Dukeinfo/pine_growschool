@@ -216,6 +216,7 @@
                                             <th>Sub Menu</th>
                                             <th>CMS</th>
                                             <th>Page Name</th>
+                                            <th>Sorting Order#</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -236,6 +237,7 @@
                                           
                                             <td>{{$record->cms ?? '' }}</td>
                                             <td>{{$record->pname ?? '' }}</td>
+                                            <td>{{$record->sort_id ?? '' }}</td>
                                             <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>
                                             <td>
                                                 <a href="{{url('/admin/edit/submenu')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>

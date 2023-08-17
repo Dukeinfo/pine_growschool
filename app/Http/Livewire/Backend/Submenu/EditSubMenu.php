@@ -27,7 +27,7 @@ class EditSubMenu extends Component
         $this->submenuId = $submenu->id;
         $this->menu_id = $submenu->menu_id;
         $this->name = $submenu->name;
-        $this->image = $submenu->name;
+        $this->image = $submenu->image;
          $this->thumbnail = $submenu->thumbnail;
          $this->url_link = $submenu->url_link;
          $this->display_name = $submenu->display_name;  //use slug here
@@ -54,7 +54,7 @@ class EditSubMenu extends Component
       'name' => ['required', Rule::unique('submenus')->ignore($this->submenuId)],
       'sort_id' => 'required',
       'cms' => 'required', 
-      'url_link' => 'required', 
+     /* 'url_link' => 'required', */
       'status' => 'required', 
       // 
    
@@ -65,7 +65,7 @@ class EditSubMenu extends Component
         'menu_id.required' => 'Menu Required.',
         'name.required' => 'Name Required.',
         'sort_id.required' => 'Sort Required.',
-        'url_link.required' => 'Url name required.',
+        /*'url_link.required' => 'Url name required.',*/
         'cms.required' => 'CMS Required.',
         'status.required' => 'Status Required.',
         
@@ -125,7 +125,7 @@ class EditSubMenu extends Component
 
       $submenu->url_link =   $this->url_link ;
       $submenu->display_name =   $this->display_name ;
-      $submenu->slug =  $this->createSlug($this->url_link ?? NULL);
+      $submenu->slug =  $this->createSlug($this->name ?? NULL);
       $submenu->seo_title =   $this->seo_title ;
       $submenu->seo_keywords =   $this->seo_keywords ;
       $submenu->seo_description =   $this->seo_description ;

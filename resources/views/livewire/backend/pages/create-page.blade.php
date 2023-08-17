@@ -113,6 +113,14 @@
                                     </div>
                                 </div>
 
+                                 <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Image</label>
+                                        <input type="file" class="form-control" id="" wire:model="image" >
+                                        @error('image') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+
                                  <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Link</label>
@@ -168,6 +176,7 @@
                                             <th>Sub Menu</th>
                                             <th>Heading</th>
                                             {{-- <th>Description</th> --}}
+                                             <th>Image</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -185,6 +194,12 @@
                                             {{-- <td>
                                                 {!! Str::limit($record->description, 230) ?? '' !!}
                                             </td> --}}
+                                              <td>  
+                                            @php      
+$thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_assets/images/no-img.jpg');
+@endphp                                      
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70">            
+                                            </td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td>
                                                 @if($record->status  == "Active")

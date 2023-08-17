@@ -25,6 +25,7 @@ class EditWhyusPage extends Component
     public $whyusId,$category,$title,$sub_title,$heading,$image,$editimage,$desc,$link,$sort_id,$status ,$thumbnail;
 
      public $item;
+     public $items;
 
 
       public function mount($id){
@@ -38,6 +39,8 @@ class EditWhyusPage extends Component
         $this->desc = $whyus->description;
         $this->sort_id = $whyus->sort_id;
     	  $this->status = $whyus->status;
+
+        $this->items = WhyusItem::where('whyus_id', $whyus->id)->get();
 
        
      }

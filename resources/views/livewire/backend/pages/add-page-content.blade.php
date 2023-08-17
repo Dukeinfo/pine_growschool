@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Create Pages</h4>
+                        <h4 class="mb-sm-0 font-size-18">Add Pages Content</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
                                 <li class="breadcrumb-item">Portfolio</li>
-                                <li class="breadcrumb-item active">Create Pages</li>
+                                <li class="breadcrumb-item active">Add Pages Content</li>
                             </ol>
                         </div>
 
@@ -26,14 +26,14 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Add Category</h4>
+                            <h4 class="card-title">Add Content</h4>
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
                             <!--success or error alert-->
                             <!--form starts-->
                             <div class="row g-3">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Menu</label>
                                         <select class="form-select" wire:model="menu">
@@ -48,10 +48,10 @@
                                          @error('menu') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Sub Menu</label>
-                                        <select class="form-select" wire:model="submenu_id">
+                                        <select class="form-select" wire:model="submenu">
                                                 <option value="">Select</option>
                                                @if (!is_null($subMenus)) 
                                                 @foreach($subMenus as $submenu)
@@ -63,7 +63,8 @@
                                          @error('submenu') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Heading</label>
                                         <input type="text" class="form-control" id=""  wire:model="heading" placeholder="Heading">
@@ -99,31 +100,28 @@
                                                 CKEDITOR.instances.editor.on('change', function () {
                                                     @this.set('desc', CKEDITOR.instances.editor.getData());
                                                 });
+
+
+                                                Livewire.on('formSubmitted', function () {
+                                                                CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+                                                    });
                                             });
- </script>
+                                        </script>
 
 
                                                                            
                                     </div>
                                 </div>
 
-                                  <div class="col-md-3">
+                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Image</label>
-                                        <input type="file" class="form-control" id="" wire:model="editimage" >
-                                        @if(isset($editimage))  
-<img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
-@else                                        
-@php   
-$thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/images/no-img.jpg');
-@endphp                                      
-<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
-@endif
-                                        @error('editimage') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="file" class="form-control" id="" wire:model="image" >
+                                        @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
- <div class="col-md-4">
+                                 <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Link</label>
                                     <input type="text" class="form-control" id="" wire:model="link"  placeholder="Link">
@@ -149,9 +147,9 @@ $thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/ima
                                     </div>
                                 </div>
                                 <div >
-                                    <button wire:loading.attr="disabled" type="submit" wire:click="editPage" class="btn btn-primary w-md">Submit</button>
+                                    <button wire:loading.attr="disabled" type="submit" wire:click="addContent" class="btn btn-primary w-md">Save</button>
                                 </div>
-                                 <div wire:loading wire:target="editPage">
+                                 <div wire:loading wire:target="addContent">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
 
                                      </div>
@@ -161,6 +159,76 @@ $thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/ima
                 </div>
             </div>
             <!-- end row -->
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header bg-transparent border-bottom py-3">
+                            <h4 class="card-title">Manage Page</h4>
+                            <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>Menu</th>
+                                            <th>Sub Menu</th>
+                                            <th>Heading</th>
+                                            {{-- <th>Description</th> --}}
+                                             <th>Image</th>
+                                            <th>Sorting Order#</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                          @if(isset($records) && count($records)>0 )                      
+                           @foreach ($records as  $record) 
+                                        <tr>
+                                            <td>{{$record->Menu->name ?? '' }}</td>
+                                             <td>{{$record->SubMenu->name ?? '' }}</td>
+                                            <td>
+                                             {{$record->heading ?? '' }}  
+                                            </td>
+                                            {{-- <td>
+                                                {!! Str::limit($record->description, 230) ?? '' !!}
+                                            </td> --}}
+                                              <td>  
+                                            @php      
+$thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_assets/images/no-img.jpg');
+@endphp                                      
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70">            
+                                            </td>
+                                            <td>{{$record->sort_id ?? '' }}</td>
+                                            <td>
+                                                @if($record->status  == "Active")
+                                                        <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
+                                                        @else
+                                                    <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
+                                                @endif</td>
+                                            <td>
+                                                <a href="{{url('/admin/edit/page')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
+                                            </td>
+                                        </tr>
+                                  @endforeach
+                                      @else
+                                 <tr>
+                                 <td colspan="5"> Record Not Found</td>
+                                
+                                 </tr>
+                                 @endif      
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+
             
         </div>
         <!-- container-fluid -->

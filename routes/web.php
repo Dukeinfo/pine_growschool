@@ -66,6 +66,7 @@ use App\Http\Livewire\Backend\Contact\ContactFormEntries;
 use App\Http\Livewire\Backend\Contact\ViewContactFormEntry;
 use App\Http\Livewire\Backend\Contact\TrashContactFormEntries;
 use App\Http\Livewire\Backend\Login\AdminLogin;
+use App\Http\Livewire\Backend\Pages\AddPageContent;
 use App\Http\Livewire\Backend\Pages\CreatePage;
 use App\Http\Livewire\Backend\Pages\EditPage;
 use App\Http\Livewire\Backend\Pages\TrashPage;
@@ -245,6 +246,7 @@ Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])
      Route::get('/edit/header/snippets/{id}', EditHeaderSnippets::class)->name('edit_snippets');
     Route::get('/footer/snippets', FooterSnippets::class)->name('manage_footer_snippets');
 
+    Route::get('/page/content', AddPageContent::class)->name('page_content');
     Route::get('/create/page', CreatePage::class)->name('create_page');
     Route::get('/edit/page/{id}', EditPage::class)->name('edit_page');
     Route::get('/create/page/trash', TrashPage::class)->name('trash_page');

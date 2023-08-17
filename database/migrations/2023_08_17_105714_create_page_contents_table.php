@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCreatePagesTable extends Migration
+class CreatePageContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('create_pages', function (Blueprint $table) {
+        Schema::create('page_contents', function (Blueprint $table) {
             $table->id();
-            $table->integer('menu_id')->nullable();
+            $table->integer('menu_id');
             $table->integer('submenu_id')->nullable(); 
             $table->text('heading')->nullable();
             $table->text('slug')->nullable();
@@ -27,7 +27,7 @@ class CreateCreatePagesTable extends Migration
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();
             $table->string('login')->nullable();
-            $table->softDeletes(); 
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -39,6 +39,6 @@ class CreateCreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('create_pages');
+        Schema::dropIfExists('page_contents');
     }
 }

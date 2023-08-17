@@ -50,7 +50,7 @@
                     <h5 class="subTitle">Where We Are?</h5>
                     <h2 class="secTitle">{!!$heading  ?? "" !!}</h2>
 
-                    <img src="{{getsubmenuImage($image)}}" class="img-fluid rounded mb-4" alt="submenu img">
+                    <img src="{{getpageImage($image)}}" class="img-fluid rounded mb-4" alt="submenu img">
 
                     <p>  {!! $desc ?? ""!!}</p>
                     <a class="immiPressBtn" href="{{$url_link ?? ''}}"><span>Discover More</span></a>

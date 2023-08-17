@@ -21,6 +21,10 @@ function getsubmenuImage($value) {
     return asset('storage/uploads/submenu/'.$value);
 }
 
+function getpageImage($value) {
+    return asset('storage/uploads/page/'.$value);
+}
+
 function getTopperImages($value) {
     return asset('storage/uploads/our_topper/'.$value);
 }
