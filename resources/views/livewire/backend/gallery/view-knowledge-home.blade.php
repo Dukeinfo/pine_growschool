@@ -39,8 +39,8 @@
 
                             	<div class="col-md-e">
                                     <div class="mb-3">
-                                        <label class="form-label">Logo</label>
-                                        <input type="text" class="form-control" id="" wire:model="logo" placeholder="Logo">
+                                        <label class="form-label">Icon</label>
+                                        <input type="text" class="form-control" id="" wire:model="logo" placeholder="flaticon-open-book">
                                         @error('logo') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Backend\Whyus;
 
+use App\Models\MultipleImages;
 use Livewire\Component;
 use App\Models\Whyus;
 use App\Models\WhyusItem;
@@ -22,13 +23,12 @@ class WhyusPage extends Component
     public $i = 1;
 
     public $category,$title,$sub_title,$image,$desc,$link,$sort_id,$status;
-    public $item ,$records;
+    public $item ,$records ,$multi_images =[];
 
     protected $rules = [
         'category' => 'required| unique:whyuses,category',
         'title' => 'required',  
         'sub_title' => 'required', 
-        'image' => 'required', 
         'desc' => 'required', 
         'sort_id' => 'required| unique:whyuses,sort_id', 
         'status' => 'required', 
@@ -38,7 +38,7 @@ class WhyusPage extends Component
           'category.required' => 'Page Section Required.',
           'title.required' => 'Title Required.',
           'sub_title.required' => 'Sub Title Required.',
-          'image.required' => 'Image Required.',
+          // 'image.required' => 'Image Required.',
           'desc.required' => 'Description Required.',
           'sort_id.required' => 'Sort Id Required.',
           'status.required' => 'Status Required.',
@@ -48,12 +48,15 @@ class WhyusPage extends Component
         $this->category = '';
         $this->title = '';
         $this->sub_title = '';
-        $this->image = '';
+        $this->image = null;
         $this->desc = '';
         $this->link = '';
         $this->sort_id = '';
         $this->status = '';
         $this->item ='';
+        $this->multi_images =null;
+
+        
     }
 
        public function add($i)
@@ -71,8 +74,13 @@ class WhyusPage extends Component
 
 
     public function addWhyus(){
+if($this->multi_images){
+ $this->validate([
+    'multi_images.*' => 'required', 
 
-     $validatedData = $this->validate();
+  ]);
+}
+$validatedData = $this->validate();
 
      if(!is_null($this->image)){
       $image =  $this->image;
@@ -82,6 +90,8 @@ class WhyusPage extends Component
       $uploadedData = $this->uploadOne($image, $folder);
       // dd( $uploadedData );
     }   
+
+
 
       $whyus = new Whyus();
       $whyus->category = $this->category;
@@ -97,16 +107,29 @@ class WhyusPage extends Component
       $whyus->save();
 
 
-    if (is_array($this->item)){
-      foreach ($this->item as $key => $value) {
+      if(!is_null($this->multi_images ) && $this->multi_images > 1){
 
-         $whyusItem = new WhyusItem();
-         $whyusItem->whyus_id = $whyus->id;
-         $whyusItem->item = $this->item[$key];
-         $whyusItem->save();
-
+  
+          $folder = '/uploads/multiple_images';
+        foreach ($this->multi_images as $img) {
+          // Define folder path
+          $uploadedData = $this->uploadOne($img, $folder);
+          $whyusItem = new MultipleImages();
+          $whyusItem->whyus_id = $whyus->id;
+          $whyusItem->multi_images =  $uploadedData['file_name']?? NULL;
+          $whyusItem->thumbnail =  $uploadedData['thumbnail_name'] ?? NULL;
+          $whyusItem->link = $this->link;;
+          $whyusItem->status = $this->status;
+          $whyusItem->ip_address = getUserIp();
+          $whyusItem->login = authUserId();
+          $whyusItem->save();
+ 
+       }
       }
-    }  
+
+ 
+
+    
 
        $this->resetInputFields();
 

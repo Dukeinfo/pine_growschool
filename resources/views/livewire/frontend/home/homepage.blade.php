@@ -66,7 +66,13 @@
 
                         @if(isset($categoryFirst->description) )
                         
-                            {!!$categoryFirst->description ?? ''!!}
+                            {!! isset($categoryFirst->description) 
+                             ? 
+                            //  $categoryFirst->description
+                             str_limit($categoryFirst->description, $limit=1000 )
+                              : ''!!}
+
+                        
                         @else 
                          <p>
                             Pinegrove School, established in 1991, is a co-educational, purely residential, English medium boarding school affiliated to the Central Board of Secondary Education (CBSE), Delhi, upto Class 12th. Pinegrove is a proud member of the prestigious Indian Public Schools' Conference (IPSC), Global Member of the Round Square, member of the NPSC, NCC, AFS, and is accredited with ISO 9001:2015 (BSI) certification. The school is also a member of the IAYP

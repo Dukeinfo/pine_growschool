@@ -39,8 +39,8 @@
 
                             	<div class="col-md-e">
                                     <div class="mb-3">
-                                        <label class="form-label">Logo</label>
-                                        <input type="text" class="form-control" id="" wire:model="logo" placeholder="Logo">
+                                        <label class="form-label">icon</label>
+                                        <input type="text" class="form-control" id="" wire:model="logo" placeholder="flaticon-open-book">
                                         @error('logo') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -93,7 +93,13 @@
                                      
                                     </div>
                                 </div>
-
+                                <div class="col-md-e">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Link</label>
+                                        <input type="url" class="form-control" id="" wire:model="link" value="https://example.com/" placeholder="http://example.com">
+                                        @error('link') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
                               
                                 <div class="col-md-2">
                                     <div class="mb-3">

@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Add Pages Content</h4>
+                        <h4 class="mb-sm-0 font-size-18">Manage All  Static Pages Content</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
@@ -35,7 +35,7 @@
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Menu</label>
+                                        <label class="form-label">Menu <span class="text-danger">*</span></label>
                                         <select class="form-select" wire:model="menu">
                                                 <option value="">Select</option>
                                             @if(isset($getMenus))
@@ -48,9 +48,9 @@
                                          @error('menu') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                {{-- <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Sub Menu</label>
+                                        <label class="form-label">Sub Menu <span class="text-danger">*</span></label>
                                         <select class="form-select" wire:model="submenu">
                                                 <option value="">Select</option>
                                                @if (!is_null($subMenus)) 
@@ -62,11 +62,34 @@
                                         </select>
                                          @error('submenu') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+                                </div> --}}
+
+                                
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Route Name <span class="text-danger">*</span></label>
+                                        <select name="selected_route" wire:model="link" id="selected_route"  class="form-control">
+                                         <option value="{{NULL}}" >Select page</option>
+                                          
+                                            @foreach(Route::getRoutes() as $route)
+                                            @if (str_starts_with($route->getName(), 'home.') )
+                                            @php
+                                            $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
+                                           @endphp
+                                                <option value="{{ $route->getName() }} "    
+                                                    @if(in_array($route->getName(), ['home.homepage', 'home.gallery', 'home.gallery_detail'])) disabled @endif
+                                                      class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
+                                               
+                                           @endif
+                                                @endforeach
+                                        </select>
+                                        @error('link') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Heading</label>
+                                        <label class="form-label">Heading <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id=""  wire:model="heading" placeholder="Heading">
                                         @error('heading') <span class="error">{{ $message }}</span> @enderror
                                     </div>
@@ -74,7 +97,7 @@
 
                                 <div class="col-md-12">
                                     <div class="mb-3" >
-                                        <label class="form-label">Description</label>
+                                        <label class="form-label">Description <span class="text-danger">*</span></label>
                                       
                           
                                  <div wire:ignore>
@@ -115,7 +138,7 @@
 
                                  <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Image</label>
+                                        <label class="form-label">Image <span class="text-danger">*</span></label>
                                         <input type="file" class="form-control" id="" wire:model="image" >
                                         @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
@@ -123,21 +146,21 @@
 
                                  <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label">Link</label>
+                                    <label class="form-label">Redirect or Target Link </label>
                                     <input type="text" class="form-control" id="" wire:model="link"  placeholder="Link">
                                     @error('link') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
-                                        <label class="form-label">Sorting Order#</label>
+                                        <label class="form-label">Sorting Order# <span class="text-danger">*</span></label>
                                         <input type="number" class="form-control"  wire:model="sort" placeholder="Order NUmber">
                                          @error('sort') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
-                                        <label class="form-label">Status</label>
+                                        <label class="form-label">Status <span class="text-danger">*</span></label>
                                         <select class="form-select" wire:model="status">
                                                 <option value="">Select</option>
                                                 <option>Active</option>

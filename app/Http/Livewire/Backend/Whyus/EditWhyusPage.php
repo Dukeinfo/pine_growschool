@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Backend\Whyus;
 
+use App\Models\MultipleImages;
 use Livewire\Component;
 use App\Models\Whyus;
 use App\Models\WhyusItem;
@@ -25,7 +26,7 @@ class EditWhyusPage extends Component
     public $whyusId,$category,$title,$sub_title,$heading,$image,$editimage,$desc,$link,$sort_id,$status ,$thumbnail;
 
      public $item;
-     public $items;
+     public $items ,$edit_multi_images = [] ,$getMultiple;
 
 
       public function mount($id){
@@ -40,7 +41,7 @@ class EditWhyusPage extends Component
         $this->sort_id = $whyus->sort_id;
     	  $this->status = $whyus->status;
 
-        $this->items = WhyusItem::where('whyus_id', $whyus->id)->get();
+       $this->getMultiple =    MultipleImages::where('whyus_id' ,  $this->whyusId)->get();
 
        
      }
@@ -58,8 +59,13 @@ class EditWhyusPage extends Component
         unset($this->inputs[$i]);
      }
 
-     
-
+     public function deletemultiple($id){
+        $image = MultipleImages::where('whyus_id' ,  $this->whyusId)->where('id',$id)->first();
+        if(!is_null($image)){
+          $image->delete();
+        }
+        return redirect(request()->header('Referer'));
+     }
 
 
      public function editWhyus(){
@@ -100,6 +106,28 @@ class EditWhyusPage extends Component
 
 
       }  
+
+
+      
+      if(!is_null($this->edit_multi_images ) && $this->edit_multi_images > 1){
+
+  
+        $folder = '/uploads/multiple_images';
+      foreach ($this->edit_multi_images as $img) {
+        // Define folder path
+        $uploadedData = $this->uploadOne($img, $folder);
+        $whyusItem = new MultipleImages();
+        $whyusItem->whyus_id = $this->whyusId;
+        $whyusItem->multi_images =  $uploadedData['file_name']?? NULL;
+        $whyusItem->thumbnail =  $uploadedData['thumbnail_name'] ?? NULL;
+        $whyusItem->link = $this->link;;
+        $whyusItem->status = $this->status;
+        $whyusItem->ip_address = getUserIp();
+        $whyusItem->login = authUserId();
+        $whyusItem->save();
+
+     }
+    }
       return redirect()->route('whyus_page'); 
      
    }

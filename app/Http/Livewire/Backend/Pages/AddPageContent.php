@@ -27,8 +27,8 @@ class AddPageContent extends Component
 
 
     protected $rules = [ 
-        'menu' => 'required', 
-        'submenu' => 'required |unique:create_pages,submenu_id', 
+        'menu' => 'required |unique:create_pages,submenu_id', 
+        // 'submenu' => 'required ', 
         'heading' => 'required', 
         'desc' => 'required',
         'image' => 'required',
@@ -38,8 +38,8 @@ class AddPageContent extends Component
       ];
       protected $messages = [
           'menu.required' => 'Menu Required.',
-          'submenu.required' => 'Sub Menu Required.',
-          'submenu.unique' => 'SubMenu Already taken',
+          // 'submenu.required' => 'Sub Menu Required.',
+          // 'submenu.unique' => 'SubMenu Already taken',
           'heading.required' => 'Heading Required.',
           'desc.required' => 'Description Required.',
           'image.required' => 'Image Required.',
@@ -49,7 +49,7 @@ class AddPageContent extends Component
       ];
     private function resetInputFields(){
         $this->menu = '';
-        $this->submenu = ''; 
+        // $this->submenu = ''; 
         $this->heading = ''; 
         $this->desc = '';
         $this->image = '';
@@ -89,7 +89,7 @@ class AddPageContent extends Component
 
       $pageContent = new PageContent();
       $pageContent->menu_id = $this->menu ?? Null;
-      $pageContent->submenu_id = $this->submenu ?? Null;
+      // $pageContent->submenu_id = $this->submenu ?? Null;
       $pageContent->heading = $this->heading ?? Null;
       $pageContent->slug =  strtolower(str_replace(' ', '-',$this->heading))?? Null;
       $pageContent->description = $this->desc ?? Null;

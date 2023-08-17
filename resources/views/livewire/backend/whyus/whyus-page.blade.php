@@ -39,9 +39,9 @@
 
                                   <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Page Sections</label>
+                                        <label class="form-label">Home Page Sections</label>
                                             <select wire:model="category" class="form-select">
-                                                <option value="">Select</option>
+                                                <option value="">Select Sections</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -113,16 +113,16 @@
                                 </div>
 
                                
-                                <div class="col-md-e">
+                                {{-- <div class="col-md-e">
                                     <div class="mb-3">
                                         <label class="form-label"> List Item</label>
                                         <input type="text" class="form-control" id="" wire:model="item.0" placeholder="List Item">
                                         @error('item') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                     <button class="btn text-white btn-info btn-sm" wire:click.prevent="add({{$i}})">Add</button>
-                                </div>
+                                </div> --}}
 
-                                @foreach($inputs as $key => $value)
+                                {{-- @foreach($inputs as $key => $value)
                                  <div class="col-md-e">
                                     <div class="mb-3">
                                         <label class="form-label"> List Item</label>
@@ -131,8 +131,18 @@
                                     </div>
                                     <button class="btn btn-danger btn-sm" wire:click.prevent="remove({{$key}})">remove</button>
                                 </div>
-                              @endforeach
+                              @endforeach --}}
+                                @if($category == '2')
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Choose Multiple Images </label>
+                                            <input type="file" class="form-control" id="" wire:model="multi_images"  multiple>
+                                            @error('multi_images.*') <span class="error">{{ $message }}</span> @enderror
+                                        </div>
+                                    </div>
 
+
+                                @else
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Image</label>
@@ -140,7 +150,7 @@
                                         @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-
+                                @endif
                                 <div class="col-md-e">
                                     <div class="mb-3">
                                         <label class="form-label"> Link</label>
@@ -220,10 +230,10 @@ $thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_
                                             </td>
 
                                             <td>{{$record->title ?? '' }}</td>
-                                            <td>{{$record->sub_title ?? '' }}</td>
+                                            <td>{{$record->sub_title ?str_limit($record->sub_title, $limit=100 ) : '' }}</td>
                                             
-                                           <td>{!!$record->description ?? '' !!}</td>
-                                        
+                                           <td>{!!$record->description ?str_limit($record->description, $limit=200 ) : '' !!}</td>
+                                       
                                              <td>{{$record->link ?? '' }}</td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>

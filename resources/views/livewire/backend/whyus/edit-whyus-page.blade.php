@@ -111,16 +111,16 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-e">
+                                {{-- <div class="col-md-e">
                                     <div class="mb-3">
                                         <label class="form-label"> List Item</label>
                                         <input type="text" class="form-control" id="" wire:model="item.0" placeholder="List Item">
                                         @error('item') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                     <button class="btn text-white btn-info btn-sm" wire:click.prevent="add({{$i}})">Add</button>
-                                </div>
+                                </div> --}}
 
-                                @foreach($inputs as $key => $value)
+                                {{-- @foreach($inputs as $key => $value)
                                  <div class="col-md-e">
                                     <div class="mb-3">
                                         <label class="form-label"> List Item</label>
@@ -129,8 +129,26 @@
                                     </div>
                                     <button class="btn btn-danger btn-sm" wire:click.prevent="remove({{$key}})">remove</button>
                                 </div>
-                              @endforeach
+                              @endforeach --}}
+                              @if($category == '2')
+                              <div class="col-md-3">
+                                  <div class="mb-3">
+                                      <label class="form-label">Choose Multiple Images </label>
+                                      <input type="file" class="form-control" id="" wire:model="edit_multi_images"  multiple>
+                                      @error('edit_multi_images.*') <span class="error">{{ $message }}</span> @enderror
+                                  </div>
+                                  @foreach($getMultiple as $image)
+                                  <div>
+                                      <img src="{{getmultiple_images($image->multi_images)}}" alt="" width="50">
 
+                                      <a href="" wire:click='deletemultiple({{$image->id}})'><i class="fa fa-times fa-fw fa-lg"></i></a>
+                                    </div>
+                                      @endforeach
+                                 
+                              </div>
+
+
+                          @else
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Image</label>
@@ -146,7 +164,7 @@ $thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/ima
                                         @error('editimage') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-
+@endif
                                 <div class="col-md-e">
                                     <div class="mb-3">
                                         <label class="form-label"> Link</label>
