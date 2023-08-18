@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Frontend;
 
 use App\Models\Metadetails;
+use App\Models\PageContent;
 
 use Livewire\Component;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -35,7 +36,9 @@ class Facilities extends Component
     SEOTools::twitter()->setSite($seoMetaData->title ?? '');
     $keywords = $seoMetaData->keywords;
     SEOMeta::addKeyword( $keywords);
-}
+  }
+
+  $this->pageData =  PageContent::where('name',$getRouteName )->first();
 }
 
 

@@ -65,21 +65,18 @@
                                 </div> --}}
 
                                 
-                                <div class="col-md-3">
+                               <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label"> Route Name <span class="text-danger">*</span></label>
-                                        <select name="selected_route" wire:model="name" id="selected_route"  class="form-control">
-                                         <option value="{{NULL}}" >Select page</option>
+                                        <label class="form-label"> Route Name</label>
+                                        <select name="selected_route" wire:model="name"     id="selected_route"   class="form-control">
+                                         <option  >Select Route</option>
                                           
                                             @foreach(Route::getRoutes() as $route)
                                             @if (str_starts_with($route->getName(), 'home.') )
                                             @php
-                                            $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
-                                           @endphp
-                                                <option value="{{ $route->getName() }} "    
-                                                    @if(in_array($route->getName(), ['home.homepage', 'home.gallery', 'home.gallery_detail'])) disabled @endif
-                                                      class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
-                                               
+                                             $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
+                                            @endphp
+                                                <option value="{{ $route->getName() }}"    class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
                                            @endif
                                                 @endforeach
                                         </select>
@@ -147,8 +144,16 @@
                                  <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Image <span class="text-danger">*</span></label>
-                                        <input type="file" class="form-control" id="" wire:model="image" >
-                                        @error('image') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="file" class="form-control" id="" wire:model="editimage" >
+                                        @if(isset($editimage))  
+<img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
+@else                                        
+@php   
+$thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/images/no-img.jpg');
+@endphp                                      
+<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
+@endif
+                                        @error('editimage') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
@@ -178,9 +183,9 @@
                                     </div>
                                 </div>
                                 <div >
-                                    <button wire:loading.attr="disabled" type="submit" wire:click="addContent" class="btn btn-primary w-md">Save</button>
+                                    <button wire:loading.attr="disabled" type="submit" wire:click="editContent" class="btn btn-primary w-md">Save</button>
                                 </div>
-                                 <div wire:loading wire:target="addContent">
+                                 <div wire:loading wire:target="editContent">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
 
                                      </div>
@@ -191,80 +196,6 @@
             </div>
             <!-- end row -->
             
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Manage Page</h4>
-                            <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped datatable">
-                                    <thead>
-                                        <tr>
-                                            <th>Menu</th>
-                                            <th>Route</th>
-                                            <th>Heading</th>
-                                            <th>Sub Heading</th>
-                                            {{-- <th>Description</th> --}}
-                                             <th>Image</th>
-                                            <th>Sorting Order#</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                          @if(isset($records) && count($records)>0 )                      
-                           @foreach ($records as  $record) 
-                                        <tr>
-                                            <td>{{$record->Menu->name ?? '' }}</td>
-                                             <td>{{$record->name ?? '' }}</td>
-                                            <td>
-                                             {{$record->heading ?? '' }}  
-                                            </td>
-                                            <td>
-                                             {{$record->sub_heading ?? '' }}  
-                                            </td>
-                                            {{-- <td>
-                                                {!! Str::limit($record->description, 230) ?? '' !!}
-                                            </td> --}}
-                                              <td>  
-                                            @php      
-$thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_assets/images/no-img.jpg');
-@endphp                                      
-<img src="{{$thumb}}" alt="" class="border" width="100" height="70">            
-                                            </td>
-                                            <td>{{$record->sort_id ?? '' }}</td>
-                                            <td>
-                                                @if($record->status  == "Active")
-                                                        <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
-                                                        @else
-                                                    <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
-                                                @endif</td>
-                                            <td>
-                                                
-                                                <a href="{{route('edit_content',['id' => $record->id])}}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
-                                            </td>
-                                        </tr>
-                                  @endforeach
-                                      @else
-                                 <tr>
-                                 <td colspan="5"> Record Not Found</td>
-                                
-                                 </tr>
-                                 @endif      
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end row -->
-
-
             
         </div>
         <!-- container-fluid -->

@@ -51,7 +51,8 @@ class EditSubMenu extends Component
     {
         return [
       'menu_id' => 'required', 
-      'name' => ['required', Rule::unique('submenus')->ignore($this->submenuId)],
+      'name' => 'required', 
+      //'name' => ['required', Rule::unique('submenus')->ignore($this->submenuId)],
       'sort_id' => 'required',
       'cms' => 'required', 
      /* 'url_link' => 'required', */

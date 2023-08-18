@@ -19,7 +19,7 @@ class AdmissionProcess extends Component
 {
 
     public $seo_keywords;
-public function mount(){
+    public function mount(){
     $getRouteName =  Route::currentRouteName(); 
     $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
     if($seoMetaData){

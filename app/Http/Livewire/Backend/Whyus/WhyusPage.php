@@ -74,13 +74,13 @@ class WhyusPage extends Component
 
 
     public function addWhyus(){
-if($this->multi_images){
- $this->validate([
-    'multi_images.*' => 'required', 
+      if($this->multi_images){
+       $this->validate([
+          'multi_images.*' => 'required', 
 
-  ]);
-}
-$validatedData = $this->validate();
+        ]);
+      }
+      $validatedData = $this->validate();
 
      if(!is_null($this->image)){
       $image =  $this->image;
@@ -109,7 +109,6 @@ $validatedData = $this->validate();
 
       if(!is_null($this->multi_images ) && $this->multi_images > 1){
 
-  
           $folder = '/uploads/multiple_images';
         foreach ($this->multi_images as $img) {
           // Define folder path
@@ -126,10 +125,6 @@ $validatedData = $this->validate();
  
        }
       }
-
- 
-
-    
 
        $this->resetInputFields();
 

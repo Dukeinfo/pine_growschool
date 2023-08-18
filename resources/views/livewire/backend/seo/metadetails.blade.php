@@ -126,6 +126,7 @@
                                     <thead>
                                         <tr>
                                             <th>Page Name</th>
+                                            <th>Route</th>
                                             <th>Title</th>
                                             <th>Description</th>
                                             <th>Keywords</th>
@@ -139,7 +140,9 @@
                                 
                                         <tr>
                                             <td>{{$record->Menu->name ?? '' }}</td>
-                                            
+                                             <td>
+                                                {{$record->name ?? '' }}
+                                            </td>
                                             <td>
                                                 {{$record->title ?? '' }}
                                             </td>

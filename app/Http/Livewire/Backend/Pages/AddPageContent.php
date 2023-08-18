@@ -23,12 +23,12 @@ class AddPageContent extends Component
     public $getMenus;
     public $subMenus;
 
-    public $sort_id, $records , $submenu,$heading,$desc,$image,$link,$sort,$status;
+    public $sort_id,$name, $records , $submenu,$heading,$sub_heading,$desc,$image,$link,$sort,$status;
 
 
     protected $rules = [ 
-        'menu' => 'required |unique:create_pages,submenu_id', 
-        // 'submenu' => 'required ', 
+        'menu' => 'required', 
+        'name' => 'required',
         'heading' => 'required', 
         'desc' => 'required',
         'image' => 'required',
@@ -38,8 +38,7 @@ class AddPageContent extends Component
       ];
       protected $messages = [
           'menu.required' => 'Menu Required.',
-          // 'submenu.required' => 'Sub Menu Required.',
-          // 'submenu.unique' => 'SubMenu Already taken',
+          'name.required' => 'Route Required.',  
           'heading.required' => 'Heading Required.',
           'desc.required' => 'Description Required.',
           'image.required' => 'Image Required.',
@@ -49,8 +48,9 @@ class AddPageContent extends Component
       ];
     private function resetInputFields(){
         $this->menu = '';
-        // $this->submenu = ''; 
+        $this->name = ''; 
         $this->heading = ''; 
+        $this->sub_heading = ''; 
         $this->desc = '';
         $this->image = '';
         $this->link = '';
@@ -89,8 +89,9 @@ class AddPageContent extends Component
 
       $pageContent = new PageContent();
       $pageContent->menu_id = $this->menu ?? Null;
-      // $pageContent->submenu_id = $this->submenu ?? Null;
+      $pageContent->name = $this->name ?? Null;
       $pageContent->heading = $this->heading ?? Null;
+      $pageContent->sub_heading = $this->sub_heading ?? Null;
       $pageContent->slug =  strtolower(str_replace(' ', '-',$this->heading))?? Null;
       $pageContent->description = $this->desc ?? Null;
       $pageContent->image = $uploadedData['file_name'] ?? NULL;

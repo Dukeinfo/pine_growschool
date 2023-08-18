@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Add Category</h4>
+                            <h4 class="card-title">Create Page</h4>
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">

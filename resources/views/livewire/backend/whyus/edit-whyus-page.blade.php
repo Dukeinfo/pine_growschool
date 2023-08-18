@@ -143,7 +143,7 @@
 
                                       <a href="" wire:click='deletemultiple({{$image->id}})'><i class="fa fa-times fa-fw fa-lg"></i></a>
                                     </div>
-                                      @endforeach
+                                 @endforeach
                                  
                               </div>
 

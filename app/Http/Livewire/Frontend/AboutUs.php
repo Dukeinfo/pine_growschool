@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Frontend;
 
 use App\Models\Metadetails;
+use App\Models\PageContent;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -38,7 +39,8 @@ class AboutUs extends Component
     SEOMeta::addKeyword( $keywords);
     // SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
     
-}
+   }
+    $this->pageData =  PageContent::where('name',$getRouteName )->first();   
 
 }
 

@@ -17,8 +17,5 @@ class PageContent extends Model
         return $this->belongsTo(Menu::class,'menu_id');
     }
 
-     public function SubMenu()
-    {
-        return $this->belongsTo(Submenu::class,'submenu_id');
-    }
+    
 }

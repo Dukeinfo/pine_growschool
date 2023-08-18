@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Frontend;
 
 
 use Livewire\Component;
+use App\Models\PageContent;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
@@ -35,7 +36,9 @@ class OurFounder extends Component
     SEOTools::twitter()->setSite($seoMetaData->title ?? '');
     $keywords = $seoMetaData->keywords;
     SEOMeta::addKeyword( $keywords);
-}
+    }
+
+    $this->pageData =  PageContent::where('name',$getRouteName )->first();
       
    }
 

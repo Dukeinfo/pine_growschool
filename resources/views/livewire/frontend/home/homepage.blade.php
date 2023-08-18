@@ -77,28 +77,7 @@
                          <p>
                             Pinegrove School, established in 1991, is a co-educational, purely residential, English medium boarding school affiliated to the Central Board of Secondary Education (CBSE), Delhi, upto Class 12th. Pinegrove is a proud member of the prestigious Indian Public Schools' Conference (IPSC), Global Member of the Round Square, member of the NPSC, NCC, AFS, and is accredited with ISO 9001:2015 (BSI) certification. The school is also a member of the IAYP
                         </p>
-                        @endif
-
-                     @if($categoryFirst)   
-                        @php
-                        $listItems = App\Models\WhyusItem::where('whyus_id', $categoryFirst->id)->get();
-                        @endphp
-                        <div class="row">
-
-                            <div class="col-xl-12 col-sm-6">
-
-                             @foreach($listItems as  $item)
-
-                             <div class="iconBox02">
-                                    <h3 class="ibTitle">{{$item->item ?? ''}}</h3>
-                                </div>
-                            @endforeach
-                            </div>
-                        </div>
-
-                      @else
-                      
-
+                       
                         <div class="row">
 
                             <div class="col-xl-12 col-sm-6">
@@ -114,12 +93,11 @@
                                 </div>
                       
                             </div>
-                        </div>  
+                        </div>
+
+                         @endif  
                       
-
-
-
-                      @endif  
+                       
                         <a class="immiPressBtn" href="{{$categoryFirst->link ?? 'javascript:void()'}}" target="_blank"><span>Discover More</span></a>
                     </div>
                     <!-- About Content -->
@@ -164,7 +142,7 @@
                             <p>{!!Str::limit($boardmember->description, 220) ?? ''!!}
                             </p>
                         </div>
-                        <a class="immiPressBtn" href="{{$boardmember->link ?? "#"}};" target="_blank">
+                        <a class="immiPressBtn" href="{{$boardmember->link ?? '#'}}" target="_blank">
                             <span>
                                 Read More
                                 <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
@@ -313,26 +291,7 @@
                             by the school after long, onerous, time consuming and tedious hours of labour put in by a
                             competent team of trained, zealous and devoted teachers.
                         </p>
-                        @endif
-
-                     @if($categorySecond)      
-                        @php
-                        $listItems = App\Models\WhyusItem::where('whyus_id', $categorySecond->id)->get();
-                        @endphp
-                        <div class="row">
-                            <div class="col-xl-12 col-sm-6">
-                            @foreach($listItems as  $item)
-
-                               <div class="iconBox02">
-                                    <h3 class="ibTitle">{{$item->item ?? ''}}</h3>
-                                </div>
-                            @endforeach    
-                            </div>
-                        </div>
-                     
-                      @else
-
-
+                       
                         <div class="row">
 
                             <div class="col-xl-12 col-sm-6">
@@ -356,6 +315,7 @@
                           <a class="immiPressBtn" href="{{$categorySecond->link ?? 'javascript:void()'}}" target="_blank"><span>Discover More</span></a>
                     </div>
                 </div>
+                <!-- show category second images here -->
                 <div class="col-lg-5 offset-lg-1">
                     <div id="pineCarousel" class="carousel slide" data-bs-ride="true">
                         <div class="carousel-indicators">
@@ -449,25 +409,7 @@
                             international perspectives that broaden their horizons and enhance their educational
                             journey.
                         </p> 
-                        @endif
-
                       
-                       @if($categoryThird)
-                        @php
-                        $listItems = App\Models\WhyusItem::where('whyus_id', $categoryThird->id)->get();
-                        @endphp
-                        <div class="row">
-                            <div class="col-xl-12 col-sm-6">
-                             @foreach($listItems as  $item)
-
-                               <div class="iconBox02">
-                                    <h3 class="ibTitle">{{$item->item ?? ''}}</h3>
-                                </div>
-                            @endforeach
-                               
-                            </div>
-                        </div>
-                      @else
                           <div class="row">
                             <div class="col-xl-12 col-sm-6">
                                 <div class="iconBox02">
@@ -482,6 +424,7 @@
                                 </div>
                             </div>
                         </div>
+
                       @endif
 
                        <a class="immiPressBtn" href="{{$categoryThird->link ?? 'javascript:void()'}}" target="_blank"><span>Discover More</span></a>

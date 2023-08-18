@@ -67,6 +67,7 @@ use App\Http\Livewire\Backend\Contact\ViewContactFormEntry;
 use App\Http\Livewire\Backend\Contact\TrashContactFormEntries;
 use App\Http\Livewire\Backend\Login\AdminLogin;
 use App\Http\Livewire\Backend\Pages\AddPageContent;
+use App\Http\Livewire\Backend\Pages\EditPageContent;
 use App\Http\Livewire\Backend\Pages\CreatePage;
 use App\Http\Livewire\Backend\Pages\EditPage;
 use App\Http\Livewire\Backend\Pages\TrashPage;
@@ -248,6 +249,8 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
     Route::get('/footer/snippets', FooterSnippets::class)->name('manage_footer_snippets');
 
     Route::get('/page/content', AddPageContent::class)->name('page_content');
+     Route::get('/page/content/edit/{id}', EditPageContent::class)->name('edit_content');
+
     Route::get('/create/page', CreatePage::class)->name('create_page');
     Route::get('/edit/page/{id}', EditPage::class)->name('edit_page');
     Route::get('/create/page/trash', TrashPage::class)->name('trash_page');

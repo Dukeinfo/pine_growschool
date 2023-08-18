@@ -16,8 +16,9 @@ class CreatePageContentsTable extends Migration
         Schema::create('page_contents', function (Blueprint $table) {
             $table->id();
             $table->integer('menu_id');
-            $table->integer('submenu_id')->nullable(); 
+            $table->string('name');
             $table->text('heading')->nullable();
+            $table->text('sub_heading')->nullable();
             $table->text('slug')->nullable();
             $table->longText('description')->nullable();
             $table->string('image')->nullable();  
