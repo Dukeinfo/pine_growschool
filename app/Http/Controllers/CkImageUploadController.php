@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Artisan;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 class CkImageUploadController extends Controller
 {
     //
@@ -31,6 +33,18 @@ class CkImageUploadController extends Controller
             // Render HTML output 
             @header('Content-type: text/html; charset=utf-8'); 
             echo $re;
+        }
+    }
+    public function showGitStatus(){
+        try {
+            $process = new Process(['git', 'status']);
+            $process->run();
+    
+            $gitStatus = $process->getOutput();
+    
+            return view('giterror', compact('gitStatus'));
+        } catch (ProcessFailedException $exception) {
+            return view('git.error');
         }
     }
 }

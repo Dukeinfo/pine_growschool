@@ -60,6 +60,7 @@ class ViewHomeSlider extends Component
       $slider->slug =  strtolower(str_replace(' ', '-',$this->heading))?? Null;
       $slider->image = $uploadedData['file_name']?? NULL;
       $slider->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
+
       $slider->heading = $this->heading ?? NULL;
       $slider->subheading = $this->subheading ?? NULL;
       $slider->sort_id =$this->sort ?? NULL;

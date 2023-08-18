@@ -20,12 +20,25 @@
             </div>
             <!-- end page title -->
 
-            <div class="row">
-                <div class="col-lg-12">Dashboard content will come here</div>
-            </div>
             <!-- end row -->
-
-
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header bg-transparent border-bottom py-3">
+                            <h4 class="card-title">Dashboard</h4>
+                            <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
+                        </div>
+                        <div class="card-body">
+                            <!--success or error alert-->
+                
+                            @livewire('git-status')
+                            <!--form starts-->
+                            <div class="row g-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
         </div>
         <!-- container-fluid -->

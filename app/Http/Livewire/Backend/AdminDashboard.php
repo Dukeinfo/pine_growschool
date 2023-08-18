@@ -10,4 +10,5 @@ class AdminDashboard extends Component
     {
         return view('livewire.backend.admin-dashboard')->layout('layouts.backend');
     }
+    
 }

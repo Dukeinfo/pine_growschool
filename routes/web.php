@@ -193,6 +193,7 @@ Route::get('/view/section/trash', TrashSection::class)->name('trash_section');
 // })->name('form.upload');
 
 Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])->name('image.upload');
+Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->name('git.status');
     Route::get('/view/slider', ViewHomeSlider::class)->name('view_home_slider');
     Route::get('/edit/slider/{id}', EditHomeSlider::class)->name('edit_home_slider');
     Route::get('/view/slider/trash', TrashHomeSlider::class)->name('trash_home_slider');
