@@ -16,7 +16,7 @@ class EditTestimonials extends Component
     use WithFileUploads;
     use UploadTrait;
 
-    public $testimoniaId,$name, $thumbnail,$image,$editimage,$sort_id,$status,$desc,$link;
+    public $testimoniaId,$name,$position, $thumbnail,$image,$editimage,$sort_id,$status,$desc,$link;
 
     public function mount($id)
      {
@@ -27,6 +27,8 @@ class EditTestimonials extends Component
         $this->image = $testimonials->photo;
     	$this->sort_id = $testimonials->sort_id;
     	$this->status = $testimonials->status;
+        $this->position = $this->position;
+
     	$this->desc = $testimonials->description;
         $this->link = $testimonials->link;
      }
@@ -47,6 +49,8 @@ class EditTestimonials extends Component
             $testimonials->thumbnail =  $uploadedData['thumbnail_name']?? Null;
             $testimonials->sort_id =$this->sort_id;
             $testimonials->status = $this->status;
+            $testimonials->position = $this->position;
+
             $testimonials->description = $this->desc;
             $testimonials->save();
             
@@ -61,6 +65,8 @@ class EditTestimonials extends Component
             $testimonials->status = $this->status;
             $testimonials->description = $this->desc;
             $testimonials->link = $this->link;
+            $testimonials->position = $this->position;
+
             $testimonials->save();
 
             return redirect()->route('view_testimonials'); 

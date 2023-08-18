@@ -44,20 +44,7 @@ class WhyusPage extends Component
           'status.required' => 'Status Required.',
           
       ];
-    private function resetInputFields(){
-        $this->category = '';
-        $this->title = '';
-        $this->sub_title = '';
-        $this->image = null;
-        $this->desc = '';
-        $this->link = '';
-        $this->sort_id = '';
-        $this->status = '';
-        $this->item ='';
-        $this->multi_images =null;
 
-        
-    }
 
        public function add($i)
     {
@@ -126,8 +113,12 @@ class WhyusPage extends Component
        }
       }
 
-       $this->resetInputFields();
+ 
+       $this->resetFormFields();
 
+       // Emit the 'formSubmitted' event
+       $this->emit('formSubmitted');
+       
        $this->dispatchBrowserEvent('swal:modal', [
               'type' => 'success',  
               'message' => 'Successfully save!', 
@@ -137,7 +128,20 @@ class WhyusPage extends Component
 
 
    }
+   private function resetFormFields(){
+    $this->category = '';
+    $this->title = '';
+    $this->sub_title = '';
+    $this->image = null;
+    $this->desc = '';
+    $this->link = '';
+    $this->sort_id = '';
+    $this->status = '';
+    $this->item ='';
+    $this->multi_images =null;
 
+    
+}
       //CREATE SLUG
     public function createSlug($title, $id = 0)
        {

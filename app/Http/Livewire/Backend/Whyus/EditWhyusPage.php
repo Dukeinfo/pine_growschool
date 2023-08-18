@@ -128,6 +128,8 @@ class EditWhyusPage extends Component
 
      }
     }
+    $this->emit('formSubmitted');
+
       return redirect()->route('whyus_page'); 
      
    }

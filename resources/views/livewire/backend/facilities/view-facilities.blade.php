@@ -165,8 +165,12 @@
                                                 $thumb = !empty($record->image) ? getThumbnail($record->thumbnail)  : url('admin_assets/images/no-img.jpg');
                                                 @endphp                
                                             <img src="{{$thumb}}" alt="" class="border" width="100" height="70"></td>
-                                            <td>{{$record->title ?? '' }}</td>
-                                           <td>{!!$record->description ?? '' !!}</td>
+                                           
+
+                                            <td>{!!$record->title ?str_limit($record->title, $limit=100 ) : '' !!}</td>
+
+                                           <td>{!!$record->description ?str_limit($record->description, $limit=200 ) : '' !!}</td>
+
                                         
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>

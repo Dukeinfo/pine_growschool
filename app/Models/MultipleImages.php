@@ -12,4 +12,9 @@ class MultipleImages extends Model
     use SoftDeletes;  //invoking
     
     protected $guarded = [];
+
+    public function whyus()
+    {
+        return $this->belongsTo(Whyus::class);
+    }
 }

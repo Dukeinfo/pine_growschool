@@ -10,4 +10,8 @@ class Whyus extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    public function multipleImages()
+    {
+        return $this->hasMany(MultipleImages::class);
+    }
 }

@@ -36,7 +36,7 @@ class EditFacilities extends Component
      if(!is_null($this->editimage)){
          $editimage =  $this->editimage;
         // Define folder path
-        $folder = '/uploads';
+        $folder = '/uploads/facility';
         $uploadedData = $this->uploadOne($editimage, $folder);  
 
       $facilities =Facilities::find($this->facilityId);

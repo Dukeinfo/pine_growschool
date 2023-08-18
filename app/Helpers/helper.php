@@ -29,6 +29,10 @@ function getpageImage($value) {
 function getmultiple_images($value) {
     return asset('storage/uploads/multiple_images/'.$value);
 }
+
+function getfacility($value) {
+    return asset('storage/uploads/facility/'.$value);
+}
 function getTopperImages($value) {
     return asset('storage/uploads/our_topper/'.$value);
 }

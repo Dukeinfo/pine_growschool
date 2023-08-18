@@ -18,7 +18,7 @@ class ViewTestimonials extends Component
     use WithFileUploads;
     use UploadTrait;
 
-    public $name,$image,$sort_id,$status,$desc , $link, $records;
+    public $name,$image,$sort_id,$status,$desc ,$position, $link, $records;
     
 
     public function render()
@@ -32,6 +32,7 @@ class ViewTestimonials extends Component
     protected $rules = [ 
         'name' => 'required', 
         'image' => 'required', 
+        'position' => 'required', 
         'sort_id' => 'required',
         'status' => 'required', 
         'desc' => 'required', 
@@ -47,6 +48,7 @@ class ViewTestimonials extends Component
     private function resetInputFields(){
         $this->name = '';
         $this->image = '';
+        $this->position = '';
         $this->sort_id = '';
         $this->status = '';
         $this->desc = '';
@@ -75,6 +77,7 @@ class ViewTestimonials extends Component
       $testimonials->thumbnail = $uploadedData['thumbnail_name']?? Null;
       $testimonials->sort_id =$this->sort_id;
       $testimonials->status = $this->status;
+      $testimonials->position = $this->position;
       $testimonials->description = $this->desc;
       $testimonials->link = $this->link;
       $testimonials->save();

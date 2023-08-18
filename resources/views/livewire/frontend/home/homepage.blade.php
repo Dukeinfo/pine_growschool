@@ -316,66 +316,67 @@
                     </div>
                 </div>
                 <!-- show category second images here -->
-                <div class="col-lg-5 offset-lg-1">
-                    <div id="pineCarousel" class="carousel slide" data-bs-ride="true">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#pineCarousel" data-bs-slide-to="0" class="active"
-                                aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#pineCarousel" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#pineCarousel" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
+                @if(isset($categorySecond->id))
+                @php
+                 $secondSeoSlider = App\Models\MultipleImages::where('whyus_id', $categorySecond->id)->where('status', 'Active')->get();
+                 @endphp
+                    <div class="col-lg-5 offset-lg-1">
+                        <div id="pineCarousel" class="carousel slide" data-bs-ride="carousel"> <!-- Changed data-bs-ride value to "carousel" -->
+                            <div class="carousel-indicators">
+                                @if(isset($secondSeoSlider))
+                                    @foreach($secondSeoSlider as $key => $multiple)
+                                        <button type="button" data-bs-target="#pineCarousel" data-bs-slide-to="{{ $key }}" @if($key === 0) class="active" aria-current="true" @endif aria-label="Slide {{ $key + 1 }}"></button>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <div class="carousel-inner">
+                                @if(isset($secondSeoSlider))
+                                    @foreach($secondSeoSlider as $key => $multiple)
+                                        <div class="carousel-item @if($key === 0) active @endif">
+                                            <img src="{{ isset($multiple->multi_images) ? getmultiple_images($multiple->multi_images) : asset('assets/images/f14.jpg') }}" class="d-block w-100 img-thumbnail" alt="">
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#pineCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#pineCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="assets/images/f2.jpg" class="d-block w-100 img-thumbnail" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/f10.jpg" class="d-block w-100 img-thumbnail" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/f12.jpg" class="d-block w-100 img-thumbnail" alt="">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#pineCarousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#pineCarousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
-                </div>
+                 @endif
             </div>
         </div>
         <div class="bg-corner corner-position"></div>
     </section>
+    {{-- ============================== 2nd slider  start ============================== --}}
+    @if(isset($categorySecond->id))
+
+    @php
+    $categoryThird = App\Models\Whyus::where('category', 3)->where('status', 'Active')->first();
+    $homeSlidersec2 = App\Models\MultipleImages::where('whyus_id', $categoryThird->id)->where('status', 'Active')->get();
+
+    @endphp
+
     <section class="aboutSection02 position-relative">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-5">
+                {{-- <div class="col-lg-5">
                     <div id="pineCarousel1" class="carousel slide" data-bs-ride="true">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#pineCarousel1" data-bs-slide-to="0" class="active"
                                 aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#pineCarousel1" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#pineCarousel1" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
+                  
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="assets/images/f16.jpg" class="d-block w-100 img-thumbnail" alt="">
                             </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/f15.jpg" class="d-block w-100 img-thumbnail" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/f14.jpg" class="d-block w-100 img-thumbnail" alt="">
-                            </div>
+                   
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#pineCarousel1"
                             data-bs-slide="prev">
@@ -388,11 +389,39 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-                </div>
+                </div> --}}
 
-                 @php
-                 $categoryThird = App\Models\Whyus::where('category', 3)->where('status', 'Active')->first();
-                 @endphp
+
+                <div class="col-lg-5">
+                    <div id="pineCarousel1" class="carousel slide" data-bs-ride="carousel"> <!-- Changed data-bs-ride value to "carousel" -->
+                        <div class="carousel-indicators">
+                            @if(isset($homeSlidersec2))
+                                @foreach($homeSlidersec2 as $key => $multiple)
+                                    <button type="button" data-bs-target="#pineCarousel1" data-bs-slide-to="{{ $key }}" @if($key === 0) class="active" aria-current="true" @endif aria-label="Slide {{ $key + 1 }}"></button>
+                                @endforeach
+                            @endif
+                        </div>
+                        <div class="carousel-inner">
+                            @if(isset($homeSlidersec2))
+                                @foreach($homeSlidersec2 as $key => $multiple)
+                                    <div class="carousel-item @if($key === 0) active @endif">
+                                        <img src="{{ isset($multiple->multi_images) ? getmultiple_images($multiple->multi_images) : asset('assets/images/f16.jpg') }}" class="d-block w-100 img-thumbnail" alt="">
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#pineCarousel1" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#pineCarousel1" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                
+          
                 <div class="col-lg-6 offset-lg-1">
                     <div class="aboutContent02">
                         <h5 class="subTitle">{{$categoryThird->title ?? 'International Exchange Programs'}}</h5>
@@ -436,6 +465,7 @@
             <img src="assets/images/bg-sketch.png" class="" alt="">
         </div>
     </section>
+    @endif  
     <!-- BEGIN: Coaching Section Start -->
     <section class="coachingSction04" style="background-image: url(assets/images/bg/1.jpg);">
         <div class="container">
@@ -523,54 +553,31 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="countrySlider owl-carousel">
+                        @forelse ($getfacilities as $getfacility)
+  
+                    
                         <div class="countryItem02 text-center">
                             <div class="countryThumb">
-                                <img src="assets/images/facilities/fac1.jpg" alt="Pingrove">
+                                <img src="{{getfacility($getfacility->image)}}" alt="Pingrove">
                             </div>
                             <div class="countryContent">
-                                <h3><a href="javascript:void()">Courses of Study</a></h3>
-                                <p>Courses of study as laid down by the NCERT and the syllabi framed by the Central
+                                <h3><a href="javascript:void()">{{ $getfacility->title  ?? 'Courses of Study' }}</a></h3>
+                                @if($getfacility->description)
+        
+                               {!!$getfacility->description ?str_limit($getfacility->description, $limit=150 ) : '' !!}
+
+                                @else
+                                <p>
+                                    Courses of study as laid down by the NCERT and the syllabi framed by the Central
                                     Board of Secondary Education (CBSE), of the Government of India, Delhi are strictly
                                     adhered to and followed.
                                 </p>
+                                @endif
                             </div>
                         </div>
-                        <div class="countryItem02 text-center">
-                            <div class="countryThumb">
-                                <img src="assets/images/facilities/fac3.jpg" alt="Pingrove">
-                            </div>
-                            <div class="countryContent">
-                                <h3><a href="javascript:void()">Computer Education</a></h3>
-                                <p>The aim of computer education in the school is to get the children acquainted with
-                                    the latest in computer technology and to assist in removing their introversion of
-                                    the machines.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="countryItem02 text-center">
-                            <div class="countryThumb">
-                                <img src="assets/images/facilities/fac4.jpg" alt="Pingrove">
-                            </div>
-                            <div class="countryContent">
-                                <h3><a href="javascript:void()">Library</a></h3>
-                                <p>The library is very effective for broadening the horizons of the children and keeps
-                                    them entertained, educated and well informed. It helps in Cultivating the Love for
-                                    Reading.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="countryItem02 text-center">
-                            <div class="countryThumb">
-                                <img src="assets/images/facilities/fac5.jpg" alt="Pingrove">
-                            </div>
-                            <div class="countryContent">
-                                <h3><a href="javascript:void()">Laboratories</a></h3>
-                                <p>Modern and well-equipped science labs have the requisite essential equipment for
-                                    conducting practicals for Physics, Chemistry and Biology as per the new curriculam,
-                                    laid down by the CBSE.
-                                </p>
-                            </div>
-                        </div>
+                        @empty
+                        <p>No facility</p>
+                    @endforelse
                     </div>
                 </div>
             </div>
@@ -593,7 +600,7 @@
                             <div class="tsAuthor">
                                 <img src="{{gettestimonia($teat->photo)}}" alt="Pingrove">
                                 <h5 class="tsNM">{{$teat->name ?? ""}}</h5>
-                                <span class="tsDesign">Father of Palak Mishra</span>
+                                <span class="tsDesign"> {{$teat->position ?? ""}}</span>
                             </div>
                             <div class="qutation">
                            {{$teat->description ?? ''}}

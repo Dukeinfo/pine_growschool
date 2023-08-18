@@ -3,8 +3,9 @@
 namespace App\Http\Livewire\Frontend;
 
 use App\Models\Metadetails;
-use App\Models\PageContent;
 use Illuminate\Support\Facades\Route;
+
+use App\Models\PageContent;
 use Livewire\Component;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -21,7 +22,7 @@ use Artesaos\SEOTools\Facades\SEOTools;
 class AboutUs extends Component
 {
 
-    public $seo_keywords;
+    public $seo_keywords ,$pageData;
 
     public function mount(){
 

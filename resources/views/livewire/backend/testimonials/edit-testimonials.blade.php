@@ -38,7 +38,14 @@
                                         @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Name of Position</label>
+                                        <input type="text" class="form-control" id=""  wire:model="position" placeholder="position">
+                                        @error('position') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Profile Photo</label>
                                         <input type="file" wire:model="editimage" id="" class="form-control">

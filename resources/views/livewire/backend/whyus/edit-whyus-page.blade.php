@@ -138,7 +138,7 @@
                                       @error('edit_multi_images.*') <span class="error">{{ $message }}</span> @enderror
                                   </div>
                                   @foreach($getMultiple as $image)
-                                  <div>
+                                  <div style="display:inline-block">
                                       <img src="{{getmultiple_images($image->multi_images)}}" alt="" width="50">
 
                                       <a href="" wire:click='deletemultiple({{$image->id}})'><i class="fa fa-times fa-fw fa-lg"></i></a>
