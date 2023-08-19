@@ -34,7 +34,7 @@ class DetailpageView extends Component
 
             $this->desc = $pageData->description;
             
-            $this->url_link = $pageData->url_link;
+            $this->url_link = $pageData->SubMenu->url_link;
             $this->seotitle = $pageData->SubMenu->seo_title;
             // $this->display_name = $pageData->SubMenu->display_name;
             $this->name = $pageData->SubMenu->name;

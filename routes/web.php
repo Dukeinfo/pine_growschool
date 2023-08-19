@@ -88,6 +88,10 @@ use App\Http\Livewire\Backend\Memories\ViewGuestBook;
 use App\Http\Livewire\Backend\Memories\EditGuestBook;
 use App\Http\Livewire\Backend\Memories\ViewGrapevine;
 use App\Http\Livewire\Backend\Memories\EditGrapevine;
+
+use App\Http\Livewire\Backend\Coachings\ViewCoachings;
+use App\Http\Livewire\Backend\Coachings\EditCoachings;
+
 use App\Http\Livewire\Frontend\AboutUs;
 use App\Http\Livewire\Frontend\AdmissionProcess;
 use App\Http\Livewire\Frontend\ContactUs;
@@ -210,6 +214,9 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
     Route::get('/view/testimonials', ViewTestimonials::class)->name('view_testimonials');
     Route::get('/edit/testimonials/{id}', EditTestimonials::class)->name('edit_testimonials');
     Route::get('/view/testimonials/trash', TrashTestimonials::class)->name('trash_testimonials');
+
+    Route::get('/view/coachings', ViewCoachings::class)->name('view_coachings');
+    Route::get('/edit/coachings/{id}', EditCoachings::class)->name('edit_coachings');
 
     Route::get('/view/category', ViewGalleryCategory::class)->name('view_category');
     Route::get('/edit/category/{id}', EditGalleryCategory::class)->name('edit_category');

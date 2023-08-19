@@ -62,7 +62,8 @@
 						<li><a href="{{route('whyus_page')}}">Home Sections</a>
 						<li><a href="{{route('view_boardmembers')}}">Board Memebers</a>
 					    <li><a href="{{route('view_our_topper')}}">Our Toppers</a></li>
-						<li><a href="{{route('view_knowledge_home')}}">Knowledge Home</a></li>		
+						<li><a href="{{route('view_knowledge_home')}}">Knowledge Home</a></li>	
+						<li><a href="{{route('view_coachings')}}">Coachings</a>	
                        <li><a href="{{route('view_facilities')}}">Facilities</a>
 						<li><a href="{{route('view_testimonials')}}">Testimonials</a>
 						<li><a href="{{route('view_membership')}}">Memebership</a>
@@ -71,6 +72,13 @@
 					
 					</ul>
 			
+			</li>
+
+			<li>
+				<a href="{{route('view_news')}}" class="waves-effect">
+					<i class='bx bx-chat'></i>
+					<span>Latest News</span>
+				</a>
 			</li>
 
 
@@ -109,12 +117,7 @@
 			
 		
 
-           <li>
-				<a href="{{route('view_news')}}" class="waves-effect">
-					<i class='bx bx-chat'></i>
-					<span>Latest News</span>
-				</a>
-			</li>
+           
 
 			<li>
 				<a href="javascript: void(0);" class="has-arrow waves-effect">

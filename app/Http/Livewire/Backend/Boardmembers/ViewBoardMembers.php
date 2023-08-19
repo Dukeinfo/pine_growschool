@@ -32,7 +32,7 @@ class ViewBoardMembers extends Component
         'heading' => 'required',
         'desc' => 'required',
         'image' => 'required', 
-        'sort_id' => 'required',
+        'sort_id' => 'required| unique:board_members,sort_id',
         'status' => 'required',    
      
       ];

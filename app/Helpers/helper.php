@@ -30,6 +30,10 @@ function getmultiple_images($value) {
     return asset('storage/uploads/multiple_images/'.$value);
 }
 
+function getCoaching($value) {
+    return asset('storage/uploads/coaching/'.$value);
+}
+
 function getfacility($value) {
     return asset('storage/uploads/facility/'.$value);
 }

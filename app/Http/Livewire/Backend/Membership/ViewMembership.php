@@ -24,7 +24,7 @@ class ViewMembership extends Component
      protected $rules = [
         'name' => 'required', 
         'image' => 'required', 
-        'sort' => 'required', 
+        'sort' => 'required| unique:memberships,sort_id', 
         'status' => 'required', 
        
      

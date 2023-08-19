@@ -33,7 +33,7 @@ class ViewTestimonials extends Component
         'name' => 'required', 
         'image' => 'required', 
         'position' => 'required', 
-        'sort_id' => 'required',
+        'sort_id' => 'required| unique:testimonials,sort_id',
         'status' => 'required', 
         'desc' => 'required', 
      

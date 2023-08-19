@@ -22,7 +22,7 @@ class ViewHomeSlider extends Component
         'image.*' => 'required', 
         // 'heading' => 'required', 
         // 'subheading' => 'required', 
-        'sort' => 'required', 
+        'sort' => 'required| unique:sliders,sort_id', 
         'status' => 'required', 
      
       ];

@@ -68,8 +68,7 @@
                         
                             {!! isset($categoryFirst->description) 
                              ? 
-                            //  $categoryFirst->description
-                             str_limit($categoryFirst->description, $limit=1000 )
+                             str_limit($categoryFirst->description, $limit=800 )
                               : ''!!}
 
                         
@@ -122,7 +121,7 @@
                 </div>
             </div>
             <div class="row">
-                @if(isset($boardmembers) )
+                @if(isset($boardmembers) && count($boardmembers)>0  )
                 @foreach($boardmembers as $boardmember)
                 <div class="col-lg-4 col-sm-6">
                     <div class="blogItem02 text-end">
@@ -155,6 +154,8 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                <center><h4>No Record Found</h4>
                 @endif
             </div>
         </div>
@@ -234,6 +235,9 @@
             @endif
         </div>
     </section>
+   
+
+
     <!-- BEGIN: Service Section Start -->
     <section class="serviceSection04 pt-0" style="background-image: url(assets/images/bg/8.jpg);">
         <div class="container">
@@ -255,7 +259,7 @@
 
                                 {!!Str::limit($knowldge->description, 200) ?? ''!!}
                             </p>
-                            <a class="immiPressBtn" href="{{$knowldge->link ?? ""}}"><span>Read More</span></a>
+                            <a class="immiPressBtn" href="{{$knowldge->link ?? ''}}" target="_blank"><span>Read More</span></a>
                         </div>
                     </div>
                 </div>
@@ -281,9 +285,10 @@
                         <h2 class="secTitle">
                         {{$categorySecond->sub_title ?? 'A Home Away from Home'}}</h2>
 
-                         @if(isset($categorySecond->description) )
+                        @if(isset($categorySecond->description) )
                         
-                            {!!$categorySecond->description ?? ''!!}
+                        {!!Str::limit($categorySecond->description, 8000) ?? ''!!}    
+                        
                         @else 
                         <p>
                             Pinegrove is very conscious of the quality of its finished product "The Child". The
@@ -315,7 +320,9 @@
                           <a class="immiPressBtn" href="{{$categorySecond->link ?? 'javascript:void()'}}" target="_blank"><span>Discover More</span></a>
                     </div>
                 </div>
-                <!-- show category second images here -->
+
+
+                <!-- slider first for category second -->
                 @if(isset($categorySecond->id))
                 @php
                  $secondSeoSlider = App\Models\MultipleImages::where('whyus_id', $categorySecond->id)->where('status', 'Active')->get();
@@ -353,13 +360,11 @@
         </div>
         <div class="bg-corner corner-position"></div>
     </section>
-    {{-- ============================== 2nd slider  start ============================== --}}
-    @if(isset($categorySecond->id))
+   
+    
 
     @php
     $categoryThird = App\Models\Whyus::where('category', 3)->where('status', 'Active')->first();
-    $homeSlidersec2 = App\Models\MultipleImages::where('whyus_id', $categoryThird->id)->where('status', 'Active')->get();
-
     @endphp
 
     <section class="aboutSection02 position-relative">
@@ -391,7 +396,11 @@
                     </div>
                 </div> --}}
 
-
+<!-- slide second for category third -->
+@if(isset($categoryThird->id))
+@php
+$homeSlidersec2 = App\Models\MultipleImages::where('whyus_id', $categoryThird->id)->where('status', 'Active')->get();
+@endphp
                 <div class="col-lg-5">
                     <div id="pineCarousel1" class="carousel slide" data-bs-ride="carousel"> <!-- Changed data-bs-ride value to "carousel" -->
                         <div class="carousel-indicators">
@@ -420,7 +429,7 @@
                         </button>
                     </div>
                 </div>
-                
+ @endif               
           
                 <div class="col-lg-6 offset-lg-1">
                     <div class="aboutContent02">
@@ -428,8 +437,8 @@
                         <h2 class="secTitle">
                         {{$categoryThird->title ?? 'International Outlook'}}</h2>
                         @if(isset($categoryThird->description) )
-                        
-                            {!!$categoryThird->description ?? ''!!}
+                    
+                            {!!Str::limit($categoryThird->description, 800) ?? ''!!}    
                         @else 
                         <p>
                             To provide our students with a global outlook, we offer annual International Exchange
@@ -465,7 +474,7 @@
             <img src="assets/images/bg-sketch.png" class="" alt="">
         </div>
     </section>
-    @endif  
+    
     <!-- BEGIN: Coaching Section Start -->
     <section class="coachingSction04" style="background-image: url(assets/images/bg/1.jpg);">
         <div class="container">
@@ -476,54 +485,36 @@
                 </div>
             </div>
             <div class="row">
+
+               @if(isset($getCoachings) && count($getCoachings)>0  )
+                        @foreach($getCoachings as $coaching)  
                 <div class="col-lg-4 col-sm-6">
                     <!-- Coaching Item -->
                     <div class="coachingItem02 ci04 text-end">
                         <div class="coachingThumb">
-                            <img src="assets/images/f110.jpg" alt="Pingrove">
+                            <img src="{{getCoaching($coaching->image)}}" alt="Pingrove">
                         </div>
+                 {{ $coaching->title  ?? 'Academic Facilities' }}       
                         <div class="coachingContent text-start">
                             <h3><a href="javascript:void()">Academic Facilities</a></h3>
+                 @if(isset($coaching->description) )
+                        {!!$coaching->description ?str_limit($coaching->description, $limit=150 ) : '' !!}
+                        @else            
                             <p>The classrooms are very modern, large and airy with proper lighting and provide the most
                                 conducive atmosphere for learning.
                             </p>
+
+                  @endif            
                         </div>
                         <a class="immiPressBtn" href="javascript:void()"><span>View Details</span></a>
                     </div>
                     <!-- Coaching Item -->
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <!-- Coaching Item -->
-                    <div class="coachingItem02 ci04 text-end">
-                        <div class="coachingThumb">
-                            <img src="assets/images/f10.jpg" alt="Pingrove">
-                        </div>
-                        <div class="coachingContent text-start">
-                            <h3><a href="javascript:void()">Boarding Life</a></h3>
-                            <p>All requisite infrastructures are available in Pinegrove School, to provide the children
-                                with facilities needed for quality education.
-                            </p>
-                        </div>
-                        <a class="immiPressBtn" href="javascript:void()"><span>View Details</span></a>
-                    </div>
-                    <!-- Coaching Item -->
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <!-- Coaching Item -->
-                    <div class="coachingItem02 ci04 text-end">
-                        <div class="coachingThumb">
-                            <img src="assets/images/games.jpg" alt="Pingrove">
-                        </div>
-                        <div class="coachingContent text-start">
-                            <h3><a href="javascript:void()">Games & Sports</a></h3>
-                            <p>At Pinegrove we offer an environment that gives every child an opportunity to discover
-                                his talents and explore them.
-                            </p>
-                        </div>
-                        <a class="immiPressBtn" href="javascript:void()"><span>View Details</span></a>
-                    </div>
-                    <!-- Coaching Item -->
-                </div>
+          @endforeach
+          @else
+          <center><h4>No Record Found</h4>
+
+          @endif     
             </div>
         </div>
     </section>
@@ -555,7 +546,6 @@
                     <div class="countrySlider owl-carousel">
                         @forelse ($getfacilities as $getfacility)
   
-                    
                         <div class="countryItem02 text-center">
                             <div class="countryThumb">
                                 <img src="{{getfacility($getfacility->image)}}" alt="Pingrove">
@@ -603,7 +593,8 @@
                                 <span class="tsDesign"> {{$teat->position ?? ""}}</span>
                             </div>
                             <div class="qutation">
-                           {{$teat->description ?? ''}}
+                           
+                           {!!Str::limit($teat->description, 1000) ?? ''!!} 
                             </div>
                         </div>
                         

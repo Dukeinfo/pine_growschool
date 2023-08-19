@@ -7,6 +7,7 @@ use App\Models\Slider;
 use App\Models\Memberships;
 use App\Models\BoardMembers;
 use App\Models\Facilities;
+use App\Models\Coachings;
 use App\Models\KnowledgeHome;
 use App\Models\Testimonials;
 use Livewire\Component;
@@ -49,6 +50,7 @@ $this->sliders = Slider::orderBy('sort_id','asc')->where('status','Active')->get
 $this->memberships =  Memberships::orderBy('sort_id' ,'asc')->where('status','Active')->get(); 
 $this->boardmembers =  BoardMembers::orderBy('sort_id' ,'asc')->where('status','Active')->get(); 
 $this->knowledgeHome =  KnowledgeHome::orderBy('sort_id' ,'asc')->where('status','Active')->get(); 
+$this->getCoachings =  Coachings::orderBy('sort_id' ,'asc')->where('status','Active')->get();
 $this->getfacilities =  Facilities::orderBy('sort_id' ,'asc')->where('status','Active')->get();
 $this->testimonials =  Testimonials::orderBy('sort_id' ,'asc')->where('status','Active')->get(); 
 }

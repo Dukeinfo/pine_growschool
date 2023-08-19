@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Home Page Logo Section</h4>
+                        <h4 class="mb-sm-0 font-size-18">Facilities</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
                                 <li class="breadcrumb-item">Portfolio</li>
-                                <li class="breadcrumb-item active">Home Page Logo Section</li>
+                                <li class="breadcrumb-item active">Facilities</li>
                             </ol>
                         </div>
 
@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Home Page Logo Section</h4>
+                            <h4 class="card-title">Facilities</h4>
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
@@ -39,7 +39,7 @@
 
                             	<div class="col-md-e">
                                     <div class="mb-3">
-                                        <label class="form-label">Logo</label>
+                                        <label class="form-label">Image</label>
                                         <input type="file" class="form-control" id="" wire:model="editimage">
  @if(isset($editimage))  
  <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  

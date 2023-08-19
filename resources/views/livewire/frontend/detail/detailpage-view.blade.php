@@ -53,7 +53,9 @@
                     <img src="{{getpageImage($image)}}" class="img-fluid rounded mb-4" alt="submenu img">
 
                     <p>  {!! $desc ?? ""!!}</p>
-                    <a class="immiPressBtn" href="{{$url_link ?? ''}}"><span>Discover More</span></a>
+
+
+                    <a class="immiPressBtn" href="{{$url_link ?? ''}}" target="_blank"><span>Discover More</span></a>
                     
 
                   

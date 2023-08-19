@@ -37,9 +37,9 @@ class ViewOurTopper extends Component
         'name' => 'required', 
         'classname' => 'required',
         'section' => 'required',
-        'percentage' => 'required',
+       /* 'percentage' => 'required',*/
         'image' => 'required', 
-        'sort_id' => 'required', 
+        'sort_id' => 'required| unique:our_toppers,sort_id', 
         'status' => 'required', 
      
       ];
@@ -47,7 +47,7 @@ class ViewOurTopper extends Component
           'name.required' => 'Name Required.',
           'classname.required' => 'Class Required.',
           'section.required' => 'Section Required.',
-          'percentage.required' => 'Percentage Required.',
+         /* 'percentage.required' => 'Percentage Required.',*/
           'image.required' => 'Image Required.',
           'sort_id.required' => 'Sort Required.',
           'status.required' => 'Status Required.',

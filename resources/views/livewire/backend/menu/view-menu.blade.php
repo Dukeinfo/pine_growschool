@@ -114,10 +114,10 @@
                                     <thead>
                                         <tr>
                                             <th> Name</th>
+                                            <th> Route Name</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
-                                            <th>Page Link</th>
-
+                                
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -127,10 +127,6 @@
                                         <tr>
                                             <td>{{$record->name ?? '' }}</td>
                                             <td>{{$record->link ?? '' }}</td>
-
-                                            
-
-                                        
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>
                                             <td>
