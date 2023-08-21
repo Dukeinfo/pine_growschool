@@ -24,7 +24,7 @@ class ViewLatestNews extends Component
         'newsDate' => 'required', 
         'title' => 'required',
         'desc' => 'required',
-        'sort_id' => 'required',
+        'sort_id' => 'required| unique:latest_news,sort_id',
         'status' => 'required',    
      
       ];

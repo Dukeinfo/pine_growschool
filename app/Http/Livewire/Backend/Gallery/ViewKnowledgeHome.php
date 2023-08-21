@@ -13,7 +13,7 @@ class ViewKnowledgeHome extends Component
     protected $rules = [
         'logo' => 'required', 
         'title' => 'required', 
-        'sort_id' => 'required', 
+        'sort_id' => 'required| unique:knowledge_homes,sort_id', 
         'status' => 'required', 
      
       ];

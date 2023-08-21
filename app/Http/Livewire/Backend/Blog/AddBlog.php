@@ -23,7 +23,7 @@ class AddBlog extends Component
      protected $rules = [
         'title' => 'required', 
         'desc' => 'required', 
-        'sort' => 'required', 
+        'sort' => 'required| unique:blogs,sort_id', 
         'status' => 'required', 
      
       ];

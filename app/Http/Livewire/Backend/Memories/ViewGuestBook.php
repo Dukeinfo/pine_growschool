@@ -15,7 +15,7 @@ class ViewGuestBook extends Component
         'picDate' => 'required', 
         'visitor' => 'required',
         'desc' => 'required',
-        'sort_id' => 'required',
+        'sort_id' => 'required| unique:guest_books,sort_id',
         'status' => 'required',    
      
       ];

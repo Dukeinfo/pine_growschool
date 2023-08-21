@@ -32,7 +32,7 @@ class AddPageContent extends Component
         'heading' => 'required', 
         'desc' => 'required',
         'image' => 'required',
-        'sort' => 'required', 
+        'sort' => 'required| unique:page_contents,sort_id', 
         'status' => 'required', 
      
       ];

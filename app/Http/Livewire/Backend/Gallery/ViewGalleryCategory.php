@@ -20,7 +20,7 @@ class ViewGalleryCategory extends Component
     protected $rules = [
         'name' => 'required', 
         'image' => 'required', 
-        'sort' => 'required', 
+        'sort' => 'required| unique:categories,sort_id', 
         'status' => 'required', 
      
       ];

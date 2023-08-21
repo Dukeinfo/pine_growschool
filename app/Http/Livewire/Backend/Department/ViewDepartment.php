@@ -20,7 +20,7 @@ class ViewDepartment extends Component
     protected $rules = [
         'name' => 'required', 
         'desc' => 'required', 
-        'sort' => 'required', 
+        'sort' => 'required| unique:departments,sort_id', 
         'status' => 'required', 
      
       ];
