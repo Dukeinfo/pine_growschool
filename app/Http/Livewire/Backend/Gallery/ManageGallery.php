@@ -49,7 +49,7 @@ class ManageGallery extends Component
         'category_id' => 'required', 
         'year' => 'required',
         'image' => 'required', 
-        'sort' => 'required', 
+        'sort' => 'required| unique:galleries,sort_id', 
         'status' => 'required', 
        
      

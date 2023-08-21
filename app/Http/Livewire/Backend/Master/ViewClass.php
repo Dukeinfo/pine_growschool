@@ -13,7 +13,7 @@ class ViewClass extends Component
 
 	protected $rules = [
         'classname' => 'required', 
-        'sort_id' => 'required', 
+        'sort_id' => 'required| unique:class_masters,sort_id', 
         'status' => 'required', 
      
       ];

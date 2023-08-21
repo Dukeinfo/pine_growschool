@@ -13,7 +13,7 @@ class ViewSection extends Component
 
     protected $rules = [
         'name' => 'required', 
-        'sort_id' => 'required', 
+        'sort_id' => 'required| unique:section_masters,sort_id', 
         'status' => 'required', 
      
       ];

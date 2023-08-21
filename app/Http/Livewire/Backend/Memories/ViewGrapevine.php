@@ -23,7 +23,7 @@ class ViewGrapevine extends Component
         'year' => 'required',
         'issuenumber' => 'required',
         'document' => 'required',
-        'sort_id' => 'required',
+        'sort_id' => 'required| unique:grepevines,sort_id',
         'status' => 'required',    
      
       ];

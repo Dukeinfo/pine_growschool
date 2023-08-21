@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('image')->nullable(); 
             $table->string('thumbnail')->nullable();             
-            $table->string('heading')->nullable();
+            $table->longText('heading')->nullable();
             $table->longText('subheading')->nullable();
             $table->string('link')->nullable();
             $table->bigInteger('sort_id')->nullable(); 
