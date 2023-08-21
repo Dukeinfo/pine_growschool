@@ -19,7 +19,6 @@ class SliderSeeder extends Seeder
 
         $imageDirectory = public_path('assets/images/slider');
         $imageFiles = File::allFiles($imageDirectory);
-
         $storageFolder = 'uploads/slider'; // Specify the storage folder
 
         $sliders = [];

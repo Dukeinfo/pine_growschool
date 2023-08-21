@@ -19,6 +19,7 @@ class CreateGalleriesTable extends Migration
             $table->string('title')->nullable(); 
             $table->string('year')->nullable(); 
             $table->string('s_name')->nullable(); 
+            $table->string('addmision_no')->nullable(); 
             $table->string('image')->nullable(); 
             $table->string('thumbnail')->nullable(); 
             $table->text('slug')->nullable();

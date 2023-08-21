@@ -15,9 +15,9 @@ use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\JsonLdMulti;
 
 // OR use only single facades 
-
+use Illuminate\Support\Facades\Route;
 use Artesaos\SEOTools\Facades\SEOTools;
-use Illuminate\Routing\Route;
+
 
 class GalleryDetail extends Component
 {
@@ -31,20 +31,28 @@ class GalleryDetail extends Component
       $category = Categories::findOrFail($category_id);
         $this->category = $category->name;
 
-       $this->records = Gallery::with(['Category'])->where('category_id', $category_id)->get();
+       $this->records = Gallery::where('category_id', $category_id)->get();
        $getRouteName =  Route::currentRouteName(); 
-       $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
-       if($seoMetaData){
-           
-       SEOTools::setTitle($seoMetaData->title ?? 'GalleryDetail');
-       SEOTools::setDescription($seoMetaData->description ?? '');
-       SEOTools::opengraph()->setUrl(url()->current());
-       SEOTools::setCanonical(url()->current());
-       SEOTools::opengraph()->addProperty('type', 'website');
-       SEOTools::twitter()->setSite($seoMetaData->title ?? '');
-       $keywords = $seoMetaData->keywords;
-       SEOMeta::addKeyword( $keywords);
-   }
+
+       if($getRouteName){
+         $seoMetaData =  Metadetails::where('name',$getRouteName )->first();     
+          if($seoMetaData){
+              SEOTools::setTitle($seoMetaData->title ?? 'Gallery Detail');
+              SEOTools::setDescription($seoMetaData->description ?? '');
+              SEOTools::opengraph()->setUrl(url()->current());
+              SEOTools::setCanonical(url()->current());
+              SEOTools::opengraph()->addProperty('type', 'website');
+              SEOTools::twitter()->setSite($seoMetaData->title ?? '');
+              $keywords = $seoMetaData->keywords;
+              SEOMeta::addKeyword( $keywords);
+
+          }
+          else{
+              SEOTools::setTitle('Gallery Detail');
+          }
+      }
+
+      
     }
             
     public function render()

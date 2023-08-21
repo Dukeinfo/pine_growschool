@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/lightcase.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/nice-select.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
 
 
     <!-- END: CSS -->
@@ -125,6 +126,7 @@
     <script src="{{asset('assets/js/jquery.plugin.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.countdown.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.validate-1.16.9.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 
     <!-- Custome Js -->
     <script src="{{asset('assets/js/theme.js')}}"></script>

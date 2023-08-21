@@ -5,7 +5,8 @@
         <!-- END: Header Section -->
     
         <!-- BEGIN: Hero Banner Start -->
-        <section class="pageBanner" style="background-image: url(assets/images/bg/school-bg.jpg);">
+        <section class="pageBanner" style="background-image: url({{asset('assets/images/bg/school-bg.jpg')}});">
+
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">

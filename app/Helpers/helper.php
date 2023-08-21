@@ -67,3 +67,21 @@ function getUserIp()
 }
 
 
+function getGalleryImage($image)
+{
+    if (str_starts_with($image, 'http')) {
+        return $image;
+    }
+
+    return   asset('storage/uploads/gallery_cat/'.$image);
+}
+
+
+function getGallerydetail($image)
+{
+    if (str_starts_with($image, 'http')) {
+        return $image;
+    }
+
+    return   asset('storage/uploads/gallery/'.$image);
+}

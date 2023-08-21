@@ -4,7 +4,7 @@
     @include('livewire.frontend.common.news_ticker')
     
         <!-- BEGIN: Hero Banner Start -->
-        <section class="pageBanner" style="background-image: url(assets/images/bg/school-bg.jpg);">
+        <section class="pageBanner" style="background-image: url({{asset('assets/images/bg/school-bg.jpg')}});">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">
@@ -42,182 +42,123 @@
                             </aside>
                         </div>
                     </div>
+                    
                     <div class="col-lg-8">
+                   
                         <h5 class="subTitle">Showcasing Our Culture</h5>
                         <h2 class="secTitle">Picture Gallery</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium tempore omnis nostrum alias
-                            ex ea consequuntur atque earum, iusto perferendis!</p>
-    
-                        <div class="row">
-                    @if(isset($categoires))                      
-                        @foreach ($categoires as  $category) 
-
-                          @php
-                            $photos = App\Models\Gallery::where(['category_id'=> $category->id,'status'=>'Active' ])->get();  
-                            $count=count($photos);    
-                          @endphp
-        
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="blogItem01 biMB">
-    
-                                    <div class="blogThumb">
-                                    <img src="{{ isset($category->image) ? getGalleryCategory($category->image) : asset('no_image.jpg') }}" alt="">
-
-                                    </div>
-                                    <div class="blogContent p-4">
-                                        <sapn class="small">
-                                            <i class="fa fa-images me-2"></i> Total Photos:{{$count ?? '' }}
-                                        </sapn>
-                                        <h5>
-                                            <a href="" class="text-dark">{{ $category->name ?? '' }}</a>
-                                        </h5>
-                                     
-                                     <a class="rmBtn" href="{{route('home.gallery_detail',[ 'category_id' => $category->id])}}">View More
-                                            <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
+                        {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium tempore omnis nostrum alias
+                            ex ea consequuntur atque earum, iusto perferendis!</p> --}}
+              <div class="col-md-12 mb-5" >
+                <form  wire:submit.prevent='searchGallery'>
+                    
+                     <div class="col-md-8">
+                            <label>
+                                <input type="radio" wire:model.live="searchField" value="albumTitle" name="search"> Album Title
+                           
+                            <label>
+                                <input type="radio" wire:model.live="searchField" value="year" name="search"> Year
+                            </label>
+                            <label>
+                                <input type="radio" wire:model.live="searchField" value="adminNo" name="search"> By Admission No
+                            </label>
+                            <label>
+                                <input type="radio" wire:model.live="searchField" value="studentName" name="search"> By Student Name
+                            </label>
+      
+                            <div class="col-md-4">
+                            @if ($searchField === 'albumTitle')
+                                <select wire:model="albumTitleValue"  class="form-control">
+                                    <option value="">Select option</option>
+                                        @forelse ($getcategorywise as $category)
+                                        <option value="{{$category->galCategory->id}}"> {{$category->galCategory->name}}</option>
+                                        @empty
+                                        <p>No option</p>
+                                        @endforelse
+                                </select>
                             </div>
-                    @endforeach
-                        @endif    
+                            <div class="col-md-4">
 
+                            @elseif ($searchField === 'year')
+                                <select name="year"  wire:model="yearValue"  id="year" class="form-control" >
+                                    <option value="" >Select Year</option>
+                                    @forelse ($getYearwise as $galCategory)
+                                        <option value="{{ $galCategory->year }}" >{{ $galCategory->year }}</option>
+                                        @empty
+                                        <p>No option</p>
+                                        @endforelse
+                                </select>
+                         
 
-                            <!-- <div class="col-lg-6 col-sm-6">
-                                <div class="blogItem01 biMB">
-    
-                                    <div class="blogThumb">
-                                        <img src="assets/images/gallery/img2.jpg" alt="">
-                                    </div>
-                                    <div class="blogContent p-4">
-                                        <sapn class="small">
-                                            <i class="fa fa-images me-2"></i> Total Photos: 10
-                                        </sapn>
-                                        <h5>
-                                            <a href="" class="text-dark">House Show 2023</a>
-                                        </h5>
-                                        <a class="rmBtn" href="">View More
-                                            <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="blogItem01 biMB">
-    
-                                    <div class="blogThumb">
-                                        <img src="assets/images/gallery/img3.jpg" alt="">
-                                    </div>
-                                    <div class="blogContent p-4">
-                                        <sapn class="small">
-                                            <i class="fa fa-images me-2"></i> Total Photos: 10
-                                        </sapn>
-                                        <h5>
-                                            <a href="" class="text-dark">Convocation Ceremony</a>
-                                        </h5>
-                                        <a class="rmBtn" href="">View More
-                                            <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="blogItem01 biMB">
-    
-                                    <div class="blogThumb">
-                                        <img src="assets/images/gallery/img4.jpg" alt="">
-                                    </div>
-                                    <div class="blogContent p-4">
-                                        <sapn class="small">
-                                            <i class="fa fa-images me-2"></i> Total Photos: 10
-                                        </sapn>
-                                        <h5>
-                                            <a href="" class="text-dark">Basketball Competition</a>
-                                        </h5>
-                                        <a class="rmBtn" href="">View More
-                                            <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="blogItem01 biMB">
-    
-                                    <div class="blogThumb">
-                                        <img src="assets/images/gallery/img5.jpg" alt="">
-                                    </div>
-                                    <div class="blogContent p-4">
-                                        <sapn class="small">
-                                            <i class="fa fa-images me-2"></i> Total Photos: 10
-                                        </sapn>
-                                        <h5>
-                                            <a href="" class="text-dark">Cultural Bridges</a>
-                                        </h5>
-                                        <a class="rmBtn" href="">View More
-                                            <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="blogItem01 biMB">
-    
-                                    <div class="blogThumb">
-                                        <img src="assets/images/gallery/img6.jpg" alt="">
-                                    </div>
-                                    <div class="blogContent p-4">
-                                        <sapn class="small">
-                                            <i class="fa fa-images me-2"></i> Total Photos: 10
-                                        </sapn>
-                                        <h5>
-                                            <a href="" class="text-dark">Inter House Competition</a>
-                                        </h5>
-                                        <a class="rmBtn" href="">View More
-                                            <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z">
-                                                </path>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div> -->
-                    {{-- <div class="pagination"> --}}
+                            @elseif ($searchField === 'adminNo')
+                                <input type="text" wire:model="adminNoValue" placeholder="By Admission No">
+                         
 
-                        
-                        <div class="col-lg-5 mx-auto mt-5">
-                            <nav class="justify-content-center">
-                                {!! $categoires->links() !!}
+                                @elseif ($searchField === 'studentName')
+                                <input type="text" wire:model="studentNameValue" placeholder="By Student Name">
+                         
 
-                            </nav>
+                                @endif
+                            <button type="submit"  wire:loading.attr="disabled" class="btn btn-primary">
+                                Go
+                            </button>
+
+                            <a href="" wire:click="resetinput"> Reset all</a>
                         </div>
-                    {{-- </div> --}}
-  
+                       
+                    </div>
+                </form>
+
+
+              </div>
+                        <div class="row">
+                          @if(isset($galleryimages))
+                                @foreach ($galleryimages as $galleryimage)
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="blogItem01 biMB">
+        
+                                        <div class="blogThumb">
+                                            <img src="{{ isset($galleryimage->galCategory->image) ? getGalleryImage($galleryimage->galCategory->image) : asset('no_image.jpg') }}" alt="">
+
+                                        </div>
+                                        <div class="blogContent p-4">
+                                            @php
+                                            $photos = App\Models\Gallery::where(['category_id'=> $galleryimage->galCategory->id,'status'=>'Active' ])->get();  
+                                            $count = count($photos);    
+                                          @endphp
+                                            <sapn class="small">
+                                                <i class="fa fa-images me-2"></i> Total Photos: {{  $count}}
+                                            </sapn>
+                                            <h5>
+                                                <a href="{{route('home.gallery_detail',['category_id' => $galleryimage->galCategory->id])}}" class="text-dark">{{$galleryimage->galCategory->name ?? ''}}</a>
+                                            </h5>
+                                            {{-- <a class="rmBtn" href="">View More --}}
+                                            <a class="rmBtn" href="{{route('home.gallery_detail',['category_id' => $galleryimage->galCategory->id])}}">View More
+
+                                                <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M0 5.71429V4.28571H9L6 1.42857L6.75 0L12 5L6.75 10L6 8.57143L9 5.71429H0Z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                @else
+                                <p class="text-center">Not found </p>
+                            @endif
+                                {{-- pagination section  --}}
+                                <div class="col-lg-5 mx-auto mt-5">
+                                    <nav class="justify-content-center">
+                                   
+                                        {!! $galleryimages->links() !!}
+
+                                    </nav>
+                                </div>
+
+                           
                         </div>
                     </div>
                 </div>
@@ -226,25 +167,6 @@
         <!-- End: Section -->
     
                            
- 
-    <style>
-.pagination svg {
-    width: 20px;
-}
-.pagination nav {
-    display: flex;
-}
-.pagination nav > div + div {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    justify-content: flex-end;
-}
-.pagination nav > div + div > div + div {
-    margin-left: 20px;
-}
-.pagination nav > div + div p.text-sm {
-    margin: 0;
-}
-</style>
+
+
 </div>

@@ -13,6 +13,9 @@ class Categories extends Model
 
     protected $guarded = [];
 
-
-
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
+    }
+ 
 }

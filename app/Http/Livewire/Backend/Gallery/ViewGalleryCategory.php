@@ -112,7 +112,7 @@ class ViewGalleryCategory extends Component
 
     public function render()
     {
-        $this->records=Categories::orderBy('sort_id' ,'asc')->get();
+        $this->records=Categories::latest()->orderBy('sort_id' ,'asc')->get();
         return view('livewire.backend.gallery.view-gallery-category')->layout('layouts.backend');
     }
 }

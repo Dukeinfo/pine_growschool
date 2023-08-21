@@ -12,10 +12,9 @@ class Gallery extends Model
     use HasFactory;
     use SoftDeletes;
 
-     public function Category()
+    public function galCategory()
     {
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Categories::class,'category_id');
     }
-
 
 }
