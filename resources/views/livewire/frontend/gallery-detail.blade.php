@@ -58,7 +58,7 @@
 
                          <div class="col-sm-6 col-md-4 col-lg-4 item">
                              <a href="{{ getGallerydetail($record->image) }}" data-lightbox="photos">
-                                 <img class="img-fluid" src="{{ asset('storage/uploads/gallery').'/'.$record->image }}">
+                                 <img class="img-fluid" src="{{ getGallerydetail($record->image)}}">
                              </a>
                          </div>
                        @endforeach
