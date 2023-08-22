@@ -141,6 +141,8 @@ public function searchGallery(){
         return view('livewire.frontend.gallery', [
             'galleryimages' => $galleryimages,
         ])->layout('layouts.frontend');
+
+        $this->resetInputFields();
     }
 
     public function resetallinput(){
