@@ -54,7 +54,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">phone</label>
-                                        <input type="text" class="form-control" id="" wire:model="phone"  placeholder="phone">
+                                        <input type="text" class="form-control" id="" wire:model="phone"  placeholder="phone" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
                                         @error('phone') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>

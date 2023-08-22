@@ -4,7 +4,7 @@
         <a href="javascript:void(0);" class="widgetCloser"><i class="fa-solid fa-xmark"></i></a>
           
           @php
-            $contactInfo = App\Models\ContactInfo::orderBy('sort_id','asc')->where('status','Active')->first();     
+            $contactInfo = App\Models\ContactInfo::orderBy('id','desc')->where('status','Active')->first();     
             $SocialApps = App\Models\SocialApp::orderBy('sort_id','asc')->where('status','Active')->get();     
                            
           @endphp
