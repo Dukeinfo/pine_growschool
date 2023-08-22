@@ -54,20 +54,20 @@
                     
                      <div class="col-md-8">
                             <label>
-                                <input type="radio" wire:model.live="searchField" value="albumTitle" name="search"> Album Title
+                                <input type="radio" wire:model="searchField" value="albumTitle" name="search"> Album Title
                            
                             <label>
-                                <input type="radio" wire:model.live="searchField" value="year" name="search"> Year
+                                <input type="radio" wire:model="searchField" value="year" name="search"> Year
                             </label>
                             <label>
-                                <input type="radio" wire:model.live="searchField" value="adminNo" name="search"> By Admission No
+                                <input type="radio" wire:model="searchField" value="adminNo" name="search"> By Admission No
                             </label>
                             <label>
-                                <input type="radio" wire:model.live="searchField" value="studentName" name="search"> By Student Name
+                                <input type="radio" wire:model="searchField" value="studentName" name="search"> By Student Name
                             </label>
       
                             <div class="col-md-4">
-                            @if ($searchField === 'albumTitle')
+                            @if ($searchField == 'albumTitle')
                                 <select wire:model="albumTitleValue"  class="form-control">
                                     <option value="">Select option</option>
                                         @forelse ($getcategorywise as $category)
@@ -79,7 +79,7 @@
                             </div>
                             <div class="col-md-4">
 
-                            @elseif ($searchField === 'year')
+                            @elseif ($searchField == 'year')
                                 <select name="year"  wire:model="yearValue"  id="year" class="form-control" >
                                     <option value="" >Select Year</option>
                                     @forelse ($getYearwise as $galCategory)
@@ -90,11 +90,11 @@
                                 </select>
                          
 
-                            @elseif ($searchField === 'adminNo')
+                            @elseif ($searchField == 'adminNo')
                                 <input type="text" wire:model="adminNoValue" placeholder="By Admission No">
                          
 
-                                @elseif ($searchField === 'studentName')
+                                @elseif ($searchField == 'studentName')
                                 <input type="text" wire:model="studentNameValue" placeholder="By Student Name">
                          
 
@@ -113,7 +113,7 @@
               </div>
                         <div class="row">
                           @if(isset($galleryimages))
-                                @foreach ($galleryimages as $galleryimage)
+                          @forelse ($galleryimages as $galleryimage)
                                 <div class="col-lg-6 col-sm-6">
                                     <div class="blogItem01 biMB">
         
@@ -145,9 +145,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
-                                @else
-                                <p class="text-center">Not found </p>
+                                @empty
+                                     <p>No Data found</p>
+                                @endforelse
+                            
+                             
                             @endif
                                 {{-- pagination section  --}}
                                 <div class="col-lg-5 mx-auto mt-5">

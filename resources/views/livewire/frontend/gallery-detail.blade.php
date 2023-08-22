@@ -59,8 +59,17 @@
                          <div class="col-sm-6 col-md-4 col-lg-4 item">
                              <a href="{{ getGallerydetail($record->image) }}" data-lightbox="photos">
                                  <img class="img-fluid" src="{{ getGallerydetail($record->image)}}">
-                             </a>
-                         </div>
+                                </a>
+                                @php
+                                $catName =    getGalCategory($record->category_id);
+                                $caption =   $record->year  .'_'.$record->title
+                                @endphp
+
+
+                                <p>{!!Str::limit($caption, 30)  ?? ''!!} </p>
+
+                               
+                            </div>
                        @endforeach
                            @endif
 

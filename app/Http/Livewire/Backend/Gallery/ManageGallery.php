@@ -16,11 +16,13 @@ class ManageGallery extends Component
 	use WithFileUploads;
   use UploadTrait;
     public $category_id,$name,$image,$sort,$status ,$records ,$categories ;
-    public $search ,$s_name ,$year ,$title;
+    public $search ,$s_name ,$year ,$title ,$addmision_no ,$lastUniqueSortingOrder;
  
     protected $queryString = ['search'];
     public function render()
     {
+      $this->lastUniqueSortingOrder = Gallery::distinct()->orderBy('sort_id', 'desc')->value('sort_id');
+
       $years = [];
       $currentYear = date('Y');
       $endYear = $currentYear - 20;
@@ -68,6 +70,7 @@ class ManageGallery extends Component
         $this->year = '';
         $this->s_name = '';
         $this->sort = '';
+        $this->addmision_no = '';
         $this->status = '';
     }
 
@@ -88,6 +91,9 @@ class ManageGallery extends Component
       $gallery->title = $this->title;
       $gallery->year = $this->year;
       $gallery->s_name = $this->s_name;
+      $gallery->addmision_no = $this->addmision_no;
+
+      
       $gallery->image = $uploadedData['file_name'] ?? NULL;
       $gallery->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
       $gallery->slug =  $this->createSlug($this->title ?? NULL);

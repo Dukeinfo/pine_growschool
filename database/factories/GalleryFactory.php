@@ -24,8 +24,9 @@ class GalleryFactory extends Factory
             return [
                 'category_id' => $this->faker->randomElement($categoryIds),
                 'title' =>  $this->faker->realText(50),
-                'year' =>$this->faker->numberBetween( $year),
+                'year' =>$this->faker->randomElement( $year),
                 'slug' => Str::slug( $this->faker->title),
+                'addmision_no'=> $this->faker->unique()->numerify('#####'),
                 // 'thumbnail' =>  $response->getHeaderLine('Location'),
                 'image' => $imgUrl,
                 'thumbnail' =>$thumbnailUrl,

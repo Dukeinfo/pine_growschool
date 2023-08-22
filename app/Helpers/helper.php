@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Categories;
 use App\Models\Location;
 use App\Models\Menu;
 use App\Models\User;
@@ -14,6 +15,12 @@ function authUserId(){
     $menuName = Menu::where('id', $id)->first();
     return $menuName->name;
 }
+function getGalCategory($id){
+        $galleryCategory =  Categories::where('id', $id)->first();
+    return $galleryCategory->name;
+
+}
+
 function getThumbnail($value) {
     return asset('uploads/thumbnail/'.$value);
 }

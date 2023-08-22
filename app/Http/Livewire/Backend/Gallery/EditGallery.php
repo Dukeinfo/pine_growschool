@@ -16,7 +16,7 @@ class EditGallery extends Component
     use WithFileUploads;
     use UploadTrait;
     public $galleryId,$category_id, $name, $image,$editimage,$sort,$status ,$thumbnail;
-    public  $categories,$title, $year , $s_name;
+    public  $categories,$title, $year , $s_name ,$addmision_no;
      public function mount($id){
         $gallery = Gallery::findOrFail($id);
         $this->galleryId = $gallery->id;
@@ -24,7 +24,7 @@ class EditGallery extends Component
         $this->title = $gallery->title;
         $this->year = $gallery->year;
         $this->s_name = $gallery->s_name;
-
+        $this->addmision_no = $gallery->addmision_no;
         $this->image = $gallery->image;
         $this->thumbnail = $gallery->thumbnail;
         $this->sort = $gallery->sort_id;
@@ -45,8 +45,9 @@ class EditGallery extends Component
             $gallery->thumbnail = $uploadedData['thumbnail_name']?? NULL;
             $gallery->sort_id =$this->sort;
             $gallery->status = $this->status;
+            $gallery->addmision_no = $this->addmision_no;
+
             $gallery->save();
-            return redirect()->route('manage_gallery'); 
  
         }
         else{
@@ -54,9 +55,12 @@ class EditGallery extends Component
             $gallery->category_id =$this->category_id ?? NULL;
             $gallery->sort_id =$this->sort;
             $gallery->status = $this->status;
+            $gallery->addmision_no = $this->addmision_no;
+
+    
             $gallery->save();
-            return redirect()->route('manage_gallery'); 
         }
+        return redirect()->route('manage_gallery'); 
         
      }
 
@@ -67,6 +71,8 @@ class EditGallery extends Component
         $this->year = '';
         $this->s_name = '';
         $this->sort = '';
+        $this->addmision_no = '';
+
         $this->status = '';
     }
     public function render()

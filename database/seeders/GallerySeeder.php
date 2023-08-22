@@ -17,7 +17,7 @@ class GallerySeeder extends Seeder
         //
         Gallery::truncate();
 
-        \App\Models\Gallery::factory(100)->create();
+        \App\Models\Gallery::factory(20)->create();
 
     }
 }

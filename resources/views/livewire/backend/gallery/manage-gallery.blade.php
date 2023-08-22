@@ -78,6 +78,14 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
+                                        <label class="form-label">Addmision No</label>
+                                        <input type="text" class="form-control"  wire:model="addmision_no" placeholder="Addmision No">
+                                         @error('addmision_no') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-3">
+                                    <div class="mb-3">
                                         <label class="form-label">Gallery Image</label>
                                         <input type="file" class="form-control" wire:model="image">
                                          @error('image') <span class="error">{{ $message }}</span> @enderror
@@ -88,7 +96,8 @@
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
                                         <input type="number" class="form-control"  wire:model="sort" placeholder="Order NUmber">
-                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
+                                         @error('sort') <span class="error">{{ $message }}</span> @enderror <br>
+                                         <span class="text-success">Last sort no :{{$lastUniqueSortingOrder ?? ''}}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-3">

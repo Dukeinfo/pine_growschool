@@ -81,6 +81,15 @@
                                          @error('s_name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
+
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Addmision No</label>
+                                        <input type="text" class="form-control"  wire:model="addmision_no" placeholder="Addmision No">
+                                         @error('addmision_no') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Gallery Image</label>

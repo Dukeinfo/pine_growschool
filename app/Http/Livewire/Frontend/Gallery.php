@@ -38,7 +38,7 @@ class Gallery extends Component
     public $searchName;
     
    protected $paginationTheme = 'bootstrap';
-   public $selectedRecords = 2;
+   public $selectedRecords = 4;
 
    public $seo_keywords;
 
@@ -80,24 +80,25 @@ $this->getYearwise= ModelsGallery::with(['galCategory'])
 }
 
 public function searchGallery(){
-    if(isset($this->albumTitleValue)){
+ 
+    if($this->albumTitleValue){
         $this->search = $this->albumTitleValue;
 
 
     }
-    else if(isset($this->yearValue)){
+     if($this->yearValue){
         $this->search = $this->yearValue;
   
 
     }
 
-    else if(isset($this->adminNoValue)){
+     if($this->adminNoValue){
         $this->search = $this->adminNoValue;
   
 
     }
 
-    else if(isset($this->studentNameValue)){
+     if($this->studentNameValue){
         $this->search = $this->studentNameValue;
    
 
@@ -106,35 +107,52 @@ public function searchGallery(){
 
 }
 
-public function resetallinput(){
-    $this->resetInputFields();
-}
 
-private function resetInputFields(){
-    $this->albumTitleValue = '';
-    $this->yearValue = '';
-    $this->adminNoValue = '';
-    $this->studentNameValue = '';
-
-    
-}
 
     public function render()
     {
+        switch($this->search) {
 
-        $galleryimages = ModelsGallery::with(['galCategory'])
-            ->where('category_id', 'like', '%'.$this->search.'%')
-            ->orwhere('s_name', 'like', '%'.$this->search.'%')
-            ->orwhere('year', 'like', '%'.$this->search.'%')
-            ->orwhere('addmision_no', 'like', '%'.$this->search.'%')
-            ->where('status', 'Active')
-            ->orderBy('sort_id')
-            ->latest()
-            ->groupBy('category_id')
-            ->paginate($this->selectedRecords, ['*']);
+            case($this->search):
+                $galleryimages = ModelsGallery::with(['galCategory'])
+                ->where(function ($query) {
+                    $query->where('category_id', 'like', '%'.$this->search.'%')
+                        ->orWhere('s_name', 'like', '%'.$this->search.'%')
+                        ->orWhere('year', 'like', '%'.$this->search.'%')
+                        ->orWhere('addmision_no', 'like', '%'.$this->search.'%');
+                })
+                ->where('status', 'Active')
+                ->orderBy('sort_id')
+                ->latest()
+                ->groupBy('category_id')
+                ->paginate($this->selectedRecords, ['*']);
+                break; 
+            default:
+                $galleryimages = ModelsGallery::with(['galCategory'])
+                ->where('status', 'Active')
+                ->orderBy('sort_id')
+                ->latest()
+                ->groupBy('category_id')
+                ->paginate($this->selectedRecords, ['*']);
+            }
+
+
 
         return view('livewire.frontend.gallery', [
             'galleryimages' => $galleryimages,
         ])->layout('layouts.frontend');
+    }
+
+    public function resetallinput(){
+        $this->resetInputFields();
+    }
+    
+    private function resetInputFields(){
+        $this->albumTitleValue = '';
+        $this->yearValue = '';
+        $this->adminNoValue = '';
+        $this->studentNameValue = '';
+    
+        
     }
 }
