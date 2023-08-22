@@ -120,23 +120,21 @@ private function resetInputFields(){
 }
 
     public function render()
-{
+    {
 
+        $galleryimages = ModelsGallery::with(['galCategory'])
+            ->where('category_id', 'like', '%'.$this->search.'%')
+            ->orwhere('s_name', 'like', '%'.$this->search.'%')
+            ->orwhere('year', 'like', '%'.$this->search.'%')
+            ->orwhere('addmision_no', 'like', '%'.$this->search.'%')
+            ->where('status', 'Active')
+            ->orderBy('sort_id')
+            ->latest()
+            ->groupBy('category_id')
+            ->paginate($this->selectedRecords, ['*']);
 
-
-    $galleryimages = ModelsGallery::with(['galCategory'])
-        ->where('category_id', 'like', '%'.$this->search.'%')
-        ->orwhere('s_name', 'like', '%'.$this->search.'%')
-        ->orwhere('year', 'like', '%'.$this->search.'%')
-        ->orwhere('addmision_no', 'like', '%'.$this->search.'%')
-        ->where('status', 'Active')
-        ->orderBy('sort_id')
-        ->latest()
-        ->groupBy('category_id')
-        ->paginate($this->selectedRecords, ['*']);
-
-    return view('livewire.frontend.gallery', [
-        'galleryimages' => $galleryimages,
-    ])->layout('layouts.frontend');
-}
+        return view('livewire.frontend.gallery', [
+            'galleryimages' => $galleryimages,
+        ])->layout('layouts.frontend');
+    }
 }

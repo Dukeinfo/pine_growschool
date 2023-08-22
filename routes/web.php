@@ -68,6 +68,7 @@ use App\Http\Livewire\Backend\Contact\TrashContactFormEntries;
 use App\Http\Livewire\Backend\Login\AdminLogin;
 use App\Http\Livewire\Backend\Pages\AddPageContent;
 use App\Http\Livewire\Backend\Pages\EditPageContent;
+use App\Http\Livewire\Backend\Pages\TrashPageContent;
 use App\Http\Livewire\Backend\Pages\CreatePage;
 use App\Http\Livewire\Backend\Pages\EditPage;
 use App\Http\Livewire\Backend\Pages\TrashPage;
@@ -84,13 +85,16 @@ use App\Http\Livewire\Backend\Facilities\TrashFacilities;
 use App\Http\Livewire\Backend\Footer\ContactusView;
 use App\Http\Livewire\Backend\Footer\TrashContactus;
 use App\Http\Livewire\Backend\Footer\SocialAppsManager;
+use App\Http\Livewire\Backend\Footer\TrashSocialAppsManager;
 use App\Http\Livewire\Backend\Memories\ViewGuestBook;
 use App\Http\Livewire\Backend\Memories\EditGuestBook;
+use App\Http\Livewire\Backend\Memories\TrashGuestBook;
 use App\Http\Livewire\Backend\Memories\ViewGrapevine;
 use App\Http\Livewire\Backend\Memories\EditGrapevine;
-
+use App\Http\Livewire\Backend\Memories\TrashGrapevine;
 use App\Http\Livewire\Backend\Coachings\ViewCoachings;
 use App\Http\Livewire\Backend\Coachings\EditCoachings;
+use App\Http\Livewire\Backend\Coachings\TrashCoachings;
 
 use App\Http\Livewire\Frontend\AboutUs;
 use App\Http\Livewire\Frontend\AdmissionProcess;
@@ -138,13 +142,11 @@ Route::get('/gallery-detail/{category_id}/', GalleryDetail::class)->name('home.g
 Route::get('/location', Location::class)->name('home.location');
 Route::get('/our-founder', OurFounder::class)->name('home.our_founder');
 
-
-
 });
 
 
 
-// ============================= frontend route end ======================
+// ================ frontend route end ===============
 // admin routings
 
 include("web.admin.php");
@@ -192,11 +194,6 @@ Route::get('/view/section', ViewSection::class)->name('view_section');
 Route::get('/edit/section/{id}', EditSection::class)->name('edit_section');
 Route::get('/view/section/trash', TrashSection::class)->name('trash_section');
 
-// Route::post('ckeditor/upload', [CkImageUploadController::class, 'upload'])->name('image.upload');
-// Route::get('/ckeditor-image-upload', function () {
-//     return view('ckeditor_file_upload');
-// })->name('form.upload');
-
 Route::post('ckeditor/image_upload', [CkImageUploadController::class, 'upload'])->name('image.upload');
 Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->name('git.status');
     Route::get('/view/slider', ViewHomeSlider::class)->name('view_home_slider');
@@ -217,6 +214,7 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
 
     Route::get('/view/coachings', ViewCoachings::class)->name('view_coachings');
     Route::get('/edit/coachings/{id}', EditCoachings::class)->name('edit_coachings');
+    Route::get('/view/coachings/trash', TrashCoachings::class)->name('trash_coachings');
 
     Route::get('/view/category', ViewGalleryCategory::class)->name('view_category');
     Route::get('/edit/category/{id}', EditGalleryCategory::class)->name('edit_category');
@@ -245,8 +243,6 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
     Route::get('/manage/blog/trash', TrashBlog::class)->name('trash_blog');
 
     
-
-
     Route::get('/manage/seo', Metadetails::class)->name('manage_metadata');
     Route::get('/edit/seo/{id}', EditMetadetails::class)->name('edit_metadata');
 
@@ -257,6 +253,7 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
 
     Route::get('/page/content', AddPageContent::class)->name('page_content');
      Route::get('/page/content/edit/{id}', EditPageContent::class)->name('edit_content');
+     Route::get('/page/content/trash', TrashPageContent::class)->name('trash_content');
 
     Route::get('/create/page', CreatePage::class)->name('create_page');
     Route::get('/edit/page/{id}', EditPage::class)->name('edit_page');
@@ -285,19 +282,21 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
 
     Route::get('/view/guest-book', ViewGuestBook::class)->name('view_guest_book');
     Route::get('/edit/guest-book/{id}', EditGuestBook::class)->name('edit_guest_book');
+    Route::get('/view/guest-book/trash', TrashGuestBook::class)->name('tarsh_guest_book');
 
     Route::get('/view/grapevine', ViewGrapevine::class)->name('view_grapevine');
     Route::get('/edit/grapevine/{id}', EditGrapevine::class)->name('edit_grapevine');
+     Route::get('/view/grapevine/trash', TrashGrapevine::class)->name('trash_grapevine');
+
     Route::get('/contact-view', ContactusView::class)->name('contact_view');
     Route::get('/contact-view/trash', TrashContactus::class)->name('trash_contact');
 
     Route::get('/social-view', SocialAppsManager::class)->name('social_view');
-    
+      Route::get('/social-view/trash', TrashSocialAppsManager::class)->name('trash_social_view');
     
     Route::get('/contact-entries', ContactFormEntries::class)->name('contact_entries');
     Route::get('/contact-entry/{id}', ViewContactFormEntry::class)->name('contact_view_entry');
     Route::get('/contact-entries/trash', TrashContactFormEntries::class)->name('trash_contact_entries');
-     
-    
+         
 });
 });

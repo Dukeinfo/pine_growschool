@@ -87,6 +87,15 @@ class ViewGrapevine extends Component
 
    } 
 
+     public function delete($id){
+
+      $grepevine = Grepevine::findOrFail($id);
+      if(!is_null($grepevine)){
+        $grepevine->delete();
+      }
+
+     }
+
     public function render()
     {
       $years = [];
