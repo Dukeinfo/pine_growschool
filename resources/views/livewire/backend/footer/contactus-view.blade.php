@@ -74,6 +74,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
+                                        <label class="form-label">footer logo</label>
+                                        <input type="file" class="form-control" id="" wire:model="footer_logo" >
+                                        @error('footer_logo') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
                                         <label class="form-label">Desclaimer</label>
                                         <textarea  rows="5" cols="5" class="form-control" id="" wire:model="disclaimer" placeholder="Footer Desclaimer" ></textarea>
                                         @error('disclaimer') <span class="error">{{ $message }}</span> @enderror

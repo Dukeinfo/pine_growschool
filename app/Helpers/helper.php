@@ -22,6 +22,9 @@ function getGalCategory($id){
 }
 
 function getThumbnail($value) {
+    if (str_starts_with($value, 'http')) {
+        return $value;
+    }
     return asset('uploads/thumbnail/'.$value);
 }
 function getsubmenuImage($value) {

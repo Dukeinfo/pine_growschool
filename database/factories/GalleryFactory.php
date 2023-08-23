@@ -20,6 +20,9 @@ class GalleryFactory extends Factory
             $rand =    random_int(0, 20);
             $imgUrl   =      "https://picsum.photos/id/$rand/500/300";
             $thumbnailUrl = "https://picsum.photos/id/$rand/100/100";
+ 
+            static $sortId = 0;
+
             // $title = fake()->realText(50);
             return [
                 'category_id' => $this->faker->randomElement($categoryIds),
@@ -29,6 +32,7 @@ class GalleryFactory extends Factory
                 'addmision_no'=> $this->faker->unique()->numerify('#####'),
                 // 'thumbnail' =>  $response->getHeaderLine('Location'),
                 'image' => $imgUrl,
+                'sort_id' => ++$sortId,
                 'thumbnail' =>$thumbnailUrl,
                 's_name' => $this->faker->name,
            

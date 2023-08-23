@@ -24,14 +24,42 @@ class GalleryDetail extends Component
 
    public $galleryId,$category,$records;
 
+public $category_id;
+public $year;
+public $s_name;
+public $addmision_no;
+
    public $seo_keywords;
 
     public function mount($category_id )
     {
       $category = Categories::findOrFail($category_id);
-        $this->category = $category->name;
+        $this->category_id = $category->category_id;
+        $this->year = $category->year;
+        $this->s_name = $category->s_name;
+        $this->addmision_no = $category->addmision_no;
 
-       $this->records = Gallery::where('category_id', $category_id)->get();
+
+      //  $this->records = Gallery::where('category_id', $this->category_id)->latest()->get();
+      $this->records = Gallery::where('category_id', $category_id)
+      ->when($this->year, function ($query) {
+          return $query->where('year', 'like', '%' . $this->year . '%');
+      })
+      ->when($this->s_name, function ($query) {
+          return $query->where('s_name', 'like', '%' . $this->s_name . '%');
+      })
+      ->when($this->addmision_no, function ($query) {
+          return $query->where('addmision_no', 'like', '%' . $this->addmision_no . '%');
+      })->orderByRaw("CASE 
+      WHEN year LIKE '%$this->year%' THEN 0
+      WHEN s_name LIKE '%$this->s_name%' THEN 0
+      WHEN addmision_no LIKE '%$this->addmision_no%' THEN 0
+      ELSE 1
+      END")
+      ->get();
+  
+
+
        $getRouteName =  Route::currentRouteName(); 
 
        if($getRouteName){

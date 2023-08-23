@@ -17,6 +17,7 @@ class ContactusView extends Component
     public $logo;
     public $disclaimer;
     public $map;
+    public $footer_logo;
     public function mount($contactId = null)
     {
         $this->contactId = $contactId;
@@ -47,21 +48,32 @@ class ContactusView extends Component
         ]);
 
         // Handle the logo file upload (if provided)
-        $logoPath = null;
-        if ($this->logo) {
-            $logoPath = $this->logo->store('logos', 'public');
-        }
+      
+   
+       
         if ($this->contactId) {
             $contact = ContactInfo::findOrFail($this->contactId);
         } else {
             $contact = new ContactInfo();
         }
         // Create a new ContactInformation instance and save it to the database
- 
+        if (isset($this->logo)) {
+            $logoPath = $this->logo->store('logos', 'public');
+            $contact->logo = $logoPath;
+             $contact->save();
+
+        }
+    
+        if (isset($this->footer_logo)) {
+            $flogoPath = $this->footer_logo->store('footerlogo', 'public');
+            $contact->footer_logo = $flogoPath;
+             $contact->save();
+
+
+        }
         $contact->email = $validatedData['email'];
         $contact->phone = $validatedData['phone'];
         $contact->address = $validatedData['address'];
-        $contact->logo = $logoPath;
         $contact->disclaimer = $validatedData['disclaimer'];
         $contact->map = $validatedData['map'];
         $contact->save();
@@ -82,6 +94,7 @@ class ContactusView extends Component
         $this->phone = '';
         $this->address = '';
         $this->logo = null;
+        $this->footer_logo = null;
         $this->disclaimer = '';
         $this->map = '';
     }

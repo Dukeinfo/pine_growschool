@@ -15,17 +15,23 @@ class CategoriesFactory extends Factory
     public function definition()
     {
         $statusOptions = ['active', 'inactive'];
+        $name  = [ 'General' ,'Festivals' ,'Soccer' ,'Inter House Competition' 
+            ,'Inter School Competition' ,'Inter House Matches' ,'House Show'
+            ,'activities' ,'Camp' ,'Prefects'];
         $rand = random_int(0, 20);
         $imgUrl = "https://picsum.photos/id/$rand/500/300";
         $thumbnailUrl = "https://picsum.photos/id/$rand/100/100";
-        
+        static $sortId = 0;
         return [
-            'name' => $this->faker->word(5),
-            'slug' => Str::slug($this->faker->word),
+            'name' => $this->faker->randomElement( $name),
+            'slug' => Str::slug($this->faker->randomElement( $name)),
+            'category' => $this->faker->randomElement( $name),
             'image' => $imgUrl,
             'thumbnail' => $thumbnailUrl,
-            'sort_id' => $this->faker->numberBetween(1, 50),
+            'sort_id' => ++$sortId,
             'status' => $this->faker->randomElement($statusOptions),
         ];
     }
 }
+
+ 
