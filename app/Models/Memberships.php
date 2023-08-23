@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Memberships extends Model
 {
     use HasFactory;
-    use SoftDeletes;  //invoking
+    use SoftDeletes; 
     protected $guarded = [];
 
 }

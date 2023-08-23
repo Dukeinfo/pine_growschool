@@ -96,6 +96,13 @@ use App\Http\Livewire\Backend\Coachings\ViewCoachings;
 use App\Http\Livewire\Backend\Coachings\EditCoachings;
 use App\Http\Livewire\Backend\Coachings\TrashCoachings;
 
+use App\Http\Livewire\Backend\Rollofhonour\AddCategory;
+use App\Http\Livewire\Backend\Rollofhonour\EditCategory;
+use App\Http\Livewire\Backend\Rollofhonour\SubCategory;
+use App\Http\Livewire\Backend\Rollofhonour\EditSubCategory;
+use App\Http\Livewire\Backend\Rollofhonour\ViewRollofhonour;
+use App\Http\Livewire\Backend\Rollofhonour\EditRollofhonour;
+
 use App\Http\Livewire\Frontend\AboutUs;
 use App\Http\Livewire\Frontend\AdmissionProcess;
 use App\Http\Livewire\Frontend\ContactUs;
@@ -297,6 +304,20 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
     Route::get('/contact-entries', ContactFormEntries::class)->name('contact_entries');
     Route::get('/contact-entry/{id}', ViewContactFormEntry::class)->name('contact_view_entry');
     Route::get('/contact-entries/trash', TrashContactFormEntries::class)->name('trash_contact_entries');
+
+
+    Route::get('/add-category', AddCategory::class)->name('add_category');
+    Route::get('/edit-category/{id}', EditCategory::class)->name('edit_category');
+
+  
+
+     Route::get('/add-sub-category', SubCategory::class)->name('add_sub_category');
+    Route::get('/edit-sub-category/{id}', EditSubCategory::class)->name('edit_sub_category');
+
+    Route::get('/roll-of-honour', ViewRollofhonour::class)->name('roll_of_honour');
+    Route::get('/roll-of-honour/{id}', EditRollofhonour::class)->name('edit_roll_of_honour');
+
+
          
 });
 });

@@ -129,6 +129,9 @@
 					<ul class="sub-menu" aria-expanded="false">
 						<li><a href="{{route('view_guest_book')}}">Guest Book</a></li>
 						<li><a href="{{route('view_grapevine')}}">Grapevine</a></li>
+						<li><a href="{{route('add_category')}}">Category Roll Of Honour</a></li>
+						<li><a href="{{route('add_sub_category')}}">Sub Category Roll Of Honour</a></li>
+						<li><a href="{{route('roll_of_honour')}}">Roll Of Honour</a></li>
 						
 					</ul>
 					
