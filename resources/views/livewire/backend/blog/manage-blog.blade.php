@@ -41,17 +41,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                    @if(isset($records) && count($records)>0 )                      
-                          @foreach ($records as  $record)                    
-                                        <tr>
-                                            <td>{{$record->title ?? '' }}</td>
-                                            <td>
-                                                 
-@php
-$thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_assets/images/no-img.jpg');
-@endphp                                      
-<img src="{{$thumb}}" alt="" class="border" width="100" height="70">
-                
+                                                        @if(isset($records) && count($records)>0 )                      
+                                                            @foreach ($records as  $record)                    
+                                                                            <tr>
+                                                                                <td>{{$record->title ?? '' }}</td>
+                                                                                <td>
+                                                                                    
+                                    @php
+                                    $thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_assets/images/no-img.jpg');
+                                    @endphp                                      
+                                    <img src="{{$thumb}}" alt="" class="border" width="100" height="70">
+                                                    
                                             </td>
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>

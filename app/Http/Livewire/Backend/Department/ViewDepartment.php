@@ -19,14 +19,14 @@ class ViewDepartment extends Component
 
     protected $rules = [
         'name' => 'required', 
-        'desc' => 'required', 
+        // 'desc' => 'required', 
         'sort' => 'required| unique:departments,sort_id', 
         'status' => 'required', 
      
       ];
       protected $messages = [
           'name.required' => 'Name Required.',
-          'desc.required' => 'Description Required.',
+          // 'desc.required' => 'Description Required.',
           'sort.required' => 'Sort Required.',
           'status.required' => 'Status Required.',
       ];
@@ -43,7 +43,7 @@ class ViewDepartment extends Component
 
       $department = new Department();
       $department->name = $this->name;
-      $department->description = $this->desc;
+      // $department->description = $this->desc;
       $department->sort_id =$this->sort;
       $department->status = $this->status;
       $department->save();

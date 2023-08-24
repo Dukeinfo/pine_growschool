@@ -60,7 +60,7 @@
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12 d-none">
                                     <div class="mb-3" >
                                         <label class="form-label">Description</label>
                                       

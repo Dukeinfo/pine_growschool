@@ -145,9 +145,9 @@ Route::get('/contact-us', ContactUs::class)->name('home.contact_us');
 Route::get('/facilities', Facilities::class)->name('home.facilities');
 Route::get('/faqs', FaqsIntroduction::class)->name('home.faqs_introduction');
 Route::get('/gallery', Gallery::class)->name('home.gallery');
-Route::get('/gallery-detail/{category_id}/', GalleryDetail::class)->name('home.gallery_detail');
 Route::get('/location', Location::class)->name('home.location');
 Route::get('/our-founder', OurFounder::class)->name('home.our_founder');
+Route::get('/gallery-detail/{category_id}/', GalleryDetail::class)->name('gallery_detail');
 
 });
 

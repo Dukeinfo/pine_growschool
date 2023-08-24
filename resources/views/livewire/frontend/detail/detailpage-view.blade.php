@@ -1,11 +1,5 @@
 
 <div>
-   
-    <!-- BEGIN: Popup Sidebar Widget -->
-
-    <!-- END: Header Section -->
-
-    <!-- BEGIN: Hero Banner Start -->
     <section class="pageBanner" style="background-image: url({{asset('assets/images/bg/school-bg.jpg')}});">
         <div class="overlay"></div>
         <div class="container">
@@ -47,19 +41,10 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <h5 class="subTitle">Where We Are?</h5>
                     <h2 class="secTitle">{!!$heading  ?? "" !!}</h2>
-
                     <img src="{{getpageImage($image)}}" class="img-fluid rounded mb-4" alt="submenu img">
-
                     <p>  {!! $desc ?? ""!!}</p>
-
-
-                    <a class="immiPressBtn" href="{{$url_link ?? ''}}" target="_blank"><span>Discover More</span></a>
-                    
-
-                  
-
+                    {{-- <a class="immiPressBtn" href="{{$url_link ?? ''}}" target="_blank"><span>Discover More</span></a> --}}
                 </div>
             </div>
         </div>

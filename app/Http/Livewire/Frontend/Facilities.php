@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 class Facilities extends Component
 {
 
-   public $seo_keywords;
+   public $seo_keywords ,$pageData;
 
    public function mount(){
     $getRouteName =  Route::currentRouteName(); 

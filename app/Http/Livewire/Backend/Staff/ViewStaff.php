@@ -21,7 +21,7 @@ class ViewStaff extends Component
     use UploadTrait;
     use WithFileUploads;
     public $file;
-    public $department_id,$name,$designation, $image,$thumbnail, $sort,$status;
+    public $department_id,$name,$designation,$description, $image,$thumbnail, $sort,$status;
     public $departments ,$records;
     public   $selectedFields = ['name', 'designation', 'image' ,'sort_id' ,'status']; 
     public  $customHeadings = ['Name', 'Designation', 'Image' ,'Sort id' ,'status']; 
@@ -66,6 +66,7 @@ class ViewStaff extends Component
         'image' => 'required', 
         'sort' => 'required', 
         'status' => 'required', 
+        'description' => 'required',
      
       ];
       protected $messages = [
@@ -82,6 +83,7 @@ class ViewStaff extends Component
         $this->image = '';
         $this->sort = '';
         $this->status = '';
+        $this->description  = '';
         
     }
 
@@ -100,6 +102,7 @@ class ViewStaff extends Component
       $staff->department_id= $this->department_id ?? NULL;
       $staff->name = $this->name ?? NULL;
       $staff->designation = $this->designation ?? NULL;
+      $staff->description = $this->description ?? NULL;
       $staff->image =  $uploadedData['file_name']?? NULL;
       $staff->thumbnail =  $uploadedData['thumbnail_name']?? NULL;
       $staff->sort_id =$this->sort ?? NULL;
@@ -112,6 +115,7 @@ class ViewStaff extends Component
               'type' => 'success',  
               'message' => 'Successfully save!', 
           ]); 
+          $this->emit('formSubmitted');
 
         
 

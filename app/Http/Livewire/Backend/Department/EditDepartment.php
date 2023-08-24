@@ -15,7 +15,7 @@ class EditDepartment extends Component
         $department = Department::findOrFail($id);
         $this->departmentId = $department->id;
         $this->name = $department->name;
-        $this->desc = $department->description;
+        // $this->desc = $department->description;
     	$this->sort = $department->sort_id;
     	$this->status = $department->status;
      }
@@ -25,7 +25,7 @@ class EditDepartment extends Component
       
       $department =Department::find($this->departmentId);
       $department->name = $this->name;
-      $department->description = $this->desc;
+    //   $department->description = $this->desc;
       $department->sort_id =$this->sort;
       $department->status = $this->status;
       $department->save();

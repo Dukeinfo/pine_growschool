@@ -17,7 +17,7 @@ class EditStaff extends Component
   use UploadTrait;
 
     use WithFileUploads;
-    public $staff_id,$department_id,$name,$designation, $image,$thumbnail, $editimage,$sort,$status;
+    public $staff_id,$department_id,$name, $departments, $designation, $image,$thumbnail, $editimage,$sort,$status;
 
     public function mount($id)
      {
@@ -28,47 +28,33 @@ class EditStaff extends Component
         $this->designation = $staff->designation;
         $this->image = $staff->image;
         $this->thumbnail = $staff->thumbnail;
-    	$this->sort = $staff->sort_id;
-    	$this->status = $staff->status;
+    	  $this->sort = $staff->sort_id;
+    	  $this->status = $staff->status;
      }
 
      public function editStaff(){
-
-
      if(!is_null($this->editimage)){
       $image =  $this->editimage;
-      // Define folder path
       $folder = '/uploads/staff';
       $uploadedData = $this->uploadOne($image, $folder);
-
-        // Set the thumbnail property to the thumbnail image name
-        // $this->thumbnail = $thumbnailName;
       $staff = Staff::find($this->staff_id);
-      $staff->department_id= $this->department_id ?? NULL;
-      $staff->name = $this->name ?? NULL;
-      $staff->designation = $this->designation ?? NULL;
       $staff->image =  $uploadedData['file_name']?? NULL;
       $staff->thumbnail =  $uploadedData['thumbnail_name']?? NULL;
-      $staff->sort_id =$this->sort ?? NULL;
-      $staff->status = $this->status ?? NULL;
       $staff->save();
 
-      return redirect()->route('view_staff');  
-
-
-    }  else{
-    
+    }  
+    else{
       $staff = Staff::find($this->staff_id);
       $staff->department_id= $this->department_id ?? NULL;
       $staff->name = $this->name ?? NULL;
       $staff->designation = $this->designation ?? NULL;
+      $staff->description = $this->description ?? NULL;
       $staff->sort_id =$this->sort ?? NULL;
       $staff->status = $this->status ?? NULL;
       $staff->save();
 
-      return redirect()->route('view_staff'); 
     }
-
+    return redirect()->route('view_staff');  
    }
 
     public function render()

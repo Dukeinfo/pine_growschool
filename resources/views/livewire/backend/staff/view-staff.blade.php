@@ -111,6 +111,44 @@
                                          @error('image') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
+
+                                {{-- description --}}
+                                <div class="col-md-12">
+                                    <div class="mb-3" >
+                                        <label class="form-label">description</label>
+                                            <div wire:ignore>
+                                                <textarea id="editor" wire:model="description" placeholder="Description of Event" class="form-control xtra-cat"></textarea>
+                                            </div>
+                                            <script>
+                                                    document.addEventListener('livewire:load', function () {
+                                                        // Get the CSRF token from the meta tag
+                                                        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                                                        CKEDITOR.replace('editor', {
+                                                            // filebrowserUploadUrl: '{{ route("image.upload") }}', // Set the image upload endpoint URL
+                                                            // filebrowserUploadUrl: "{{route('image.upload', ['_token' => csrf_token() ])}}",
+                                                            // filebrowserUploadMethod: 'form', // Use form-based file upload (default is XMLHttpRequest)
+                                                            // filebrowserBrowseUrl: '/ckfinder/ckfinder.html', // Set the CKFinder browse server URL
+                                                            // filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images', // Set the CKFinder image browse server URL
+                                                            // headers: {
+                                                            //     'X-CSRF-TOKEN': csrfToken // Pass the CSRF token with the request headers
+                                                            // },
+                                                            
+                                                        });
+                                            
+                                                        CKEDITOR.instances.editor.on('change', function () {
+                                                            @this.set('description', CKEDITOR.instances.editor.getData());
+                                                        });
+                                                        Livewire.on('formSubmitted', function () {
+                                                        CKEDITOR.instances.editor.setData(''); // Reset CKEditor content
+                                                        // document.querySelector('[wire:model="image"]').reset();
+
+                                                                    });
+                                                            });
+                                            </script>
+                                             @error('description') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                            </div>
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>

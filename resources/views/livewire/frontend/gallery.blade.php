@@ -130,10 +130,10 @@
                                                 <i class="fa fa-images me-2"></i> Total Photos: {{  $count}}
                                             </sapn>
                                             <h5>
-                                                <a href="{{route('home.gallery_detail',['category_id' => $galleryimage->galCategory->id])}}" class="text-dark">{{$galleryimage->galCategory->name ?? ''}}</a>
+                                                <a href="{{route('gallery_detail',['category_id' => $galleryimage->galCategory->id])}}" class="text-dark">{{$galleryimage->galCategory->name ?? ''}}</a>
                                             </h5>
                                             {{-- <a class="rmBtn" href="">View More --}}
-                                            <a class="rmBtn" href="{{route('home.gallery_detail',['category_id' => $galleryimage->galCategory->id])}}">View More
+                                            <a class="rmBtn" href="{{route('gallery_detail',['category_id' => $galleryimage->galCategory->id])}}">View More
 
                                                 <svg fill="#E94D4E" width="12" height="10" viewBox="0 0 12 10"
                                                     xmlns="http://www.w3.org/2000/svg">
