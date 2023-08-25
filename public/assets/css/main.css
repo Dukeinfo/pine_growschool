@@ -2161,7 +2161,7 @@ header.fixedHeader {
 .teamItem01 {
   position: relative;
   overflow: hidden;
-  border-radius: 6px 6px 0px 0px;
+  border-radius: 6px;
 }
 .teamItem01 .teamThumb {
   position: relative;
@@ -2258,12 +2258,12 @@ header.fixedHeader {
 .teamItem01 .teamContent {
   position: absolute;
   left: 0;
-  bottom: 30px;
+  bottom: 20px;
   z-index: 2;
 }
 .teamItem01 .teamContent h3 {
-  font-size: 22px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 30px;
   -webkit-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
@@ -2285,7 +2285,7 @@ header.fixedHeader {
   color: var(--body-color);
   background: #fff;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   border-radius: 0px 0 4px 0px;
   padding: 3px 21px 5px 23px;

@@ -7,24 +7,8 @@
         <!-- END: Header Section -->
     
         <!-- BEGIN: Hero Banner Start -->
-        <section class="pageBanner" style="background-image: url({{asset('assets/images/bg/school-bg.jpg')}});">
+        @include('livewire.frontend.common.herobanner')
 
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="bannerTitle">Our Founder</h2>
-                        <div class="breadcrumbs">
-                            <a href="index.html">Home</a>
-                            <span>/</span>
-                            <a href="javascript:void()">Memories</a>
-                            <span>/</span>
-                            Our Founder
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- END: Hero Banner End -->
     
         <!-- BEGIN: Section -->
@@ -33,17 +17,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="sidebar lft">
-                            <aside class="widget">
-                                <h3 class="widgetTitle">Quick Links</h3>
-                                <ul>
-                                    <li><a href="javascript:void()" class="active">Our Founder</a></li>
-                                    <li><a href="javascript:void()">Alumni</a></li>
-                                    <li><a href="javascript:void()">Guest Book</a></li>
-                                    <li><a href="javascript:void()">Grapevine</a></li>
-                                    <li><a href="javascript:void()">Roll of Hounour</a></li>
-                                    <li><a href="javascript:void()">Picture Gallery</a></li>
-                                </ul>
-                            </aside>
+                            @livewire('frontend.common.quick-links')
+
                         </div>
                     </div>
                     <div class="col-lg-8">

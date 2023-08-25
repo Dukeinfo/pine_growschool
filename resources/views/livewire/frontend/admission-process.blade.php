@@ -6,24 +6,8 @@
 @include('livewire.frontend.common.news_ticker')
     
         <!-- BEGIN: Hero Banner Start -->
-        <section class="pageBanner" style="background-image: url({{asset('assets/images/bg/school-bg.jpg')}});">
+        @include('livewire.frontend.common.herobanner')
 
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="bannerTitle">Admission Process</h2>
-                        <div class="breadcrumbs">
-                            <a href="index.html">Home</a>
-                            <span>/</span>
-                            <a href="javascript:void()">Admission & Fees</a>
-                            <span>/</span>
-                            Admission Process
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- END: Hero Banner End -->
     
         <!-- BEGIN: Section -->
@@ -32,17 +16,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="sidebar lft">
-                            <aside class="widget">
-                                <h3 class="widgetTitle">Quick Links</h3>
-                                <ul>
-                                    <li><a href="javascript:void()" class="active">Admission Process</a></li>
-                                    <li><a href="javascript:void()">Fees</a></li>
-                                    <li><a href="javascript:void()">Clothing</a></li>
-                                    <li><a href="javascript:void()">Withdrawl</a></li>
-                                    <li><a href="javascript:void()">Contact for Admission</a></li>
-                                    <li><a href="javascript:void()">Transfer Certificate</a></li>
-                                </ul>
-                            </aside>
+                            @livewire('frontend.common.quick-links')
+
                         </div>
                     </div>
                     <div class="col-lg-8">

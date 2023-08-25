@@ -104,13 +104,17 @@ use App\Http\Livewire\Backend\Rollofhonour\ViewRollofhonour;
 use App\Http\Livewire\Backend\Rollofhonour\EditRollofhonour;
 
 use App\Http\Livewire\Frontend\AboutUs;
+use App\Http\Livewire\Frontend\AdmissionForm;
 use App\Http\Livewire\Frontend\AdmissionProcess;
+use App\Http\Livewire\Frontend\Career;
 use App\Http\Livewire\Frontend\ContactUs;
+use App\Http\Livewire\Frontend\DownloadResources;
 use App\Http\Livewire\Frontend\Facilities;
 use App\Http\Livewire\Frontend\FaqsIntroduction;
 use App\Http\Livewire\Frontend\Gallery;
 use App\Http\Livewire\Frontend\GalleryDetail;
 use App\Http\Livewire\Frontend\Location;
+use App\Http\Livewire\Frontend\OurFaculties;
 use App\Http\Livewire\Frontend\OurFounder;
 use Illuminate\Support\Facades\Route;
 
@@ -148,6 +152,16 @@ Route::get('/gallery', Gallery::class)->name('home.gallery');
 Route::get('/location', Location::class)->name('home.location');
 Route::get('/our-founder', OurFounder::class)->name('home.our_founder');
 Route::get('/gallery-detail/{category_id}/', GalleryDetail::class)->name('gallery_detail');
+// new pages 
+Route::get('/admission-form', AdmissionForm::class)->name('home.admission_form');
+Route::get('/career', Career::class)->name('home.career');
+Route::get('/download-resources', DownloadResources::class)->name('home.download_resources');
+Route::get('/our-faculties', OurFaculties::class)->name('home.our_faculties');
+
+
+
+
+
 
 });
 

@@ -3,18 +3,8 @@
     <!-- END: Popup Sidebar Widget -->
     @include('livewire.frontend.common.news_ticker')    
         <!-- BEGIN: Hero Banner Start -->
-        <section class="pageBanner" style="background-image: url({{asset('assets/images/bg/school-bg.jpg')}});">
+        @include('livewire.frontend.common.herobanner')
 
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="bannerTitle">Contact Us</h2>
-                        <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span>Contact</div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- END: Hero Banner End -->
     
         <!-- BEGIN: Contact Section Start -->

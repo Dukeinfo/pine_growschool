@@ -48,6 +48,6 @@ class AboutUs extends Component
 
     public function render()
     {
-        return view('livewire.frontend.about-us')->layout('layouts.frontend');;
+        return view('livewire.frontend.about-us')->layout('layouts.frontend');
     }
 }

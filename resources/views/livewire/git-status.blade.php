@@ -14,17 +14,20 @@
                     </tr>
                 </thead>
                 <tbody>
+         
                 @foreach(Route::getRoutes() as $route)
                 @if (str_starts_with($route->getName(), 'home.') )
-               @php
-                   $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
-                @endphp
+                    @php
+                         $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
+                     @endphp
                 <tr>     
-                    <td>  {{ str_replace('_' , ' ',$routeName)}} </td>
-                    <td>   <a href="{{ route($route->getName()) }}" target="_blank">  {{ str_replace('_' , ' ',$routeName)}}</a> </td>
+                    <td  class="fw-bold">  {{ str_replace('_' , ' ',$routeName)}} </td>
+                    <td>  
+                         <a class="fw-bold"href="{{ route($route->getName()) }}" target="_blank">  {{ str_replace('_' , ' ',$routeName)}}</a> </td>
                      <td>   <a href="" target="_blank"> 
                      @if(in_array($route->getName(), ['home.homepage','home.admission_process', 'home.gallery','home.location','home.faqs_introduction','home.contact_us', 'gallery_detail'])) 
-                 ---
+                       --- 
+
                     </a>
                      @else
                             <a href="{{route('page_content')}}" target="_blank" > Add  </a>
@@ -33,7 +36,7 @@
                     
                      </td>
                 </tr>
-               @endif
+                    @endif
                 @endforeach
 
                   
