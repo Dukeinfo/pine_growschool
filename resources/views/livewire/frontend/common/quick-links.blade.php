@@ -14,14 +14,30 @@
 <aside class="widget">
     <h3 class="widgetTitle">Quick Links</h3>
     <ul>
-        @foreach ($quicksubmenus  as $quicksubmenu)
-                <li>
+        {{-- @foreach ($quicksubmenus  as $quicksubmenu) --}}
+                {{-- <li>
                     <a>
                         {{ $quicksubmenu->Menu->name }}
                     </a>
                 </li>
-        @endforeach
- 
+        @endforeach --}}
+@php
+$currentRouteName = \Route::currentRouteName();
+@endphp
+        @foreach(Route::getRoutes() as $route)
+        @if (str_starts_with($route->getName(), 'home.'))
+            @php
+                $routeName = ucwords(str_replace('home.', '', $route->getName()));
+            @endphp
+                
+                <li>
+                    <a href="{{ route($route->getName()) }}"   class="{{ $currentRouteName === $route->getName() ? 'active' : '' }}">{{ str_replace('_', ' ', $routeName) }}</a>
 
+                </li>
+
+                @endif
+            @endforeach
     </ul>
 </aside>
+
+
