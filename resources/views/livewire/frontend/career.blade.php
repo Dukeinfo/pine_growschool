@@ -232,7 +232,36 @@
 
                             <h3 class="widgetTitle text-dark fs-5 mb-3 mt-4">Add Experience</h3>
                             <div class="row g-3">
+
+                                @foreach ($experiences as $index => $experience)
                                 <div class="col-lg-4">
+                                    <div class="">
+                                        <label for="institution_{{ $index }}">Institution Name</label>
+                                        <input type="text" class="form-control" wire:model="experiences.{{ $index }}.institution" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="">
+                                        <label for="period_from_{{ $index }}">Period From</label>
+                                        <input type="date" class="form-control" wire:model="experiences.{{ $index }}.period_from" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="">
+                                        <label for="period_to_{{ $index }}">Period To</label>
+                                        <input type="date" class="form-control" wire:model="experiences.{{ $index }}.period_to" />
+                                    </div>
+                                </div>
+                         
+                                @endforeach
+                                <div class="col-lg-2">
+                                    <div class="">
+                                        <label for="">&nbsp;</label><br>
+                                        <button class="btn btn-success w-100" type="button" wire:click="addExperience">Add</button>
+                                    </div>
+                                </div>
+                                {{-- ===================== --}}
+                                {{-- <div class="col-lg-4">
                                     <div class="">
                                         <label for="">Institution Name</label>
                                         <input type="text" class="form-control" />
@@ -249,11 +278,13 @@
                                         <label for="">Period To</label>
                                         <input type="date" class="form-control" />
                                     </div>
-                                </div>
+                                </div> --}}
+                                {{-- =============== --}}
                                 <div class="col-lg-2">
                                     <div class="">
                                         <label for="">&nbsp;</label><br>
-                                        <button class="btn btn-success w-100" type="button">Add</button>
+                                        <button class="btn btn-success w-100" type="button" wire:click="addExperience">Add</button>
+
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -267,18 +298,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @if(isset($experiences))
+                                            @foreach ($experiences as $index => $experience)
                                             <tr>
-                                                <td>SMS Infocom Pvt Ltd</td>
-                                                <td>12-12-2012</td>
-                                                <td>12-12-2022</td>
-                                                <td><a href="#">Remove</a></td>
+                                                <td>{{ $experience['institution'] }}</td>
+                                                <td>{{ $experience['period_from'] }}</td>
+                                                <td>{{ $experience['period_to'] }}</td>
+                                                <td><a href="#" wire:click="removeExperience({{ $index }})">Remove</a></td>
                                             </tr>
-                                            <tr>
-                                                <td>SMS Infocom Pvt Ltd</td>
-                                                <td>12-12-2012</td>
-                                                <td>12-12-2022</td>
-                                                <td><a href="#">Remove</a></td>
-                                            </tr>
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

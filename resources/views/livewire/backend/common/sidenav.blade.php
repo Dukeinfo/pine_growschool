@@ -167,7 +167,17 @@
 					<li><a href="{{route('manage_blog')}}">Manage Blog</a></li>
 				</ul>
 			</li>
-			
+			{{-- admission_inquery --}}
+			<li>
+				<a href="javascript: void(0);" class="has-arrow waves-effect">
+					<i class='bx bx-file'></i>
+					<span>Admission Inquery</span>
+				</a>
+				<ul class="sub-menu" aria-expanded="false">
+					<li><a href="{{route('admission_inquery')}}">Show Inquery</a></li>
+				
+				</ul>
+			</li>
 			<li class="menu-title">Search Engine Optimization</li>
 			<li>
 				<a href="javascript: void(0);" class="has-arrow waves-effect">

@@ -8,6 +8,7 @@ use App\Http\Livewire\Frontend\Home\Homepage;
 use App\Http\Livewire\Frontend\Detail\DetailpageView;
 
 use App\Http\Livewire\Backend\AdminDashboard;
+use App\Http\Livewire\Backend\Admissions\AdmissionsInquery;
 use App\Http\Livewire\Backend\Menu\ViewMenu;
 use App\Http\Livewire\Backend\Menu\EditMenu;
 use App\Http\Livewire\Backend\Menu\TrashMenu;
@@ -331,7 +332,10 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
     Route::get('/roll-of-honour', ViewRollofhonour::class)->name('roll_of_honour');
     Route::get('/roll-of-honour/{id}', EditRollofhonour::class)->name('edit_roll_of_honour');
 
+    Route::get('/admission-inquery', AdmissionsInquery::class)->name('admission_inquery');
 
+
+    
          
 });
 });

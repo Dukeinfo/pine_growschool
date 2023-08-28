@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDownloadDocumentsTable extends Migration
+class AddRoleIdToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateDownloadDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('download_documents', function (Blueprint $table) {
-            $table->id();
-           
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->string('role_id')->after('name')->nullable();
         });
     }
 
@@ -26,6 +26,9 @@ class CreateDownloadDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('download_documents');
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->dropColumn('role_id');
+        });
     }
 }

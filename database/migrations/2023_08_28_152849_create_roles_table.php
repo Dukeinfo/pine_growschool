@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDownloadDocumentsTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateDownloadDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('download_documents', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-           
+            $table->enum('role', ['admin', 'student', 'manager'])->default('student');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateDownloadDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('download_documents');
+        Schema::dropIfExists('roles');
     }
 }
