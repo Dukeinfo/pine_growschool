@@ -51,7 +51,6 @@ class CreateApplicationFormsTable extends Migration
             $table->string('mobile_no')->nullable();
             $table->string('phone_no')->nullable();
             $table->string('landline_no')->nullable();
-      
             // Experience
             $table->string('current_job')->nullable();
             $table->string('present_salary')->nullable();

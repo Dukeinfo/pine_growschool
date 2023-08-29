@@ -19,13 +19,15 @@ class SchoolCalendar extends Component
         'status' => 'required',    
      
       ];
+      
       protected $messages = [
           'scholDate.required' => 'Date Required.',
           'schoolevent.required' => 'School Event Required.',
           'sort_id.required' => 'Sort Required.',
           'status.required' => 'Status Required.',
       ];
-    private function resetInputFields(){
+    
+      private function resetInputFields(){
         $this->schoolDate = '';
         $this->schoolevent = '';
         $this->sort_id = '';
@@ -33,19 +35,14 @@ class SchoolCalendar extends Component
         
     }
 
-  
     public function getDate( $date ) {
         
         $this->schoolDate = $date;
     }
 
     public function schoolEvent(){
-    	
-
       $validatedData = $this->validate();
-
       $date=date('Y-m-d', strtotime($this->schoolDate));
-
       $schoolCalendar = new appSchoolCalendar();
       $schoolCalendar->date = $date;
       $schoolCalendar->event = $this->schoolevent;
@@ -65,7 +62,7 @@ class SchoolCalendar extends Component
 
       $schoolCalendar = appSchoolCalendar::findOrFail($id);
       if(!is_null($schoolCalendar)){
-        $schoolCalendar->delete();
+          $schoolCalendar->delete();
       }
 
      }

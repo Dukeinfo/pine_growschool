@@ -15,6 +15,14 @@ class CreateDownloadDocumentsTable extends Migration
     {
         Schema::create('download_documents', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->string('file')->nullable();
+            $table->string('type')->nullable();
+            $table->integer('sort_id')->nullable(); 
+            $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
+            $table->ipAddress('ip_address')->nullable();
+            $table->string('login')->nullable();
+            $table->softDeletes(); 
            
         });
     }

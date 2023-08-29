@@ -58,7 +58,10 @@ function getGalleryCategory($value) {
     return asset('storage/uploads/gallery_cat/'.$value);
 }
 
-
+// /uploads/staff
+function getOurStaff($value) {
+    return asset('storage/uploads/staff/'.$value);
+}
 
 function getsliderImages($value) {
     return asset('storage/uploads/slider/'.$value);

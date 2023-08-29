@@ -17,7 +17,8 @@ class EditStaff extends Component
   use UploadTrait;
 
     use WithFileUploads;
-    public $staff_id,$department_id,$name, $departments, $designation, $image,$thumbnail, $editimage,$sort,$status;
+    public $staff_id,$department_id,$name, $departments, $description,
+    $designation, $image,$thumbnail, $editimage,$sort,$status;
 
     public function mount($id)
      {
@@ -26,6 +27,9 @@ class EditStaff extends Component
         $this->department_id = $staff->department_id;
         $this->name = $staff->name;
         $this->designation = $staff->designation;
+        $this->description = $staff->description;
+
+        
         $this->image = $staff->image;
         $this->thumbnail = $staff->thumbnail;
     	  $this->sort = $staff->sort_id;

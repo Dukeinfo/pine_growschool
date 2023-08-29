@@ -15,6 +15,14 @@ class CreateFaqDataTable extends Migration
     {
         Schema::create('faq_data', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('faq_categories_id');
+            $table->string('question')->nullable();;
+            $table->string('answer')->nullable(); 
+            $table->integer('sort_id')->nullable(); 
+            $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
+            $table->ipAddress('ip_address')->nullable();
+            $table->string('login')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
