@@ -43,6 +43,8 @@ use App\Http\Livewire\Backend\Gallery\TrashOurTopper;
 use App\Http\Livewire\Backend\Gallery\ViewKnowledgeHome;
 use App\Http\Livewire\Backend\Gallery\EditKnowledgeHome;
 use App\Http\Livewire\Backend\Gallery\TrashKnowledgeHome;
+use App\Http\Livewire\Backend\Gallery\AddGroupPhoto;
+use App\Http\Livewire\Backend\Gallery\EditGroupPhoto;
 use App\Http\Livewire\Backend\Membership\ViewMembership;
 use App\Http\Livewire\Backend\Membership\EditMemberShip;
 use App\Http\Livewire\Backend\Membership\TrashMemberShip;
@@ -248,6 +250,9 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
     Route::get('/manage/gallery', ManageGallery::class)->name('manage_gallery');
     Route::get('/edit/gallery/{id}', EditGallery::class)->name('edit_gallery');
     Route::get('/manage/gallery/trash', EditGallery::class)->name('trash_gallery'); 
+
+     Route::get('/group-photos', AddGroupPhoto::class)->name('group_phptos');
+      Route::get('/group-photos/{id}', EditGroupPhoto::class)->name('edit_group_phptos');
 
    Route::get('/view/our-topper', ViewOurTopper::class)->name('view_our_topper');
     Route::get('/edit/our-topper/{id}', EditOurTopper::class)->name('edit_our_topper');

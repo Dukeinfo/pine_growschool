@@ -13,8 +13,13 @@ class CreateGroupPhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('group__photos', function (Blueprint $table) {
+        Schema::create('group_photos', function (Blueprint $table) {
             $table->id();
+            $table->string('photo')->nullable();
+              $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
+            $table->ipAddress('ip_address')->nullable();
+            $table->string('login')->nullable(); 
+            $table->softDeletes();
             $table->timestamps();
         });
     }
