@@ -128,6 +128,7 @@
       var picker2 = new Pikaday({ field: document.getElementById('newsDate') });
       var picker3 = new Pikaday({ field: document.getElementById('picDate') });
       var picker4 = new Pikaday({ field: document.getElementById('grapDate') });
+      var picker5 = new Pikaday({ field: document.getElementById('schoolDate') });
       
      </script>
 

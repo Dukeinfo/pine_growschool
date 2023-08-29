@@ -103,6 +103,8 @@ use App\Http\Livewire\Backend\Rollofhonour\SubCategory;
 use App\Http\Livewire\Backend\Rollofhonour\EditSubCategory;
 use App\Http\Livewire\Backend\Rollofhonour\ViewRollofhonour;
 use App\Http\Livewire\Backend\Rollofhonour\EditRollofhonour;
+use App\Http\Livewire\Backend\Calendar\SchoolCalendar;
+use App\Http\Livewire\Backend\Calendar\EditSchoolCalendar;
 
 use App\Http\Livewire\Frontend\AboutUs;
 use App\Http\Livewire\Frontend\AdmissionForm;
@@ -158,10 +160,6 @@ Route::get('/admission-form', AdmissionForm::class)->name('home.admission_form')
 Route::get('/career', Career::class)->name('home.career');
 Route::get('/download-resources', DownloadResources::class)->name('home.download_resources');
 Route::get('/our-faculties', OurFaculties::class)->name('home.our_faculties');
-
-
-
-
 
 
 });
@@ -334,7 +332,8 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
 
     Route::get('/admission-inquery', AdmissionsInquery::class)->name('admission_inquery');
 
-
+    Route::get('/school-calendar', SchoolCalendar::class)->name('school_calendar');
+ Route::get('/edit-school-calendar/{id}', EditSchoolCalendar::class)->name('edit_school_calendar');
     
          
 });

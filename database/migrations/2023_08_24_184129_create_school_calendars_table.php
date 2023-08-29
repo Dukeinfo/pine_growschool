@@ -15,6 +15,13 @@ class CreateSchoolCalendarsTable extends Migration
     {
         Schema::create('school_calendars', function (Blueprint $table) {
             $table->id();
+            $table->string('date')->nullable(); 
+            $table->string('event')->nullable();
+            $table->integer('sort_id')->nullable(); 
+            $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
+            $table->ipAddress('ip_address')->nullable();
+            $table->string('login')->nullable();
+            $table->softDeletes(); 
             $table->timestamps();
         });
     }
