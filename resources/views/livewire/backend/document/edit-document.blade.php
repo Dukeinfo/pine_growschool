@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Group Photos</h4>
+                        <h4 class="mb-sm-0 font-size-18">Add Document</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
                                 <li class="breadcrumb-item">Portfolio</li>
-                                <li class="breadcrumb-item active">Group Photos</li>
+                                <li class="breadcrumb-item active">Add Document</li>
                             </ol>
                         </div>
 
@@ -26,38 +26,33 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent border-bottom py-3">
-                            <h4 class="card-title">Group Photos</h4>
+                            <h4 class="card-title">Add Document</h4>
                             <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
                         </div>
                         <div class="card-body">
                             <!--success or error alert-->
                             <!--form starts-->
-                      
-                                <div class="col-md-12">
+                            
+                     
+                                <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Title</label>
-                                        <input type="text" class="form-control" id=""  wire:model="title" placeholder="Title">
-                                        @error('title') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label">Name </label>
+                                        <input type="text" class="form-control" id=""  wire:model="name" placeholder="Name">
+                                        @error('name') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
-                         
+                             
                                  <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Image</label>
-                                        <input type="file" class="form-control" id="" wire:model="editimage" >
-                                     @if(isset($editimage))  
-                                         <img  src="{{$editimage->temporaryUrl()}}" width="200" alt="---"  width="100" height="70">  
-                                     @else   
-
-                                     <img src="{{ getThumbnail($thumbnail) }}" alt="Image"  width="100" height="70"/>
-
-                                    @endif
-                                        @error('editimage') <span class="error">{{ $message }}</span> @enderror
+                                        <label class="form-label">File</label>
+                                        <input type="file" class="form-control" id="" wire:model="editdocument" >
+                                        @error('editdocument') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+                                    <a href="javascript:void(0)" wire:click="download('{{$document ?? '' }}')"> Download </a>
                                 </div>
+                                 
 
-                               
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
@@ -77,9 +72,9 @@
                                     </div>
                                 </div>
                                 <div >
-                                    <button wire:loading.attr="disabled" type="submit" wire:click="groupPhoto" class="btn btn-primary w-md">Submit</button>
+                                    <button wire:loading.attr="disabled" type="submit" wire:click="editDocument" class="btn btn-primary w-md">Submit</button>
                                 </div>
-                                 <div wire:loading wire:target="groupPhoto">
+                                 <div wire:loading wire:target="editDocument">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
 
                                      </div>
@@ -90,7 +85,7 @@
             </div>
             <!-- end row -->
             
-            
+
         </div>
         <!-- container-fluid -->
     </div>

@@ -15,10 +15,13 @@ class CreateGroupPhotosTable extends Migration
     {
         Schema::create('group_photos', function (Blueprint $table) {
             $table->id();
-            $table->string('photo')->nullable();
-              $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
+            $table->string('title')->nullable();
+            $table->string('image')->nullable();  
+            $table->string('thumbnail')->nullable(); 
+            $table->integer('sort_id')->nullable(); 
+            $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();
-            $table->string('login')->nullable(); 
+            $table->string('login')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +34,6 @@ class CreateGroupPhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group__photos');
+        Schema::dropIfExists('group_photos');
     }
 }

@@ -21,6 +21,8 @@ use App\Http\Livewire\Backend\Master\TrashClass;
 use App\Http\Livewire\Backend\Master\ViewSection;
 use App\Http\Livewire\Backend\Master\EditSection;
 use App\Http\Livewire\Backend\Master\TrashSection;
+use App\Http\Livewire\Backend\Master\AddFaqsCategory;
+use App\Http\Livewire\Backend\Master\EditFaqsCategory;
 use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
 use App\Http\Livewire\Backend\Blog\EditBlog;
@@ -107,6 +109,8 @@ use App\Http\Livewire\Backend\Rollofhonour\ViewRollofhonour;
 use App\Http\Livewire\Backend\Rollofhonour\EditRollofhonour;
 use App\Http\Livewire\Backend\Calendar\SchoolCalendar;
 use App\Http\Livewire\Backend\Calendar\EditSchoolCalendar;
+use App\Http\Livewire\Backend\Document\AddDocument;
+use App\Http\Livewire\Backend\Document\EditDocument;
 
 use App\Http\Livewire\Frontend\AboutUs;
 use App\Http\Livewire\Frontend\AdmissionForm;
@@ -339,6 +343,13 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
 
     Route::get('/school-calendar', SchoolCalendar::class)->name('school_calendar');
  Route::get('/edit-school-calendar/{id}', EditSchoolCalendar::class)->name('edit_school_calendar');
+
+   Route::get('/faqs-category', AddFaqsCategory::class)->name('faqs_category');
+ Route::get('/edit-faqs-category/{id}', EditFaqsCategory::class)->name('edit_faqs_category');
+
+Route::get('/add-document', AddDocument::class)->name('add_document');
+Route::get('/edit-document/{id}', EditDocument::class)->name('edit_document');
+
     
          
 });
