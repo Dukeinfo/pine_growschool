@@ -10,4 +10,6 @@ class Facilities extends Model
 {
     use HasFactory;
     use SoftDeletes;  //invoking
+    protected $guarded = [];
+
 }

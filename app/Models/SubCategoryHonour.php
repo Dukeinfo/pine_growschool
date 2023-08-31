@@ -10,6 +10,7 @@ class SubCategoryHonour extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $guarded = [];
 
     public function getCategory()
     {

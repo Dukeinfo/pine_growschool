@@ -10,4 +10,6 @@ class Footersnippets extends Model
 {
     use HasFactory;
     use SoftDeletes;  //invoking
+    protected $guarded = [];
+
 }

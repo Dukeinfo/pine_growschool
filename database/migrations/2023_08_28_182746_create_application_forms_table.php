@@ -6,64 +6,66 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateApplicationFormsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+   
     public function up()
     {
         Schema::create('application_forms', function (Blueprint $table) {
             $table->id();
-            $table->date('application_date');
+            $table->date('application_date')->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->string('post_group')->nullable();
-            $table->string('post_name')->nullable();
-            $table->string('can_teach')->nullable();
-            $table->string('upto_class')->nullable();
-            $table->string('full_name')->nullable();;
-            $table->string('email')->unique()->nullable();;
-            $table->string('confirm_email')->nullable();;
-            $table->string('qualification_10_stream')->nullable();
-            $table->string('qualification_10_subject')->nullable();
-            $table->string('qualification_10_university')->nullable();
-            $table->decimal('qualification_10_percentage', 5, 2)->nullable();
-            $table->string('qualification_12_stream')->nullable();
-            $table->string('qualification_12_subject')->nullable();
-            $table->string('qualification_12_university')->nullable();
-            $table->decimal('qualification_12_percentage', 5, 2)->nullable();
-            $table->string('qualification_graduation_stream')->nullable();
-            $table->string('qualification_graduation_subject')->nullable();
-            $table->string('qualification_graduation_university')->nullable();
-            $table->decimal('qualification_graduation_percentage', 5, 2)->nullable();
-            $table->string('qualification_post_graduation_stream')->nullable();
-            $table->string('qualification_post_graduation_subject')->nullable();
-            $table->string('qualification_post_graduation_university')->nullable();
-            $table->decimal('qualification_post_graduation_percentage', 5, 2)->nullable();
-            $table->string('qualification_bed_stream')->nullable();
-            $table->string('qualification_bed_subject')->nullable();
-            $table->string('qualification_bed_university')->nullable();
-            $table->decimal('qualification_bed_percentage', 5, 2)->nullable();
-            $table->text('other_education_details')->nullable();
-            // Personal Details
             $table->string('marital_status')->nullable();
             $table->text('address')->nullable();
             $table->string('mobile_no')->nullable();
             $table->string('phone_no')->nullable();
             $table->string('landline_no')->nullable();
-            // Experience
-            $table->string('current_job')->nullable();
-            $table->string('present_salary')->nullable();
-            $table->string('expected_salary')->nullable();
+
+            // Educational Information
+            $table->string('post_group')->nullable();
+            $table->string('post_name')->nullable();
+            $table->string('can_teach')->nullable();
+            $table->string('upto_class')->nullable();
+
+            // 10th Grade Information
+            $table->string('stream_10th')->nullable();
+            $table->string('subject_10th')->nullable();
+            $table->string('university_10th')->nullable();
+            $table->decimal('percentage_10th', 5, 2)->nullable(); // Assuming a decimal format
+
+            // 12th Grade Information
+            $table->string('stream_12')->nullable();
+            $table->string('subject_12')->nullable();
+            $table->string('university_12')->nullable();
+            $table->decimal('percentage_12', 5, 2)->nullable(); // Assuming a decimal format
+
+            // Graduation Information
+            $table->string('stream_graduation')->nullable();
+            $table->string('subject_graduation')->nullable();
+            $table->string('university_graduation')->nullable();
+            $table->decimal('percentage_graduation', 5, 2)->nullable(); // Assuming a decimal format
+
+            // Post Graduation Information
+            $table->string('stream_post_graduation')->nullable();
+            $table->string('subject_post_graduation')->nullable();
+            $table->string('university_post_graduation')->nullable();
+            $table->decimal('percentage_post_graduation', 5, 2)->nullable(); // Assuming a decimal format
+
+            // B.Ed Information
+            $table->string('stream_bed')->nullable();
+            $table->string('subject_bed')->nullable();
+            $table->string('university_bed')->nullable();
+            $table->decimal('percentage_bed', 5, 2)->nullable(); // Assuming a decimal format
+
+            // Other Details
+            $table->text('other_details')->nullable();
             $table->string('expected_accommodation')->nullable();
             $table->text('future_plans')->nullable();
-            $table->boolean('family_associated')->nullable();
-            $table->string('photo')->nullable();
+            $table->string('associated_with_pinegrove')->nullable();
+            $table->string('photo')->nullable(); 
+
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();
             $table->string('login')->nullable();
             $table->softDeletes();
-    
             $table->timestamps();
         });
     }

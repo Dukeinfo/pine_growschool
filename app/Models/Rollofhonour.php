@@ -11,6 +11,7 @@ class Rollofhonour extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $guarded = [];
 
      public function gelCategory()
     {

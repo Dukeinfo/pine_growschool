@@ -10,4 +10,6 @@ class Group_Photo extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $guarded = [];
+
 }

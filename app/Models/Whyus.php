@@ -10,6 +10,8 @@ class Whyus extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $guarded = [];
+
     public function multipleImages()
     {
         return $this->hasMany(MultipleImages::class);

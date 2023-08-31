@@ -10,4 +10,6 @@ class KnowledgeHome extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $guarded = [];
+
 }

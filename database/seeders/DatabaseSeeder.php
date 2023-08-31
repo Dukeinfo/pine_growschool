@@ -19,11 +19,14 @@ class DatabaseSeeder extends Seeder
         $this->call(KnowledgeHomeSeeder::class);
         $this->call(ClassSeeder::class);
         $this->call(SectionSeeder::class);
+        $this->call(SubjectTeachSeeder::class);
+
         $this->call(SliderSeeder::class);
 
         
         $this->call(CategoriesSeeder::class);
         $this->call(GallerySeeder::class);
+
 
 
         

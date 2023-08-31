@@ -10,4 +10,6 @@ class SchoolCalendar extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $guarded = [];
+
 }
