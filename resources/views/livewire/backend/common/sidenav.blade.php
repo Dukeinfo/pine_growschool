@@ -32,6 +32,7 @@
 						<li><a href="{{route('view_subnmenu')}}">Sub Menu</a>
 							<li><a href="{{route('view_class')}}">Class</a></li>
 						<li><a href="{{route('view_section')}}">Section</a></li>
+						<li><a href="{{route('faqs_category')}}">Faqs Category</a></li>
 					</ul>
 			
 			</li>
@@ -94,6 +95,37 @@
 					<span>Our Staff</span>
 				</a>
 			</li>
+
+			<li>
+				<a href="{{route('school_calendar')}}" class="waves-effect">
+					<i class="bx bx-home-circle"></i>
+					<span>School Calendar</span>
+				</a>
+			</li>
+
+
+            <li>
+				<a href="{{route('group_phptos')}}" class="waves-effect">
+					<i class="bx bx-home-circle"></i>
+					<span>Group Photos</span>
+				</a>
+			</li>
+
+
+			<li>
+				<a href="{{route('add_document')}}" class="waves-effect">
+					<i class="bx bx-home-circle"></i>
+					<span>Add Document</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="{{route('transfer_certificate')}}" class="waves-effect">
+					<i class="bx bx-home-circle"></i>
+					<span>Transfer Certificate</span>
+				</a>
+			</li>    
+
 
 
 			    <li>

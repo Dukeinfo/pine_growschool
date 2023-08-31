@@ -21,6 +21,8 @@ use App\Http\Livewire\Backend\Master\TrashClass;
 use App\Http\Livewire\Backend\Master\ViewSection;
 use App\Http\Livewire\Backend\Master\EditSection;
 use App\Http\Livewire\Backend\Master\TrashSection;
+use App\Http\Livewire\Backend\Master\AddFaqsCategory;
+use App\Http\Livewire\Backend\Master\EditFaqsCategory;
 use App\Http\Livewire\Backend\Blog\AddBlog;
 use App\Http\Livewire\Backend\Blog\ManageBlog;
 use App\Http\Livewire\Backend\Blog\EditBlog;
@@ -107,6 +109,10 @@ use App\Http\Livewire\Backend\Rollofhonour\ViewRollofhonour;
 use App\Http\Livewire\Backend\Rollofhonour\EditRollofhonour;
 use App\Http\Livewire\Backend\Calendar\SchoolCalendar;
 use App\Http\Livewire\Backend\Calendar\EditSchoolCalendar;
+use App\Http\Livewire\Backend\Document\AddDocument;
+use App\Http\Livewire\Backend\Document\EditDocument;
+use App\Http\Livewire\Backend\Certificate\AddTransferCertificate;
+use App\Http\Livewire\Backend\Certificate\EditTransferCertificate;
 
 use App\Http\Livewire\Frontend\AboutUs;
 use App\Http\Livewire\Frontend\AdmissionForm;
@@ -121,6 +127,9 @@ use App\Http\Livewire\Frontend\GalleryDetail;
 use App\Http\Livewire\Frontend\Location;
 use App\Http\Livewire\Frontend\OurFaculties;
 use App\Http\Livewire\Frontend\OurFounder;
+use App\Http\Livewire\Frontend\GroupPhoto;
+use App\Http\Livewire\Frontend\Event;
+use App\Http\Livewire\Frontend\TransferCertificate;
 use Illuminate\Support\Facades\Route;
 
 
@@ -162,8 +171,9 @@ Route::get('/admission-form', AdmissionForm::class)->name('home.admission_form')
 Route::get('/career', Career::class)->name('home.career');
 Route::get('/download-resources', DownloadResources::class)->name('home.download_resources');
 Route::get('/our-faculties', OurFaculties::class)->name('home.our_faculties');
-
-
+Route::get('/group-photo', GroupPhoto::class)->name('home.group_photo');
+Route::get('/school-event', Event::class)->name('home.school_event');
+Route::get('/transfer-certificate', TransferCertificate::class)->name('home.transfer_certificate');
 });
 
 
@@ -339,7 +349,17 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
 
     Route::get('/school-calendar', SchoolCalendar::class)->name('school_calendar');
  Route::get('/edit-school-calendar/{id}', EditSchoolCalendar::class)->name('edit_school_calendar');
-    
+
+   Route::get('/faqs-category', AddFaqsCategory::class)->name('faqs_category');
+ Route::get('/edit-faqs-category/{id}', EditFaqsCategory::class)->name('edit_faqs_category');
+
+Route::get('/add-document', AddDocument::class)->name('add_document');
+Route::get('/edit-document/{id}', EditDocument::class)->name('edit_document');
+
+Route::get('/transfer-certificate', AddTransferCertificate::class)->name('transfer_certificate');
+Route::get('/edit-transfer-certificate/{id}', EditTransferCertificate::class)->name('edit_transfer_certificate'); 
+
+
          
 });
 });

@@ -23,6 +23,7 @@ class CreateDownloadDocumentsTable extends Migration
             $table->ipAddress('ip_address')->nullable();
             $table->string('login')->nullable();
             $table->softDeletes(); 
+            $table->timestamps();
            
         });
     }

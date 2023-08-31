@@ -98,3 +98,8 @@ function getGallerydetail($image)
 
     return   asset('storage/uploads/gallery/'.$image);
 }
+
+
+function getGroupPhoto($value) {
+    return asset('storage/uploads/group_photo/'.$value);
+}

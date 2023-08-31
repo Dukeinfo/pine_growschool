@@ -32,8 +32,16 @@
                         <div class="card-body">
                             <!--success or error alert-->
                             <!--form starts-->
+
+                            <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Academic Year</label>
+                                        <input type="text" class="form-control" id=""  wire:model="acadmic_year" placeholder="Academic Year">
+                                        @error('acadmic_year') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
                       
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Title</label>
                                         <input type="text" class="form-control" id=""  wire:model="title" placeholder="Title">
@@ -54,8 +62,8 @@
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control"  wire:model="sort" placeholder="Order NUmber">
-                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="number" class="form-control"  wire:model="sort_id" placeholder="Order NUmber">
+                                         @error('sort_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -70,9 +78,9 @@
                                     </div>
                                 </div>
                                 <div >
-                                    <button wire:loading.attr="disabled" type="submit" wire:click="addPhoto" class="btn btn-primary w-md">Submit</button>
+                                    <button wire:loading.attr="disabled" type="submit" wire:click="groupPhoto" class="btn btn-primary w-md">Submit</button>
                                 </div>
-                                 <div wire:loading wire:target="addPhoto">
+                                 <div wire:loading wire:target="groupPhoto">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
 
                                      </div>
@@ -95,8 +103,9 @@
                                 <table class="table table-bordered table-striped datatable">
                                     <thead>
                                         <tr>
+                                            <th>Year</th>
                                             <th>Title</th>
-                                             <th>Image</th>
+                                            <th>Image</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -106,6 +115,8 @@
                           @if(isset($records) && count($records)>0 )                      
                            @foreach ($records as  $record) 
                                         <tr>
+                                            <td>{{$record->year ?? '' }}</td>
+                                            
                                             <td>{{$record->title ?? '' }}</td>
                                             
                                               <td>  
@@ -122,7 +133,8 @@ $thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_
                                                     <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
                                                 @endif</td>
                                             <td>
-                                                <a href="{{url('/admin/edit/page')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
+                                                
+                                                <a href="{{route('edit_group_phptos',['id' => $record->id])}}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete"><i class="fa fa-times fa-fw fa-lg" wire:click="delete({{ $record->id }})"></i></a>
                                             </td>
                                         </tr>

@@ -32,6 +32,14 @@
                         <div class="card-body">
                             <!--success or error alert-->
                             <!--form starts-->
+
+                             <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Academic Year</label>
+                                        <input type="text" class="form-control" id=""  wire:model="acadmic_year" placeholder="Academic Year">
+                                        @error('acadmic_year') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
                       
                                 <div class="col-md-12">
                                     <div class="mb-3">
@@ -61,8 +69,8 @@
                                 <div class="col-md-2">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
-                                        <input type="number" class="form-control"  wire:model="sort" placeholder="Order NUmber">
-                                         @error('sort') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="number" class="form-control"  wire:model="sort_id" placeholder="Order NUmber">
+                                         @error('sort_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -77,9 +85,9 @@
                                     </div>
                                 </div>
                                 <div >
-                                    <button wire:loading.attr="disabled" type="submit" wire:click="addPhoto" class="btn btn-primary w-md">Submit</button>
+                                    <button wire:loading.attr="disabled" type="submit" wire:click="groupPhoto" class="btn btn-primary w-md">Submit</button>
                                 </div>
-                                 <div wire:loading wire:target="addPhoto">
+                                 <div wire:loading wire:target="groupPhoto">
                                         <img src="{{asset('loading.gif')}}" width="30" height="30" class="m-auto mt-1/4">
 
                                      </div>
