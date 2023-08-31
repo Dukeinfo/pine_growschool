@@ -15,6 +15,7 @@ class CreateGroupPhotosTable extends Migration
     {
         Schema::create('group_photos', function (Blueprint $table) {
             $table->id();
+            $table->string('year')->nullable();
             $table->string('title')->nullable();
             $table->string('image')->nullable();  
             $table->string('thumbnail')->nullable(); 

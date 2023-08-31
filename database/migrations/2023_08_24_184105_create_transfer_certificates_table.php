@@ -20,6 +20,7 @@ class CreateTransferCertificatesTable extends Migration
             $table->string('section')->nullable();
             $table->string('year')->nullable();
             $table->string('admission_no')->nullable();
+            $table->string('file')->nullable();
             $table->integer('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();

@@ -32,6 +32,14 @@
                         <div class="card-body">
                             <!--success or error alert-->
                             <!--form starts-->
+
+                             <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Academic Year</label>
+                                        <input type="text" class="form-control" id=""  wire:model="acadmic_year" placeholder="Academic Year">
+                                        @error('acadmic_year') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
                       
                                 <div class="col-md-12">
                                     <div class="mb-3">

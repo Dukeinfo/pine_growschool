@@ -32,8 +32,16 @@
                         <div class="card-body">
                             <!--success or error alert-->
                             <!--form starts-->
+
+                            <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Academic Year</label>
+                                        <input type="text" class="form-control" id=""  wire:model="acadmic_year" placeholder="Academic Year">
+                                        @error('acadmic_year') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
                       
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Title</label>
                                         <input type="text" class="form-control" id=""  wire:model="title" placeholder="Title">
@@ -95,8 +103,9 @@
                                 <table class="table table-bordered table-striped datatable">
                                     <thead>
                                         <tr>
+                                            <th>Year</th>
                                             <th>Title</th>
-                                             <th>Image</th>
+                                            <th>Image</th>
                                             <th>Sorting Order#</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -106,6 +115,8 @@
                           @if(isset($records) && count($records)>0 )                      
                            @foreach ($records as  $record) 
                                         <tr>
+                                            <td>{{$record->year ?? '' }}</td>
+                                            
                                             <td>{{$record->title ?? '' }}</td>
                                             
                                               <td>  

@@ -117,7 +117,14 @@
 					<i class="bx bx-home-circle"></i>
 					<span>Add Document</span>
 				</a>
-			</li>   
+			</li>
+
+			<li>
+				<a href="{{route('transfer_certificate')}}" class="waves-effect">
+					<i class="bx bx-home-circle"></i>
+					<span>Transfer Certificate</span>
+				</a>
+			</li>    
 
 
 

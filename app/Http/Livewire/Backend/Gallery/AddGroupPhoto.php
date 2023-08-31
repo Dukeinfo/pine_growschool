@@ -15,9 +15,10 @@ class AddGroupPhoto extends Component
    use UploadTrait; 
    use WithFileUploads;
 
-    public $title,$image,$sort_id,$status;
+    public $acadmic_year,$title,$image,$sort_id,$status;
 
     protected $rules = [ 
+        'acadmic_year' => 'required',
         'title' => 'required', 
         'image' => 'required',
         'sort_id' => 'required| unique:group_photos,sort_id', 
@@ -25,6 +26,7 @@ class AddGroupPhoto extends Component
      
       ];
       protected $messages = [
+          'acadmic_year.required' => 'Acadmic Year Required.', 
           'title.required' => 'Title Required.',
           'image.required' => 'Image Required.',
           'sort_id.required' => 'Sort Id Required.',
@@ -32,6 +34,7 @@ class AddGroupPhoto extends Component
           
       ];
     private function resetInputFields(){
+        $this->year = '';
         $this->title = '';
         $this->image = '';
         $this->sort_id = '';
@@ -54,6 +57,7 @@ class AddGroupPhoto extends Component
     }   
 
       $group_photo = new GroupPhoto();
+      $group_photo->year = $this->acadmic_year ?? Null;
       $group_photo->title = $this->title ?? Null;
       $group_photo->image = $uploadedData['file_name'] ?? NULL;
       $group_photo->thumbnail = $uploadedData['thumbnail_name'] ?? NULL;
