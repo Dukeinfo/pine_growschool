@@ -31,7 +31,7 @@ $currentRouteName = \Route::currentRouteName();
             @endphp
                 
                 <li>
-                    <a href="{{ route($route->getName()) }}"   class="{{ $currentRouteName === $route->getName() ? 'active' : '' }}">{{ str_replace('_', ' ', $routeName) }}</a>
+                    <a href="{{ route($route->getName()) }}"   class="{{ $currentRouteName === $route->getName() ? 'active' : '' }}">{{  Str::title(str_replace('_', ' ', $routeName)) }}</a>
 
                 </li>
 

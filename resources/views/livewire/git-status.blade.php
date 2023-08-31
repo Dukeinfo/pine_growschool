@@ -26,11 +26,13 @@
                          <a class="fw-bold"href="{{ route($route->getName()) }}" target="_blank">  {{ str_replace('_' , ' ',$routeName)}}</a> </td>
                      <td>   <a href="" target="_blank"> 
                      @if(in_array($route->getName(), ['home.homepage','home.admission_process', 'home.gallery','home.location','home.faqs_introduction','home.contact_us', 'gallery_detail'])) 
-                       --- 
+                       ==== 
 
                     </a>
                      @else
-                            <a href="{{route('page_content')}}" target="_blank" > Add  </a>
+                            {{-- <a href="{{route('page_content')}}" target="_blank" > New page  </a> --}}
+                       == New ==
+
                      @endif
                         
                     

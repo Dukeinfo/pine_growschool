@@ -25,7 +25,7 @@
                                     <div class="col-lg-4">
                                         <div class="">
                                             <label for="">Application Date</label>
-                                            <input type="date" class="form-control" wire:model="application_date" />
+                                            <input type="date" class="form-control" wire:model="application_date" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}"/>
                                             @error('application_date') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
@@ -358,24 +358,32 @@
                                     <div class="col-lg-4">
                                         <div class="">
                                             <label for="institution_{{ $index }}">Institution Name </label>
-                                            <input type="text" class="form-control" wire:model="experiences.{{ $index }}.institution_name" placeholder="Institution Name " />
-                                        
+                                            <input type="text" class="form-control" wire:model="experiences.{{ $index }}.institution_name" placeholder="Institution Name" />
                                         </div>
+                                        @error('experiences.' . $index . '.institution_name')
+                                        <span class="text-danger">{{ $message }}</span><br>
+                                        @enderror
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="">
                                             <label for="period_from_{{ $index }}">Period From</label>
                                             <input type="date" class="form-control" wire:model="experiences.{{ $index }}.period_from" />
                                         </div>
+                                        @error('experiences.' . $index . '.period_from')
+                                        <span class="text-danger">{{ $message }}</span><br>
+                                        @enderror
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="">
                                             <label for="period_to_{{ $index }}">Period To</label>
                                             <input type="date" class="form-control" wire:model="experiences.{{ $index }}.period_to" />
                                         </div>
+                                        @error('experiences.' . $index . '.period_to')
+                                        <span class="text-danger">{{ $message }}</span><br>
+                                        @enderror
                                     </div>
-                            
-                                    @endforeach
+                                @endforeach
+                                
                                     <div class="col-lg-2">
                                         <div class="">
                                             <label for="">&nbsp;</label><br>
@@ -435,6 +443,9 @@
                                             </tbody>
                                         </table>
                                     </div> --}}
+                            
+                             
+                              
                                 </div>
 
                                 <h3 class="widgetTitle text-dark fs-5 mb-3 mt-4">Experience</h3>
@@ -528,6 +539,14 @@
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                                             <i class="mdi mdi-check-all me-2"></i>
                                             {{ session('success') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        @endif
+                                        {{-- error --}}
+                                        @if (session()->has('error'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <i class="mdi mdi-check-all me-2"></i>
+                                            {{ session('error') }}
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                         @endif

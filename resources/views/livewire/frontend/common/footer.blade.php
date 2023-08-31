@@ -29,10 +29,10 @@
                 <aside class="widget serviceMenu">
                     <h3 class="widgetTitle">Useful Links</h3>
                     <ul class="menu">
-                        <li><a href="javascript:void();">Downloads</a></li>
-                        <li><a href="javascript:void();">Admissions</a></li>
+                        <li><a href="{{route('home.download_resources')}}">Downloads</a></li>
+                        <li><a href="{{route('home.admission_form')}}">Admissions</a></li>
                         <li><a href="javascript:void();">Alumni</a></li>
-                        <li><a href="javascript:void();">Jobs at Pinegrove</a></li>
+                        <li><a href="{{route('home.career')}}">Jobs at Pinegrove</a></li>
                         <li><a href="javascript:void();">Parent Login</a></li>
                         <li><a href="javascript:void();">Staff Login</a></li>
                     </ul>

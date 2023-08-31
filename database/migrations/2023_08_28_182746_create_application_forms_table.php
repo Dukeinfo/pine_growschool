@@ -57,6 +57,11 @@ class CreateApplicationFormsTable extends Migration
 
             // Other Details
             $table->text('other_details')->nullable();
+            // Experience
+            $table->string('current_job')->nullable();
+            $table->string('present_salary')->nullable();
+            $table->string('expected_salary')->nullable();
+
             $table->string('expected_accommodation')->nullable();
             $table->text('future_plans')->nullable();
             $table->string('associated_with_pinegrove')->nullable();

@@ -19,11 +19,6 @@ class CreateExperiencesTable extends Migration
             $table->string('institution_name')->nullable();
             $table->date('experience_period_from')->nullable();
             $table->date('experience_period_to')->nullable();
-
-            $table->string('current_job')->nullable();
-            $table->string('present_salary')->nullable();
-            $table->string('expected_salary')->nullable();
-    
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();
             $table->string('login')->nullable();

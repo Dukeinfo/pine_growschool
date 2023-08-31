@@ -7,6 +7,8 @@ use App\Models\ClassMaster;
 use App\Models\Experience;
 use App\Models\SubjectTeach;
 use App\Traits\UploadTrait;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -18,6 +20,8 @@ class Career extends Component
     
     public $getSubjects ,$getClassname;
     public $experiences = [];
+
+    public $applicationDate;
     
    // Personal Information
    public $application_date;
@@ -131,27 +135,43 @@ class Career extends Component
     // Validation for file upload
     'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
  
-    // 'institution_name' => 'required',
-    // 'experience_period_from' => 'required',
-    // 'experience_period_to' => 'required',
+    'experiences.*.institution_name' => 'required',
+    'experiences.*.period_from' => 'required|date',
+    'experiences.*.period_to' => 'required|date',
     'current_job' => 'required',
     'present_salary' => 'required',
     'expected_salary'=> 'required',
 
 
 ];
+protected $messages = [
+    'experiences.*.institution_name.required' => 'The institution name field is required.',
+    'experiences.*.period_from.required' => 'The period from field is required.',
+    'experiences.*.period_from.date' => 'The period from field must be a valid date.',
+    'experiences.*.period_to.required' => 'The period to field is required.',
+    'experiences.*.period_to.date' => 'The period to field must be a valid date.',
+    'experiences.*.period_to.after_or_equal' => 'The period to field must be after or equal to the period from field.',
+];
+
 
     public function mount()
     {
         $this->addExperience();
-        }
+        $this->applicationDate = Carbon::now()->toDateString(); 
+    }
     
         public function addExperience()
         {
-            $this->experiences[] = ['institution_name' => '', 'experience_period_from' => '', 'experience_period_to' => ''];
+            $this->experiences[] = [
+              'institution_name' => '',
+              'experience_period_from' => '',
+              'experience_period_to' => ''];
             $lastExperience = end($this->experiences);
             if (empty($lastExperience) || (!empty($lastExperience) && array_filter($lastExperience))) {
-                $this->experiences[] = ['institution_name' => '', 'experience_period_from' => '', 'experience_period_to' => ''];
+                $this->experiences[] =
+                 ['institution_name' => '', 
+                 'experience_period_from' => '',
+                  'experience_period_to' => ''];
             }
         }
 
@@ -171,9 +191,8 @@ class Career extends Component
 
     public function store()
     {
- 
- 
-        // $validatedData = $this->validate(); // Validate the form data using the defined rules
+
+  $this->validate();
         // Save the data to the ApplicationForm table
         if(!is_null($this->photo)){
             $image =  $this->photo;
@@ -216,6 +235,9 @@ class Career extends Component
             'university_bed' => $this->university_bed,
             'percentage_bed' => $this->percentage_bed,
             'other_details' => $this->other_details,
+            'current_job' => $this->current_job,
+            'present_salary' => $this->present_salary,
+            'expected_salary' =>$this->expected_salary,
             'expected_accommodation' => $this->expected_accommodation,
             'associated_with_pinegrove' => $this->associated_with_pinegrove,
             'future_plans' => $this->future_plans,
@@ -226,20 +248,25 @@ class Career extends Component
 
 
         
-        ApplicationForm::create($data);
+      $appication_id =  ApplicationForm::create($data);
+      $this->resetFormFields();
+        foreach ($this->experiences as $experienceData) {
 
-        foreach ($this->experiences as $experience) {
-            Experience::create($experience);
-        }
+            Experience::create([
+                'application_forms_id' =>  $appication_id->id, // Adjust this value accordingly
+                'institution_name' => $experienceData['institution_name'],
+                'experience_period_from' => Carbon::parse( $experienceData['period_from'])->format('Y-m-d'),
+                'experience_period_to' => Carbon::parse( $experienceData['period_to'])->format('Y-m-d'),
+                // Add other fields as needed
+            ]);
+   
 
-        // Optionally, you can reset the form after saving
-        $this->experiences = [];
+    }
+        // Clear the experiences array after storing
         
-        // Optionally, you can reset the form fields after successful submission
-        $this->resetFormFields();
-
-        // Show a success message or perform other actions as needed
+        // $this->experiences = [];
         session()->flash('success', 'Application submitted successfully!');
+        return redirect()->route('home.homepage');
     }
 
     private function resetFormFields()
@@ -282,7 +309,14 @@ class Career extends Component
             'expected_accommodation',
             'future_plans',
             'photo',
+            'current_job' ,
+            'present_salary' ,
+            'expected_salary',
+        
        
         ]);
     }
+
+
+ 
 }
