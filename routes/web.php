@@ -130,6 +130,7 @@ use App\Http\Livewire\Frontend\OurFounder;
 use App\Http\Livewire\Frontend\GroupPhoto;
 use App\Http\Livewire\Frontend\Event;
 use App\Http\Livewire\Frontend\TransferCertificate;
+use App\Http\Livewire\Frontend\MandatoryPublicDisclosure;
 use Illuminate\Support\Facades\Route;
 
 
@@ -174,6 +175,7 @@ Route::get('/our-faculties', OurFaculties::class)->name('home.our_faculties');
 Route::get('/group-photo', GroupPhoto::class)->name('home.group_photo');
 Route::get('/school-event', Event::class)->name('home.school_event');
 Route::get('/transfer-certificate', TransferCertificate::class)->name('home.transfer_certificate');
+Route::get('/mandatory-form', MandatoryPublicDisclosure::class)->name('home.mandatory_public_disclosure');
 });
 
 
