@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\Categories;
+use App\Models\ClassMaster;
 use App\Models\Location;
 use App\Models\Menu;
+use App\Models\SubjectTeach;
 use App\Models\User;
 
 use Carbon\Carbon;
@@ -20,6 +22,19 @@ function getGalCategory($id){
     return $galleryCategory->name;
 
 }
+
+function getSubjectname($id){
+    $subject =  SubjectTeach::where('id', $id)->first();
+return $subject->name;
+
+}
+function getClassName($id){
+    $fetchClass =  ClassMaster::where('id', $id)->first();
+return $fetchClass->classname;
+
+}
+
+
 
 function getThumbnail($value) {
     if (str_starts_with($value, 'http')) {

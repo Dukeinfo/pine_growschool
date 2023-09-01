@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Frontend;
 
+use App\Jobs\ApplicationJob;
+use App\Mail\ThankYouForSubmissionEmail;
 use App\Models\ApplicationForm;
 use App\Models\ClassMaster;
 use App\Models\Experience;
 use App\Models\SubjectTeach;
 use App\Traits\UploadTrait;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -27,6 +30,9 @@ class Career extends Component
    public $application_date;
    public $date_of_birth;
    public $marital_status;
+   public $name;
+   public $email;
+
    public $address;
    public $mobile_no;
    public $phone_no;
@@ -86,6 +92,9 @@ class Career extends Component
     'date_of_birth' => 'required|date',
     'marital_status' => 'required',
     'address' => 'required',
+    'name' => 'required',
+    'email' => 'required',
+
     'mobile_no' => 'required',
     'phone_no' => 'nullable',
     'landline_no' => 'nullable',
@@ -192,8 +201,8 @@ protected $messages = [
     public function store()
     {
 
-  $this->validate();
-        // Save the data to the ApplicationForm table
+        $this->validate();
+
         if(!is_null($this->photo)){
             $image =  $this->photo;
            // Define folder path
@@ -206,6 +215,9 @@ protected $messages = [
             'application_date' => $this->application_date,
             'date_of_birth' => $this->date_of_birth,
             'marital_status' => $this->marital_status,
+            'name' => $this->name,
+            'email' => $this->email,
+
             'address' => $this->address,
             'mobile_no' => $this->mobile_no,
             'phone_no' => $this->phone_no,
@@ -243,27 +255,34 @@ protected $messages = [
             'future_plans' => $this->future_plans,
             'photo' => $uploadedData['file_name'] ?? Null,
 
-            // You may need to handle file upload differently, for instance, save it to a storage path
         ];
 
 
         
-      $appication_id =  ApplicationForm::create($data);
-      $this->resetFormFields();
-        foreach ($this->experiences as $experienceData) {
+                $appication_id =  ApplicationForm::create($data);
 
-            Experience::create([
-                'application_forms_id' =>  $appication_id->id, // Adjust this value accordingly
-                'institution_name' => $experienceData['institution_name'],
-                'experience_period_from' => Carbon::parse( $experienceData['period_from'])->format('Y-m-d'),
-                'experience_period_to' => Carbon::parse( $experienceData['period_to'])->format('Y-m-d'),
-                // Add other fields as needed
-            ]);
-   
+                    foreach ($this->experiences as $experienceData) {
 
-    }
-        // Clear the experiences array after storing
+                        $experiencedata[]  =    Experience::create([
+                            'application_forms_id' =>  $appication_id->id, // Adjust this value accordingly
+                            'institution_name' => $experienceData['institution_name'],
+                            'experience_period_from' => Carbon::parse( $experienceData['period_from'])->format('Y-m-d'),
+                            'experience_period_to' => Carbon::parse( $experienceData['period_to'])->format('Y-m-d'),
+                            // Add other fields as needed
+                        ]);
+            
+
+                }
+
+             dispatch(new  ApplicationJob($data ,$experiencedata));
         
+           // Send the thank-you email to the applicant
+           if($this->email){
+               Mail::to($this->email) 
+               ->send(new ThankYouForSubmissionEmail());
+            }
+
+            $this->resetFormFields();
         // $this->experiences = [];
         session()->flash('success', 'Application submitted successfully!');
         return redirect()->route('home.homepage');
@@ -276,6 +295,8 @@ protected $messages = [
             'application_date',
             'date_of_birth',
             'marital_status',
+            'name',
+            'email',
             'address',
             'mobile_no',
             'phone_no',

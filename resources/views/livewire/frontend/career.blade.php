@@ -317,14 +317,23 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-4">
                                         <div class="">
-                                            <label for="">Address</label>
-                                            <input type="text" class="form-control" wire:model="address" placeholder="Address" />
-                                            @error('address') <span class="text-danger">{{ $message }}</span> @enderror
+                                            <label for="">Name</label> 
+                                            <input type="text" class="form-control"  wire:model="name"  placeholder="Name " />
+                                            @error('name') <span class="text-danger">{{ $message }}</span> @enderror
 
                                         </div>
                                     </div>
+                                    <div class="col-lg-4">
+                                        <div class="">
+                                            <label for="">Email</label> 
+                                            <input type="email" class="form-control"  wire:model="email"  placeholder="Email" />
+                                            @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+
+                                        </div>
+                                    </div>
+                          
                                     <div class="col-lg-4">
                                         <div class="">
                                             <label for="">Mobile No</label> 
@@ -346,6 +355,14 @@
                                             <label for="">Landline No</label>
                                             <input type="text" class="form-control"  wire:model="landline_no" placeholder="Landline No" />
                                             @error('landline_no') <span class="text-danger">{{ $message }}</span> @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="">
+                                            <label for="">Address</label>
+                                            <input type="text" class="form-control" wire:model="address" placeholder="Address" />
+                                            @error('address') <span class="text-danger">{{ $message }}</span> @enderror
 
                                         </div>
                                     </div>
