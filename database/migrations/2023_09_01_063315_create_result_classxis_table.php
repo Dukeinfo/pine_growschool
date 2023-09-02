@@ -15,6 +15,12 @@ class CreateResultClassxisTable extends Migration
     {
         Schema::create('result_classxis', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('general_information_id');
+            $table->string('year')->nullable();
+            $table->string('nof_student')->nullable();
+            $table->string('nof_student_passed')->nullable();
+            $table->string('pass_percentage')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

@@ -113,6 +113,10 @@ use App\Http\Livewire\Backend\Document\AddDocument;
 use App\Http\Livewire\Backend\Document\EditDocument;
 use App\Http\Livewire\Backend\Certificate\AddTransferCertificate;
 use App\Http\Livewire\Backend\Certificate\EditTransferCertificate;
+use App\Http\Livewire\Backend\Mandatory\MandatoryPublicDisclosure;
+use App\Http\Livewire\Backend\Mandatory\ViewMandatoryPublicDisclosure;
+
+
 
 use App\Http\Livewire\Frontend\AboutUs;
 use App\Http\Livewire\Frontend\AdmissionForm;
@@ -130,7 +134,6 @@ use App\Http\Livewire\Frontend\OurFounder;
 use App\Http\Livewire\Frontend\GroupPhoto;
 use App\Http\Livewire\Frontend\Event;
 use App\Http\Livewire\Frontend\TransferCertificate;
-use App\Http\Livewire\Frontend\MandatoryPublicDisclosure;
 use Illuminate\Support\Facades\Route;
 
 
@@ -175,7 +178,6 @@ Route::get('/our-faculties', OurFaculties::class)->name('home.our_faculties');
 Route::get('/group-photo', GroupPhoto::class)->name('home.group_photo');
 Route::get('/school-event', Event::class)->name('home.school_event');
 Route::get('/transfer-certificate', TransferCertificate::class)->name('home.transfer_certificate');
-Route::get('/mandatory-form', MandatoryPublicDisclosure::class)->name('home.mandatory_public_disclosure');
 });
 
 
@@ -360,8 +362,8 @@ Route::get('/edit-document/{id}', EditDocument::class)->name('edit_document');
 
 Route::get('/transfer-certificate', AddTransferCertificate::class)->name('transfer_certificate');
 Route::get('/edit-transfer-certificate/{id}', EditTransferCertificate::class)->name('edit_transfer_certificate'); 
-
-
+Route::get('/mandatory-form', MandatoryPublicDisclosure::class)->name('mandatory_form');
+Route::get('/view-mandatory-form', ViewMandatoryPublicDisclosure::class)->name('view_mandatory_form');
          
 });
 });

@@ -124,7 +124,23 @@
 					<i class="bx bx-home-circle"></i>
 					<span>Transfer Certificate</span>
 				</a>
-			</li>    
+			</li>
+
+			
+
+			    <li>
+				<a href="javascript: void(0);" class="has-arrow waves-effect">
+					<i class='bx bx-image-add'></i>
+					<span>Mandatory Form</span>
+				</a>
+					
+			  <ul class="sub-menu" aria-expanded="false">
+						<li><a href="{{route('mandatory_form')}}">Add Mandatory Form</a></li>
+						<li><a href="{{route('view_mandatory_form')}}">Edit Mandatory Form</a></li>
+					   
+					</ul>
+			
+			</li>      
 
 
 
