@@ -110,6 +110,14 @@ class ViewGalleryCategory extends Component
 
      }
 
+
+     public function active($id){
+
+      $categoryactive = Categories::findOrFail($id);
+      $categoryactive->status = 'Active';
+      $categoryactive->save();
+     }
+
     public function render()
     {
         $this->records=Categories::latest()->orderBy('sort_id' ,'asc')->get();

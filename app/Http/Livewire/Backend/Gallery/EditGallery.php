@@ -53,6 +53,9 @@ class EditGallery extends Component
         else{
             $gallery = Gallery::find($this->galleryId);
             $gallery->category_id =$this->category_id ?? NULL;
+            $gallery->year = $this->year;
+            $gallery->s_name = $this->s_name;
+            $gallery->addmision_no = $this->addmision_no;
             $gallery->sort_id =$this->sort;
             $gallery->status = $this->status;
             $gallery->addmision_no = $this->addmision_no;

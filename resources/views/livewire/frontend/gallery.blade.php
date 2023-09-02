@@ -44,10 +44,10 @@
       
                             <div class="col-md-4">
                             @if ($searchField === 'albumTitle')
-                                <select wire:model="albumTitleValue"  class="form-control">
+                                <select wire:model="search"  class="form-control">
                                     <option value="">Select option</option>
                                         @forelse ($getcategorywise as $category)
-                                        <option value="{{$category->galCategory->id}}"> {{$category->galCategory->name}}</option>
+                                        <option value="{{$category->category_id}}"> {{$category->galCategory->name}}</option>
                                         @empty
                                         <p>No option</p>
                                         @endforelse
@@ -56,7 +56,7 @@
                             <div class="col-md-4">
 
                             @elseif ($searchField === 'year')
-                                <select name="year"  wire:model="yearValue"  id="year" class="form-control" >
+                                <select name="year"  wire:model="search"  id="year" class="form-control" >
                                     <option value="" >Select Year</option>
                                     @forelse ($getYearwise as $galCategory)
                                         <option value="{{ $galCategory->year }}" >{{ $galCategory->year }}</option>
@@ -67,11 +67,11 @@
                          
 
                             @elseif ($searchField === 'adminNo')
-                                <input type="text" wire:model.live="adminNoValue" placeholder="By Admission No">
+                                <input type="search" wire:model="search" placeholder="By Admission No">
                          
 
                                 @elseif ($searchField === 'studentName')
-                                <input type="text" wire:model.live="studentNameValue" placeholder="By Student Name">
+                                <input type="search" wire:model="search" placeholder="By Student Name">
                          
 
                                 @endif

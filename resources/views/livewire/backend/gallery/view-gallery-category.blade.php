@@ -113,9 +113,11 @@ $thumb = !empty($record->image) ? getThumbnail($record->thumbnail) : url('admin_
                                             <td>{{$record->sort_id ?? '' }}</td>
                                             <td>
 @if($record->status  == "Active")
-        <span class="badge badge-soft-success">{{$record->status  ?? ''}}</span></td>
+        <span class="badge badge-soft-success" wire:click="active({{$record->id}})">{{$record->status  ?? ''}}</span></td>
          @else
-       <span class="badge badge-soft-danger">{{$record->status  ?? ''}}</span></td>
+         <a href="" wire:click="active({{$record->id}})">
+            <span class="badge badge-soft-danger"  >{{$record->status  ?? ''}}</span></td>
+        </a>
 @endif</td>
                                             <td>
                                                 <a href="{{url('/admin/edit/category')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>

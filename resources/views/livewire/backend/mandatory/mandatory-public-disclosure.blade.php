@@ -4,9 +4,34 @@
         <div class="container-fluid">
 
 
- <form action="" wire:submit.prevent="store">
+        
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0 font-size-18">GENERAL INFORMATION</h4>
+        
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
+                                        <li class="breadcrumb-item">GENERAL INFORMATION</li>
+                                        <li class="breadcrumb-item active">GENERAL INFORMATION</li>
+                                    </ol>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+            <form action="" wire:submit.prevent="store">
                 <div class="row">
                   <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-transparent border-bottom py-3">
+                            <h4 class="card-title">Facilities</h4>
+                            <p class="card-title-desc mb-0">Fill out the particulars in order to add or update.</p>
+                        </div>
+                        <div class="card-body">
+
                       <div style="text-align:left;"><strong>A:</strong> <span><strong><u>GENERAL INFORMATION:</u></strong></span></div>
                       <table class="table table-bordered mb-4">
                           <thead class="table-primary">
@@ -614,18 +639,18 @@
                       </table>
 
 
-                      <button type="submit" value="Submit" class="immiPressBtn">
-                                                <span>Submit</span>
+                      <button type="submit" value="Submit" class="btn btn-success">   <span>Submit</span>
                                             </button>
                                            
 
                                      
 
-
+                        </div>
+                    </div>
                   </div>
                 </div>
                 <!--end row-->
-              </form>
+            </form>
             
 
         </div>

@@ -43,13 +43,14 @@ class Gallery extends Component
 
    public $seo_keywords;
 
-   public $search = null;
  public $getcategorywise;
   public  $getYearwise;
-   public function updatingSearch()
-   {
-	   $this->resetPage();
-   }
+  public $search = '';
+ 
+  public function updatingSearch()
+  {
+      $this->resetPage('commentsPage');
+  }
    public function mount(){
         $this->galeryCategory =   Categories::get();
  
@@ -68,96 +69,47 @@ class Gallery extends Component
     SEOMeta::addKeyword( $keywords);
 }
         $this->getcategorywise = ModelsGallery::with(['galCategory'])       
-        ->where('status', 'Active')->orderBy('sort_id')->latest()->groupBy('category_id')->get();
+        ->where('status', 'Active')->orderBy('category_id')->latest()->groupBy('category_id')->get();
 
         $this->getYearwise= ModelsGallery::with(['galCategory'])       
-        ->where('status', 'Active')->orderBy('sort_id')->latest()->groupBy('year')->get();
+        ->where('status', 'Active')->orderBy('year')->latest()->groupBy('year')->get();
 }
 
 public function searchGallery(){
- 
-    if($this->albumTitleValue){
-        $this->search = $this->albumTitleValue;
+        $this->search = $this->search;
+        
 
-
-    }
-     if($this->yearValue){
-        $this->search = $this->yearValue;
-  
-
-    }
-
-     if($this->adminNoValue){
-        $this->search = $this->adminNoValue;
-  
-
-    }
-
-     if($this->studentNameValue){
-        $this->search = $this->studentNameValue;
-   
-
-    }
-   
-
+    
 }
 
 
 
     public function render()
     {
+                    
+            //     $galleryimages =   ModelsGallery:: whereHas('galCategory', function (EloquentBuilder $query) {
+            //     $query->whereIn('category_id', 'like', '%'.$this->yearValue.'%');
+            // })
+            // ->where('status', 'Active')
+            // ->orderBy('sort_id')
+            // ->groupBy('category_id')->paginate(10);
 
-        switch($this->search) {
+    
 
-            case($this->albumTitleValue ):
-                // dd($this->search);
-                $galleryimages = ModelsGallery::whereHas('galCategory', function (EloquentBuilder $query) {
-                    $query->where('category_id', 'like', '%'.$this->albumTitleValue.'%');
-                    })
-                ->where('status', 'Active')
-                ->orderBy('sort_id')
-                ->groupBy('category_id')->paginate($this->selectedRecords, ['*']);
-                $this->search = null;
-                break;
-            case($this->yearValue ):
-                // dd($this->search);
-                $galleryimages = ModelsGallery::Where('year', 'like', '%'.$this->yearValue.'%')
-                ->where('status', 'Active')
-                ->orderBy('sort_id')
-                ->groupBy('category_id')->paginate($this->selectedRecords, ['*']);
-                $this->search = null;
-                break;
-            case($this->studentNameValue ):
-                    // dd($this->search);
-                    $galleryimages = ModelsGallery::Where('s_name', 'like', '%'.$this->studentNameValue.'%')
-                    ->where('status', 'Active')
-                    ->orderBy('sort_id')
-                    ->groupBy('category_id')->paginate($this->selectedRecords, ['*']);
-                    $this->search = null;
-                    break;   
-            case($this->adminNoValue ):
-                        // dd($this->search);
-                        $galleryimages = ModelsGallery::Where('addmision_no', 'like', '%'.$this->adminNoValue.'%')
-                        ->where('status', 'Active')
-                        ->orderBy('sort_id')
-                        ->groupBy('category_id')->paginate($this->selectedRecords, ['*']);
-                        $this->search = null;
-                        break;  
-            default:
-                $galleryimages = ModelsGallery::with(['galCategory'])
-                ->where('status', 'Active')
-                ->orderBy('sort_id')
-                ->latest()
-                ->groupBy('category_id')
-                ->paginate($this->selectedRecords, ['*']);
-                
-            }
+        
 
-
-
-        return view('livewire.frontend.gallery', [
-            'galleryimages' => $galleryimages,
-        ])->layout('layouts.frontend');
+        return view('livewire.frontend.gallery'    ,    [
+            'galleryimages' =>  ModelsGallery::with(['galCategory'])
+            ->where('status', 'Active')
+            ->where(function ($query) {
+                $query->where('addmision_no', 'like', '%' . $this->search . '%')
+                      ->orWhere('s_name', 'like', '%' . $this->search . '%')
+                      ->orWhere('category_id', 'like', '%' . $this->search . '%')
+                      ->orWhere('year', 'like', '%' . $this->search . '%');
+            })
+            ->orderBy('sort_id')
+            ->groupBy('category_id')
+            ->paginate(10)] )->layout('layouts.frontend');
 
         $this->resetInputFields();
     }
