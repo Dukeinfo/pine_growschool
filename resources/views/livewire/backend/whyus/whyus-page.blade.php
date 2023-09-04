@@ -37,14 +37,14 @@
                             <div class="row g-3">
 
 
-                                  <div class="col-md-3">
+                                  <div class="col-md-8">
                                     <div class="mb-3">
                                         <label class="form-label">Home Page Sections</label>
                                             <select wire:model="category" class="form-select">
                                                 <option value="">Select Sections</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
+                                                <option value="Unlocking Excellence">Unlocking Excellence</option>
+                                                <option value="Where Excellence Meets Education">Where Excellence Meets Education</option>
+                                                <option value="International Exchange Programs">International Exchange Programs</option>
                                                 
                                             </select>
                                         @error('category') <span class="error">{{ $message }}</span> @enderror

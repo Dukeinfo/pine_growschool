@@ -50,7 +50,7 @@ class CreatePage extends Component
         $this->heading = ''; 
         $this->desc = '';
         $this->image = '';
-        $this->link = '';
+        //$this->link = '';
         $this->sort_id = '';
         $this->status = '';
        

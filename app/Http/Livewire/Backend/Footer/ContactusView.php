@@ -37,6 +37,8 @@ class ContactusView extends Component
     }
     public function store()
     {
+     
+
         // Validate the input data
         $validatedData = $this->validate([
             'email' => 'required|email',
@@ -71,11 +73,12 @@ class ContactusView extends Component
 
 
         }
-        $contact->email = $validatedData['email'];
-        $contact->phone = $validatedData['phone'];
-        $contact->address = $validatedData['address'];
-        $contact->disclaimer = $validatedData['disclaimer'];
-        $contact->map = $validatedData['map'];
+
+        $contact->email = $this->email;
+        $contact->phone = $this->phone;
+        $contact->address = $this->address;
+        $contact->disclaimer = $this->disclaimer;
+        $contact->map = $this->map;
         $contact->save();
 
         // Emit an event to notify the parent component (if needed)

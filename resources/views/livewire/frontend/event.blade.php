@@ -1,5 +1,6 @@
 <div>
        <!-- BEGIN: Hero Banner Start -->
+       
        @include('livewire.frontend.common.herobanner')
 
     <!-- END: Hero Banner End -->
@@ -16,13 +17,12 @@
                 </div>
                 <div class="col-lg-8">
                     <h5 class="subTitle">School Calendar</h5>
-                    <h2 class="secTitle">School Event</h2>
+                    <h2 class="secTitle">School Calendar</h2>
                    
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    
                                     <th>Date</th>
                                     <th>Event</th>
                                 </tr>

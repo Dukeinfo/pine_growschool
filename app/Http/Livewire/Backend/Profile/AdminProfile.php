@@ -39,6 +39,8 @@ class AdminProfile extends Component
             $filePath = $this->profile->storeAs('uploads', $fileName, 'public');
             $updateuser =  User::find( $this->userId);
             $updateuser->profile_photo_path = $fileName;
+            $updateuser->name = $this->name;
+            $updateuser->email = $this->email;
             $updateuser->save();    
            $this->dispatchBrowserEvent('swal:modal', [
                     'type' => 'success',  

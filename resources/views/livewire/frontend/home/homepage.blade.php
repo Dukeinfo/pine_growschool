@@ -40,7 +40,7 @@
                 <div class="col-lg-6">
                     <!-- About Thumb -->
                  @php
-                 $categoryFirst = App\Models\Whyus::where('category', 1)->where('status', 'Active')->first();
+                 $categoryFirst = App\Models\Whyus::where('category', 'Unlocking Excellence')->where('status', 'Active')->first();
                  @endphp
                     <div class="abFact">
                     @if (isset($categoryFirst->image))
@@ -273,7 +273,7 @@
 
 
  @php
-  $categorySecond = App\Models\Whyus::where('category', 2)->where('status', 'Active')->first();
+  $categorySecond = App\Models\Whyus::where('category', 'Where Excellence Meets Education')->where('status', 'Active')->first();
  @endphp
     <section class="aboutSection02 position-relative">
         <div class="container">
@@ -364,7 +364,7 @@
     
 
     @php
-    $categoryThird = App\Models\Whyus::where('category', 3)->where('status', 'Active')->first();
+    $categoryThird = App\Models\Whyus::where('category', 'International Exchange Programs')->where('status', 'Active')->first();
     @endphp
 
     <section class="aboutSection02 position-relative">
