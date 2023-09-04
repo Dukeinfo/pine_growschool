@@ -20,9 +20,9 @@ class UserSeeder extends Seeder
         $admin = new User();
         $admin->name = 'Admin';
         $admin->role_id = 1;
-        $admin->email = 'pinegrow@yopmail.com';
+        $admin->email = 'pinegroveadmin@gmail.com';
         $admin->email_verified_at = Carbon::now()->toDateTimeString();
-        $admin->password = Hash::make('Duke@123###');
+        $admin->password = Hash::make('Duke@123#');
         $admin->save();
     }
 }

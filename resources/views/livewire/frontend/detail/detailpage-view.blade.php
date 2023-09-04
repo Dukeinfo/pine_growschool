@@ -42,7 +42,10 @@
                 </div>
                 <div class="col-lg-8">
                     <h2 class="secTitle">{!!$heading  ?? "" !!}</h2>
+
+               @if(isset($image) && !empty($image) )
                     <img src="{{getpageImage($image)}}" class="img-fluid rounded mb-4" alt="submenu img">
+               @endif
                     <p>  {!! $desc ?? ""!!}</p>
                     {{-- <a class="immiPressBtn" href="{{$url_link ?? ''}}" target="_blank"><span>Discover More</span></a> --}}
                 </div>

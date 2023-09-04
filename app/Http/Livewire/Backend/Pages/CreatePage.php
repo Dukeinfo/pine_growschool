@@ -28,7 +28,7 @@ class CreatePage extends Component
         'submenu' => 'required |unique:create_pages,submenu_id', 
         'heading' => 'required', 
         'desc' => 'required',
-        'image' => 'required',
+        //'image' => 'required',
         'sort' => 'required', 
         'status' => 'required', 
      
@@ -39,7 +39,7 @@ class CreatePage extends Component
           'submenu.unique' => 'SubMenu Already taken',
           'heading.required' => 'Heading Required.',
           'desc.required' => 'Description Required.',
-          'image.required' => 'Image Required.',
+          //'image.required' => 'Image Required.',
           'sort.required' => 'Sort Id Required.',
           'status.required' => 'Status Required.',
           
@@ -50,7 +50,7 @@ class CreatePage extends Component
         $this->heading = ''; 
         $this->desc = '';
         $this->image = '';
-        $this->link = '';
+        //$this->link = '';
         $this->sort_id = '';
         $this->status = '';
        

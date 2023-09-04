@@ -115,8 +115,8 @@ use App\Http\Livewire\Backend\Certificate\AddTransferCertificate;
 use App\Http\Livewire\Backend\Certificate\EditTransferCertificate;
 use App\Http\Livewire\Backend\Mandatory\MandatoryPublicDisclosure;
 use App\Http\Livewire\Backend\Mandatory\ViewMandatoryPublicDisclosure;
-
-
+use App\Http\Livewire\Backend\VirtualTour\ViewVirtualTour;
+use App\Http\Livewire\Backend\VirtualTour\EditVirtualTour;
 
 use App\Http\Livewire\Frontend\AboutUs;
 use App\Http\Livewire\Frontend\AdmissionForm;
@@ -364,6 +364,11 @@ Route::get('/transfer-certificate', AddTransferCertificate::class)->name('transf
 Route::get('/edit-transfer-certificate/{id}', EditTransferCertificate::class)->name('edit_transfer_certificate'); 
 Route::get('/mandatory-form', MandatoryPublicDisclosure::class)->name('mandatory_form');
 Route::get('/view-mandatory-form', ViewMandatoryPublicDisclosure::class)->name('view_mandatory_form');
+
+Route::get('/virtual-tour', ViewVirtualTour::class)->name('virtual_tour');
+Route::get('/edit-virtual-tour/{id}', EditVirtualTour::class)->name('edit_virtual_tour');
+
+
          
 });
 });

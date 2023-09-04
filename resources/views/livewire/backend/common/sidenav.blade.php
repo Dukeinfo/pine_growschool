@@ -82,20 +82,22 @@
 				</a>
 			</li>
 
-
-			<li>
-				<a href="{{route('view_department')}}" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
-					<span>Department</span>
+			 <li>
+				<a href="javascript: void(0);" class="has-arrow waves-effect">
+					<i class='bx bx-image-add'></i>
+					<span>Staff</span>
 				</a>
-			</li>
-			<li>
-				<a href="{{route('view_staff')}}" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
-					<span>Our Staff</span>
-				</a>
+					
+			  <ul class="sub-menu" aria-expanded="false">
+						<li><a href="{{route('view_department')}}">Department</a></li>
+						<li><a href="{{route('view_staff')}}">View Staff</a></li>
+					   
+					</ul>
+			
 			</li>
 
+
+			
 			<li>
 				<a href="{{route('school_calendar')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
@@ -123,6 +125,13 @@
 				<a href="{{route('transfer_certificate')}}" class="waves-effect">
 					<i class="bx bx-home-circle"></i>
 					<span>Transfer Certificate</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="{{route('virtual_tour')}}" class="waves-effect">
+					<i class="bx bx-home-circle"></i>
+					<span>Virtal Tour</span>
 				</a>
 			</li>
 
