@@ -48,7 +48,7 @@ class EditPage extends Component
                      
                      'menu' => 'required', 
                     //  'submenu' => 'required |unique:create_pages,submenu_id', 
-                     'submenu_id' => ['required', Rule::unique('create_pages')->ignore($this->pageId)],
+                    //  'submenu_id' => ['required', Rule::unique('create_pages')->ignore($this->pageId)],
                      'heading' => 'required', 
                      'desc' => 'required',
                      'sort' => 'required', 
@@ -59,7 +59,7 @@ class EditPage extends Component
           protected $messages = [
               'menu.required' => 'Menu Required.',
               'submenu_id.required' => 'Sub Menu Required.',
-              'submenu_id.unique' => 'SubMenu Already taken',
+            //   'submenu_id.unique' => 'SubMenu Already taken',
               'heading.required' => 'Heading Required.',
               'desc.required' => 'Description Required.',
               'sort.required' => 'Sort Id Required.',

@@ -1,11 +1,12 @@
 
 <div>
-    <section class="pageBanner" style="background-image: url({{asset('assets/images/bg/school-bg.jpg')}});">
+    
+    <section class="pageBanner" style="background-image: url({{ $backimage ? getsubmenuImage($backimage) : asset('assets/images/bg/school-bg.jpg')}});">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="bannerTitle">{{$name ?? ''}}</h2>
+                    <h2 class="bannerTitle">{{Str::title( $display_name) ??  Str::title($name) }}   </h2>
                     <div class="breadcrumbs">
                         <a href="{{route('home.homepage')}}">Home</a>
                         <span>/</span>
@@ -41,10 +42,20 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <h2 class="secTitle">{!!$heading  ?? "" !!}</h2>
-                    <img src="{{getpageImage($image)}}" class="img-fluid rounded mb-4" alt="submenu img">
-                    <p>  {!! $desc ?? ""!!}</p>
-                    {{-- <a class="immiPressBtn" href="{{$url_link ?? ''}}" target="_blank"><span>Discover More</span></a> --}}
+                    @forelse ($getpageData as $index => $data)
+                   
+                        <h2 class="secTitle">{!! $data->heading ?? "" !!}</h2>
+                   
+                        @if(isset($data->image))
+                            <img src="{{ getpageImage($data->image) ?? '' }}" class="img-fluid rounded mb-4" alt="submenu img">
+                        @endif
+                        <p>{!! $data->description ?? "" !!}</p>
+                       
+                    @empty
+                
+                    @endforelse
+                
+                
                 </div>
             </div>
         </div>

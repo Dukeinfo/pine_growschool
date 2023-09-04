@@ -130,7 +130,7 @@
                                 
                              
 
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label"> URL Name  <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" {{$cms == "No" ? 'disabled' : ''}}   wire:model="url_link" 
@@ -138,17 +138,17 @@
                                         @error('url_link') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                {{-- <div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label"> Display Name</label>
+                                        <label class="form-label">Background Banner Display Name</label>
                                         <input type="text" class="form-control"  {{$cms == "No" ? 'disabled' : ''}}   wire:model="display_name" placeholder="Display Name">
                                         @error('display_name') <span class="error">{{ $message }}</span> @enderror
                                    
                                     </div>
-                                </div> --}}
-                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label"> Seo Title</label>
                                         <input type="text" class="form-control"  wire:model="seo_title" placeholder="Seo Title">

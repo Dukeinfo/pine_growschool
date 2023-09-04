@@ -30,6 +30,7 @@ class SubmenuLoader extends Component
             ->with(['SubMenu'])
             ->orderBy('sort_id', 'asc')
             ->where('status', 'Active')
+            ->groupBy('submenu_id')
             ->get();
     }
 

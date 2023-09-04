@@ -14,7 +14,7 @@ class GalleryFactory extends Factory
      */
     public function definition()
     {
-        $categoryIds = [1, 2, 3, 4, 5];
+        $categoryIds = [1, 2, 3, 4, 5,6,7,8,9,10];
         $year=  [2021, 2022,2023];
             //
             $rand =    random_int(0, 20);

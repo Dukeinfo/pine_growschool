@@ -69,47 +69,34 @@ class Gallery extends Component
     SEOMeta::addKeyword( $keywords);
 }
         $this->getcategorywise = ModelsGallery::with(['galCategory'])       
-        ->where('status', 'Active')->orderBy('category_id')->latest()->groupBy('category_id')->get();
+        ->where('status', 'Active')->orderBy('category_id')->groupBy('category_id')->get();
 
         $this->getYearwise= ModelsGallery::with(['galCategory'])       
         ->where('status', 'Active')->orderBy('year')->latest()->groupBy('year')->get();
 }
 
 public function searchGallery(){
-        $this->search = $this->search;
-        
-
-    
+        $this->search = $this->search;   
 }
 
 
 
     public function render()
-    {
-                    
-            //     $galleryimages =   ModelsGallery:: whereHas('galCategory', function (EloquentBuilder $query) {
-            //     $query->whereIn('category_id', 'like', '%'.$this->yearValue.'%');
-            // })
-            // ->where('status', 'Active')
-            // ->orderBy('sort_id')
-            // ->groupBy('category_id')->paginate(10);
-
-    
-
-        
-
-        return view('livewire.frontend.gallery'    ,    [
-            'galleryimages' =>  ModelsGallery::with(['galCategory'])
-            ->where('status', 'Active')
+    {                    
+      return view('livewire.frontend.gallery',[
+            'galleryimages' => ModelsGallery::with(['galCategory'])
+            ->join('categories', 'galleries.category_id', '=', 'categories.id')
             ->where(function ($query) {
-                $query->where('addmision_no', 'like', '%' . $this->search . '%')
-                      ->orWhere('s_name', 'like', '%' . $this->search . '%')
-                      ->orWhere('category_id', 'like', '%' . $this->search . '%')
-                      ->orWhere('year', 'like', '%' . $this->search . '%');
+                $search = trim($this->search);
+                $query->where('galleries.addmision_no', 'like', '%' . $search . '%')
+                    ->orWhere('galleries.s_name', 'like', '%' . $search . '%')
+                    ->orWhere('galleries.year', 'like', '%' . $search . '%')
+                    ->orWhere('categories.id', 'like', '%' . $search . '%'); // Assuming 'name' is the column you want to search in the 'categories' table
             })
-            ->orderBy('sort_id')
-            ->groupBy('category_id')
-            ->paginate(10)] )->layout('layouts.frontend');
+            ->where('galleries.status', 'Active')
+            ->orderBy('galleries.sort_id')
+            ->groupBy('galleries.category_id')
+            ->paginate(10)])->layout('layouts.frontend');
 
         $this->resetInputFields();
     }

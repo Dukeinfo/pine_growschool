@@ -12,5 +12,10 @@ class Menu extends Model
     use SoftDeletes;  //invoking
 
     protected $guarded = [];
+    public function getSubmenu(){
+        return $this->hasMany(Submenu::class);
+
+    }
+
 
 }

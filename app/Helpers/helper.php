@@ -42,6 +42,7 @@ function getThumbnail($value) {
     }
     return asset('uploads/thumbnail/'.$value);
 }
+// backgroundimage 
 function getsubmenuImage($value) {
     return asset('storage/uploads/submenu/'.$value);
 }

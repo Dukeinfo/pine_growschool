@@ -86,10 +86,8 @@ class EditSubMenu extends Component
       $submenu->sort_id =$this->sort_id;
       $submenu->cms =$this->cms;
       if($this->cms == "Yes"){
-
         $submenu->pname =  NULL;
       }else{
-
         $submenu->pname =  $this->pname;
       }
 

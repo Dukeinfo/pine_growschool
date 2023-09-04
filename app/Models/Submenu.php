@@ -18,4 +18,10 @@ class Submenu extends Model
     {
         return $this->belongsTo(Menu::class,'menu_id','id');
     }
+    public function getCreatePages(){
+        return $this->hasMany(CreatePage::class);
+
+    }
+
+    
 }

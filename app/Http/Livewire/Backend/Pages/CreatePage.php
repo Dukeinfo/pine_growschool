@@ -25,10 +25,10 @@ class CreatePage extends Component
 
     protected $rules = [ 
         'menu' => 'required', 
-        'submenu' => 'required |unique:create_pages,submenu_id', 
+        // 'submenu' => 'required |unique:create_pages,submenu_id', 
         'heading' => 'required', 
         'desc' => 'required',
-        'image' => 'required',
+        // 'image' => 'required',
         'sort' => 'required', 
         'status' => 'required', 
      
@@ -36,10 +36,10 @@ class CreatePage extends Component
       protected $messages = [
           'menu.required' => 'Menu Required.',
           'submenu.required' => 'Sub Menu Required.',
-          'submenu.unique' => 'SubMenu Already taken',
+          // 'submenu.unique' => 'SubMenu Already taken',
           'heading.required' => 'Heading Required.',
           'desc.required' => 'Description Required.',
-          'image.required' => 'Image Required.',
+          // 'image.required' => 'Image Required.',
           'sort.required' => 'Sort Id Required.',
           'status.required' => 'Status Required.',
           
@@ -59,7 +59,7 @@ class CreatePage extends Component
     public function render()
     {
     	$this->getMenus = Menu::get();
-    	 $this->records = appCreatePage::orderBy('sort_id','asc')->get();
+    	 $this->records = appCreatePage::orderBy('submenu_id')->get();
         return view('livewire.backend.pages.create-page')->layout('layouts.backend');
     }
 
