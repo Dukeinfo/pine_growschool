@@ -4,7 +4,7 @@
         <div class="container-fluid">
 
 
- <form action="" wire:submit.prevent="store">
+ <form action="" wire:submit.prevent="edit">
                 <div class="row">
                   <div class="col-md-12">
                       <div style="text-align:left;"><strong>A:</strong> <span><strong><u>GENERAL INFORMATION:</u></strong></span></div>
@@ -339,19 +339,28 @@
                                   <td>
                                       <strong> REMARKS</strong>
                                   </td>
+                                  <td>
+                                      <strong> Action</strong>
+                                  </td>
                               </tr>
                           </thead>
                           </tbody>
-                           @php
-                         $srno=1;
+                         @php
+                         $sl=0;
                         @endphp  
-                        @foreach ($inputs as $index => $input)   
+                        @foreach ($resultData as $index => $std)   
                           <tr>
                               <td>
-                                  {{$srno}}
+                                  {{++$sl}}
                               </td>
                               <td>
-                                  <input type="text" class="form-control" wire:model="inputs.{{ $index }}.r1" id="r1" value="2020"/>
+                                @if($editStudentIndex===$index)
+                                  <input type="text" class="form-control" wire:model.defer="resultData.{{ $index }}.year" />
+                                @else
+
+                                {{$std->year}}
+                                
+                               @endif
                               </td>
                               <td>
                                   <input type="text" class="form-control" wire:model="inputs.{{ $index }}.r2" id="r2" value="42"/>
@@ -366,8 +375,17 @@
                                   <input type="text" class="form-control" wire:model="inputs.{{ $index }}.r5" id="r5" value="Passed"/>
                                  
                               </td>
+
+                               <td>
+                                  @if($editStudentIndex===$index)
+                                  <button  value="Submit" class="immiPressBtn" wire:click.prevent="saveStudent({{$index}})">Save </button>
+                                  @else
+                                     <button  value="Submit" class="immiPressBtn" wire:click.prevent="editStudent({{$index}})">Edit </button>
+                                  @endif   
+                                 
+                              </td>
                           </tr>
-                        	@php $srno++ @endphp
+                        	
                           @endforeach
                             
                           </tbody>

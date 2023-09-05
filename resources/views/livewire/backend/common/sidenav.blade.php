@@ -97,14 +97,25 @@
 			</li>
 
 
-			
-			<li>
-				<a href="{{route('school_calendar')}}" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
+
+
+	      	<li>
+				<a href="javascript: void(0);" class="has-arrow waves-effect">
+					<i class='bx bx-image-add'></i>
 					<span>School Calendar</span>
 				</a>
+					
+			  <ul class="sub-menu" aria-expanded="false">
+						<li><a href="{{route('school_calendar')}}">School Event</a></li>
+						<li><a href="{{route('import_school_calendar')}}">Import School Event</a></li>
+					   
+					</ul>
+			
 			</li>
 
+
+			
+			
 
             <li>
 				<a href="{{route('group_phptos')}}" class="waves-effect">

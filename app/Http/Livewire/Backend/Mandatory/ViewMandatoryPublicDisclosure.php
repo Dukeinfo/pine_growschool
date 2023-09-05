@@ -18,6 +18,44 @@ use Livewire\WithFileUploads;
 class ViewMandatoryPublicDisclosure extends Component
 {
 
+
+   public $resultData=[];
+   public $editStudentIndex=null; 
+
+   protected $rules=[
+
+    'resultData.*.year'=>['required'],
+
+   ];
+
+   protected $validationAttributes=[
+
+    'resultData.*.year'=> 'year',
+
+   ];
+
+   public function editStudent($studentIndex){
+      $this->editStudentIndex=$studentIndex;
+   }
+
+
+    public function saveStudent($studentIndex){
+
+      $this->validate();  
+
+      $Student=$this->resultData[$studentIndex];
+
+      ResultClassx::find($Student['id'])->update([
+          'year'  => $Student->year,
+
+      ]);
+      $this->editStudentIndex=null;
+      $this->editStudentFeild=null;
+
+
+   } 
+
+
    public function mount()
     {
     //display all general information feilds if exists
@@ -51,6 +89,11 @@ class ViewMandatoryPublicDisclosure extends Component
     $this->doc3_aca = $resultacademics->doc3;
     $this->doc4_aca = $resultacademics->doc4;
     $this->doc5_aca = $resultacademics->doc5;
+
+    //display all result academics information if exists
+    $this->resultData = ResultClassx::where('general_information_id', $firstRow->id)->get();
+   
+
 
     //display all result academics information if exists
     $staffinformation = StaffInformation::where('general_information_id', $firstRow->id)->first();
@@ -115,8 +158,8 @@ class ViewMandatoryPublicDisclosure extends Component
         $this->ii = $ii;
         array_push($this->inputother ,$ii);
     }
- 
 
+  
     public function render()
     {
         return view('livewire.backend.mandatory.view-mandatory-public-disclosure')->layout('layouts.backend');

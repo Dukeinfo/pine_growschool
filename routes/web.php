@@ -109,6 +109,7 @@ use App\Http\Livewire\Backend\Rollofhonour\ViewRollofhonour;
 use App\Http\Livewire\Backend\Rollofhonour\EditRollofhonour;
 use App\Http\Livewire\Backend\Calendar\SchoolCalendar;
 use App\Http\Livewire\Backend\Calendar\EditSchoolCalendar;
+use App\Http\Livewire\Backend\Calendar\ImportSchoolEvent;
 use App\Http\Livewire\Backend\Document\AddDocument;
 use App\Http\Livewire\Backend\Document\EditDocument;
 use App\Http\Livewire\Backend\Certificate\AddTransferCertificate;
@@ -353,6 +354,7 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
 
     Route::get('/school-calendar', SchoolCalendar::class)->name('school_calendar');
  Route::get('/edit-school-calendar/{id}', EditSchoolCalendar::class)->name('edit_school_calendar');
+   Route::get('/import-school-calendar', ImportSchoolEvent::class)->name('import_school_calendar');
 
    Route::get('/faqs-category', AddFaqsCategory::class)->name('faqs_category');
  Route::get('/edit-faqs-category/{id}', EditFaqsCategory::class)->name('edit_faqs_category');
