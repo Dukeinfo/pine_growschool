@@ -42,7 +42,7 @@ class SchoolCalendar extends Component
 
     public function schoolEvent(){
       $validatedData = $this->validate();
-      $date=date('Y-m-d', strtotime($this->schoolDate));
+      $date=date('d-m-Y', strtotime($this->schoolDate));
       $schoolCalendar = new appSchoolCalendar();
       $schoolCalendar->date = $date;
       $schoolCalendar->event = $this->schoolevent;

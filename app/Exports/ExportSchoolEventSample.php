@@ -13,17 +13,15 @@ class ExportSchoolEventSample implements FromCollection , WithHeadings
     public function collection()
     {
         // Generate sample data for the Excel file
-    $data = collect([         
-        [   '13/01/2023','Lohri','1',	'Active'],
-       
-            
-        ]);
-
+        $data = collect([       
+        [   '13-01-2023','Lohri','1',	'Active'],
+        ]); 
         return $data;
     }
 
+
     public function headings(): array
     {
-        return ['Date', 'Event',  ,'Sort id' ,'Status'];
+        return ['Date date-month-year', 'Event' ,'Sort id' ,'Status'];
     }
 }

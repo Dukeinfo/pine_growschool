@@ -30,7 +30,7 @@ class EditSchoolCalendar extends Component
 
      public function editSchoolEvent(){
     	
-      $date=date('Y-m-d', strtotime($this->schoolDate));
+      $date=date('d-m-Y', strtotime($this->schoolDate));
 
       $schoolCalendar = SchoolCalendar::find($this->editId);
       $schoolCalendar->date = $date;

@@ -19,7 +19,7 @@ class EditOurTopper extends Component
 
     use WithFileUploads;
     use UploadTrait;
-    public $ourtopperId,$category,$name,$classname,$section,$percentage,$link,$image,$sort_id,$status;
+    public $ourtopperId,$category,$name, $thumbnail,$classname,$section,$percentage,$link,$image,$sort_id,$status;
 
       public $editimage; 
 

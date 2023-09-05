@@ -36,7 +36,7 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Department</label>
-                                        <select class="form-select" wire:model="department_id">
+                                        <select class="form-select" wire:model="department_id" disabled>
                                                 <option value="">Select</option>
                                                 @if(isset($departments))
                                             @foreach($departments as $department)

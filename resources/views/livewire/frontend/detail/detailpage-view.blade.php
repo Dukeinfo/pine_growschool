@@ -43,9 +43,11 @@
                 </div>
                 <div class="col-lg-8">
                     @forelse ($getpageData as $index => $data)
-                   
+                   @if($index === 0)
                         <h2 class="secTitle">{!! $data->heading ?? "" !!}</h2>
-                   
+                    @else
+                        <h3 class="widgetTitle text-dark fs-5 mb-3">{!! $data->heading ?? "" !!}</h3>
+                    @endif
                         @if(isset($data->image))
                             <img src="{{ getpageImage($data->image) ?? '' }}" class="img-fluid rounded mb-4" alt="submenu img">
                         @endif

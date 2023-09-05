@@ -4,6 +4,7 @@ use App\Models\Categories;
 use App\Models\ClassMaster;
 use App\Models\Location;
 use App\Models\Menu;
+use App\Models\SectionMaster;
 use App\Models\SubjectTeach;
 use App\Models\User;
 
@@ -31,6 +32,12 @@ return $subject->name;
 function getClassName($id){
     $fetchClass =  ClassMaster::where('id', $id)->first();
 return $fetchClass->classname;
+
+}
+
+function getSectionName($id){
+    $fetchSection =  SectionMaster::where('id', $id)->first();
+return $fetchSection->name;
 
 }
 

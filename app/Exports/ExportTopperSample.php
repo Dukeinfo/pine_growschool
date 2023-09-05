@@ -15,9 +15,9 @@ class ExportTopperSample implements FromCollection , WithHeadings
     {
         // Generate sample data for the Excel file
          $data = collect([         
-        [   'Sports',	'John Smith',	'10th'	,'A',	'85.5'	,'image1.jpg',	'thumb1.jpg',	'www.example.com/profile/john_smith',	'1',	'Active'],
-        [   'Sports',	'John Smith',	'10th'	,'A'	,'85.5',	'image1.jpg',	'thumb1.jpg',	'www.example.com/profile/john_smith',	'2',	'Active'],
-        [   'Sports',	'John Smith',	'10th'	,'A',	'85.5'	,'image1.jpg',	'thumb1.jpg',	'www.example.com/profile/john_smith',	'3',	'Active']
+        [   'Topper',	'John ',	'10th'	,'A',	'85.5'	,'image1.jpg',	'thumb1.jpg',	'www.example.com/profile/john_smith',	'1',	'Active'],
+        [   'Topper',	'Smith',	'10th'	,'A'	,'85.5',	'image1.jpg',	'thumb1.jpg',	'www.example.com/profile/john_smith',	'2',	'Active'],
+        [   'Topper',	'Dev',	'10th'	,'A',	'85.5'	,'image1.jpg',	'thumb1.jpg',	'www.example.com/profile/john_smith',	'3',	'Active']
         ]);
 
         return $data;

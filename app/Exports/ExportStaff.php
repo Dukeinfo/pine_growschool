@@ -20,7 +20,6 @@ class ExportStaff implements FromCollection, WithHeadings , ShouldAutoSize, With
     */
     protected $selectedFields;
     protected $customHeadings;
-
    
     public function __construct(array $selectedFields, array $customHeadings)
     {
@@ -40,13 +39,13 @@ class ExportStaff implements FromCollection, WithHeadings , ShouldAutoSize, With
     public function styles(Worksheet $sheet)
     {
         // Make sure you enable worksheet protection if you need any of the worksheet or cell protection features!
-        $sheet->getParent()->getActiveSheet()->getProtection()->setSheet(true);
+        // $sheet->getParent()->getActiveSheet()->getProtection()->setSheet(true);
         
-        // lock all cells then unlock the cell
-        $sheet->getParent()->getActiveSheet()
-            ->getStyle('A2:I1000')
-            ->getProtection()
-            ->setLocked(Protection::PROTECTION_UNPROTECTED);
+        // // lock all cells then unlock the cell
+        // $sheet->getParent()->getActiveSheet()
+        //     ->getStyle('A2:I1000')
+        //     ->getProtection()
+        //     ->setLocked(Protection::PROTECTION_UNPROTECTED);
 
         // styling first row
         $sheet->getStyle(1)->getFont()->setBold(true);

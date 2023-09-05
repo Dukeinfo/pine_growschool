@@ -12,4 +12,6 @@ class SchoolCalendar extends Model
     use SoftDeletes;
     protected $guarded = [];
 
+    // protected $date = 'd-m-Y'; 
+
 }

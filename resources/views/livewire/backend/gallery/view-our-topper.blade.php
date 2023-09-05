@@ -103,7 +103,7 @@
                                                 <option value="">Select</option>
                                                 @if(isset($getClass))
                                             @foreach($getClass as $class)
-                                              <option value="{{$class->id}}"> {{$class->classname}}</option>
+                                              <option value="{{$class->classname}}"> {{$class->classname}}</option>
                                             @endforeach
                                         @endif
                                              
@@ -119,7 +119,7 @@
                                                 <option value="">Select</option>
                                               @if(isset($getSection))
                                             @foreach($getSection as $section)
-                                              <option value="{{$section->id}}"> {{$section->name}}</option>
+                                              <option value="{{$section->name}}"> {{$section->name}}</option>
                                             @endforeach
                                              @endif
                                             
