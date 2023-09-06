@@ -79,10 +79,13 @@ class MandatoryPublicDisclosure extends Component
  
 
     public function store(){
-
-    
-
-         
+    $count = GeneralInformation::count();
+    if($count > 0){
+       $this->dispatchBrowserEvent('swal:modal', [
+              'type' => 'error',  
+              'message' => 'Record exists you can edit only', 
+          ]);
+    }else{ 
      GeneralInformation::truncate();     
 
       //GENERAL INFORMATION
@@ -185,7 +188,11 @@ class MandatoryPublicDisclosure extends Component
 
 		          $resultClassx = new ResultClassx();
 		          $resultClassx->general_information_id = $generalInformation->id;
-		          $resultClassx->year = $inputsData['r1'] ?? null;
+		          $resultClassx->year = $inputsData['year'] ?? null;
+              $resultClassx->regstu = $inputsData['regstu'] ?? null;
+              $resultClassx->passstu = $inputsData['passstu'] ?? null;
+              $resultClassx->passper = $inputsData['passper'] ?? null;
+               $resultClassx->remarks = $inputsData['remarks'] ?? null;
 		          $resultClassx->save();
 		        }
 		  }      
@@ -200,6 +207,10 @@ class MandatoryPublicDisclosure extends Component
 		          $resultClassxi = new ResultClassxi();
 		          $resultClassxi->general_information_id = $generalInformation->id;
 		          $resultClassxi->year = $otherData['year'] ?? null;
+              $resultClassxi->regstu = $otherData['regstu'] ?? null;
+              $resultClassxi->passstu = $otherData['passstu'] ?? null;
+              $resultClassxi->passper = $otherData['passper'] ?? null;
+              $resultClassxi->remarks = $otherData['remarks'] ?? null;
 		          $resultClassxi->save();
 		        }  
 		   } 
@@ -234,7 +245,7 @@ class MandatoryPublicDisclosure extends Component
       $schoolInfrastructure->save();  
 
       return redirect()->route('view_mandatory_form'); 	
-   	
+   	 }
    }
 
 

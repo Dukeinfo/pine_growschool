@@ -4,10 +4,11 @@
         <div class="container-fluid">
 
 
- <form action="" wire:submit.prevent="edit">
+<form action="" wire:submit.prevent="editRecord">
                 <div class="row">
                   <div class="col-md-12">
                       <div style="text-align:left;"><strong>A:</strong> <span><strong><u>GENERAL INFORMATION:</u></strong></span></div>
+ 
                       <table class="table table-bordered mb-4">
                           <thead class="table-primary">
                               <tr>
@@ -109,7 +110,10 @@
                           </tr>
                           </tbody>
                       </table>
+                      
+                      
                       <div style="text-align:left;"><strong>B:</strong> <span><strong><u>DOCUMENTS AND INFORMATION:</u></strong></span></div>
+                     
                       <table class="table table-bordered mb-4">
                           <thead class="table-primary">
                               <tr>
@@ -133,9 +137,13 @@
                                   COPIES OF AFFILIATION/UPGRADATION LETTER AND RECENT EXTENSION OF AFFILIATION, IF ANY
                               </td>
                               <td>
-                                  <input type="file" id="affn_doc" wire:model="doc1" />
-                                  @error('doc1') <span class="error">{{ $message }}</span> @enderror
-                                <a href="cbsedocs/1806.pdf" target="_blank">View </a>
+                                  <input type="file" id="affn_doc" wire:model="editdoc1" />
+                                 
+@if(isset($doc1))  
+<a href="javascript:void(0)" wire:click="download('{{$doc1 ?? '' }}')"> Download </a>
+@endif
+
+                         
 
                                       
                               </td>
@@ -148,9 +156,12 @@
                                   COPIES OF SOCIETIES/TRUST/COMPANY REGISTRATION/RENEWAL CERTIFICATE, AS APPLICABLE
                               </td>
                               <td>
-                                  <input type="file" id="school_cert" wire:model="doc2" />
-                                  @error('doc2') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/2938.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_cert" wire:model="editdoc2" />
+                                  
+                                         @if(isset($doc2))  
+<a href="javascript:void(0)" wire:click="download('{{$doc2 ?? '' }}')"> Download </a>
+@endif
+
                                                           </td>
                           </tr>
                           <tr>
@@ -161,9 +172,12 @@
                                   COPY OF NO OBJECTION CERTIFICATE (NOC) ISSUED, IF APPLICABLE, BY THE STATE GOVT./UT
                               </td>
                               <td>
-                                  <input type="file" id="school_noc" wire:model="doc3" />
-                                   @error('doc3') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/3786.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_noc" wire:model="editdoc3" />
+                            
+                                @if(isset($doc3))  
+<a href="javascript:void(0)" wire:click="download('{{$doc3 ?? '' }}')"> Download </a>
+@endif
+
                                                           </td>
                           </tr>
                           <tr>
@@ -174,9 +188,10 @@
                                   COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT, 2009, AND IT’S RENEWAL IF APPLICABLE
                               </td>
                               <td>
-                                  <input type="file" id="school_reco" wire:model="doc4" />
-                                   @error('doc4') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/4089.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_reco" wire:model="editdoc4" />
+                                @if(isset($doc4))  
+<a href="javascript:void(0)" wire:click="download('{{$doc4 ?? '' }}')"> Download </a>
+@endif
                                                           </td>
                           </tr>
                           <tr>
@@ -187,9 +202,11 @@
                                   COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE
                               </td>
                               <td>
-                                  <input type="file" id="school_bdgsafety" wire:model="doc5" />
-                                   @error('doc5') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/5236.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_bdgsafety" wire:model="editdoc5" />
+                                  
+       @if(isset($doc5))  
+<a href="javascript:void(0)" wire:click="download('{{$doc5 ?? '' }}')"> Download </a>
+@endif
                                                           </td>
                           </tr>
                           <tr>
@@ -200,9 +217,11 @@
                                   COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY
                               </td>
                               <td>
-                                  <input type="file" id="school_firesafety" wire:model="doc6" />
-                                   @error('doc6') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/6879.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_firesafety" wire:model="editdoc6" />
+                                  
+  @if(isset($doc6))  
+<a href="javascript:void(0)" wire:click="download('{{$doc6 ?? '' }}')"> Download </a>
+@endif
                                                           </td>
                           </tr>
                           <tr>
@@ -213,9 +232,11 @@
                                   COPY OF THE DEO CERTIFICATE SUBMITTED BY THE SCHOOL FOR AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATIONOR SELF CERTIFICATION BY SCHOOL
                               </td>
                               <td>
-                                  <input type="file" id="school_deo" wire:model="doc7" />
-                                   @error('doc7') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/7444.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_deo" wire:model="editdoc7" />
+                                  
+  @if(isset($doc7))  
+<a href="javascript:void(0)" wire:click="download('{{$doc7 ?? '' }}')"> Download </a>
+@endif
                                                           </td>
                           </tr>
                           <tr>
@@ -226,15 +247,20 @@
                                   COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES
                               </td>
                               <td>
-                                  <input type="file" id="school_sanitise" wire:model="doc8" />
-                                   @error('doc8') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/8441.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_sanitise" wire:model="editdoc8" />
+                                  
+  @if(isset($doc8))  
+<a href="javascript:void(0)" wire:click="download('{{$doc8 ?? '' }}')"> Download </a>
+@endif
                                                           </td>
                           </tr>
                           </tbody>
                       </table>
+                     
+                   
                       <div style="text-align:left; margin-bottom: 15px;"><strong>NOTE: </strong> <span>THE SCHOOLS NEEDS TO UPLOAD THE SELF ATTESTED COPIES OF ABOVE LISTED DOCUMETNS BY CHAIRMAN/MANAGER/SECRETARY AND PRINCIPAL. IN CASE, IT IS NOTICED AT LATER STAGE THAT UPLOADED DOCUMENTS ARE NOT GENUINE THEN SCHOOL SHALL BE LIABLE FOR ACTION AS PER NORMS.</span></div>
                       <div style="text-align:left;"><strong>C:</strong> <span><strong><u>RESULT AND ACADEMICS:</u></strong></span></div>
+                       
                       <table class="table table-bordered mb-4">
                           <thead class="table-primary">
                               <tr>
@@ -258,9 +284,11 @@
                                   FEE STRUCTURE OF THE SCHOOL
                               </td>
                               <td>
-                                  <input type="file" id="school_fee" wire:model="doc1_aca" />
-                                  @error('doc1_aca') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/9167.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_fee" wire:model="editdoc1_aca" />
+                                 
+@if(isset($doc1_aca))  
+<a href="javascript:void(0)" wire:click="download('{{$doc1_aca ?? '' }}')"> Download </a>
+@endif
                                                           </td>
                           </tr>
                           <tr>
@@ -271,9 +299,12 @@
                                   ANNUAL ACADEMIC CALANDER.
                               </td>
                               <td>
-                                  <input type="file" id="school_calendar" wire:model="doc2_aca" />
-                                 @error('doc2_aca') <span class="error">{{ $message }}</span> @enderror 
-                                                                  <a href="cbsedocs/10210.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_calendar" wire:model="editdoc2_aca" />
+                                
+
+ @if(isset($doc2_aca))  
+<a href="javascript:void(0)" wire:click="download('{{$doc2_aca ?? '' }}')"> Download </a>
+@endif
                                                           </td>
                           </tr>
                           <tr>
@@ -284,9 +315,11 @@
                                   LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)
                               </td>
                               <td>
-                                  <input type="file" id="school_committe" wire:model="doc3_aca" />
-                                  @error('doc3_aca') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/11381.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_committe" wire:model="editdoc3_aca" />
+                                  
+@if(isset($doc3_aca))  
+<a href="javascript:void(0)" wire:click="download('{{$doc3_aca ?? '' }}')"> Download </a>
+@endif
                                                           </td>
                           </tr>
                           <tr>
@@ -297,9 +330,11 @@
                                   LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS
                               </td>
                               <td>
-                                  <input type="file" id="school_pta" wire:model="doc4_aca" />
-                                  @error('doc4_aca') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/12672.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_pta" wire:model="editdoc4_aca" />
+                                 
+@if(isset($doc4_aca))  
+<a href="javascript:void(0)" wire:click="download('{{$doc4_aca ?? '' }}')"> Download </a>
+@endif
                                                           </td>
                           </tr>
                           <tr>
@@ -310,14 +345,19 @@
                                   LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABLILITY
                               </td>
                               <td>
-                                  <input type="file" id="school_result" wire:model="doc5_aca" />
-                                  @error('doc5_aca') <span class="error">{{ $message }}</span> @enderror
-                                                                  <a href="cbsedocs/13636.pdf" target="_blank">View</a>
+                                  <input type="file" id="school_result" wire:model="editdoc5_aca" />
+                                  
+ @if(isset($doc5_aca))  
+<a href="javascript:void(0)" wire:click="download('{{$doc5_aca ?? '' }}')"> Download </a>
+@endif
                                                           </td>
                           </tr>
                           </tbody>
                       </table>
+                      
+                   
                       <div style="text-align:left;"><strong>RESULT CLASS: X</strong></div>
+
                       <table class="table table-bordered mb-4">
                           <thead class="table-primary">
                               <tr>
@@ -345,7 +385,7 @@
                               </tr>
                           </thead>
                           </tbody>
-                         @php
+                        @php
                          $sl=0;
                         @endphp  
                         @foreach ($resultData as $index => $std)   
@@ -354,34 +394,34 @@
                                   {{++$sl}}
                               </td>
                               <td>
-                                @if($editStudentIndex===$index)
-                                  <input type="text" class="form-control" wire:model.defer="resultData.{{ $index }}.year" />
-                                @else
-
-                                {{$std->year}}
                                 
-                               @endif
+                                {{$std->year}}
+                               
                               </td>
                               <td>
-                                  <input type="text" class="form-control" wire:model="inputs.{{ $index }}.r2" id="r2" value="42"/>
+                                 
+                                  {{$std->regstu}}
+                                
                               </td>
                               <td>
-                                  <input type="text" class="form-control" wire:model="inputs.{{ $index }}.r3" id="r3" value="42"/>
+
+                                  {{$std->passstu}}
+                                
                               </td>
                               <td>
-                                  <input type="text" class="form-control" wire:model="inputs.{{ $index }}.r4" id="r4" value="100"/>
-                              </td>
-                              <td>
-                                  <input type="text" class="form-control" wire:model="inputs.{{ $index }}.r5" id="r5" value="Passed"/>
+                                
+                                  {{$std->passper}}
                                  
                               </td>
-
+                              <td>
+                                
+                                  {{$std->remarks}}
+                               
+                              </td>
                                <td>
-                                  @if($editStudentIndex===$index)
-                                  <button  value="Submit" class="immiPressBtn" wire:click.prevent="saveStudent({{$index}})">Save </button>
-                                  @else
-                                     <button  value="Submit" class="immiPressBtn" wire:click.prevent="editStudent({{$index}})">Edit </button>
-                                  @endif   
+                                  
+                                     <button  value="Submit" class="immiPressBtn" wire:click.prevent="$emit('showResultX', {{ $std->id }} ,'FIRST' )">Edit </button>
+                                    
                                  
                               </td>
                           </tr>
@@ -412,40 +452,58 @@
                                   <td>
                                       <strong> REMARKS</strong>
                                   </td>
+                                  <td>
+                                      <strong> Action</strong>
+                                  </td>
                               </tr>
                           </thead>
                           </tbody>
-                           @php
-                         $srrno=1;
+                         @php
+                         $srl=0;
                         @endphp  
-                        @foreach ($inputother as $key => $other)   
+                        @foreach ($resultDataII as $index => $std)   
                           <tr>
                               <td>
-                                  {{$srrno}}
+                                  {{++$srl}}
                               </td>
                               <td>
-                                  <input type="text" class="form-control" wire:model="inputother.{{ $key }}.year" id="r11" value="2020"/>
+                                
+                                {{$std->year}}
+                               
                               </td>
                               <td>
-                                  <input type="text" class="form-control" wire:model="inputother.{{ $key }}.student" id="r22" value="42"/>
+                                 
+                                  {{$std->regstu}}
+                                
                               </td>
                               <td>
-                                  <input type="text" class="form-control" wire:model="inputother.{{ $key }}.pstudent" id="r33" value="42"/>
+
+                                  {{$std->passstu}}
+                                
                               </td>
                               <td>
-                                  <input type="text" class="form-control" wire:model="inputother.{{ $key }}.pper" id="r44" value="100"/>
-                              </td>
-                              <td>
-                                  <input type="text" class="form-control" wire:model="inputother.{{ $key }}.remarks" id="r55" value="Passed"/>
+                                
+                                  {{$std->passper}}
                                  
                               </td>
-                          </tr>
-                        	@php $srrno++ @endphp
+                              <td>
+                                
+                                  {{$std->remarks}}
+                               
+                              </td>
+                               <td>
+                                  
+                                     <button  value="Submit" class="immiPressBtn" wire:click.prevent="$emit('showResultX', {{ $std->id }} ,'SECOND' )">Edit </button>
+                                    
+                                 
+                              </td>
+                             </tr>
+                          
                           @endforeach
-                            
                           </tbody>
                       </table>
                       <div style="text-align:left;"><strong>D:</strong> <span><strong><u>STAFF (TEACHING)</u></strong></span></div>
+                      
                       <table class="table table-bordered mb-4">
                           <thead class="table-primary">
                               <tr>
@@ -536,8 +594,12 @@
                               </td>
                           </tr>
                           </tbody>
+
                       </table>
+
+                    
                       <div style="text-align:left;"><strong>E:</strong> <span><strong><u>SCHOOL INFRASTRUCTURE:</u></strong></span></div>
+                     
                       <table class="table table-bordered mb-4">
                           <thead class="table-primary">
                               <tr>
@@ -632,18 +694,18 @@
                       </table>
 
 
-                      <button type="submit" value="Submit" class="immiPressBtn">
+                      <button type="submit" value="Submit" class="btn btn-primary btn-lg">
                                                 <span>Edit</span>
                                             </button>
                                            
-
+                     
                                      
 
 
                   </div>
                 </div>
                 <!--end row-->
-              </form>
+             </form>
             
 
         </div>

@@ -211,8 +211,8 @@
                                         <tr>
                                             <td>{{$record->category ?? '' }}</td>
                                             <td>{{$record->name ?? '' }}</td>
-                                            <td>{{$record->Class->classname ?? '' }}</td>
-                                            <td>{{$record->Section->name ?? '' }}</td>
+                                            <td>{{$record->class ?? '' }}</td>
+                                            <td>{{$record->section ?? '' }}</td>
                                              <td>{{$record->percentage ?? '' }}</td>
                                               <td>{{$record->link ?? '' }}</td>
                                             <td>

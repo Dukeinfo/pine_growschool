@@ -132,5 +132,7 @@
       
      </script>
 
+     @livewire('modals.edit-resultx')
+
     </body>
 </html>
