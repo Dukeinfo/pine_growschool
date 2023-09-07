@@ -8,37 +8,47 @@
         @endphp
     @endif
     @if(!empty($menu->link))
-    <li>
-        <a href="{{ !empty($menu->link) ? route($menu->link) : '#' }}">{{ $menu->name ?? '' }}</a>
-    </li>
-    @else
+             {{-- ====== not show faq here ======== --}}
+             @if($menu->name !=  'FAQs' ||  $menu->link !=  'faqs_introduction')
+             <li> 
+                 <a href="{{ !empty($menu->link) ? route($menu->link) : '#' }}">{{ $menu->name ?? '' }}</a>
+             </li>
+             @endif
+            {{-- ====== not show faq here ======== --}}
+            {{-- faq if start  --}}
+                @if($menu->name ===  'FAQs' ||  $menu->link ==  'faqs_introduction')
+                    <li class="menu-item-has-children">
+                        <a href="javascript:void(0);">FAQs</a>
+                        <ul class="sub-menu">
+                        @forelse ($getfaqcat as $key => $faqcat )
+                   
+                        <li><a href="{{route('faqs_introduction', ['id' => $faqcat->id ?? '', 'slug' => strtolower(str_replace(' ', '-',$faqcat->name)) ?? ''])}}">{{$faqcat->name}}</a></li>
+                          
+                        @empty
+                            
+                        @endforelse
+                        
+
+                        </ul>
+                    </li>
+                @endif
+                {{-- faq if start  --}}
+
+   
+        @else
+
     @endif      
 
-    <li class="menu-item-has-children">
-       
-        {{-- @php
-        $getSubmenus = App\Models\Submenu::where('cms', 'No')->where('menu_id', $menu->id)->orderBy('sort_id', 'asc')->where('status', 'Active')->get();
-        $getpage = App\Models\CreatePage::where('menu_id', $menu->id)->with(['SubMenu'])->orderBy('sort_id', 'asc')->where('status', 'Active')->get();
-        @endphp --}}
-    @if(!isset($menu->link))
-        <a href="javascript:void(0)}">{{ $menu->name ?? '' }}</a>
-    @endif
+      <li class="menu-item-has-children">
+            @if(!isset($menu->link) )
+                <a href="javascript:void(0)}">{{ $menu->name ?? '' }}</a>
+            @endif
+            {{-- submenu  --}}
+            @livewire('frontend.common.submenu-loader' , ['menuId' => $menu->id])
+ 
+             
+           
 
-        {{-- <livewire:frontend.common.submenu-loader :menuId="$menu->id" /> --}}
-                @livewire('frontend.common.submenu-loader' , ['menuId' => $menu->id])
-
-
-
-        {{-- <ul class="sub-menu">
-            @foreach($getpage as $page)
-                @if($page->SubMenu->cms == 'Yes')
-                    <li><a href="{{ route('detail_page', ['page_id' => $page->id ?? '', 'slug' => $page->SubMenu->slug ?? '']) }}">{{ $page->SubMenu->display_name ?? '' }}</a></li>
-                @endif
-            @endforeach
-            @foreach($getSubmenus as $submenu)
-                 <li><a href="{{ isset($submenu->pname) ? route($submenu->pname) : '#' }}">{{ $submenu->name ?? '' }}</a></li>
-            @endforeach
-        </ul> --}}
     </li>
    
     {{-- <li>

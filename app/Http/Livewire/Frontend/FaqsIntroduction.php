@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Frontend;
 
+use App\Models\FaqCategory;
+use App\Models\FaqData;
 use App\Models\Metadetails;
 use Livewire\Component;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -20,26 +22,37 @@ class FaqsIntroduction extends Component
 {
 
    public $seo_keywords;
+   public $faqDataId;
+   public $faqCatName;
 
-   public function mount(){
-    $getRouteName =  Route::currentRouteName(); 
-    $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
-    if($seoMetaData){
-        
-    SEOTools::setTitle($seoMetaData->title ?? 'Faqs Introduction');
-    SEOTools::setDescription($seoMetaData->description ?? '');
-    SEOTools::opengraph()->setUrl(url()->current());
-    SEOTools::setCanonical(url()->current());
-    SEOTools::opengraph()->addProperty('type', 'website');
-    SEOTools::twitter()->setSite($seoMetaData->title ?? '');
-    $keywords = $seoMetaData->keywords;
-    SEOMeta::addKeyword( $keywords);
+
+public function mount($id , $slug)
+{
+    try {
+    // $id = decrypt($encrypted_id);
+    $faqid = $id;
+
+    // Retrieve the item based on the ID
+    $getFaqCategory =   FaqCategory::findOrFail($faqid);
+    $this->faqDataId = $getFaqCategory->id;
+    $this->faqCatName = $getFaqCategory->name; 
+    if ($getFaqCategory->status === 'Inactive'   ) {
+        abort(404);
+    }
+
+} catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+    abort(404); // Redirect to a 404 error page if decryption fails
 }
+
+
 }
 
 
     public function render()
     {
-        return view('livewire.frontend.faqs-introduction')->layout('layouts.frontend');;
+
+        $faqpageData = FaqData::with(['getfaqcat'])->where('faq_categories_id' , $this->faqDataId)->get();
+
+        return view('livewire.frontend.faqs-introduction' ,['faqpageData' => $faqpageData])->layout('layouts.frontend');;
     }
 }

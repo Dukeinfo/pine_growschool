@@ -48,14 +48,32 @@
                                     <div class="mb-3">
                                         <label class="form-label"> Route Name</label>
                                         <select name="selected_route" wire:model="link" id="selected_route"  class="form-control">
-                                         <option value="{{NULL}}" >Select page</option>
+                                         <option value="" >Select page</option>
+                                        <option value="faqs_introduction"> FAQ</option>
                                           
                                             @foreach(Route::getRoutes() as $route)
                                                  @if (str_starts_with($route->getName(), 'home.') )
                                                 @php
                                                     $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
                                                  @endphp
-                                                <option value="{{ $route->getName() }}"    class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
+     <option value="{{ $route->getName() }}" 
+        @if(in_array($route->getName(), [ 
+            'home.admission_process',
+            'home.facilities',
+            'home.gallery',
+            'home.location',
+            'home.our_founder',
+            'home.gallery_detail',
+            'home.admission_form',
+            'home.career',
+            'home.download_resources',
+            'home.our_faculties',
+            'home.group_photo',
+            'home.transfer_certificate',
+
+        ])) disabled @endif
+          class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
+   
                                                 @endif
                                             @endforeach
                                         </select>
@@ -78,8 +96,8 @@
                                         <label class="form-label">Status</label>
                                         <select wire:model="status" class="form-select">
                                         	 <option value="">Select</option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
+                                             <option value="Active">Active</option>
+                                             <option value="Inactive">Inactive </option>
                                         </select>
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
@@ -106,10 +124,20 @@
                         <div class="card-header bg-transparent border-bottom py-3">
                             <h4 class="card-title">Manage Menus</h4>
                             <p class="card-title-desc mb-0">Manage the content by clicking on action accrodingly.</p>
+                            <div class="col-md-3 float-end">
+                                <div class="form-group">
+    
+                                    <div class="mb-3">
+                                        <label class="form-label">Search</label>
+                                        <input type="Search" class="form-control"  wire:model="search" placeholder="Search...">
+                                         @error('Search') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped datatable">
+                                <table class="table table-bordered table-striped datatable--">
                                     <thead>
                                         <tr>
                                             <th> Name</th>
@@ -127,8 +155,20 @@
                                             <td>{{$record->name ?? '' }}</td>
                                             <td>{{$record->link ?? '' }}</td>
                                             <td>{{$record->sort_id ?? '' }}</td>
-                                            <td><span class="badge badge-soft-success">{{$record->status ?? '' }}</span></td>
                                             <td>
+                                                @if($record->status  == "Active")
+                                                <a href="#" wire:click="inactive({{$record->id}})">
+                                                    <span class="badge badge-soft-success" > {{$record->status ?? '' }}</span>
+                                                </a> 
+                                            </td>
+                                           @else
+                                           <a href="#" wire:click="active({{$record->id}})">
+                                           <span class="badge badge-soft-danger" >  {{$record->status ?? '' }} </span>
+                                        </a> 
+                                        </td>
+
+                                           @endif
+                                                <td>
                                                 <a href="{{url('/admin/edit/menu')}}/{{$record->id }}" class="text-success me-2" title="Edit"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="javascript:void(0)" class="text-danger me-2" title="Delete" wire:click="delete({{ $record->id }})"><i class="fa fa-times fa-fw fa-lg"></i></a>
                                             </td>
@@ -155,3 +195,6 @@
         <!-- container-fluid -->
     </div>
 </div>
+
+
+

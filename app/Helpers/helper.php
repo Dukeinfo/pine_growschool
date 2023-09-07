@@ -2,6 +2,8 @@
 
 use App\Models\Categories;
 use App\Models\ClassMaster;
+use App\Models\FaqCategory;
+use App\Models\FaqData;
 use App\Models\Location;
 use App\Models\Menu;
 use App\Models\SectionMaster;
@@ -34,7 +36,11 @@ function getClassName($id){
 return $fetchClass->classname;
 
 }
+function getFaqName($id){
+    $faqname =  FaqCategory::where('id', $id)->first();
+return $faqname->name;
 
+}
 function getSectionName($id){
     $fetchSection =  SectionMaster::where('id', $id)->first();
 return $fetchSection->name;

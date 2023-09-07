@@ -114,6 +114,7 @@ use App\Http\Livewire\Backend\Document\AddDocument;
 use App\Http\Livewire\Backend\Document\EditDocument;
 use App\Http\Livewire\Backend\Certificate\AddTransferCertificate;
 use App\Http\Livewire\Backend\Certificate\EditTransferCertificate;
+use App\Http\Livewire\Backend\Faq\CreateFaq;
 use App\Http\Livewire\Backend\Mandatory\MandatoryPublicDisclosure;
 use App\Http\Livewire\Backend\Mandatory\ViewMandatoryPublicDisclosure;
 use App\Http\Livewire\Backend\VirtualTour\ViewVirtualTour;
@@ -166,7 +167,7 @@ Route::get('/about-us', AboutUs::class)->name('home.about_us');
 Route::get('/admission-process', AdmissionProcess::class)->name('home.admission_process');
 Route::get('/contact-us', ContactUs::class)->name('home.contact_us');
 Route::get('/facilities', Facilities::class)->name('home.facilities');
-Route::get('/faqs', FaqsIntroduction::class)->name('home.faqs_introduction');
+Route::get('/faqs/{id}/{slug}', FaqsIntroduction::class)->name('faqs_introduction');
 Route::get('/gallery', Gallery::class)->name('home.gallery');
 Route::get('/location', Location::class)->name('home.location');
 Route::get('/our-founder', OurFounder::class)->name('home.our_founder');
@@ -358,6 +359,9 @@ Route::get('/git-status', [CkImageUploadController::class, 'showGitStatus'])->na
 
    Route::get('/faqs-category', AddFaqsCategory::class)->name('faqs_category');
  Route::get('/edit-faqs-category/{id}', EditFaqsCategory::class)->name('edit_faqs_category');
+
+ //  CreateFaq
+ Route::get('/create-faq', CreateFaq::class)->name('admin_create_faq');
 
 Route::get('/add-document', AddDocument::class)->name('add_document');
 Route::get('/edit-document/{id}', EditDocument::class)->name('edit_document');

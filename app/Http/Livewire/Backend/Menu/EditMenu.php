@@ -41,7 +41,12 @@ class EditMenu extends Component
       $this->validate();
         $menu = Menu::find($this->menuId);
         $menu->name = $this->name;
-        $menu->link = $this->link ?? NUll;
+        if (empty( $this->link)) {
+          $menu->link =  NUll;
+      }else{
+        $menu->link = $this->link;
+
+      }
         $menu->sort_id =$this->sort_id;
         // $menu->link =$this->link;
 

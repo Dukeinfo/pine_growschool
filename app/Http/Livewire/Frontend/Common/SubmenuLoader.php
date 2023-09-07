@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Frontend\Common;
 
 use App\Models\CreatePage;
+use App\Models\FaqCategory;
 use App\Models\Submenu;
 use Livewire\Component;
 
@@ -20,7 +21,7 @@ class SubmenuLoader extends Component
 
     public function loadSubmenus()
     {
-        $this->submenus = Submenu::where('cms', 'No')
+        $this->submenus = Submenu::with(['Menu'])->where('cms', 'No')
             ->where('menu_id', $this->menuId)
             ->orderBy('sort_id', 'asc')
             ->where('status', 'Active')
@@ -37,6 +38,8 @@ class SubmenuLoader extends Component
 
     public function render()
     {
-        return view('livewire.frontend.common.submenu-loader');
+        
+
+        return view('livewire.frontend.common.submenu-loader' );
     }
 }

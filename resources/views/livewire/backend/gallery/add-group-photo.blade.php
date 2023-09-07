@@ -71,8 +71,8 @@
                                         <label class="form-label">Status</label>
                                         <select class="form-select" wire:model="status">
                                                 <option value="">Select</option>
-                                                <option>Active</option>
-                                                <option>Inactive</option>
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive </option>
                                         </select>
                                          @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>

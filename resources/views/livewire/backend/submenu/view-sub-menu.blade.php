@@ -104,7 +104,12 @@
                                             @php
                                              $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
                                             @endphp
-                                                <option value="{{ $route->getName() }}"    class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
+     <option value="{{ $route->getName() }}" 
+        @if(in_array($route->getName(), [ 
+            'detail_page',
+            'gallery_detail',
+        ])) disabled @endif
+          class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
                                            @endif
                                                 @endforeach
                                         </select>

@@ -9,5 +9,11 @@ class FaqData extends Model
 {
     use HasFactory;
     protected $guarded = [];
+   
 
+    public function getfaqcat(){
+        
+        return $this->belongsTo(Footersnippets::class);
+
+    }
 }

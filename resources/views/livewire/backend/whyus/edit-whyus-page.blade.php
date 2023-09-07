@@ -186,8 +186,8 @@ $thumb = !empty($thumbnail) ?  getThumbnail($thumbnail)  : url('admin_assets/ima
                                         <label class="form-label">Status</label>
                                         <select wire:model="status" class="form-select">
                                         	 <option value="">Select</option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
+                                             <option value="Active">Active</option>
+                                             <option value="Inactive"> Inactive </option>
                                         </select>
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>

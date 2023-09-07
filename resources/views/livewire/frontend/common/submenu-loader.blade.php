@@ -8,8 +8,11 @@
 
     @endforeach
     @foreach($submenus as $submenu)
+    @if($submenu->menu_id != 6 )
          <li><a href="{{ isset($submenu->pname) ? route($submenu->pname) : '#' }}">{{ $submenu->name ?? '' }}</a></li>
+    @endif
     @endforeach
+
 
 
 </ul>

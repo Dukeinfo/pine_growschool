@@ -46,15 +46,32 @@
                                     <div class="mb-3">
                                         <label class="form-label"> Route Name</label>
                                         <select name="selected_route" wire:model="link" id="selected_route"  class="form-control">
-                                            <option value="{{NULL}}" >Select page</option>
+                                            <option value="" >Select page</option>
+                                            <option value="faqs_introduction"> FAQ</option>
 
-                                          
+                                            <option value="" >Set Null</option>
                                             @foreach(Route::getRoutes() as $route)
                                             @if (str_starts_with($route->getName(), 'home.') )
                                             @php
                                             $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
                                            @endphp
-                                                <option value="{{ $route->getName() }}"    class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
+     <option value="{{ $route->getName() }}" 
+        @if(in_array($route->getName(), [ 
+            'home.admission_process',
+            'home.facilities',
+            'home.gallery',
+            'home.location',
+            'home.our_founder',
+            'home.gallery_detail',
+            'home.admission_form',
+            'home.career',
+            'home.download_resources',
+            'home.our_faculties',
+            'home.group_photo',
+            'home.transfer_certificate',
+
+        ])) disabled @endif
+          class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
                                                
                                            @endif
                                                 @endforeach
@@ -77,8 +94,8 @@
                                         <label class="form-label">Status</label>
                                         <select wire:model="status" class="form-select">
                                         	 <option value="">Select</option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
+                                             <option value="Active">Active</option>
+                                             <option value="Inactive">Inactive </option>
                                         </select>
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>

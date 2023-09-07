@@ -76,9 +76,23 @@
                                             @php
                                             $routeName   = ucwords(str_replace('home.','',$route->getName() )  )
                                            @endphp
-                                                <option value="{{ $route->getName() }} "    
-                                                    @if(in_array($route->getName(), ['home.homepage', 'home.gallery', 'home.gallery_detail'])) disabled @endif
-                                                      class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
+                                      <option value="{{ $route->getName() }}" 
+                                        @if(in_array($route->getName(), [ 
+'home.homepage',
+'home.admission_process',
+'home.contact_us',
+'faqs_introduction',
+'home.gallery',
+'home.gallery_detail',
+'home.admission_form',
+'home.career',
+'home.download_resources',
+'home.our_faculties',
+'home.group_photo',
+'home.school_event',
+'home.transfer_certificate',
+  ])) disabled @endif
+                                          class="form-control">{{ str_replace('_' , ' ',$routeName)}}</option>
                                                
                                            @endif
                                                 @endforeach
@@ -171,8 +185,8 @@
                                         <label class="form-label">Status <span class="text-danger">*</span></label>
                                         <select class="form-select" wire:model="status">
                                                 <option value="">Select</option>
-                                                <option>Active</option>
-                                                <option>Inactive</option>
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive </option>
                                         </select>
                                          @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>

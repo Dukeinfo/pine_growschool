@@ -10,14 +10,19 @@ use Illuminate\Support\Facades\Auth;
 class ViewMenu extends Component
 {
 
-    public $name,$sort,$status ,$records ,$clientIp ,$link;
+    public $name,$sort,$status  ,$clientIp ,$link;
+    public $search;
+ 
+    protected $queryString = ['search'];
 
     public function render(Request $request)
     {
       $this->clientIp = $request->ip();
 
-      $this->records = Menu::orderBy('sort_id','asc')->get();	 
-        return view('livewire.backend.menu.view-menu')->layout('layouts.backend');
+   
+
+  
+        return view('livewire.backend.menu.view-menu', ['records' => Menu::orderBy('sort_id')->orderBy('name' ,'ASC')->where('name', 'like', '%'.$this->search.'%')->get()])->layout('layouts.backend');
     }
      protected $rules = [
         'name' => 'required | unique:menus,name', 
@@ -69,6 +74,22 @@ class ViewMenu extends Component
       if(!is_null($menu)){
         $menu->delete();
       }
+
+     }
+     
+
+     public function  inactive($id){
+         $active = Menu::findOrFail($id);
+         $active->status = 'Inactive';
+         $active->save();
+         return redirect()->back();
+
+     }
+     public function  active($id){
+      $inactive = Menu::findOrFail($id);
+      $inactive->status = 'Active';
+      $inactive->save();
+      return redirect()->back();
 
      }
 

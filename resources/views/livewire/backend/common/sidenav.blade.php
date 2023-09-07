@@ -33,6 +33,9 @@
 							<li><a href="{{route('view_class')}}">Class</a></li>
 						<li><a href="{{route('view_section')}}">Section</a></li>
 						<li><a href="{{route('faqs_category')}}">Faqs Category</a></li>
+						<li><a href="{{route('admin_create_faq')}}">Create FAQ</a></li>
+
+						
 					</ul>
 			
 			</li>
