@@ -16,6 +16,10 @@ class CreateFaqCategoriesTable extends Migration
         Schema::create('faq_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->longText('seo_title')->nullable(); 
+            $table->longText('seo_description')->nullable(); 
+            $table->longText('seo_keywords')->nullable();
             $table->integer('sort_id')->nullable(); 
             $table->enum('status', ['Active', 'Inactive', 'Deleted'])->default('Active');
             $table->ipAddress('ip_address')->nullable();
