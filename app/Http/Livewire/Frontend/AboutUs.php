@@ -27,21 +27,22 @@ class AboutUs extends Component
     public function mount(){
 
     $getRouteName =  Route::currentRouteName(); 
-    $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
-    if($seoMetaData){
-        
-    SEOTools::setTitle($seoMetaData->title ?? 'About us');
-    SEOTools::setDescription($seoMetaData->description ?? '');
-    SEOTools::opengraph()->setUrl(url()->current());
-    SEOTools::setCanonical(url()->current());
-    SEOTools::opengraph()->addProperty('type', 'website');
-    SEOTools::twitter()->setSite($seoMetaData->title ?? '');
-    $keywords = $seoMetaData->keywords;
-    SEOMeta::addKeyword( $keywords);
-    // SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
-    
+    if($getRouteName){
+        $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
+          if($seoMetaData){
+            SEOTools::setTitle($seoMetaData->title ?? 'About us');
+            SEOTools::setDescription($seoMetaData->description ?? '');
+            SEOTools::opengraph()->setUrl(url()->current());
+            SEOTools::setCanonical(url()->current());
+            SEOTools::opengraph()->addProperty('type', 'website');
+            SEOTools::twitter()->setSite($seoMetaData->title ?? '');
+            $keywords = $seoMetaData->keywords ?? '';
+            SEOMeta::addKeyword( $keywords);
+                // SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
+                
    }
-    $this->pageData =  PageContent::where('name',$getRouteName )->first();   
+   $this->pageData =  PageContent::where('name',$getRouteName )->first();   
+}
 
 }
 

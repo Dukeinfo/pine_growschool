@@ -33,18 +33,18 @@ class Homepage extends Component
 public function mount(){
     $getRouteName =  Route::currentRouteName(); 
     $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
-    if($seoMetaData){    
+    // if($seoMetaData){    
     SEOTools::setTitle($seoMetaData->title ?? 'Home ');
     SEOTools::setDescription($seoMetaData->description ?? '');
     SEOTools::opengraph()->setUrl(url()->current());
     SEOTools::setCanonical(url()->current());
     SEOTools::opengraph()->addProperty('type', 'website');
     SEOTools::twitter()->setSite($seoMetaData->title ?? '');
-    $keywords = $seoMetaData->keywords;
+    $keywords = $seoMetaData->keywords ?? '';
     SEOMeta::addKeyword( $keywords);
     // SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
     
-   }
+//    }
 $this->menus = Menu::orderBy('sort_id','asc')->where('status','Active')->take(9)->get();	
 $this->sliders = Slider::orderBy('sort_id','asc')->where('status','Active')->get();	
 $this->memberships =  Memberships::orderBy('sort_id' ,'asc')->where('status','Active')->get(); 

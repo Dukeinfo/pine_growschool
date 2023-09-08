@@ -24,21 +24,37 @@ class FaqsIntroduction extends Component
    public $seo_keywords;
    public $faqDataId;
    public $faqCatName;
-
+    public $seotitle ;
+    public $seo_description ;
+  
 
 public function mount($id , $slug)
-{
-    try {
-    // $id = decrypt($encrypted_id);
-    $faqid = $id;
+        {
+            try {
+            // $id = decrypt($encrypted_id);
+            $faqid = $id;
 
-    // Retrieve the item based on the ID
-    $getFaqCategory =   FaqCategory::findOrFail($faqid);
-    $this->faqDataId = $getFaqCategory->id;
-    $this->faqCatName = $getFaqCategory->name; 
-    if ($getFaqCategory->status === 'Inactive'   ) {
-        abort(404);
-    }
+            // Retrieve the item based on the ID
+            $getFaqCategory =   FaqCategory::findOrFail($faqid);
+            $this->faqDataId = $getFaqCategory->id;
+            $this->faqCatName = $getFaqCategory->name; 
+            if ($getFaqCategory->status === 'Inactive'   ) {
+                abort(404);
+            }
+            $this->seotitle = $getFaqCategory->seo_title;
+            $this->seo_description = $getFaqCategory->seo_description;
+            $this->seo_keywords = $getFaqCategory->seo_keywords ?? '';
+            SEOTools::setTitle($this->seotitle  ?? "" ) ;
+            SEOTools::setDescription( $this->seo_description ?? '') ;
+            SEOTools::opengraph()->setUrl(url()->current());
+            SEOTools::setCanonical( url()->current() ?? '');
+            SEOTools::opengraph()->addProperty('type', 'website');
+            SEOTools::twitter()->setSite(@$this->seotitle ?? '');
+            SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
+            $keywords =  $this->seo_keywords  ?? '';
+            SEOMeta::addKeyword( $keywords); 
+
+
 
 } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
     abort(404); // Redirect to a 404 error page if decryption fails

@@ -29,12 +29,13 @@
   <form>
    <div class="mb-3 mt-3">
     <label for="text" class="form-label">Admission Number:</label>
-    <input type="text" class="form-control" id="admno" placeholder="Enter Admission Number" wire:model="admno">
+    <input type="search" class="form-control" id="admno" placeholder="Enter Admission Number" wire:model="search">
+    @error('search') <span class="text-danger">{{ $message }}</span> @enderror
   </div>
-    @error('admno') <span class="error">{{ $message }}</span> @enderror
-   <br>
-   <button type="button" class="btn btn-primary" wire:click="search">Submit</button>
+  <div class="mb-3 mt-3">
 
+   <button type="button" class="btn btn-primary" wire:click="searchresult">Submit</button>
+  </div>
   </form> 
 
 
@@ -52,7 +53,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-       @foreach($records as $record)
+
+                                @forelse ($records as $record)
                                 <tr>
                                     <td>{{ $record->admission_no  ?? '' }}</td>
                                      <td>{{ $record->name  ?? '' }}</td>
@@ -61,8 +63,15 @@
                                     
                                      <td><a href="javascript:void(0)" wire:click="download('{{$record->id}}')" download=""> Download </a></td>
                                 </tr>
-                        
-       @endforeach
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">
+
+                                        <p>Record not Found </p>
+                                    </td>
+                                    </tr>     
+                                @endforelse
+            
                              
                                
                             </tbody>

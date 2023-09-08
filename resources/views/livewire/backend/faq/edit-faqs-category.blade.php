@@ -34,7 +34,7 @@
                             
                             
                             <!--form starts-->
-                            <div class="row g-3">
+                            <div class="row g-4">
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label"> Faqs Category</label>
@@ -43,14 +43,14 @@
                                     </div>
                                 </div>
                               
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Sorting Order#</label>
                                         <input type="number" class="form-control" id="" wire:model="sort_id" placeholder="Sorting Order" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57">
                                         @error('sort_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>
                                         <select wire:model="status" class="form-select">
@@ -61,7 +61,32 @@
                                         @error('status') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                        
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Seo Title</label>
+                                        <input type="text" class="form-control"  wire:model="seo_title" placeholder="Seo Title">
+                                        @error('seo_title') <span class="error">{{ $message }}</span> @enderror
+                                   
+                                    </div>
+                                </div>
+                           
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Seo Keywords</label>
+                                        <input type="text" class="form-control"  wire:model="seo_keywords" placeholder="Seo Keywords">
+                                        @error('seo_keywords') <span class="error">{{ $message }}</span> @enderror
+                                   
+                                    </div>
+                                </div>
+                             
+                                    <div class="col-md-12">
+                                            <div class="mb-3" wire:ignore>
+                                                <label class="form-label"> Seo Description</label>
+                                                <textarea wire:model="seo_description" rows="5" cols="5" placeholder="Seo Description here..." class="form-control xtra-cat"></textarea>
+                                                @error('seo_description') <span class="error">{{ $message }}</span> @enderror
+                                            </div>              
+                                    </div>
+                    
 
                                <div>
                                 <button type="submit" wire:loading.attr="disabled"  class="btn btn-primary w-md" wire:click="addCategory">Submit</button>

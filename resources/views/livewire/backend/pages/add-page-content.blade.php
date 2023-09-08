@@ -124,7 +124,11 @@
                           
                                  <div wire:ignore>
                                          <textarea id="editor" wire:model="desc" placeholder="Description of Event" class="form-control xtra-cat"></textarea>
-                                 </div>
+                                    
+
+                                        </div>
+                                        @error('desc') <span class="error">{{ $message }}</span> @enderror
+
                                   <script>
                                             document.addEventListener('livewire:load', function () {
                                                 // Get the CSRF token from the meta tag

@@ -31,7 +31,7 @@ class AddPageContent extends Component
         'name' => 'required',
         'heading' => 'required', 
         'desc' => 'required',
-        'image' => 'required',
+        // 'image' => 'required',
         'sort' => 'required| unique:page_contents,sort_id', 
         'status' => 'required', 
      
@@ -41,7 +41,7 @@ class AddPageContent extends Component
           'name.required' => 'Route Required.',  
           'heading.required' => 'Heading Required.',
           'desc.required' => 'Description Required.',
-          'image.required' => 'Image Required.',
+          // 'image.required' => 'Image Required.',
           'sort.required' => 'Sort Id Required.',
           'status.required' => 'Status Required.',
           

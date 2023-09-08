@@ -5,14 +5,49 @@ namespace App\Http\Livewire\Frontend;
 use App\Jobs\SendStudentRegistrationEmail;
 use App\Mail\StudentRegistration;
 use App\Models\AdmissionForm as ModelsAdmissionForm;
+use App\Models\PageContent;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
-
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
+use Artesaos\SEOTools\Facades\JsonLd;
+// OR with multi
+use Artesaos\SEOTools\Facades\JsonLdMulti;
+// OR use only single facades 
+use Artesaos\SEOTools\Facades\SEOTools;
+use App\Models\Metadetails;
+use Illuminate\Support\Facades\Route;
 class AdmissionForm extends Component
 {
 
     public $name ,$gender ,$dateOfBirth ,$countryOfBirth ,$nationality ,$admissionSought ,
     $studyingIn ,$fatherName ,$fatherPhone ,$motherName ,$motherPhone ,$parentEmail ,$address ;
+   
+   public $pageData;
+    public function mount(){
+
+        $getRouteName =  Route::currentRouteName(); 
+        if($getRouteName){
+            $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
+            if($seoMetaData){
+                
+                SEOTools::setTitle($seoMetaData->title ?? 'About us');
+                SEOTools::setDescription($seoMetaData->description ?? '');
+                SEOTools::opengraph()->setUrl(url()->current());
+                SEOTools::setCanonical(url()->current());
+                SEOTools::opengraph()->addProperty('type', 'website');
+                SEOTools::twitter()->setSite($seoMetaData->title ?? '');
+                $keywords = $seoMetaData->keywords ?? '';
+                SEOMeta::addKeyword( $keywords);
+                // SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
+        
+       }
+       $this->pageData =  PageContent::where('name',$getRouteName )->first();   
+    }
+    
+    }
+   
     public function render()
     {
         return view('livewire.frontend.admission-form')->layout('layouts.frontend');

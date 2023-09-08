@@ -41,21 +41,19 @@ public $addmision_no;
 
 
       //  $this->records = Gallery::where('category_id', $this->category_id)->latest()->get();
-      $this->records = Gallery::where('category_id', $category_id)
-      ->when($this->year, function ($query) {
+      $this->records = Gallery::where('category_id', $category_id)->when($this->year, function ($query) {
           return $query->where('year', 'like', '%' . $this->year . '%');
-      })
-      ->when($this->s_name, function ($query) {
+      })->when($this->s_name, function ($query) {
           return $query->where('s_name', 'like', '%' . $this->s_name . '%');
       })
-      ->when($this->addmision_no, function ($query) {
+->when($this->addmision_no, function ($query) {
           return $query->where('addmision_no', 'like', '%' . $this->addmision_no . '%');
       })->orderByRaw("CASE 
-      WHEN year LIKE '%$this->year%' THEN 0
-      WHEN s_name LIKE '%$this->s_name%' THEN 0
-      WHEN addmision_no LIKE '%$this->addmision_no%' THEN 0
-      ELSE 1
-      END")
+            WHEN year LIKE '%$this->year%' THEN 0
+            WHEN s_name LIKE '%$this->s_name%' THEN 0
+            WHEN addmision_no LIKE '%$this->addmision_no%' THEN 0
+            ELSE 1
+            END")
       ->get();
   
 
@@ -64,14 +62,14 @@ public $addmision_no;
 
        if($getRouteName){
          $seoMetaData =  Metadetails::where('name',$getRouteName )->first();     
-          if($seoMetaData){
-              SEOTools::setTitle($seoMetaData->title ?? 'Gallery Detail');
+         SEOTools::setTitle($seoMetaData->title ?? 'Gallery Detail');
+         if($seoMetaData){
               SEOTools::setDescription($seoMetaData->description ?? '');
               SEOTools::opengraph()->setUrl(url()->current());
               SEOTools::setCanonical(url()->current());
               SEOTools::opengraph()->addProperty('type', 'website');
               SEOTools::twitter()->setSite($seoMetaData->title ?? '');
-              $keywords = $seoMetaData->keywords;
+              $keywords = $seoMetaData->keywords ?? '';
               SEOMeta::addKeyword( $keywords);
 
           }

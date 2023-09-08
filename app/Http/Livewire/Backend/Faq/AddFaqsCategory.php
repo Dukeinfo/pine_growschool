@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Backend\Master;
+namespace App\Http\Livewire\Backend\Faq;
 
 use Livewire\Component;
 use App\Models\FaqCategory;
@@ -9,10 +9,14 @@ class AddFaqsCategory extends Component
 {
 
    public $name,$sort_id,$status ,$records; 
+   public $seo_title ;
+   public $seo_keywords ;
+   public $seo_description  ;
 
 	protected $rules = [
         'name' => 'required', 
         'sort_id' => 'required| unique:faq_categories,sort_id', 
+        
         'status' => 'required', 
      
       ];
@@ -25,6 +29,9 @@ class AddFaqsCategory extends Component
         $this->name = '';
         $this->sort_id = '';
         $this->status = '';
+        $this->seo_title  = '';
+        $this->seo_keywords = '';
+        $this->seo_description  = '';
     }
 
 
@@ -36,6 +43,10 @@ class AddFaqsCategory extends Component
       $faqCategory = new FaqCategory();
       $faqCategory->name = $this->name;
       $faqCategory->sort_id =$this->sort_id;
+      $faqCategory->slug =  strtolower(str_replace(' ', '-',$this->name)) ?? NULL;
+      $faqCategory->seo_title = $this->seo_title ?? Null;
+      $faqCategory->seo_keywords = $this->seo_keywords ?? Null;
+      $faqCategory->seo_description = $this->seo_description ?? Null;
       $faqCategory->status = $this->status;
       $faqCategory->save();
 
@@ -60,6 +71,6 @@ class AddFaqsCategory extends Component
     public function render()
     {
     	$this->records = FaqCategory::orderBy('sort_id','asc')->get();
-        return view('livewire.backend.master.add-faqs-category')->layout('layouts.backend');
+        return view('livewire.backend.faq.add-faqs-category')->layout('layouts.backend');
     }
 }

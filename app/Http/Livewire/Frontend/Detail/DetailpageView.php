@@ -35,21 +35,21 @@ class DetailpageView extends Component
             $this->image = $pageData->image;
             $this->desc = $pageData->description;
             $this->url_link = $pageData->SubMenu->url_link;
-            $this->seotitle = $pageData->SubMenu->seo_title;
             $this->display_name = $pageData->SubMenu->display_name;
             $this->name = $pageData->SubMenu->name;
             
-
+            $this->seotitle = $pageData->SubMenu->seo_title;
             $this->seo_description = $pageData->SubMenu->seo_description;
             $this->seo_keywords = $pageData->SubMenu->seo_keywords ?? '';
-            SEOTools::setTitle($this->seotitle );
-            SEOTools::setDescription( $this->seo_description);
+            SEOTools::setTitle($this->seotitle  ?? 'Gallery Detail');
+            SEOTools::setDescription( $this->seo_description ?? '');
+            
             SEOTools::opengraph()->setUrl(url()->current());
             SEOTools::setCanonical( url()->current() ?? '');
             SEOTools::opengraph()->addProperty('type', 'website');
-            SEOTools::twitter()->setSite($this->seotitle);
+            SEOTools::twitter()->setSite($this->seotitle ?? '');
             SEOTools::jsonLd()->addImage('https://pinegroveschool.org/pinegrove/public/assets/images/logo.png');
-            $keywords = $pageData->SubMenu->seo_keywords;
+            $keywords = $pageData->SubMenu->seo_keywords ?? '';
             SEOMeta::addKeyword( $keywords); //pluck returns the array of product keywords here
             // if ($this->slug !== $slug) {
         //     return redirect()->to(route('detail_page', ['item' => $this->pageId, 'slug' => $this->slug]));

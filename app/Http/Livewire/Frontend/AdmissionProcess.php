@@ -21,18 +21,19 @@ class AdmissionProcess extends Component
     public $seo_keywords;
     public function mount(){
     $getRouteName =  Route::currentRouteName(); 
-    $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
-    if($seoMetaData){
-        
-    SEOTools::setTitle($seoMetaData->title ?? 'Addmission & fee');
-    SEOTools::setDescription($seoMetaData->description ?? '');
-    SEOTools::opengraph()->setUrl(url()->current());
-    SEOTools::setCanonical(url()->current());
-    SEOTools::opengraph()->addProperty('type', 'website');
-    SEOTools::twitter()->setSite($seoMetaData->title ?? '');
-    $keywords = $seoMetaData->keywords;
-    SEOMeta::addKeyword( $keywords);
-}
+    if($getRouteName){
+         $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
+          SEOTools::setTitle($seoMetaData->title ?? 'Admission Process ');
+            if($seoMetaData){
+                SEOTools::setDescription($seoMetaData->description ?? '');
+                SEOTools::opengraph()->setUrl(url()->current());
+                SEOTools::setCanonical(url()->current());
+                SEOTools::opengraph()->addProperty('type', 'website');
+                SEOTools::twitter()->setSite($seoMetaData->title ?? '');
+                $keywords = $seoMetaData->keywords ?? '';
+                SEOMeta::addKeyword( $keywords);
+        }
+    }
 }
 
     public function render()

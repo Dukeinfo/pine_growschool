@@ -16,6 +16,10 @@ class AddSlugToFaqCategories extends Migration
         Schema::table('faq_categories', function (Blueprint $table) {
             //
             $table->string('slug')->after('name')->nullable();
+            $table->longText('seo_title')->after('slug')->nullable(); 
+            $table->longText('seo_description')->after('seo_title')->nullable(); 
+            $table->longText('seo_keywords')->after('seo_description')->nullable();
+          
         });
     }
 
@@ -29,6 +33,9 @@ class AddSlugToFaqCategories extends Migration
         Schema::table('faq_categories', function (Blueprint $table) {
             //
             $table->dropColumn('slug');
+            $table->dropColumn('seo_title');
+            $table->dropColumn('seo_description');
+            $table->dropColumn('seo_keywords');
 
         });
     }

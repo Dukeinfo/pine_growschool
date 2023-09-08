@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Frontend;
 
 use App\Models\Metadetails;
+use App\Models\PageContent;
 use Livewire\Component;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -20,21 +21,25 @@ class Location extends Component
 {
 
     public $seo_keywords;
+    public $pageData;
 
    public function mount(){
-    $getRouteName =  Route::currentRouteName(); 
-    $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
-    if($seoMetaData){
-        
-    SEOTools::setTitle($seoMetaData->title ?? 'Location');
-    SEOTools::setDescription($seoMetaData->description ?? '');
-    SEOTools::opengraph()->setUrl(url()->current());
-    SEOTools::setCanonical(url()->current());
-    SEOTools::opengraph()->addProperty('type', 'website');
-    SEOTools::twitter()->setSite($seoMetaData->title ?? '');
-    $keywords = $seoMetaData->keywords;
-    SEOMeta::addKeyword( $keywords);
-}
+        $getRouteName =  Route::currentRouteName(); 
+        if($getRouteName){
+            $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
+            SEOTools::setTitle($seoMetaData->title ?? 'Location');
+            if($seoMetaData){
+                SEOTools::setDescription($seoMetaData->description ?? '');
+                SEOTools::opengraph()->setUrl(url()->current());
+                SEOTools::setCanonical(url()->current());
+                SEOTools::opengraph()->addProperty('type', 'website');
+                SEOTools::twitter()->setSite($seoMetaData->title ?? '');
+                $keywords = $seoMetaData->keywords ?? '';
+                SEOMeta::addKeyword( $keywords);
+            }
+            $this->pageData =  PageContent::where('name',$getRouteName )->first();   
+
+        }
       
    }
 

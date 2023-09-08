@@ -16,6 +16,19 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Livewire\WithFileUploads;
 
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
+use Artesaos\SEOTools\Facades\JsonLd;
+// OR with multi
+use Artesaos\SEOTools\Facades\JsonLdMulti;
+
+// OR use only single facades 
+use Artesaos\SEOTools\Facades\SEOMeta;
+
+use Artesaos\SEOTools\Facades\SEOTools;
+use App\Models\Metadetails;
+use App\Models\PageContent;
+use Illuminate\Support\Facades\Route;
 
 class MandatoryPublicDisclosure extends Component
 {
@@ -25,7 +38,7 @@ class MandatoryPublicDisclosure extends Component
 
    //GENERAL INFORMATION
    public $school_name,$application_no,$school_code,$school_add,$principal_detail,$school_email,$school_phone;
-
+     public $pageData;
    //DOCUMENT INFORMATION
    public $doc1,$doc2,$doc3,$doc4,$doc5,$doc6,$doc7,$doc8;
 
@@ -39,6 +52,25 @@ class MandatoryPublicDisclosure extends Component
    public $school_area,$school_rooms,$school_labs,$school_internet,$toilet_girls,$toilet_boys,$school_youtube;
 
 
+   public function mount(){
+     $getRouteName =  Route::currentRouteName(); 
+     if($getRouteName){
+         $seoMetaData =  Metadetails::where('name',$getRouteName )->first();
+         SEOTools::setTitle($seoMetaData->title ?? 'Mandatory Public Disclosure');
+         if($seoMetaData){
+             SEOTools::setDescription($seoMetaData->description ?? '');
+             SEOTools::opengraph()->setUrl(url()->current());
+             SEOTools::setCanonical(url()->current());
+             SEOTools::opengraph()->addProperty('type', 'website');
+             SEOTools::twitter()->setSite($seoMetaData->title ?? '');
+             $keywords = $seoMetaData->keywords ?? '';
+             SEOMeta::addKeyword( $keywords);
+         }
+         $this->pageData =  PageContent::where('name',$getRouteName )->first();   
+
+     }
+   
+}
    public $toAdd = [];
 
    public function store(){

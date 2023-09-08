@@ -8,10 +8,6 @@ use App\Models\BoardMembers;
 class ViewMore extends Component
 {
 
-    public function mount( )
-    {
-
-    } 	
 
     public function render()
     {

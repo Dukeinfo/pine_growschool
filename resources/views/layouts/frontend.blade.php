@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- OR -->
     {!! SEO::generate() !!}
-    @stack('keywords')
+    {{-- @stack('keywords') --}}
     <!-- BEGIN: CSS -->
     @php
         $headerSnippets = App\Models\Headersnippets::get();
