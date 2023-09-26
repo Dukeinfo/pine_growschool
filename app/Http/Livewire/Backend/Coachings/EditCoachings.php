@@ -36,7 +36,7 @@ class EditCoachings extends Component
      if(!is_null($this->editimage)){
          $editimage =  $this->editimage;
         // Define folder path
-        $folder = '/uploads/facility';
+        $folder = '/uploads/coaching';
         $uploadedData = $this->uploadOne($editimage, $folder);  
 
       $coachings =Coachings::find($this->coachingId);

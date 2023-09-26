@@ -22,7 +22,7 @@ use Artesaos\SEOTools\Facades\SEOTools;
 class GalleryDetail extends Component
 {
 
-   public $galleryId,$category,$records;
+public $galleryId,$category,$records;
 
 public $category_id;
 public $year;
