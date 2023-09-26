@@ -39,6 +39,7 @@ class EditCoachings extends Component
         $folder = '/uploads/coaching';
         $uploadedData = $this->uploadOne($editimage, $folder);  
 
+
       $coachings =Coachings::find($this->coachingId);
       $coachings->image = $uploadedData['file_name'];
       $coachings->thumbnail = $uploadedData['thumbnail_name'];
