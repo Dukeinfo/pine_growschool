@@ -67,10 +67,10 @@
 						<li><a href="{{route('view_boardmembers')}}">News & Events</a>
 					    <li><a href="{{route('view_our_topper')}}">Our Toppers</a></li>
 						<li><a href="{{route('view_knowledge_home')}}">Knowledge Home</a></li>	
-						<li><a href="{{route('view_coachings')}}">Coachings</a>	
-                       <li><a href="{{route('view_facilities')}}">Facilities</a>
+						<li><a href="{{route('view_coachings')}}">Deserve Section</a>	
+                       <li><a href="{{route('view_facilities')}}">Facilities Section</a>
 						<li><a href="{{route('view_testimonials')}}">Testimonials</a>
-						<li><a href="{{route('view_membership')}}">Memebership</a>
+						<li><a href="{{route('view_membership')}}">Memebership (Footer)</a>
 
 
 					
