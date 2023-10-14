@@ -64,7 +64,7 @@
 			  <ul class="sub-menu" aria-expanded="false">
 						<li><a href="{{route('view_home_slider')}}">Home Slider</a></li>
 						<li><a href="{{route('whyus_page')}}">Home Sections</a>
-						<li><a href="{{route('view_boardmembers')}}">Board Memebers</a>
+						<li><a href="{{route('view_boardmembers')}}">News & Events</a>
 					    <li><a href="{{route('view_our_topper')}}">Our Toppers</a></li>
 						<li><a href="{{route('view_knowledge_home')}}">Knowledge Home</a></li>	
 						<li><a href="{{route('view_coachings')}}">Coachings</a>	
