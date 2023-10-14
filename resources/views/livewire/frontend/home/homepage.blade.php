@@ -506,7 +506,7 @@ $homeSlidersec2 = App\Models\MultipleImages::where('whyus_id', $categoryThird->i
 
                   @endif            
                         </div>
-                        <a class="immiPressBtn" href="javascript:void()"><span>View Details</span></a>
+                        <a class="immiPressBtn" href="{{$coaching->link ?? '#'}}"><span>View Details</span></a>
                     </div>
                     <!-- Coaching Item -->
                 </div>
