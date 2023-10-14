@@ -130,7 +130,7 @@
                                     <button class="btn btn-danger btn-sm" wire:click.prevent="remove({{$key}})">remove</button>
                                 </div>
                               @endforeach --}}
-                              @if($category == '2')
+                              @if($category == 'Where Excellence Meets Education' || $category == 'International Exchange Programs')
                               <div class="col-md-3">
                                   <div class="mb-3">
                                       <label class="form-label">Choose Multiple Images </label>
